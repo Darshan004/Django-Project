@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from macd.models import values
+from macd.models import values,values2
 import numpy as np
 from .forms import InputsForm
 
@@ -9,6 +9,7 @@ def index(request):
     if request.method == 'POST':
         # create new 'values' object
         vals = values()
+        vals2 = values2()
         vals.hocan15 = float(request.POST['hocan15'])
         vals.g1sb015 = float(request.POST['g1sb015'])
         vals.corn15 = float(request.POST['corn15'])
@@ -1267,9 +1268,1246 @@ def index(request):
         vals.mbib22lbest24 = vals.mpbest24*30/100
         vals.mtotalbest24 = vals.m5l4best24 + vals.m20lbest24 + vals.m20lbbest24 + vals.m10l2best24 + vals.mbib22lbest24
 
+        vals.lslt15 = float(request.POST['lslt15'])
+        vals.wsaht15 = float(request.POST['wsaht15'])
+        vals.wsalt15 = float(request.POST['wsalt15'])
+        vals.wsltlt15 = float(request.POST['wsltlt15'])
+        vals.wsltht15 = float(request.POST['wsltht15'])
+        vals.ysaht15 = float(request.POST['ysaht15'])
+        vals.ysalt15 = float(request.POST['ysalt15'])
+        vals.ysltht15 = float(request.POST['ysltht15'])
+        vals.ysltlt15 = float(request.POST['ysltlt15'])
+        vals.cmaht15 = float(request.POST['cmaht15'])
+        vals.cmalt15 = float(request.POST['cmalt15'])
+        vals.cmltht1_15 = float(request.POST['cmltht1_15'])
+        vals.cmltht2_15 = float(request.POST['cmltht2_15'])
+        vals.cmltht3_15 = float(request.POST['cmltht3_15'])
+        vals.cmltlt15 = float(request.POST['cmltlt15'])
+        vals.smaht15 = float(request.POST['smaht15'])
+        vals.smltht1_15 = float(request.POST['smltht1_15'])
+        vals.smltht2_15 = float(request.POST['smltht2_15'])
+        vals.totalsc15 = (vals.lslt15 + vals.wsaht15 + vals.wsltlt15 + vals.wsltht15 + vals.ysaht15 + vals.ysalt15 + vals.ysltlt15 +
+                             vals.ysltht15 + vals.cmaht15 + vals.cmltht1_15 + vals.cmltht2_15 + vals.cmalt15 + vals.wsalt15 +
+                                 vals.cmltht3_15 + vals.cmltlt15 + vals.smaht15 + vals.smltht1_15 + vals.smltht2_15)
+
+        vals.lslt16 = float(request.POST['lslt16'])
+        vals.wsaht16 = float(request.POST['wsaht16'])
+        vals.wsalt16 = float(request.POST['wsalt16'])
+        vals.wsltlt16 = float(request.POST['wsltlt16'])
+        vals.wsltht16 = float(request.POST['wsltht16'])
+        vals.ysaht16 = float(request.POST['ysaht16'])
+        vals.ysalt16 = float(request.POST['ysalt16'])
+        vals.ysltht16 = float(request.POST['ysltht16'])
+        vals.ysltlt16 = float(request.POST['ysltlt16'])
+        vals.cmaht16 = float(request.POST['cmaht16'])
+        vals.cmalt16 = float(request.POST['cmalt16'])
+        vals.cmltht1_16 = float(request.POST['cmltht1_16'])
+        vals.cmltht2_16 = float(request.POST['cmltht2_16'])
+        vals.cmltht3_16 = float(request.POST['cmltht3_16'])
+        vals.cmltlt16 = float(request.POST['cmltlt16'])
+        vals.smaht16 = float(request.POST['smaht16'])
+        vals.smltht1_16 = float(request.POST['smltht1_16'])
+        vals.smltht2_16 = float(request.POST['smltht2_16'])
+        vals.totalsc16 = (vals.lslt16 + vals.wsaht16 + vals.wsltht16 + vals.wsltlt16 + vals.ysaht16 + vals.ysalt16 + vals.ysltlt16 +
+                             vals.ysltht16 + vals.cmaht16 + vals.cmltht1_16 + vals.cmltht2_16 + vals.cmalt16 + vals.wsalt16 +
+                                 vals.cmltht3_16 + vals.cmltlt16 + vals.smaht16 + vals.smltht1_16 + vals.smltht2_16)
+                                 
+        vals.lslt17 = float(request.POST['lslt17'])
+        vals.wsaht17 = float(request.POST['wsaht17'])
+        vals.wsalt17 = float(request.POST['wsalt17'])
+        vals.wsltlt17 = float(request.POST['wsltlt17'])
+        vals.wsltht17 = float(request.POST['wsltht17'])
+        vals.ysaht17 = float(request.POST['ysaht17'])
+        vals.ysalt17 = float(request.POST['ysalt17'])
+        vals.ysltht17 = float(request.POST['ysltht17'])
+        vals.ysltlt17 = float(request.POST['ysltlt17'])
+        vals.cmaht17 = float(request.POST['cmaht17'])
+        vals.cmalt17 = float(request.POST['cmalt17'])
+        vals.cmltht1_17 = float(request.POST['cmltht1_17'])
+        vals.cmltht2_17 = float(request.POST['cmltht2_17'])
+        vals.cmltht3_17 = float(request.POST['cmltht3_17'])
+        vals.cmltlt17 = float(request.POST['cmltlt17'])
+        vals.smaht17 = float(request.POST['smaht17'])
+        vals.smltht1_17 = float(request.POST['smltht1_17'])
+        vals.smltht2_17 = float(request.POST['smltht2_17'])
+        vals.totalsc17 = (vals.lslt17 + vals.wsaht17 + vals.wsltht17 + vals.wsltlt17 + vals.ysaht17 + vals.ysalt17 + vals.ysltlt17 +
+                             vals.ysltht17 + vals.cmaht17 + vals.cmltht1_17 + vals.cmltht2_17 + vals.cmalt17 + vals.wsalt17 +
+                                 vals.cmltht3_17 + vals.cmltlt17 + vals.smaht17 + vals.smltht1_17 + vals.smltht2_17)
+                                 
+        vals.lslt18 = float(request.POST['lslt18'])
+        vals.wsaht18 = float(request.POST['wsaht18'])
+        vals.wsalt18 = float(request.POST['wsalt18'])
+        vals.wsltlt18 = float(request.POST['wsltlt18'])
+        vals.wsltht18 = float(request.POST['wsltht18'])
+        vals.ysaht18 = float(request.POST['ysaht18'])
+        vals.ysalt18 = float(request.POST['ysalt18'])
+        vals.ysltht18 = float(request.POST['ysltht18'])
+        vals.ysltlt18 = float(request.POST['ysltlt18'])
+        vals.cmaht18 = float(request.POST['cmaht18'])
+        vals.cmalt18 = float(request.POST['cmalt18'])
+        vals.cmltht1_18 = float(request.POST['cmltht1_18'])
+        vals.cmltht2_18 = float(request.POST['cmltht2_18'])
+        vals.cmltht3_18 = float(request.POST['cmltht3_18'])
+        vals.cmltlt18 = float(request.POST['cmltlt18'])
+        vals.smaht18 = float(request.POST['smaht18'])
+        vals.smltht1_18 = float(request.POST['smltht1_18'])
+        vals.smltht2_18 = float(request.POST['smltht2_18'])
+        vals.totalsc18 = (vals.lslt18 + vals.wsaht18 + vals.wsltht18 + vals.wsltlt18 + vals.ysaht18 + vals.ysalt18 + vals.ysltlt18 +
+                             vals.ysltht18 + vals.cmaht18 + vals.cmltht1_18 + vals.cmltht2_18 + vals.cmalt18 + vals.wsalt18 +
+                                 vals.cmltht3_18 + vals.cmltlt18 + vals.smaht18 + vals.smltht1_18 + vals.smltht2_18)
+                                 
+        vals.lslt19 = float(request.POST['lslt19'])
+        vals.wsaht19 = float(request.POST['wsaht19'])
+        vals.wsalt19 = float(request.POST['wsalt19'])
+        vals.wsltlt19 = float(request.POST['wsltlt19'])
+        vals.wsltht19 = float(request.POST['wsltht19'])
+        vals.ysaht19 = float(request.POST['ysaht19'])
+        vals.ysalt19 = float(request.POST['ysalt19'])
+        vals.ysltht19 = float(request.POST['ysltht19'])
+        vals.ysltlt19 = float(request.POST['ysltlt19'])
+        vals.cmaht19 = float(request.POST['cmaht19'])
+        vals.cmalt19 = float(request.POST['cmalt19'])
+        vals.cmltht1_19 = float(request.POST['cmltht1_19'])
+        vals.cmltht2_19 = float(request.POST['cmltht2_19'])
+        vals.cmltht3_19 = float(request.POST['cmltht3_19'])
+        vals.cmltlt19 = float(request.POST['cmltlt19'])
+        vals.smaht19 = float(request.POST['smaht19'])
+        vals.smltht1_19 = float(request.POST['smltht1_19'])
+        vals.smltht2_19 = float(request.POST['smltht2_19'])
+        vals.totalsc19 = (vals.lslt19 + vals.wsaht19 + vals.wsltht19 + vals.wsltlt19 + vals.ysaht19 + vals.ysalt19 + vals.ysltlt19 +
+                             vals.ysltht19 + vals.cmaht19 + vals.cmltht1_19 + vals.cmltht2_19 + vals.cmalt19 + vals.wsalt19 +
+                                 vals.cmltht3_19 + vals.cmltlt19 + vals.smaht19 + vals.smltht1_19 + vals.smltht2_19)                                 
+                                 
+        vals.lslt20 = float(request.POST['lslt20'])
+        vals.wsaht20 = float(request.POST['wsaht20'])
+        vals.wsalt20 = float(request.POST['wsalt20'])
+        vals.wsltlt20 = float(request.POST['wsltlt20'])
+        vals.wsltht20 = float(request.POST['wsltht20'])
+        vals.ysaht20 = float(request.POST['ysaht20'])
+        vals.ysalt20 = float(request.POST['ysalt20'])
+        vals.ysltht20 = float(request.POST['ysltht20'])
+        vals.ysltlt20 = float(request.POST['ysltlt20'])
+        vals.cmaht20 = float(request.POST['cmaht20'])
+        vals.cmalt20 = float(request.POST['cmalt20'])
+        vals.cmltht1_20 = float(request.POST['cmltht1_20'])
+        vals.cmltht2_20 = float(request.POST['cmltht2_20'])
+        vals.cmltht3_20 = float(request.POST['cmltht3_20'])
+        vals.cmltlt20 = float(request.POST['cmltlt20'])
+        vals.smaht20 = float(request.POST['smaht20'])
+        vals.smltht1_20 = float(request.POST['smltht1_20'])
+        vals.smltht2_20 = float(request.POST['smltht2_20'])
+        vals.totalsc20 = (vals.lslt20 + vals.wsaht20 + vals.wsltht20 + vals.wsltlt20 + vals.ysaht20 + vals.ysalt20 + vals.ysltlt20 +
+                             vals.ysltht20 + vals.cmaht20 + vals.cmltht1_20 + vals.cmltht2_20 +  vals.cmalt20 + vals.wsalt20 +
+                                 vals.cmltht3_20 + vals.cmltlt20 + vals.smaht20 + vals.smltht1_20 + vals.smltht2_20)                                 
+                                 
+        vals.lslt21 = float(request.POST['lslt21'])
+        vals.wsaht21 = float(request.POST['wsaht21'])
+        vals.wsalt21 = float(request.POST['wsalt21'])
+        vals.wsltlt21 = float(request.POST['wsltlt21'])
+        vals.wsltht21 = float(request.POST['wsltht21'])
+        vals.ysaht21 = float(request.POST['ysaht21'])
+        vals.ysalt21 = float(request.POST['ysalt21'])
+        vals.ysltht21 = float(request.POST['ysltht21'])
+        vals.ysltlt21 = float(request.POST['ysltlt21'])
+        vals.cmaht21 = float(request.POST['cmaht21'])
+        vals.cmalt21 = float(request.POST['cmalt21'])
+        vals.cmltht1_21 = float(request.POST['cmltht1_21'])
+        vals.cmltht2_21 = float(request.POST['cmltht2_21'])
+        vals.cmltht3_21 = float(request.POST['cmltht3_21'])
+        vals.cmltlt21 = float(request.POST['cmltlt21'])
+        vals.smaht21 = float(request.POST['smaht21'])
+        vals.smltht1_21 = float(request.POST['smltht1_21'])
+        vals.smltht2_21 = float(request.POST['smltht2_21'])
+        vals.totalsc21 = (vals.lslt21 + vals.wsaht21 + vals.wsltht21 + vals.wsltlt21 + vals.ysaht21 + vals.ysalt21 + vals.ysltlt21 +
+                             vals.ysltht21 + vals.cmaht21 + vals.cmltht1_21 + vals.cmltht2_21 + vals.cmalt21 + vals.wsalt21 +
+                                 vals.cmltht3_21 + vals.cmltlt21 + vals.smaht21 + vals.smltht1_21 + vals.smltht2_21)                                 
+
+        vals.lslt22 = float(request.POST['lslt22'])
+        vals.wsaht22 = float(request.POST['wsaht22'])
+        vals.wsalt22 = float(request.POST['wsalt22'])
+        vals.wsltlt22 = float(request.POST['wsltlt22'])
+        vals.wsltht22 = float(request.POST['wsltht22'])
+        vals.ysaht22 = float(request.POST['ysaht22'])
+        vals.ysalt22 = float(request.POST['ysalt22'])
+        vals.ysltht22 = float(request.POST['ysltht22'])
+        vals.ysltlt22 = float(request.POST['ysltlt22'])
+        vals.cmaht22 = float(request.POST['cmaht22'])
+        vals.cmalt22 = float(request.POST['cmalt22'])
+        vals.cmltht1_22 = float(request.POST['cmltht1_22'])
+        vals.cmltht2_22 = float(request.POST['cmltht2_22'])
+        vals.cmltht3_22 = float(request.POST['cmltht3_22'])
+        vals.cmltlt22 = float(request.POST['cmltlt22'])
+        vals.smaht22 = float(request.POST['smaht22'])
+        vals.smltht1_22 = float(request.POST['smltht1_22'])
+        vals.smltht2_22 = float(request.POST['smltht2_22'])
+        vals.totalsc22 = (vals.lslt22 + vals.wsaht22 + vals.wsltht22 + vals.wsltlt22 + vals.ysaht22 + vals.ysalt22 + vals.ysltlt22 +
+                             vals.ysltht22 + vals.cmaht22 + vals.cmltht1_22 + vals.cmltht2_22 +  vals.cmalt22 + vals.wsalt22 +
+                                 vals.cmltht3_22 + vals.cmltlt22 + vals.smaht22 + vals.smltht1_22 + vals.smltht2_22)                                 
+                                 
+        vals.lslt23 = float(request.POST['lslt23'])
+        vals.wsaht23 = float(request.POST['wsaht23'])
+        vals.wsalt23 = float(request.POST['wsalt23'])
+        vals.wsltlt23 = float(request.POST['wsltlt23'])
+        vals.wsltht23 = float(request.POST['wsltht23'])
+        vals.ysaht23 = float(request.POST['ysaht23'])
+        vals.ysalt23 = float(request.POST['ysalt23'])
+        vals.ysltht23 = float(request.POST['ysltht23'])
+        vals.ysltlt23 = float(request.POST['ysltlt23'])
+        vals.cmaht23 = float(request.POST['cmaht23'])
+        vals.cmalt23 = float(request.POST['cmalt23'])
+        vals.cmltht1_23 = float(request.POST['cmltht1_23'])
+        vals.cmltht2_23 = float(request.POST['cmltht2_23'])
+        vals.cmltht3_23 = float(request.POST['cmltht3_23'])
+        vals.cmltlt23 = float(request.POST['cmltlt23'])
+        vals.smaht23 = float(request.POST['smaht23'])
+        vals.smltht1_23 = float(request.POST['smltht1_23'])
+        vals.smltht2_23 = float(request.POST['smltht2_23'])
+        vals.totalsc23 = (vals.lslt23 + vals.wsaht23 + vals.wsltht23 + vals.wsltlt23 + vals.ysaht23 + vals.ysalt23 + vals.ysltlt23 +
+                             vals.ysltht23 + vals.cmaht23 + vals.cmltht1_23 + vals.cmltht2_23 + vals.cmalt23 + vals.wsalt23 +
+                                 vals.cmltht3_23 + vals.cmltlt23 + vals.smaht23 + vals.smltht1_23 + vals.smltht2_23)                                 
+                                 
+        vals.lslt24 = float(request.POST['lslt24'])
+        vals.wsaht24 = float(request.POST['wsaht24'])
+        vals.wsalt24 = float(request.POST['wsalt24'])
+        vals.wsltlt24 = float(request.POST['wsltlt24'])
+        vals.wsltht24 = float(request.POST['wsltht24'])
+        vals.ysaht24 = float(request.POST['ysaht24'])
+        vals.ysalt24 = float(request.POST['ysalt24'])
+        vals.ysltht24 = float(request.POST['ysltht24'])
+        vals.ysltlt24 = float(request.POST['ysltlt24'])
+        vals.cmaht24 = float(request.POST['cmaht24'])
+        vals.cmalt24 = float(request.POST['cmalt24'])
+        vals.cmltht1_24 = float(request.POST['cmltht1_24'])
+        vals.cmltht2_24 = float(request.POST['cmltht2_24'])
+        vals.cmltht3_24 = float(request.POST['cmltht3_24'])
+        vals.cmltlt24 = float(request.POST['cmltlt24'])
+        vals.smaht24 = float(request.POST['smaht24'])
+        vals.smltht1_24 = float(request.POST['smltht1_24'])
+        vals.smltht2_24 = float(request.POST['smltht2_24'])
+        vals.totalsc24 = (vals.lslt24 + vals.wsaht24 + vals.wsltht24 + vals.wsltlt24 + vals.ysaht24 + vals.ysalt24 + vals.ysltlt24 +
+                             vals.ysltht24 + vals.cmaht24 + vals.cmltht1_24 + vals.cmltht2_24 + vals.cmalt24 + vals.wsalt24 +
+                                 vals.cmltht3_24 + vals.cmltlt24 + vals.smaht24 + vals.smltht1_24 + vals.smltht2_24)                                 
+
+        vals.tcwsalt15 = float(request.POST['tcwsalt15'])
+        vals.tcwsltlt15 = float(request.POST['tcwsltlt15'])
+        vals.tcysalt15 = float(request.POST['tcysalt15'])
+        vals.tcysltlt15 = float(request.POST['tcysltlt15'])
+        vals.scwsalt15 = float(request.POST['scwsalt15'])
+        vals.scwsltlt15 = float(request.POST['scwsltlt15'])
+        vals.scysalt15 = float(request.POST['scwsltlt15'])
+        vals.scysltlt15 = float(request.POST['scwsltlt15'])
+        vals.tccmalt15 = float(request.POST['tccmalt15'])
+        vals.tccmltlt1_15 = float(request.POST['tccmltlt1_15'])
+        vals.tccmltlt2_15 = float(request.POST['tccmltlt2_15'])
+        vals.tccmltlt3_15 = float(request.POST['tccmltlt3_15'])
+        vals.sccmalt15 = float(request.POST['sccmalt15'])
+        vals.sccmltlt1_15 = float(request.POST['sccmltlt1_15'])
+        vals.sccmltlt2_15 = float(request.POST['sccmltlt2_15'])
+        vals.sccmltlt3_15 = float(request.POST['sccmltlt3_15'])
+        vals.tcsmalt15 = float(request.POST['tcsmalt15'])
+        vals.tcsmltlt1_15 = float(request.POST['tcsmltlt1_15'])
+        vals.tcsmltlt2_15 = float(request.POST['tcsmltlt2_15'])
+        vals.scsmalt15 = float(request.POST['scsmalt15'])
+        vals.scsmltlt1_15 = float(request.POST['scsmltlt1_15'])
+        vals.scsmltlt2_15 = float(request.POST['scsmltlt2_15'])
+        vals.ietotal15 = (vals.tcwsalt15 + vals.tcwsltlt15 + vals.tcysalt15 + vals.tcysltlt15 + 
+                            vals.tccmalt15 + vals.tccmltlt1_15 + vals.tccmltlt2_15 + vals.tccmltlt3_15 +
+                                vals.tcsmalt15 + vals.tcsmltlt1_15 + vals.tcsmltlt2_15)
+        
+        vals.tcwsalt16 = float(request.POST['tcwsalt16'])
+        vals.tcwsltlt16 = float(request.POST['tcwsltlt16'])
+        vals.tcysalt16 = float(request.POST['tcysalt16'])
+        vals.tcysltlt16 = float(request.POST['tcysltlt16'])
+        vals.scwsalt16 = float(request.POST['scwsalt16'])
+        vals.scwsltlt16 = float(request.POST['scwsltlt16'])
+        vals.scysalt16 = float(request.POST['scwsltlt16'])
+        vals.scysltlt16 = float(request.POST['scwsltlt16'])
+        vals.tccmalt16 = float(request.POST['tccmalt16'])
+        vals.tccmltlt1_16 = float(request.POST['tccmltlt1_16'])
+        vals.tccmltlt2_16 = float(request.POST['tccmltlt2_16'])
+        vals.tccmltlt3_16 = float(request.POST['tccmltlt3_16'])
+        vals.sccmalt16 = float(request.POST['sccmalt16'])
+        vals.sccmltlt1_16 = float(request.POST['sccmltlt1_16'])
+        vals.sccmltlt2_16 = float(request.POST['sccmltlt2_16'])
+        vals.sccmltlt3_16 = float(request.POST['sccmltlt3_16'])
+        vals.tcsmalt16 = float(request.POST['tcsmalt16'])
+        vals.tcsmltlt1_16 = float(request.POST['tcsmltlt1_16'])
+        vals.tcsmltlt2_16 = float(request.POST['tcsmltlt2_16'])
+        vals.scsmalt16 = float(request.POST['scsmalt16'])
+        vals.scsmltlt1_16 = float(request.POST['scsmltlt1_16'])
+        vals.scsmltlt2_16 = float(request.POST['scsmltlt2_16'])
+        vals.ietotal16 = (vals.tcwsalt16 + vals.tcwsltlt16 + vals.tcysalt16 + vals.tcysltlt16 + 
+                            vals.tccmalt16 + vals.tccmltlt1_16 + vals.tccmltlt2_16 + vals.tccmltlt3_16 +
+                                vals.tcsmalt16 + vals.tcsmltlt1_16 + vals.tcsmltlt2_16)
+                                
+        vals.tcwsalt17 = float(request.POST['tcwsalt17'])
+        vals.tcwsltlt17 = float(request.POST['tcwsltlt17'])
+        vals.tcysalt17 = float(request.POST['tcysalt17'])
+        vals.tcysltlt17 = float(request.POST['tcysltlt17'])
+        vals.scwsalt17 = float(request.POST['scwsalt17'])
+        vals.scwsltlt17 = float(request.POST['scwsltlt17'])
+        vals.scysalt17 = float(request.POST['scwsltlt17'])
+        vals.scysltlt17 = float(request.POST['scwsltlt17'])
+        vals.tccmalt17 = float(request.POST['tccmalt17'])
+        vals.tccmltlt1_17 = float(request.POST['tccmltlt1_17'])
+        vals.tccmltlt2_17 = float(request.POST['tccmltlt2_17'])
+        vals.tccmltlt3_17 = float(request.POST['tccmltlt3_17'])
+        vals.sccmalt17 = float(request.POST['sccmalt17'])
+        vals.sccmltlt1_17 = float(request.POST['sccmltlt1_17'])
+        vals.sccmltlt2_17 = float(request.POST['sccmltlt2_17'])
+        vals.sccmltlt3_17 = float(request.POST['sccmltlt3_17'])
+        vals.tcsmalt17 = float(request.POST['tcsmalt17'])
+        vals.tcsmltlt1_17 = float(request.POST['tcsmltlt1_17'])
+        vals.tcsmltlt2_17 = float(request.POST['tcsmltlt2_17'])
+        vals.scsmalt17 = float(request.POST['scsmalt17'])
+        vals.scsmltlt1_17 = float(request.POST['scsmltlt1_17'])
+        vals.scsmltlt2_17 = float(request.POST['scsmltlt2_17'])
+        vals.ietotal17 = (vals.tcwsalt17 + vals.tcwsltlt17 + vals.tcysalt17 + vals.tcysltlt17 + 
+                            vals.tccmalt17 + vals.tccmltlt1_17 + vals.tccmltlt2_17 + vals.tccmltlt3_17 +
+                                vals.tcsmalt17 + vals.tcsmltlt1_17 + vals.tcsmltlt2_17)
+                                
+        vals.tcwsalt18 = float(request.POST['tcwsalt18'])
+        vals.tcwsltlt18 = float(request.POST['tcwsltlt18'])
+        vals.tcysalt18 = float(request.POST['tcysalt18'])
+        vals.tcysltlt18 = float(request.POST['tcysltlt18'])
+        vals.scwsalt18 = float(request.POST['scwsalt18'])
+        vals.scwsltlt18 = float(request.POST['scwsltlt18'])
+        vals.scysalt18 = float(request.POST['scwsltlt18'])
+        vals.scysltlt18 = float(request.POST['scwsltlt18'])
+        vals.tccmalt18 = float(request.POST['tccmalt18'])
+        vals.tccmltlt1_18 = float(request.POST['tccmltlt1_18'])
+        vals.tccmltlt2_18 = float(request.POST['tccmltlt2_18'])
+        vals.tccmltlt3_18 = float(request.POST['tccmltlt3_18'])
+        vals.sccmalt18 = float(request.POST['sccmalt18'])
+        vals.sccmltlt1_18 = float(request.POST['sccmltlt1_18'])
+        vals.sccmltlt2_18 = float(request.POST['sccmltlt2_18'])
+        vals.sccmltlt3_18 = float(request.POST['sccmltlt3_18'])
+        vals.tcsmalt18 = float(request.POST['tcsmalt18'])
+        vals.tcsmltlt1_18 = float(request.POST['tcsmltlt1_18'])
+        vals.tcsmltlt2_18 = float(request.POST['tcsmltlt2_18'])
+        vals.scsmalt18 = float(request.POST['scsmalt18'])
+        vals.scsmltlt1_18 = float(request.POST['scsmltlt1_18'])
+        vals.scsmltlt2_18 = float(request.POST['scsmltlt2_18'])
+        vals.ietotal18 = (vals.tcwsalt18 + vals.tcwsltlt18 + vals.tcysalt18 + vals.tcysltlt18 + 
+                            vals.tccmalt18 + vals.tccmltlt1_18 + vals.tccmltlt2_18 + vals.tccmltlt3_18 +
+                                vals.tcsmalt18 + vals.tcsmltlt1_18 + vals.tcsmltlt2_18)                                
+                                
+        vals.tcwsalt19 = float(request.POST['tcwsalt19'])
+        vals.tcwsltlt19 = float(request.POST['tcwsltlt19'])
+        vals.tcysalt19 = float(request.POST['tcysalt19'])
+        vals.tcysltlt19 = float(request.POST['tcysltlt19'])
+        vals.scwsalt19 = float(request.POST['scwsalt19'])
+        vals.scwsltlt19 = float(request.POST['scwsltlt19'])
+        vals.scysalt19 = float(request.POST['scwsltlt19'])
+        vals.scysltlt19 = float(request.POST['scwsltlt19'])
+        vals.tccmalt19 = float(request.POST['tccmalt19'])
+        vals.tccmltlt1_19 = float(request.POST['tccmltlt1_19'])
+        vals.tccmltlt2_19 = float(request.POST['tccmltlt2_19'])
+        vals.tccmltlt3_19 = float(request.POST['tccmltlt3_19'])
+        vals.sccmalt19 = float(request.POST['sccmalt19'])
+        vals.sccmltlt1_19 = float(request.POST['sccmltlt1_19'])
+        vals.sccmltlt2_19 = float(request.POST['sccmltlt2_19'])
+        vals.sccmltlt3_19 = float(request.POST['sccmltlt3_19'])
+        vals.tcsmalt19 = float(request.POST['tcsmalt19'])
+        vals.tcsmltlt1_19 = float(request.POST['tcsmltlt1_19'])
+        vals.tcsmltlt2_19 = float(request.POST['tcsmltlt2_19'])
+        vals.scsmalt19 = float(request.POST['scsmalt19'])
+        vals.scsmltlt1_19 = float(request.POST['scsmltlt1_19'])
+        vals.scsmltlt2_19 = float(request.POST['scsmltlt2_19'])
+        vals.ietotal19 = (vals.tcwsalt19 + vals.tcwsltlt19 + vals.tcysalt19 + vals.tcysltlt19 + 
+                            vals.tccmalt19 + vals.tccmltlt1_19 + vals.tccmltlt2_19 + vals.tccmltlt3_19 +
+                                vals.tcsmalt19 + vals.tcsmltlt1_19 + vals.tcsmltlt2_19)                                
+                                
+        vals.tcwsalt20 = float(request.POST['tcwsalt20'])
+        vals.tcwsltlt20 = float(request.POST['tcwsltlt20'])
+        vals.tcysalt20 = float(request.POST['tcysalt20'])
+        vals.tcysltlt20 = float(request.POST['tcysltlt20'])
+        vals.scwsalt20 = float(request.POST['scwsalt20'])
+        vals.scwsltlt20 = float(request.POST['scwsltlt20'])
+        vals.scysalt20 = float(request.POST['scwsltlt20'])
+        vals.scysltlt20 = float(request.POST['scwsltlt20'])
+        vals.tccmalt20 = float(request.POST['tccmalt20'])
+        vals.tccmltlt1_20 = float(request.POST['tccmltlt1_20'])
+        vals.tccmltlt2_20 = float(request.POST['tccmltlt2_20'])
+        vals.tccmltlt3_20 = float(request.POST['tccmltlt3_20'])
+        vals.sccmalt20 = float(request.POST['sccmalt20'])
+        vals.sccmltlt1_20 = float(request.POST['sccmltlt1_20'])
+        vals.sccmltlt2_20 = float(request.POST['sccmltlt2_20'])
+        vals.sccmltlt3_20 = float(request.POST['sccmltlt3_20'])
+        vals.tcsmalt20 = float(request.POST['tcsmalt20'])
+        vals.tcsmltlt1_20 = float(request.POST['tcsmltlt1_20'])
+        vals.tcsmltlt2_20 = float(request.POST['tcsmltlt2_20'])
+        vals.scsmalt20 = float(request.POST['scsmalt20'])
+        vals.scsmltlt1_20 = float(request.POST['scsmltlt1_20'])
+        vals.scsmltlt2_20 = float(request.POST['scsmltlt2_20'])
+        vals.ietotal20 = (vals.tcwsalt20 + vals.tcwsltlt20 + vals.tcysalt20 + vals.tcysltlt20 + 
+                            vals.tccmalt20 + vals.tccmltlt1_20 + vals.tccmltlt2_20 + vals.tccmltlt3_20 +
+                                vals.tcsmalt20 + vals.tcsmltlt1_20 + vals.tcsmltlt2_20)                                
+                                
+        vals.tcwsalt21 = float(request.POST['tcwsalt21'])
+        vals.tcwsltlt21 = float(request.POST['tcwsltlt21'])
+        vals.tcysalt21 = float(request.POST['tcysalt21'])
+        vals.tcysltlt21 = float(request.POST['tcysltlt21'])
+        vals.scwsalt21 = float(request.POST['scwsalt21'])
+        vals.scwsltlt21 = float(request.POST['scwsltlt21'])
+        vals.scysalt21 = float(request.POST['scwsltlt21'])
+        vals.scysltlt21 = float(request.POST['scwsltlt21'])
+        vals.tccmalt21 = float(request.POST['tccmalt21'])
+        vals.tccmltlt1_21 = float(request.POST['tccmltlt1_21'])
+        vals.tccmltlt2_21 = float(request.POST['tccmltlt2_21'])
+        vals.tccmltlt3_21 = float(request.POST['tccmltlt3_21'])
+        vals.sccmalt21 = float(request.POST['sccmalt21'])
+        vals.sccmltlt1_21 = float(request.POST['sccmltlt1_21'])
+        vals.sccmltlt2_21 = float(request.POST['sccmltlt2_21'])
+        vals.sccmltlt3_21 = float(request.POST['sccmltlt3_21'])
+        vals.tcsmalt21 = float(request.POST['tcsmalt21'])
+        vals.tcsmltlt1_21 = float(request.POST['tcsmltlt1_21'])
+        vals.tcsmltlt2_21 = float(request.POST['tcsmltlt2_21'])
+        vals.scsmalt21 = float(request.POST['scsmalt21'])
+        vals.scsmltlt1_21 = float(request.POST['scsmltlt1_21'])
+        vals.scsmltlt2_21 = float(request.POST['scsmltlt2_21'])
+        vals.ietotal21 = (vals.tcwsalt21 + vals.tcwsltlt21 + vals.tcysalt21 + vals.tcysltlt21 + 
+                            vals.tccmalt21 + vals.tccmltlt1_21 + vals.tccmltlt2_21 + vals.tccmltlt3_21 +
+                                vals.tcsmalt21 + vals.tcsmltlt1_21 + vals.tcsmltlt2_21)                                
+
+        vals.tcwsalt22 = float(request.POST['tcwsalt22'])
+        vals.tcwsltlt22 = float(request.POST['tcwsltlt22'])
+        vals.tcysalt22 = float(request.POST['tcysalt22'])
+        vals.tcysltlt22 = float(request.POST['tcysltlt22'])
+        vals.scwsalt22 = float(request.POST['scwsalt22'])
+        vals.scwsltlt22 = float(request.POST['scwsltlt22'])
+        vals.scysalt22 = float(request.POST['scwsltlt22'])
+        vals.scysltlt22 = float(request.POST['scwsltlt22'])
+        vals.tccmalt22 = float(request.POST['tccmalt22'])
+        vals.tccmltlt1_22 = float(request.POST['tccmltlt1_22'])
+        vals.tccmltlt2_22 = float(request.POST['tccmltlt2_22'])
+        vals.tccmltlt3_22 = float(request.POST['tccmltlt3_22'])
+        vals.sccmalt22 = float(request.POST['sccmalt22'])
+        vals.sccmltlt1_22 = float(request.POST['sccmltlt1_22'])
+        vals.sccmltlt2_22 = float(request.POST['sccmltlt2_22'])
+        vals.sccmltlt3_22 = float(request.POST['sccmltlt3_22'])
+        vals.tcsmalt22 = float(request.POST['tcsmalt22'])
+        vals.tcsmltlt1_22 = float(request.POST['tcsmltlt1_22'])
+        vals.tcsmltlt2_22 = float(request.POST['tcsmltlt2_22'])
+        vals.scsmalt22 = float(request.POST['scsmalt22'])
+        vals.scsmltlt1_22 = float(request.POST['scsmltlt1_22'])
+        vals.scsmltlt2_22 = float(request.POST['scsmltlt2_22'])
+        vals.ietotal22 = (vals.tcwsalt22 + vals.tcwsltlt22 + vals.tcysalt22 + vals.tcysltlt22 + 
+                            vals.tccmalt22 + vals.tccmltlt1_22 + vals.tccmltlt2_22 + vals.tccmltlt3_22 +
+                                vals.tcsmalt22 + vals.tcsmltlt1_22 + vals.tcsmltlt2_22)                
+                
+        vals.tcwsalt23 = float(request.POST['tcwsalt23'])
+        vals.tcwsltlt23 = float(request.POST['tcwsltlt23'])
+        vals.tcysalt23 = float(request.POST['tcysalt23'])
+        vals.tcysltlt23 = float(request.POST['tcysltlt23'])
+        vals.scwsalt23 = float(request.POST['scwsalt23'])
+        vals.scwsltlt23 = float(request.POST['scwsltlt23'])
+        vals.scysalt23 = float(request.POST['scwsltlt23'])
+        vals.scysltlt23 = float(request.POST['scwsltlt23'])
+        vals.tccmalt23 = float(request.POST['tccmalt23'])
+        vals.tccmltlt1_23 = float(request.POST['tccmltlt1_23'])
+        vals.tccmltlt2_23 = float(request.POST['tccmltlt2_23'])
+        vals.tccmltlt3_23 = float(request.POST['tccmltlt3_23'])
+        vals.sccmalt23 = float(request.POST['sccmalt23'])
+        vals.sccmltlt1_23 = float(request.POST['sccmltlt1_23'])
+        vals.sccmltlt2_23 = float(request.POST['sccmltlt2_23'])
+        vals.sccmltlt3_23 = float(request.POST['sccmltlt3_23'])
+        vals.tcsmalt23 = float(request.POST['tcsmalt23'])
+        vals.tcsmltlt1_23 = float(request.POST['tcsmltlt1_23'])
+        vals.tcsmltlt2_23 = float(request.POST['tcsmltlt2_23'])
+        vals.scsmalt23 = float(request.POST['scsmalt23'])
+        vals.scsmltlt1_23 = float(request.POST['scsmltlt1_23'])
+        vals.scsmltlt2_23 = float(request.POST['scsmltlt2_23'])
+        vals.ietotal23 = (vals.tcwsalt23 + vals.tcwsltlt23 + vals.tcysalt23 + vals.tcysltlt23 + 
+                            vals.tccmalt23 + vals.tccmltlt1_23 + vals.tccmltlt2_23 + vals.tccmltlt3_23 +
+                                vals.tcsmalt23 + vals.tcsmltlt1_23 + vals.tcsmltlt2_23)                
+                
+        vals.tcwsalt24 = float(request.POST['tcwsalt24'])
+        vals.tcwsltlt24 = float(request.POST['tcwsltlt24'])
+        vals.tcysalt24 = float(request.POST['tcysalt24'])
+        vals.tcysltlt24 = float(request.POST['tcysltlt24'])
+        vals.scwsalt24 = float(request.POST['scwsalt24'])
+        vals.scwsltlt24 = float(request.POST['scwsltlt24'])
+        vals.scysalt24 = float(request.POST['scwsltlt24'])
+        vals.scysltlt24 = float(request.POST['scwsltlt24'])
+        vals.tccmalt24 = float(request.POST['tccmalt24'])
+        vals.tccmltlt1_24 = float(request.POST['tccmltlt1_24'])
+        vals.tccmltlt2_24 = float(request.POST['tccmltlt2_24'])
+        vals.tccmltlt3_24 = float(request.POST['tccmltlt3_24'])
+        vals.sccmalt24 = float(request.POST['sccmalt24'])
+        vals.sccmltlt1_24 = float(request.POST['sccmltlt1_24'])
+        vals.sccmltlt2_24 = float(request.POST['sccmltlt2_24'])
+        vals.sccmltlt3_24 = float(request.POST['sccmltlt3_24'])
+        vals.tcsmalt24 = float(request.POST['tcsmalt24'])
+        vals.tcsmltlt1_24 = float(request.POST['tcsmltlt1_24'])
+        vals.tcsmltlt2_24 = float(request.POST['tcsmltlt2_24'])
+        vals.scsmalt24 = float(request.POST['scsmalt24'])
+        vals.scsmltlt1_24 = float(request.POST['scsmltlt1_24'])
+        vals.scsmltlt2_24 = float(request.POST['scsmltlt2_24'])
+        vals.ietotal24 = (vals.tcwsalt24 + vals.tcwsltlt24 + vals.tcysalt24 + vals.tcysltlt24 + 
+                            vals.tccmalt24 + vals.tccmltlt1_24 + vals.tccmltlt2_24 + vals.tccmltlt3_24 +
+                                vals.tcsmalt24 + vals.tcsmltlt1_24 + vals.tcsmltlt2_24)
+
+        vals.niecmaht15 = float(request.POST['niecmaht15'])
+        vals.niecmalt15 = float(request.POST['niecmalt15'])
+        vals.niecmltht1_15 = float(request.POST['niecmltht1_15'])
+        vals.niecmltht2_15 = float(request.POST['niecmltht2_15'])
+        vals.niecmltht3_15 = float(request.POST['niecmltht3_15'])
+        vals.niecmltlt15 = float(request.POST['niecmltlt15'])
+        vals.niesmaht15 = float(request.POST['niesmaht15'])
+        vals.niesmltht1_15 = float(request.POST['niesmltht1_15'])
+        vals.niesmltht2_15 = float(request.POST['niesmltht2_15'])
+        vals.niemtotal15 = (vals.niecmaht15 + vals.niecmalt15 + vals.niecmltht1_15 + vals.niecmltht2_15 + vals.niecmltht3_15 + 
+                                vals.niecmltlt15 + vals.niesmaht15 + vals.niesmltht1_15 + vals.niesmltht2_15)
+        vals.nielslt15 = float(request.POST['nielslt15'])
+        vals.niewsaht15 = float(request.POST['niewsaht15'])
+        vals.niewsalt15 = float(request.POST['niewsalt15'])
+        vals.niewsltht15 = float(request.POST['niewsltht15'])
+        vals.niewsltlt15 = float(request.POST['niewsltlt15'])
+        vals.nieysaht15 = float(request.POST['nieysaht15'])
+        vals.nieysalt15 = float(request.POST['nieysalt15'])
+        vals.nieysltht15 = float(request.POST['nieysltht15'])
+        vals.nieysltlt15 = float(request.POST['nieysltlt15'])
+        vals.niestotal15 = (vals.nielslt15 + vals.niewsaht15 + vals.niewsalt15 + vals.niewsltht15 + vals.niewsltlt15 +
+                               vals.nieysalt15 +  vals.nieysltht15 + vals.nieysltlt15)
+        vals.nietotal15 = vals.niemtotal15 + vals.niestotal15
+
+        vals.niecmaht16 = float(request.POST['niecmaht16'])
+        vals.niecmalt16 = float(request.POST['niecmalt16'])
+        vals.niecmltht1_16 = float(request.POST['niecmltht1_16'])
+        vals.niecmltht2_16 = float(request.POST['niecmltht2_16'])
+        vals.niecmltht3_16 = float(request.POST['niecmltht3_16'])
+        vals.niecmltlt16 = float(request.POST['niecmltlt16'])
+        vals.niesmaht16 = float(request.POST['niesmaht16'])
+        vals.niesmltht1_16 = float(request.POST['niesmltht1_16'])
+        vals.niesmltht2_16 = float(request.POST['niesmltht2_16'])
+        vals.niemtotal16 = (vals.niecmaht16 + vals.niecmalt16 + vals.niecmltht1_16 + vals.niecmltht2_16 + vals.niecmltht3_16 + 
+                                vals.niecmltlt16 + vals.niesmaht16 + vals.niesmltht1_16 + vals.niesmltht2_16)
+        vals.nielslt16 = float(request.POST['nielslt16'])
+        vals.niewsaht16 = float(request.POST['niewsaht16'])
+        vals.niewsalt16 = float(request.POST['niewsalt16'])
+        vals.niewsltht16 = float(request.POST['niewsltht16'])
+        vals.niewsltlt16 = float(request.POST['niewsltlt16'])
+        vals.nieysaht16 = float(request.POST['nieysaht16'])
+        vals.nieysalt16 = float(request.POST['nieysalt16'])
+        vals.nieysltht16 = float(request.POST['nieysltht16'])
+        vals.nieysltlt16 = float(request.POST['nieysltlt16'])
+        vals.niestotal16 = (vals.nielslt16 + vals.niewsaht16 + vals.niewsalt16 + vals.niewsltht16 + vals.niewsltlt16 +
+                               vals.nieysalt16 +  vals.nieysltht16 + vals.nieysltlt16 )
+        vals.nietotal16 = vals.niemtotal16 + vals.niestotal16
+        
+        vals.niecmaht17 = float(request.POST['niecmaht17'])
+        vals.niecmalt17 = float(request.POST['niecmalt17'])
+        vals.niecmltht1_17 = float(request.POST['niecmltht1_17'])
+        vals.niecmltht2_17 = float(request.POST['niecmltht2_17'])
+        vals.niecmltht3_17 = float(request.POST['niecmltht3_17'])
+        vals.niecmltlt17 = float(request.POST['niecmltlt17'])
+        vals.niesmaht17 = float(request.POST['niesmaht17'])
+        vals.niesmltht1_17 = float(request.POST['niesmltht1_17'])
+        vals.niesmltht2_17 = float(request.POST['niesmltht2_17'])
+        vals.niemtotal17 = (vals.niecmaht17 + vals.niecmalt17 + vals.niecmltht1_17 + vals.niecmltht2_17 + vals.niecmltht3_17 + 
+                                vals.niecmltlt17 + vals.niesmaht17 + vals.niesmltht1_17 + vals.niesmltht2_17)
+        vals.nielslt17 = float(request.POST['nielslt17'])
+        vals.niewsaht17 = float(request.POST['niewsaht17'])
+        vals.niewsalt17 = float(request.POST['niewsalt17'])
+        vals.niewsltht17 = float(request.POST['niewsltht17'])
+        vals.niewsltlt17 = float(request.POST['niewsltlt17'])
+        vals.nieysaht17 = float(request.POST['nieysaht17'])
+        vals.nieysalt17 = float(request.POST['nieysalt17'])
+        vals.nieysltht17 = float(request.POST['nieysltht17'])
+        vals.nieysltlt17 = float(request.POST['nieysltlt17'])
+        vals.niestotal17 = (vals.nielslt17 + vals.niewsaht17 + vals.niewsalt17 + vals.niewsltht17 + vals.niewsltlt17 +
+                               vals.nieysalt17 +  vals.nieysltht17 + vals.nieysltlt17)
+        vals.nietotal17 = vals.niemtotal17 + vals.niestotal17
+        
+        vals.niecmaht18 = float(request.POST['niecmaht18'])
+        vals.niecmalt18 = float(request.POST['niecmalt18'])
+        vals.niecmltht1_18 = float(request.POST['niecmltht1_18'])
+        vals.niecmltht2_18 = float(request.POST['niecmltht2_18'])
+        vals.niecmltht3_18 = float(request.POST['niecmltht3_18'])
+        vals.niecmltlt18 = float(request.POST['niecmltlt18'])
+        vals.niesmaht18 = float(request.POST['niesmaht18'])
+        vals.niesmltht1_18 = float(request.POST['niesmltht1_18'])
+        vals.niesmltht2_18 = float(request.POST['niesmltht2_18'])
+        vals.niemtotal18 = (vals.niecmaht18 + vals.niecmalt18 + vals.niecmltht1_18 + vals.niecmltht2_18 + vals.niecmltht3_18 + 
+                                vals.niecmltlt18 + vals.niesmaht18 + vals.niesmltht1_18 + vals.niesmltht2_18)
+        vals.nielslt18 = float(request.POST['nielslt18'])
+        vals.niewsaht18 = float(request.POST['niewsaht18'])
+        vals.niewsalt18 = float(request.POST['niewsalt18'])
+        vals.niewsltht18 = float(request.POST['niewsltht18'])
+        vals.niewsltlt18 = float(request.POST['niewsltlt18'])
+        vals.nieysaht18 = float(request.POST['nieysaht18'])
+        vals.nieysalt18 = float(request.POST['nieysalt18'])
+        vals.nieysltht18 = float(request.POST['nieysltht18'])
+        vals.nieysltlt18 = float(request.POST['nieysltlt18'])
+        vals.niestotal18 = (vals.nielslt18 + vals.niewsaht18 + vals.niewsalt18 + vals.niewsltht18 + vals.niewsltlt18 +
+                               vals.nieysalt18 +  vals.nieysltht18 + vals.nieysltlt18)
+        vals.nietotal18 = vals.niemtotal18 + vals.niestotal18
+        
+        vals.niecmaht19 = float(request.POST['niecmaht19'])
+        vals.niecmalt19 = float(request.POST['niecmalt19'])
+        vals.niecmltht1_19 = float(request.POST['niecmltht1_19'])
+        vals.niecmltht2_19 = float(request.POST['niecmltht2_19'])
+        vals.niecmltht3_19 = float(request.POST['niecmltht3_19'])
+        vals.niecmltlt19 = float(request.POST['niecmltlt19'])
+        vals.niesmaht19 = float(request.POST['niesmaht19'])
+        vals.niesmltht1_19 = float(request.POST['niesmltht1_19'])
+        vals.niesmltht2_19 = float(request.POST['niesmltht2_19'])
+        vals.niemtotal19 = (vals.niecmaht19 + vals.niecmalt19 + vals.niecmltht1_19 + vals.niecmltht2_19 + vals.niecmltht3_19 + 
+                                vals.niecmltlt19 + vals.niesmaht19 + vals.niesmltht1_19 + vals.niesmltht2_19)
+        vals.nielslt19 = float(request.POST['nielslt19'])
+        vals.niewsaht19 = float(request.POST['niewsaht19'])
+        vals.niewsalt19 = float(request.POST['niewsalt19'])
+        vals.niewsltht19 = float(request.POST['niewsltht19'])
+        vals.niewsltlt19 = float(request.POST['niewsltlt19'])
+        vals.nieysaht19 = float(request.POST['nieysaht19'])
+        vals.nieysalt19 = float(request.POST['nieysalt19'])
+        vals.nieysltht19 = float(request.POST['nieysltht19'])
+        vals.nieysltlt19 = float(request.POST['nieysltlt19'])
+        vals.niestotal19 = (vals.nielslt19 + vals.niewsaht19 + vals.niewsalt19 + vals.niewsltht19 + vals.niewsltlt19 +
+                               vals.nieysalt19 +  vals.nieysltht19 + vals.nieysltlt19)
+        vals.nietotal19 = vals.niemtotal19 + vals.niestotal19
+        
+        vals.niecmaht20 = float(request.POST['niecmaht20'])
+        vals.niecmalt20 = float(request.POST['niecmalt20'])
+        vals.niecmltht1_20 = float(request.POST['niecmltht1_20'])
+        vals.niecmltht2_20 = float(request.POST['niecmltht2_20'])
+        vals.niecmltht3_20 = float(request.POST['niecmltht3_20'])
+        vals.niecmltlt20 = float(request.POST['niecmltlt20'])
+        vals.niesmaht20 = float(request.POST['niesmaht20'])
+        vals.niesmltht1_20 = float(request.POST['niesmltht1_20'])
+        vals.niesmltht2_20 = float(request.POST['niesmltht2_20'])
+        vals.niemtotal20 = (vals.niecmaht20 + vals.niecmalt20 + vals.niecmltht1_20 + vals.niecmltht2_20 + vals.niecmltht3_20 + 
+                                vals.niecmltlt20 + vals.niesmaht20 + vals.niesmltht1_20 + vals.niesmltht2_20)
+        vals.nielslt20 = float(request.POST['nielslt20'])
+        vals.niewsaht20 = float(request.POST['niewsaht20'])
+        vals.niewsalt20 = float(request.POST['niewsalt20'])
+        vals.niewsltht20 = float(request.POST['niewsltht20'])
+        vals.niewsltlt20 = float(request.POST['niewsltlt20'])
+        vals.nieysaht20 = float(request.POST['nieysaht20'])
+        vals.nieysalt20 = float(request.POST['nieysalt20'])
+        vals.nieysltht20 = float(request.POST['nieysltht20'])
+        vals.nieysltlt20 = float(request.POST['nieysltlt20'])
+        vals.niestotal20 = (vals.nielslt20 + vals.niewsaht20 + vals.niewsalt20 + vals.niewsltht20 + vals.niewsltlt20 +
+                               vals.nieysalt20 +  vals.nieysltht20 + vals.nieysltlt20)
+        vals.nietotal20 = vals.niemtotal20 + vals.niestotal20
+        
+        vals.niecmaht21 = float(request.POST['niecmaht21'])
+        vals.niecmalt21 = float(request.POST['niecmalt21'])
+        vals.niecmltht1_21 = float(request.POST['niecmltht1_21'])
+        vals.niecmltht2_21 = float(request.POST['niecmltht2_21'])
+        vals.niecmltht3_21 = float(request.POST['niecmltht3_21'])
+        vals.niecmltlt21 = float(request.POST['niecmltlt21'])
+        vals.niesmaht21 = float(request.POST['niesmaht21'])
+        vals.niesmltht1_21 = float(request.POST['niesmltht1_21'])
+        vals.niesmltht2_21 = float(request.POST['niesmltht2_21'])
+        vals.niemtotal21 = (vals.niecmaht21 + vals.niecmalt21 + vals.niecmltht1_21 + vals.niecmltht2_21 + vals.niecmltht3_21 + 
+                                vals.niecmltlt21 + vals.niesmaht21 + vals.niesmltht1_21 + vals.niesmltht2_21)
+        vals.nielslt21 = float(request.POST['nielslt21'])
+        vals.niewsaht21 = float(request.POST['niewsaht21'])
+        vals.niewsalt21 = float(request.POST['niewsalt21'])
+        vals.niewsltht21 = float(request.POST['niewsltht21'])
+        vals.niewsltlt21 = float(request.POST['niewsltlt21'])
+        vals.nieysaht21 = float(request.POST['nieysaht21'])
+        vals.nieysalt21 = float(request.POST['nieysalt21'])
+        vals.nieysltht21 = float(request.POST['nieysltht21'])
+        vals.nieysltlt21 = float(request.POST['nieysltlt21'])
+        vals.niestotal21 = (vals.nielslt21 + vals.niewsaht21 + vals.niewsalt21 + vals.niewsltht21 + vals.niewsltlt21 +
+                               vals.nieysalt21 +  vals.nieysltht21 + vals.nieysltlt21)
+        vals.nietotal21 = vals.niemtotal21 + vals.niestotal21
+        
+        vals.niecmaht22 = float(request.POST['niecmaht22'])
+        vals.niecmalt22 = float(request.POST['niecmalt22'])
+        vals.niecmltht1_22 = float(request.POST['niecmltht1_22'])
+        vals.niecmltht2_22 = float(request.POST['niecmltht2_22'])
+        vals.niecmltht3_22 = float(request.POST['niecmltht3_22'])
+        vals.niecmltlt22 = float(request.POST['niecmltlt22'])
+        vals.niesmaht22 = float(request.POST['niesmaht22'])
+        vals.niesmltht1_22 = float(request.POST['niesmltht1_22'])
+        vals.niesmltht2_22 = float(request.POST['niesmltht2_22'])
+        vals.niemtotal22 = (vals.niecmaht22 + vals.niecmalt22 + vals.niecmltht1_22 + vals.niecmltht2_22 + vals.niecmltht3_22 + 
+                                vals.niecmltlt22 + vals.niesmaht22 + vals.niesmltht1_22 + vals.niesmltht2_22)
+        vals.nielslt22 = float(request.POST['nielslt22'])
+        vals.niewsaht22 = float(request.POST['niewsaht22'])
+        vals.niewsalt22 = float(request.POST['niewsalt22'])
+        vals.niewsltht22 = float(request.POST['niewsltht22'])
+        vals.niewsltlt22 = float(request.POST['niewsltlt22'])
+        vals.nieysaht22 = float(request.POST['nieysaht22'])
+        vals.nieysalt22 = float(request.POST['nieysalt22'])
+        vals.nieysltht22 = float(request.POST['nieysltht22'])
+        vals.nieysltlt22 = float(request.POST['nieysltlt22'])
+        vals.niestotal22 = (vals.nielslt22 + vals.niewsaht22 + vals.niewsalt22 + vals.niewsltht22 + vals.niewsltlt22 +
+                               vals.nieysalt22 +  vals.nieysltht22 + vals.nieysltlt22)
+        vals.nietotal22 = vals.niemtotal22 + vals.niestotal22
+        
+        vals.niecmaht23 = float(request.POST['niecmaht23'])
+        vals.niecmalt23 = float(request.POST['niecmalt23'])
+        vals.niecmltht1_23 = float(request.POST['niecmltht1_23'])
+        vals.niecmltht2_23 = float(request.POST['niecmltht2_23'])
+        vals.niecmltht3_23 = float(request.POST['niecmltht3_23'])
+        vals.niecmltlt23 = float(request.POST['niecmltlt23'])
+        vals.niesmaht23 = float(request.POST['niesmaht23'])
+        vals.niesmltht1_23 = float(request.POST['niesmltht1_23'])
+        vals.niesmltht2_23 = float(request.POST['niesmltht2_23'])
+        vals.niemtotal23 = (vals.niecmaht23 + vals.niecmalt23 + vals.niecmltht1_23 + vals.niecmltht2_23 + vals.niecmltht3_23 + 
+                                vals.niecmltlt23 + vals.niesmaht23 + vals.niesmltht1_23 + vals.niesmltht2_23)
+        vals.nielslt23 = float(request.POST['nielslt23'])
+        vals.niewsaht23 = float(request.POST['niewsaht23'])
+        vals.niewsalt23 = float(request.POST['niewsalt23'])
+        vals.niewsltht23 = float(request.POST['niewsltht23'])
+        vals.niewsltlt23 = float(request.POST['niewsltlt23'])
+        vals.nieysaht23 = float(request.POST['nieysaht23'])
+        vals.nieysalt23 = float(request.POST['nieysalt23'])
+        vals.nieysltht23 = float(request.POST['nieysltht23'])
+        vals.nieysltlt23 = float(request.POST['nieysltlt23'])
+        vals.niestotal23 = (vals.nielslt23 + vals.niewsaht23 + vals.niewsalt23 + vals.niewsltht23 + vals.niewsltlt23 +
+                               vals.nieysalt23 +  vals.nieysltht23 + vals.nieysltlt23)
+        vals.nietotal23 = vals.niemtotal23 + vals.niestotal23
+        
+        vals.niecmaht24 = float(request.POST['niecmaht24'])
+        vals.niecmalt24 = float(request.POST['niecmalt24'])
+        vals.niecmltht1_24 = float(request.POST['niecmltht1_24'])
+        vals.niecmltht2_24 = float(request.POST['niecmltht2_24'])
+        vals.niecmltht3_24 = float(request.POST['niecmltht3_24'])
+        vals.niecmltlt24 = float(request.POST['niecmltlt24'])
+        vals.niesmaht24 = float(request.POST['niesmaht24'])
+        vals.niesmltht1_24 = float(request.POST['niesmltht1_24'])
+        vals.niesmltht2_24 = float(request.POST['niesmltht2_24'])
+        vals.niemtotal24 = (vals.niecmaht24 + vals.niecmalt24 + vals.niecmltht1_24 + vals.niecmltht2_24 + vals.niecmltht3_24 + 
+                                vals.niecmltlt24 + vals.niesmaht24 + vals.niesmltht1_24 + vals.niesmltht2_24)
+        vals.nielslt24 = float(request.POST['nielslt24'])
+        vals.niewsaht24 = float(request.POST['niewsaht24'])
+        vals.niewsalt24 = float(request.POST['niewsalt24'])
+        vals.niewsltht24 = float(request.POST['niewsltht24'])
+        vals.niewsltlt24 = float(request.POST['niewsltlt24'])
+        vals.nieysaht24 = float(request.POST['nieysaht24'])
+        vals.nieysalt24 = float(request.POST['nieysalt24'])
+        vals.nieysltht24 = float(request.POST['nieysltht24'])
+        vals.nieysltlt24 = float(request.POST['nieysltlt24'])
+        vals.niestotal24 = (vals.nielslt24 + vals.niewsaht24 + vals.niewsalt24 + vals.niewsltht24 + vals.niewsltlt24 +
+                               vals.nieysalt24 +  vals.nieysltht24 + vals.nieysltlt24)
+        vals.nietotal24 = vals.niemtotal24 + vals.niestotal24
+
+        vals.total15 = vals.nietotal15 + vals.ietotal15 + vals.totalsc15
+        vals.total16 = vals.nietotal16 + vals.ietotal16 + vals.totalsc16
+        vals.total17 = vals.nietotal17 + vals.ietotal17 + vals.totalsc17
+        vals.total18 = vals.nietotal18 + vals.ietotal18 + vals.totalsc18
+        vals.total19 = vals.nietotal19 + vals.ietotal19 + vals.totalsc19
+        vals.total20 = vals.nietotal20 + vals.ietotal20 + vals.totalsc20
+        vals.total21 = vals.nietotal21 + vals.ietotal21 + vals.totalsc21
+        vals.total22 = vals.nietotal22 + vals.ietotal22 + vals.totalsc22
+        vals.total23 = vals.nietotal23 + vals.ietotal23 + vals.totalsc23
+        vals.total24 = vals.nietotal24 + vals.ietotal24 + vals.totalsc24
+
+        vals.niws15 = vals.wsaht15 + vals.wsalt15 + vals.wsltht15 + vals.wsltlt15
+        vals.niys15 = vals.ysaht15 + vals.ysalt15 + vals.ysltht15 + vals.ysltlt15
+        vals.nicm15 = vals.cmaht15 + vals.cmalt15 + vals.cmltht1_15 + vals.cmltht2_15 + vals.cmltht3_15 + vals.cmltlt15
+        vals.nism15 = vals.smaht15 + vals.smltht1_15 + vals.smltht2_15
+        vals.iws15 = vals.tcwsalt15 + vals.tcwsltlt15
+        vals.iys15 = vals.tcysalt15 + vals.tcysltlt15
+        vals.icm15 = vals.tccmalt15 + vals.tccmltlt1_15 + vals.tccmltlt2_15 + vals.tccmltlt3_15
+        vals.ism15 = vals.tcsmalt15 + vals.tcsmltlt1_15 + vals.tcsmltlt2_15
+
+        vals.niws16 = vals.wsaht16 + vals.wsalt16 + vals.wsltht16 + vals.wsltlt16
+        vals.niys16 = vals.ysaht16 + vals.ysalt16 + vals.ysltht16 + vals.ysltlt16
+        vals.nicm16 = vals.cmaht16 + vals.cmalt16 + vals.cmltht1_16 + vals.cmltht2_16 + vals.cmltht3_16 + vals.cmltlt16
+        vals.nism16 = vals.smaht16 + vals.smltht1_16 + vals.smltht2_16
+        vals.iws16 = vals.tcwsalt16 + vals.tcwsltlt16
+        vals.iys16 = vals.tcysalt16 + vals.tcysltlt16
+        vals.icm16 = vals.tccmalt16 + vals.tccmltlt1_16 + vals.tccmltlt2_16 + vals.tccmltlt3_16
+        vals.ism16 = vals.tcsmalt16 + vals.tcsmltlt1_16 + vals.tcsmltlt2_16
+        
+        vals.niws17 = vals.wsaht17 + vals.wsalt17 + vals.wsltht17 + vals.wsltlt17
+        vals.niys17 = vals.ysaht17 + vals.ysalt17 + vals.ysltht17 + vals.ysltlt17
+        vals.nicm17 = vals.cmaht17 + vals.cmalt17 + vals.cmltht1_17 + vals.cmltht2_17 + vals.cmltht3_17 + vals.cmltlt17
+        vals.nism17 = vals.smaht17 + vals.smltht1_17 + vals.smltht2_17
+        vals.iws17 = vals.tcwsalt17 + vals.tcwsltlt17
+        vals.iys17 = vals.tcysalt17 + vals.tcysltlt17
+        vals.icm17 = vals.tccmalt17 + vals.tccmltlt1_17 + vals.tccmltlt2_17 + vals.tccmltlt3_17
+        vals.ism17 = vals.tcsmalt17 + vals.tcsmltlt1_17 + vals.tcsmltlt2_17
+        
+        vals.niws18 = vals.wsaht18 + vals.wsalt18 + vals.wsltht18 + vals.wsltlt18
+        vals.niys18 = vals.ysaht18 + vals.ysalt18 + vals.ysltht18 + vals.ysltlt18
+        vals.nicm18 = vals.cmaht18 + vals.cmalt18 + vals.cmltht1_18 + vals.cmltht2_18 + vals.cmltht3_18 + vals.cmltlt18
+        vals.nism18 = vals.smaht18 + vals.smltht1_18 + vals.smltht2_18
+        vals.iws18 = vals.tcwsalt18 + vals.tcwsltlt18
+        vals.iys18 = vals.tcysalt18 + vals.tcysltlt18
+        vals.icm18 = vals.tccmalt18 + vals.tccmltlt1_18 + vals.tccmltlt2_18 + vals.tccmltlt3_18
+        vals.ism18 = vals.tcsmalt18 + vals.tcsmltlt1_18 + vals.tcsmltlt2_18
+        
+        vals.niws19 = vals.wsaht19 + vals.wsalt19 + vals.wsltht19 + vals.wsltlt19   
+        vals.niys19 = vals.ysaht19 + vals.ysalt19 + vals.ysltht19 + vals.ysltlt19
+        vals.nicm19 = vals.cmaht19 + vals.cmalt19 + vals.cmltht1_19 + vals.cmltht2_19 + vals.cmltht3_19 + vals.cmltlt19
+        vals.nism19 = vals.smaht19 + vals.smltht1_19 + vals.smltht2_19
+        vals.iws19 = vals.tcwsalt19 + vals.tcwsltlt19
+        vals.iys19 = vals.tcysalt19 + vals.tcysltlt19
+        vals.icm19 = vals.tccmalt19 + vals.tccmltlt1_19 + vals.tccmltlt2_19 + vals.tccmltlt3_19
+        vals.ism19 = vals.tcsmalt19 + vals.tcsmltlt1_19 + vals.tcsmltlt2_19
+        
+        vals.niws20 = vals.wsaht20 + vals.wsalt20 + vals.wsltht20 + vals.wsltlt20
+        vals.niys20 = vals.ysaht20 + vals.ysalt20 + vals.ysltht20 + vals.ysltlt20
+        vals.nicm20 = vals.cmaht20 + vals.cmalt20 + vals.cmltht1_20 + vals.cmltht2_20 + vals.cmltht3_20 + vals.cmltlt20
+        vals.nism20 = vals.smaht20 + vals.smltht1_20 + vals.smltht2_20
+        vals.iws20 = vals.tcwsalt20 + vals.tcwsltlt20
+        vals.iys20 = vals.tcysalt20 + vals.tcysltlt20
+        vals.icm20 = vals.tccmalt20 + vals.tccmltlt1_20 + vals.tccmltlt2_20 + vals.tccmltlt3_20
+        vals.ism20 = vals.tcsmalt20 + vals.tcsmltlt1_20 + vals.tcsmltlt2_20
+        
+        vals.niws21 = vals.wsaht21 + vals.wsalt21 + vals.wsltht21 + vals.wsltlt21
+        vals.niys21 = vals.ysaht21 + vals.ysalt21 + vals.ysltht21 + vals.ysltlt21
+        vals.nicm21 = vals.cmaht21 + vals.cmalt21 + vals.cmltht1_21 + vals.cmltht2_21 + vals.cmltht3_21 + vals.cmltlt21
+        vals.nism21 = vals.smaht21 + vals.smltht1_21 + vals.smltht2_21
+        vals.iws21 = vals.tcwsalt21 + vals.tcwsltlt21
+        vals.iys21 = vals.tcysalt21 + vals.tcysltlt21
+        vals.icm21 = vals.tccmalt21 + vals.tccmltlt1_21 + vals.tccmltlt2_21 + vals.tccmltlt3_21
+        vals.ism21 = vals.tcsmalt21 + vals.tcsmltlt1_21 + vals.tcsmltlt2_21
+        
+        vals.niws22 = vals.wsaht22 + vals.wsalt22 + vals.wsltht22 + vals.wsltlt22
+        vals.niys22 = vals.ysaht22 + vals.ysalt22 + vals.ysltht22 + vals.ysltlt22
+        vals.nicm22 = vals.cmaht22 + vals.cmalt22 + vals.cmltht1_22 + vals.cmltht2_22 + vals.cmltht3_22 + vals.cmltlt22
+        vals.nism22 = vals.smaht22 + vals.smltht1_22 + vals.smltht2_22
+        vals.iws22 = vals.tcwsalt22 + vals.tcwsltlt22
+        vals.iys22 = vals.tcysalt22 + vals.tcysltlt22
+        vals.icm22 = vals.tccmalt22 + vals.tccmltlt1_22 + vals.tccmltlt2_22 + vals.tccmltlt3_22
+        vals.ism22 = vals.tcsmalt22 + vals.tcsmltlt1_22 + vals.tcsmltlt2_22
+
+        vals.niws23 = vals.wsaht23 + vals.wsalt23 + vals.wsltht23 + vals.wsltlt23
+        vals.niys23 = vals.ysaht23 + vals.ysalt23 + vals.ysltht23 + vals.ysltlt23
+        vals.nicm23 = vals.cmaht23 + vals.cmalt23 + vals.cmltht1_23 + vals.cmltht2_23 + vals.cmltht3_23 + vals.cmltlt23
+        vals.nism23 = vals.smaht23 + vals.smltht1_23 + vals.smltht2_23
+        vals.iws23 = vals.tcwsalt23 + vals.tcwsltlt23
+        vals.iys23 = vals.tcysalt23 + vals.tcysltlt23
+        vals.icm23 = vals.tccmalt23 + vals.tccmltlt1_23 + vals.tccmltlt2_23 + vals.tccmltlt3_23
+        vals.ism23 = vals.tcsmalt23 + vals.tcsmltlt1_23 + vals.tcsmltlt2_23
+        
+        vals.niws24 = vals.wsaht24 + vals.wsalt24 + vals.wsltht24 + vals.wsltlt24
+        vals.niys24 = vals.ysaht24 + vals.ysalt24 + vals.ysltht24 + vals.ysltlt24
+        vals.nicm24 = vals.cmaht24 + vals.cmalt24 + vals.cmltht1_24 + vals.cmltht2_24 + vals.cmltht3_24 + vals.cmltlt24
+        vals.nism24 = vals.smaht24 + vals.smltht1_24 + vals.smltht2_24
+        vals.iws24 = vals.tcwsalt24 + vals.tcwsltlt24
+        vals.iys24 = vals.tcysalt24 + vals.tcysltlt24
+        vals.icm24 = vals.tccmalt24 + vals.tccmltlt1_24 + vals.tccmltlt2_24 + vals.tccmltlt3_24
+        vals.ism24 = vals.tcsmalt24 + vals.tcsmltlt1_24 + vals.tcsmltlt2_24
+
+        vals.total15 = (vals.lslt15 + vals.niws15 + vals.niys15 + vals.nicm15 + vals.nism15 +
+                        vals.iws15 + vals.iys15 + vals.icm15 + vals.ism15) 
+        vals.total16 = (vals.lslt16 + vals.niws16 + vals.niys16 + vals.nicm16 + vals.nism16 +
+                        vals.iws16 + vals.iys16 + vals.icm16 + vals.ism16)                
+        vals.total17 = (vals.lslt17 + vals.niws17 + vals.niys17 + vals.nicm17 + vals.nism17 +
+                                vals.iws17 + vals.iys17 + vals.icm17 + vals.ism17)                               
+        vals.total18 = (vals.lslt18 + vals.niws18 + vals.niys18 + vals.nicm18 + vals.nism18 +
+                                vals.iws18 + vals.iys18 + vals.icm18 + vals.ism18)                                
+        vals.total19 = (vals.lslt19 + vals.niws19 + vals.niys19 + vals.nicm19 + vals.nism19 +
+                                vals.iws19 + vals.iys19 + vals.icm19 + vals.ism19)                                                       
+        vals.total20 = (vals.lslt20 + vals.niws20 + vals.niys20 + vals.nicm20 + vals.nism20 +
+                                vals.iws20 + vals.iys20 + vals.icm20 + vals.ism20)                                                        
+        vals.total21 = (vals.lslt21 + vals.niws21 + vals.niys21 + vals.nicm21 + vals.nism21 +
+                                vals.iws21 + vals.iys21 + vals.icm21 + vals.ism21)                                 
+        vals.total22 = (vals.lslt22 + vals.niws22 + vals.niys22 + vals.nicm22 + vals.nism22 +
+                                vals.iws22 + vals.iys22 + vals.icm22 + vals.ism22)                         
+        vals.total23 = (vals.lslt23 + vals.niws23 + vals.niys23 + vals.nicm23 + vals.nism23 +
+                                vals.iws23 + vals.iys23 + vals.icm23 + vals.ism23)                                
+        vals.total24 = (vals.lslt24 + vals.niws24 + vals.niys24 + vals.nicm24 + vals.nism24 +
+                                vals.iws24 + vals.iys24 + vals.icm24 + vals.ism24)   
+
+         # volume summary starts here
+        vals2.nils15 = vals.nielslt15 + vals.lslt15
+        vals2.niwsa15 = vals.wsaht15 + vals.wsalt15 + vals.niewsaht15 + vals.niewsalt15
+        vals2.niwslt15 = vals.wsltht15 + vals.wsltlt15 + vals.niewsltht15 + vals.niewsltlt15
+        vals2.niysa15 = vals.ysaht15 + vals.ysalt15 + vals.nieysaht15 + vals.nieysalt15
+        vals2.niyslt15 = vals.ysltht15 + vals.ysltlt15 + vals.nieysltht15 + vals.nieysltlt15
+        vals2.nicma15 = vals.cmaht15 + vals.cmalt15 + vals.niecmaht15 + vals.niecmalt15
+        vals2.nicmlt15 = (vals.cmltht1_15 + vals.cmltht2_15 + vals.cmltht3_15 + vals.cmltlt15 + 
+                            vals.niecmltht1_15 + vals.niecmltht2_15 + vals.niecmltht3_15 + vals.niecmltlt15)
+        vals2.nisma15 = vals.smaht15 + vals.niesmaht15
+        vals2.nismlt15 = vals.smltht1_15 + vals.smltht2_15 + vals.niesmltht1_15 + vals.niesmltht2_15
+        vals2.icmlt15 = vals.tccmltlt1_15 + vals.tccmltlt2_15 + vals.tccmltlt3_15
+        vals2.ismlt15 = vals.tcsmltlt1_15 + vals.tcsmltlt2_15
+        vals2.vstotal1_15 = (vals2.nils15 + vals2.niwsa15 + vals2.niwslt15 + vals2.niysa15 + vals2.niyslt15 + vals2.nicma15 +
+                                vals2.nicmlt15 + vals2.nisma15 + vals2.nismlt15 + vals2.icmlt15 + vals2.ismlt15 + vals.tcwsalt15 +
+                                    vals.tcwsltlt15 + vals.tcysalt15 + vals.tcysltlt15 + vals.tccmalt15 + vals.tcsmalt15)
+        vals2.niws15 = vals2.niwsa15 + vals2.niwslt15 
+        vals2.niys15 = vals2.niysa15 + vals2.niyslt15
+        vals2.nicm15 = vals2.nicma15 + vals2.nicmlt15
+        vals2.nism15 = vals2.nisma15 + vals2.nismlt15
+        vals2.iws15 = vals.tcwsalt15 + vals.tcwsltlt15
+        vals2.iys15 = vals.tcysalt15 + vals.tcysltlt15
+        vals2.icm15 = vals2.icmlt15 + vals.tccmalt15
+        vals2.ism15 = vals2.ismlt15 + vals.tcsmalt15
+        vals2.ltls15 = float(request.POST['ltls15'])
+        vals2.ltwsa15 = float(request.POST['ltwsa15'])
+        vals2.ltwslt15 = float(request.POST['ltwslt15'])
+        vals2.ltysa15 = float(request.POST['ltysa15'])
+        vals2.ltyslt15 = float(request.POST['ltyslt15'])
+        vals2.htwsa15 = float(request.POST['htwsa15'])
+        vals2.htwslt15 = float(request.POST['htwslt15'])
+        vals2.htysa15 = float(request.POST['htysa15'])
+        vals2.htyslt15 = float(request.POST['htyslt15'])
+        vals2.ws15 = vals2.ltwsa15 + vals2.ltwslt15 + vals2.htwsa15 + vals2.htwslt15
+        vals2.ys15 = vals2.ltysa15 + vals2.ltyslt15 + vals2.htysa15 + vals2.htyslt15
+        vals2.vstotal2_15 = vals2.ltls15 + vals2.ws15 + vals2.ys15
+        vals2.macdtc15 = float(request.POST['macdtc15'])
+        vals2.cts15 = float(request.POST['cts15'])
+        vals2.ctc15 = vals2.macdtc15 * vals2.cts15/100
+
+        vals2.nils16 = vals.nielslt16 + vals.lslt16
+        vals2.niwsa16 = vals.wsaht16 + vals.wsalt16 + vals.niewsaht16 + vals.niewsalt16
+        vals2.niwslt16 = vals.wsltht16 + vals.wsltlt16 + vals.niewsltht16 + vals.niewsltlt16
+        vals2.niysa16 = vals.ysaht16 + vals.ysalt16 + vals.nieysaht16 + vals.nieysalt16
+        vals2.niyslt16 = vals.ysltht16 + vals.ysltlt16 + vals.nieysltht16 + vals.nieysltlt16
+        vals2.nicma16 = vals.cmaht16 + vals.cmalt16 + vals.niecmaht16 + vals.niecmalt16
+        vals2.nicmlt16 = (vals.cmltht1_16 + vals.cmltht2_16 + vals.cmltht3_16 + vals.cmltlt16 + 
+                            vals.niecmltht1_16 + vals.niecmltht2_16 + vals.niecmltht3_16 + vals.niecmltlt16)
+        vals2.nisma16 = vals.smaht16 + vals.niesmaht16
+        vals2.nismlt16 = vals.smltht1_16 + vals.smltht2_16 + vals.niesmltht1_16 + vals.niesmltht2_16
+        vals2.icmlt16 = vals.tccmltlt1_16 + vals.tccmltlt2_16 + vals.tccmltlt3_16
+        vals2.ismlt16 = vals.tcsmltlt1_16 + vals.tcsmltlt2_16
+        vals2.vstotal1_16 = (vals2.nils16 + vals2.niwsa16 + vals2.niwslt16 + vals2.niysa16 + vals2.niyslt16 + vals2.nicma16 +
+                                vals2.nicmlt16 + vals2.nisma16 + vals2.nismlt16 + vals2.icmlt16 + vals2.ismlt16 + vals.tcwsalt16 +
+                                    vals.tcwsltlt16 + vals.tcysalt16 + vals.tcysltlt16 + vals.tccmalt16 + vals.tcsmalt16)
+        vals2.niws16 = vals2.niwsa16 + vals2.niwslt16 
+        vals2.niys16 = vals2.niysa16 + vals2.niyslt16
+        vals2.nicm16 = vals2.nicma16 + vals2.nicmlt16
+        vals2.nism16 = vals2.nisma16 + vals2.nismlt16
+        vals2.iws16 = vals.tcwsalt16 + vals.tcwsltlt16
+        vals2.iys16 = vals.tcysalt16 + vals.tcysltlt16
+        vals2.icm16 = vals2.icmlt16 + vals.tccmalt16
+        vals2.ism16 = vals2.ismlt16 + vals.tcsmalt16
+        vals2.ltls16 = float(request.POST['ltls16'])
+        vals2.ltwsa16 = float(request.POST['ltwsa16'])
+        vals2.ltwslt16 = float(request.POST['ltwslt16'])
+        vals2.ltysa16 = float(request.POST['ltysa16'])
+        vals2.ltyslt16 = float(request.POST['ltyslt16'])
+        vals2.htwsa16 = float(request.POST['htwsa16'])
+        vals2.htwslt16 = float(request.POST['htwslt16'])
+        vals2.htysa16 = float(request.POST['htysa16'])
+        vals2.htyslt16 = float(request.POST['htyslt16'])
+        vals2.ws16 = vals2.ltwsa16 + vals2.ltwslt16 + vals2.htwsa16 + vals2.htwslt16
+        vals2.ys16 = vals2.ltysa16 + vals2.ltyslt16 + vals2.htysa16 + vals2.htyslt16
+        vals2.vstotal2_16 = vals2.ltls16 + vals2.ws16 + vals2.ys16
+        vals2.macdtc16 = float(request.POST['macdtc16'])
+        vals2.cts16 = float(request.POST['cts16'])
+        vals2.ctc16 = vals2.macdtc16 * vals2.cts16/100
+        
+        vals2.nils17 = vals.nielslt17 + vals.lslt17
+        vals2.niwsa17 = vals.wsaht17 + vals.wsalt17 + vals.niewsaht17 + vals.niewsalt17
+        vals2.niwslt17 = vals.wsltht17 + vals.wsltlt17 + vals.niewsltht17 + vals.niewsltlt17
+        vals2.niysa17 = vals.ysaht17 + vals.ysalt17 + vals.nieysaht17 + vals.nieysalt17
+        vals2.niyslt17 = vals.ysltht17 + vals.ysltlt17 + vals.nieysltht17 + vals.nieysltlt17
+        vals2.nicma17 = vals.cmaht17 + vals.cmalt17 + vals.niecmaht17 + vals.niecmalt17
+        vals2.nicmlt17 = (vals.cmltht1_17 + vals.cmltht2_17 + vals.cmltht3_17 + vals.cmltlt17 + 
+                            vals.niecmltht1_17 + vals.niecmltht2_17 + vals.niecmltht3_17 + vals.niecmltlt17)
+        vals2.nisma17 = vals.smaht17 + vals.niesmaht17
+        vals2.nismlt17 = vals.smltht1_17 + vals.smltht2_17 + vals.niesmltht1_17 + vals.niesmltht2_17
+        vals2.icmlt17 = vals.tccmltlt1_17 + vals.tccmltlt2_17 + vals.tccmltlt3_17
+        vals2.ismlt17 = vals.tcsmltlt1_17 + vals.tcsmltlt2_17
+        vals2.vstotal1_17 = (vals2.nils17 + vals2.niwsa17 + vals2.niwslt17 + vals2.niysa17 + vals2.niyslt17 + vals2.nicma17 +
+                                vals2.nicmlt17 + vals2.nisma17 + vals2.nismlt17 + vals2.icmlt17 + vals2.ismlt17 + vals.tcwsalt17 +
+                                    vals.tcwsltlt17 + vals.tcysalt17 + vals.tcysltlt17 + vals.tccmalt17 + vals.tcsmalt17)
+        vals2.niws17 = vals2.niwsa17 + vals2.niwslt17 
+        vals2.niys17 = vals2.niysa17 + vals2.niyslt17
+        vals2.nicm17 = vals2.nicma17 + vals2.nicmlt17
+        vals2.nism17 = vals2.nisma17 + vals2.nismlt17
+        vals2.iws17 = vals.tcwsalt17 + vals.tcwsltlt17
+        vals2.iys17 = vals.tcysalt17 + vals.tcysltlt17
+        vals2.icm17 = vals2.icmlt17 + vals.tccmalt17
+        vals2.ism17 = vals2.ismlt17 + vals.tcsmalt17
+        vals2.ltls17 = float(request.POST['ltls17'])
+        vals2.ltwsa17 = float(request.POST['ltwsa17'])
+        vals2.ltwslt17 = float(request.POST['ltwslt17'])
+        vals2.ltysa17 = float(request.POST['ltysa17'])
+        vals2.ltyslt17 = float(request.POST['ltyslt17'])
+        vals2.htwsa17 = float(request.POST['htwsa17'])
+        vals2.htwslt17 = float(request.POST['htwslt17'])
+        vals2.htysa17 = float(request.POST['htysa17'])
+        vals2.htyslt17 = float(request.POST['htyslt17'])
+        vals2.ws17 = vals2.ltwsa17 + vals2.ltwslt17 + vals2.htwsa17 + vals2.htwslt17
+        vals2.ys17 = vals2.ltysa17 + vals2.ltyslt17 + vals2.htysa17 + vals2.htyslt17
+        vals2.vstotal2_17 = vals2.ltls17 + vals2.ws17 + vals2.ys17
+        vals2.macdtc17 = float(request.POST['macdtc17'])
+        vals2.cts17 = float(request.POST['cts17'])
+        vals2.ctc17 = vals2.macdtc17 * vals2.cts17/100
+        
+        vals2.nils18 = vals.nielslt18 + vals.lslt18
+        vals2.niwsa18 = vals.wsaht18 + vals.wsalt18 + vals.niewsaht18 + vals.niewsalt18
+        vals2.niwslt18 = vals.wsltht18 + vals.wsltlt18 + vals.niewsltht18 + vals.niewsltlt18
+        vals2.niysa18 = vals.ysaht18 + vals.ysalt18 + vals.nieysaht18 + vals.nieysalt18
+        vals2.niyslt18 = vals.ysltht18 + vals.ysltlt18 + vals.nieysltht18 + vals.nieysltlt18
+        vals2.nicma18 = vals.cmaht18 + vals.cmalt18 + vals.niecmaht18 + vals.niecmalt18
+        vals2.nicmlt18 = (vals.cmltht1_18 + vals.cmltht2_18 + vals.cmltht3_18 + vals.cmltlt18 + 
+                            vals.niecmltht1_18 + vals.niecmltht2_18 + vals.niecmltht3_18 + vals.niecmltlt18)
+        vals2.nisma18 = vals.smaht18 + vals.niesmaht18
+        vals2.nismlt18 = vals.smltht1_18 + vals.smltht2_18 + vals.niesmltht1_18 + vals.niesmltht2_18
+        vals2.icmlt18 = vals.tccmltlt1_18 + vals.tccmltlt2_18 + vals.tccmltlt3_18
+        vals2.ismlt18 = vals.tcsmltlt1_18 + vals.tcsmltlt2_18
+        vals2.vstotal1_18 = (vals2.nils18 + vals2.niwsa18 + vals2.niwslt18 + vals2.niysa18 + vals2.niyslt18 + vals2.nicma18 +
+                                vals2.nicmlt18 + vals2.nisma18 + vals2.nismlt18 + vals2.icmlt18 + vals2.ismlt18 + vals.tcwsalt18 +
+                                    vals.tcwsltlt18 + vals.tcysalt18 + vals.tcysltlt18 + vals.tccmalt18 + vals.tcsmalt18)
+        vals2.niws18 = vals2.niwsa18 + vals2.niwslt18 
+        vals2.niys18 = vals2.niysa18 + vals2.niyslt18
+        vals2.nicm18 = vals2.nicma18 + vals2.nicmlt18
+        vals2.nism18 = vals2.nisma18 + vals2.nismlt18
+        vals2.iws18 = vals.tcwsalt18 + vals.tcwsltlt18
+        vals2.iys18 = vals.tcysalt18 + vals.tcysltlt18
+        vals2.icm18 = vals2.icmlt18 + vals.tccmalt18
+        vals2.ism18 = vals2.ismlt18 + vals.tcsmalt18
+        vals2.ltls18 = float(request.POST['ltls18'])
+        vals2.ltwsa18 = float(request.POST['ltwsa18'])
+        vals2.ltwslt18 = float(request.POST['ltwslt18'])
+        vals2.ltysa18 = float(request.POST['ltysa18'])
+        vals2.ltyslt18 = float(request.POST['ltyslt18'])
+        vals2.htwsa18 = float(request.POST['htwsa18'])
+        vals2.htwslt18 = float(request.POST['htwslt18'])
+        vals2.htysa18 = float(request.POST['htysa18'])
+        vals2.htyslt18 = float(request.POST['htyslt18'])
+        vals2.ws18 = vals2.ltwsa18 + vals2.ltwslt18 + vals2.htwsa18 + vals2.htwslt18
+        vals2.ys18 = vals2.ltysa18 + vals2.ltyslt18 + vals2.htysa18 + vals2.htyslt18
+        vals2.vstotal2_18 = vals2.ltls18 + vals2.ws18 + vals2.ys18
+        vals2.macdtc18 = float(request.POST['macdtc18'])
+        vals2.cts18 = float(request.POST['cts18'])
+        vals2.ctc18 = vals2.macdtc18 * vals2.cts18/100
+        
+        vals2.nils19 = vals.nielslt19 + vals.lslt19
+        vals2.niwsa19 = vals.wsaht19 + vals.wsalt19 + vals.niewsaht19 + vals.niewsalt19
+        vals2.niwslt19 = vals.wsltht19 + vals.wsltlt19 + vals.niewsltht19 + vals.niewsltlt19
+        vals2.niysa19 = vals.ysaht19 + vals.ysalt19 + vals.nieysaht19 + vals.nieysalt19
+        vals2.niyslt19 = vals.ysltht19 + vals.ysltlt19 + vals.nieysltht19 + vals.nieysltlt19
+        vals2.nicma19 = vals.cmaht19 + vals.cmalt19 + vals.niecmaht19 + vals.niecmalt19
+        vals2.nicmlt19 = (vals.cmltht1_19 + vals.cmltht2_19 + vals.cmltht3_19 + vals.cmltlt19 + 
+                            vals.niecmltht1_19 + vals.niecmltht2_19 + vals.niecmltht3_19 + vals.niecmltlt19)
+        vals2.nisma19 = vals.smaht19 + vals.niesmaht19
+        vals2.nismlt19 = vals.smltht1_19 + vals.smltht2_19 + vals.niesmltht1_19 + vals.niesmltht2_19
+        vals2.icmlt19 = vals.tccmltlt1_19 + vals.tccmltlt2_19 + vals.tccmltlt3_19
+        vals2.ismlt19 = vals.tcsmltlt1_19 + vals.tcsmltlt2_19
+        vals2.vstotal1_19 = (vals2.nils19 + vals2.niwsa19 + vals2.niwslt19 + vals2.niysa19 + vals2.niyslt19 + vals2.nicma19 +
+                                vals2.nicmlt19 + vals2.nisma19 + vals2.nismlt19 + vals2.icmlt19 + vals2.ismlt19 + vals.tcwsalt19 +
+                                    vals.tcwsltlt19 + vals.tcysalt19 + vals.tcysltlt19 + vals.tccmalt19 + vals.tcsmalt19)
+        vals2.niws19 = vals2.niwsa19 + vals2.niwslt19 
+        vals2.niys19 = vals2.niysa19 + vals2.niyslt19
+        vals2.nicm19 = vals2.nicma19 + vals2.nicmlt19
+        vals2.nism19 = vals2.nisma19 + vals2.nismlt19
+        vals2.iws19 = vals.tcwsalt19 + vals.tcwsltlt19
+        vals2.iys19 = vals.tcysalt19 + vals.tcysltlt19
+        vals2.icm19 = vals2.icmlt19 + vals.tccmalt19
+        vals2.ism19 = vals2.ismlt19 + vals.tcsmalt19
+        vals2.ltls19 = float(request.POST['ltls19'])
+        vals2.ltwsa19 = float(request.POST['ltwsa19'])
+        vals2.ltwslt19 = float(request.POST['ltwslt19'])
+        vals2.ltysa19 = float(request.POST['ltysa19'])
+        vals2.ltyslt19 = float(request.POST['ltyslt19'])
+        vals2.htwsa19 = float(request.POST['htwsa19'])
+        vals2.htwslt19 = float(request.POST['htwslt19'])
+        vals2.htysa19 = float(request.POST['htysa19'])
+        vals2.htyslt19 = float(request.POST['htyslt19'])
+        vals2.ws19 = vals2.ltwsa19 + vals2.ltwslt19 + vals2.htwsa19 + vals2.htwslt19
+        vals2.ys19 = vals2.ltysa19 + vals2.ltyslt19 + vals2.htysa19 + vals2.htyslt19
+        vals2.vstotal2_19 = vals2.ltls19 + vals2.ws19 + vals2.ys19
+        vals2.macdtc19 = float(request.POST['macdtc19'])
+        vals2.cts19 = float(request.POST['cts19'])
+        vals2.ctc19 = vals2.macdtc19 * vals2.cts19/100
+        
+        vals2.nils20 = vals.nielslt20 + vals.lslt20
+        vals2.niwsa20 = vals.wsaht20 + vals.wsalt20 + vals.niewsaht20 + vals.niewsalt20
+        vals2.niwslt20 = vals.wsltht20 + vals.wsltlt20 + vals.niewsltht20 + vals.niewsltlt20
+        vals2.niysa20 = vals.ysaht20 + vals.ysalt20 + vals.nieysaht20 + vals.nieysalt20
+        vals2.niyslt20 = vals.ysltht20 + vals.ysltlt20 + vals.nieysltht20 + vals.nieysltlt20
+        vals2.nicma20 = vals.cmaht20 + vals.cmalt20 + vals.niecmaht20 + vals.niecmalt20
+        vals2.nicmlt20 = (vals.cmltht1_20 + vals.cmltht2_20 + vals.cmltht3_20 + vals.cmltlt20 + 
+                            vals.niecmltht1_20 + vals.niecmltht2_20 + vals.niecmltht3_20 + vals.niecmltlt20)
+        vals2.nisma20 = vals.smaht20 + vals.niesmaht20
+        vals2.nismlt20 = vals.smltht1_20 + vals.smltht2_20 + vals.niesmltht1_20 + vals.niesmltht2_20
+        vals2.icmlt20 = vals.tccmltlt1_20 + vals.tccmltlt2_20 + vals.tccmltlt3_20
+        vals2.ismlt20 = vals.tcsmltlt1_20 + vals.tcsmltlt2_20
+        vals2.vstotal1_20 = (vals2.nils20 + vals2.niwsa20 + vals2.niwslt20 + vals2.niysa20 + vals2.niyslt20 + vals2.nicma20 +
+                                vals2.nicmlt20 + vals2.nisma20 + vals2.nismlt20 + vals2.icmlt20 + vals2.ismlt20 + vals.tcwsalt20 +
+                                    vals.tcwsltlt20 + vals.tcysalt20 + vals.tcysltlt20 + vals.tccmalt20 + vals.tcsmalt20)
+        vals2.niws20 = vals2.niwsa20 + vals2.niwslt20 
+        vals2.niys20 = vals2.niysa20 + vals2.niyslt20
+        vals2.nicm20 = vals2.nicma20 + vals2.nicmlt20
+        vals2.nism20 = vals2.nisma20 + vals2.nismlt20
+        vals2.iws20 = vals.tcwsalt20 + vals.tcwsltlt20
+        vals2.iys20 = vals.tcysalt20 + vals.tcysltlt20
+        vals2.icm20 = vals2.icmlt20 + vals.tccmalt20
+        vals2.ism20 = vals2.ismlt20 + vals.tcsmalt20
+        vals2.ltls20 = float(request.POST['ltls20'])
+        vals2.ltwsa20 = float(request.POST['ltwsa20'])
+        vals2.ltwslt20 = float(request.POST['ltwslt20'])
+        vals2.ltysa20 = float(request.POST['ltysa20'])
+        vals2.ltyslt20 = float(request.POST['ltyslt20'])
+        vals2.htwsa20 = float(request.POST['htwsa20'])
+        vals2.htwslt20 = float(request.POST['htwslt20'])
+        vals2.htysa20 = float(request.POST['htysa20'])
+        vals2.htyslt20 = float(request.POST['htyslt20'])
+        vals2.ws20 = vals2.ltwsa20 + vals2.ltwslt20 + vals2.htwsa20 + vals2.htwslt20
+        vals2.ys20 = vals2.ltysa20 + vals2.ltyslt20 + vals2.htysa20 + vals2.htyslt20
+        vals2.vstotal2_20 = vals2.ltls20 + vals2.ws20 + vals2.ys20
+        vals2.macdtc20 = float(request.POST['macdtc20'])
+        vals2.cts20 = float(request.POST['cts20'])
+        vals2.ctc20 = vals2.macdtc20 * vals2.cts20/100
+        
+        vals2.nils21 = vals.nielslt21 + vals.lslt21
+        vals2.niwsa21 = vals.wsaht21 + vals.wsalt21 + vals.niewsaht21 + vals.niewsalt21
+        vals2.niwslt21 = vals.wsltht21 + vals.wsltlt21 + vals.niewsltht21 + vals.niewsltlt21
+        vals2.niysa21 = vals.ysaht21 + vals.ysalt21 + vals.nieysaht21 + vals.nieysalt21
+        vals2.niyslt21 = vals.ysltht21 + vals.ysltlt21 + vals.nieysltht21 + vals.nieysltlt21
+        vals2.nicma21 = vals.cmaht21 + vals.cmalt21 + vals.niecmaht21 + vals.niecmalt21
+        vals2.nicmlt21 = (vals.cmltht1_21 + vals.cmltht2_21 + vals.cmltht3_21 + vals.cmltlt21 + 
+                            vals.niecmltht1_21 + vals.niecmltht2_21 + vals.niecmltht3_21 + vals.niecmltlt21)
+        vals2.nisma21 = vals.smaht21 + vals.niesmaht21
+        vals2.nismlt21 = vals.smltht1_21 + vals.smltht2_21 + vals.niesmltht1_21 + vals.niesmltht2_21
+        vals2.icmlt21 = vals.tccmltlt1_21 + vals.tccmltlt2_21 + vals.tccmltlt3_21
+        vals2.ismlt21 = vals.tcsmltlt1_21 + vals.tcsmltlt2_21
+        vals2.vstotal1_21 = (vals2.nils21 + vals2.niwsa21 + vals2.niwslt21 + vals2.niysa21 + vals2.niyslt21 + vals2.nicma21 +
+                                vals2.nicmlt21 + vals2.nisma21 + vals2.nismlt21 + vals2.icmlt21 + vals2.ismlt21 + vals.tcwsalt21 +
+                                    vals.tcwsltlt21 + vals.tcysalt21 + vals.tcysltlt21 + vals.tccmalt21 + vals.tcsmalt21)
+        vals2.niws21 = vals2.niwsa21 + vals2.niwslt21 
+        vals2.niys21 = vals2.niysa21 + vals2.niyslt21
+        vals2.nicm21 = vals2.nicma21 + vals2.nicmlt21
+        vals2.nism21 = vals2.nisma21 + vals2.nismlt21
+        vals2.iws21 = vals.tcwsalt21 + vals.tcwsltlt21
+        vals2.iys21 = vals.tcysalt21 + vals.tcysltlt21
+        vals2.icm21 = vals2.icmlt21 + vals.tccmalt21
+        vals2.ism21 = vals2.ismlt21 + vals.tcsmalt21
+        vals2.ltls21 = float(request.POST['ltls21'])
+        vals2.ltwsa21 = float(request.POST['ltwsa21'])
+        vals2.ltwslt21 = float(request.POST['ltwslt21'])
+        vals2.ltysa21 = float(request.POST['ltysa21'])
+        vals2.ltyslt21 = float(request.POST['ltyslt21'])
+        vals2.htwsa21 = float(request.POST['htwsa21'])
+        vals2.htwslt21 = float(request.POST['htwslt21'])
+        vals2.htysa21 = float(request.POST['htysa21'])
+        vals2.htyslt21 = float(request.POST['htyslt21'])
+        vals2.ws21 = vals2.ltwsa21 + vals2.ltwslt21 + vals2.htwsa21 + vals2.htwslt21
+        vals2.ys21 = vals2.ltysa21 + vals2.ltyslt21 + vals2.htysa21 + vals2.htyslt21
+        vals2.vstotal2_21 = vals2.ltls21 + vals2.ws21 + vals2.ys21
+        vals2.macdtc21 = float(request.POST['macdtc21'])
+        vals2.cts21 = float(request.POST['cts21'])
+        vals2.ctc21 = vals2.macdtc21 * vals2.cts21/100
+        
+        vals2.nils22 = vals.nielslt22 + vals.lslt22
+        vals2.niwsa22 = vals.wsaht22 + vals.wsalt22 + vals.niewsaht22 + vals.niewsalt22
+        vals2.niwslt22 = vals.wsltht22 + vals.wsltlt22 + vals.niewsltht22 + vals.niewsltlt22
+        vals2.niysa22 = vals.ysaht22 + vals.ysalt22 + vals.nieysaht22 + vals.nieysalt22
+        vals2.niyslt22 = vals.ysltht22 + vals.ysltlt22 + vals.nieysltht22 + vals.nieysltlt22
+        vals2.nicma22 = vals.cmaht22 + vals.cmalt22 + vals.niecmaht22 + vals.niecmalt22
+        vals2.nicmlt22 = (vals.cmltht1_22 + vals.cmltht2_22 + vals.cmltht3_22 + vals.cmltlt22 + 
+                            vals.niecmltht1_22 + vals.niecmltht2_22 + vals.niecmltht3_22 + vals.niecmltlt22)
+        vals2.nisma22 = vals.smaht22 + vals.niesmaht22
+        vals2.nismlt22 = vals.smltht1_22 + vals.smltht2_22 + vals.niesmltht1_22 + vals.niesmltht2_22
+        vals2.icmlt22 = vals.tccmltlt1_22 + vals.tccmltlt2_22 + vals.tccmltlt3_22
+        vals2.ismlt22 = vals.tcsmltlt1_22 + vals.tcsmltlt2_22
+        vals2.vstotal1_22 = (vals2.nils22 + vals2.niwsa22 + vals2.niwslt22 + vals2.niysa22 + vals2.niyslt22 + vals2.nicma22 +
+                                vals2.nicmlt22 + vals2.nisma22 + vals2.nismlt22 + vals2.icmlt22 + vals2.ismlt22 + vals.tcwsalt22 +
+                                    vals.tcwsltlt22 + vals.tcysalt22 + vals.tcysltlt22 + vals.tccmalt22 + vals.tcsmalt22)
+        vals2.niws22 = vals2.niwsa22 + vals2.niwslt22 
+        vals2.niys22 = vals2.niysa22 + vals2.niyslt22
+        vals2.nicm22 = vals2.nicma22 + vals2.nicmlt22
+        vals2.nism22 = vals2.nisma22 + vals2.nismlt22
+        vals2.iws22 = vals.tcwsalt22 + vals.tcwsltlt22
+        vals2.iys22 = vals.tcysalt22 + vals.tcysltlt22
+        vals2.icm22 = vals2.icmlt22 + vals.tccmalt22
+        vals2.ism22 = vals2.ismlt22 + vals.tcsmalt22
+        vals2.ltls22 = float(request.POST['ltls22'])
+        vals2.ltwsa22 = float(request.POST['ltwsa22'])
+        vals2.ltwslt22 = float(request.POST['ltwslt22'])
+        vals2.ltysa22 = float(request.POST['ltysa22'])
+        vals2.ltyslt22 = float(request.POST['ltyslt22'])
+        vals2.htwsa22 = float(request.POST['htwsa22'])
+        vals2.htwslt22 = float(request.POST['htwslt22'])
+        vals2.htysa22 = float(request.POST['htysa22'])
+        vals2.htyslt22 = float(request.POST['htyslt22'])
+        vals2.ws22 = vals2.ltwsa22 + vals2.ltwslt22 + vals2.htwsa22 + vals2.htwslt22
+        vals2.ys22 = vals2.ltysa22 + vals2.ltyslt22 + vals2.htysa22 + vals2.htyslt22
+        vals2.vstotal2_22 = vals2.ltls22 + vals2.ws22 + vals2.ys22
+        vals2.macdtc22 = float(request.POST['macdtc22'])
+        vals2.cts22 = float(request.POST['cts22'])
+        vals2.ctc22 = vals2.macdtc22 * vals2.cts22/100
+        
+        vals2.nils23 = vals.nielslt23 + vals.lslt23
+        vals2.niwsa23 = vals.wsaht23 + vals.wsalt23 + vals.niewsaht23 + vals.niewsalt23
+        vals2.niwslt23 = vals.wsltht23 + vals.wsltlt23 + vals.niewsltht23 + vals.niewsltlt23
+        vals2.niysa23 = vals.ysaht23 + vals.ysalt23 + vals.nieysaht23 + vals.nieysalt23
+        vals2.niyslt23 = vals.ysltht23 + vals.ysltlt23 + vals.nieysltht23 + vals.nieysltlt23
+        vals2.nicma23 = vals.cmaht23 + vals.cmalt23 + vals.niecmaht23 + vals.niecmalt23
+        vals2.nicmlt23 = (vals.cmltht1_23 + vals.cmltht2_23 + vals.cmltht3_23 + vals.cmltlt23 + 
+                            vals.niecmltht1_23 + vals.niecmltht2_23 + vals.niecmltht3_23 + vals.niecmltlt23)
+        vals2.nisma23 = vals.smaht23 + vals.niesmaht23
+        vals2.nismlt23 = vals.smltht1_23 + vals.smltht2_23 + vals.niesmltht1_23 + vals.niesmltht2_23
+        vals2.icmlt23 = vals.tccmltlt1_23 + vals.tccmltlt2_23 + vals.tccmltlt3_23
+        vals2.ismlt23 = vals.tcsmltlt1_23 + vals.tcsmltlt2_23
+        vals2.vstotal1_23 = (vals2.nils23 + vals2.niwsa23 + vals2.niwslt23 + vals2.niysa23 + vals2.niyslt23 + vals2.nicma23 +
+                                vals2.nicmlt23 + vals2.nisma23 + vals2.nismlt23 + vals2.icmlt23 + vals2.ismlt23 + vals.tcwsalt23 +
+                                    vals.tcwsltlt23 + vals.tcysalt23 + vals.tcysltlt23 + vals.tccmalt23 + vals.tcsmalt23)
+        vals2.niws23 = vals2.niwsa23 + vals2.niwslt23 
+        vals2.niys23 = vals2.niysa23 + vals2.niyslt23
+        vals2.nicm23 = vals2.nicma23 + vals2.nicmlt23
+        vals2.nism23 = vals2.nisma23 + vals2.nismlt23
+        vals2.iws23 = vals.tcwsalt23 + vals.tcwsltlt23
+        vals2.iys23 = vals.tcysalt23 + vals.tcysltlt23
+        vals2.icm23 = vals2.icmlt23 + vals.tccmalt23
+        vals2.ism23 = vals2.ismlt23 + vals.tcsmalt23
+        vals2.ltls23 = float(request.POST['ltls23'])
+        vals2.ltwsa23 = float(request.POST['ltwsa23'])
+        vals2.ltwslt23 = float(request.POST['ltwslt23'])
+        vals2.ltysa23 = float(request.POST['ltysa23'])
+        vals2.ltyslt23 = float(request.POST['ltyslt23'])
+        vals2.htwsa23 = float(request.POST['htwsa23'])
+        vals2.htwslt23 = float(request.POST['htwslt23'])
+        vals2.htysa23 = float(request.POST['htysa23'])
+        vals2.htyslt23 = float(request.POST['htyslt23'])
+        vals2.ws23 = vals2.ltwsa23 + vals2.ltwslt23 + vals2.htwsa23 + vals2.htwslt23
+        vals2.ys23 = vals2.ltysa23 + vals2.ltyslt23 + vals2.htysa23 + vals2.htyslt23
+        vals2.vstotal2_23 = vals2.ltls23 + vals2.ws23 + vals2.ys23
+        vals2.macdtc23 = float(request.POST['macdtc23'])
+        vals2.cts23 = float(request.POST['cts23'])
+        vals2.ctc23 = vals2.macdtc23 * vals2.cts23/100
+        
+        vals2.nils24 = vals.nielslt24 + vals.lslt24
+        vals2.niwsa24 = vals.wsaht24 + vals.wsalt24 + vals.niewsaht24 + vals.niewsalt24
+        vals2.niwslt24 = vals.wsltht24 + vals.wsltlt24 + vals.niewsltht24 + vals.niewsltlt24
+        vals2.niysa24 = vals.ysaht24 + vals.ysalt24 + vals.nieysaht24 + vals.nieysalt24
+        vals2.niyslt24 = vals.ysltht24 + vals.ysltlt24 + vals.nieysltht24 + vals.nieysltlt24
+        vals2.nicma24 = vals.cmaht24 + vals.cmalt24 + vals.niecmaht24 + vals.niecmalt24
+        vals2.nicmlt24 = (vals.cmltht1_24 + vals.cmltht2_24 + vals.cmltht3_24 + vals.cmltlt24 + 
+                            vals.niecmltht1_24 + vals.niecmltht2_24 + vals.niecmltht3_24 + vals.niecmltlt24)
+        vals2.nisma24 = vals.smaht24 + vals.niesmaht24
+        vals2.nismlt24 = vals.smltht1_24 + vals.smltht2_24 + vals.niesmltht1_24 + vals.niesmltht2_24
+        vals2.icmlt24 = vals.tccmltlt1_24 + vals.tccmltlt2_24 + vals.tccmltlt3_24
+        vals2.ismlt24 = vals.tcsmltlt1_24 + vals.tcsmltlt2_24
+        vals2.vstotal1_24 = (vals2.nils24 + vals2.niwsa24 + vals2.niwslt24 + vals2.niysa24 + vals2.niyslt24 + vals2.nicma24 +
+                                vals2.nicmlt24 + vals2.nisma24 + vals2.nismlt24 + vals2.icmlt24 + vals2.ismlt24 + vals.tcwsalt24 +
+                                    vals.tcwsltlt24 + vals.tcysalt24 + vals.tcysltlt24 + vals.tccmalt24 + vals.tcsmalt24)
+        vals2.niws24 = vals2.niwsa24 + vals2.niwslt24 
+        vals2.niys24 = vals2.niysa24 + vals2.niyslt24
+        vals2.nicm24 = vals2.nicma24 + vals2.nicmlt24
+        vals2.nism24 = vals2.nisma24 + vals2.nismlt24
+        vals2.iws24 = vals.tcwsalt24 + vals.tcwsltlt24
+        vals2.iys24 = vals.tcysalt24 + vals.tcysltlt24
+        vals2.icm24 = vals2.icmlt24 + vals.tccmalt24
+        vals2.ism24 = vals2.ismlt24 + vals.tcsmalt24
+        vals2.ltls24 = float(request.POST['ltls24'])
+        vals2.ltwsa24 = float(request.POST['ltwsa24'])
+        vals2.ltwslt24 = float(request.POST['ltwslt24'])
+        vals2.ltysa24 = float(request.POST['ltysa24'])
+        vals2.ltyslt24 = float(request.POST['ltyslt24'])
+        vals2.htwsa24 = float(request.POST['htwsa24'])
+        vals2.htwslt24 = float(request.POST['htwslt24'])
+        vals2.htysa24 = float(request.POST['htysa24'])
+        vals2.htyslt24 = float(request.POST['htyslt24'])
+        vals2.ws24 = vals2.ltwsa24 + vals2.ltwslt24 + vals2.htwsa24 + vals2.htwslt24
+        vals2.ys24 = vals2.ltysa24 + vals2.ltyslt24 + vals2.htysa24 + vals2.htyslt24
+        vals2.vstotal2_24 = vals2.ltls24 + vals2.ws24 + vals2.ys24
+        vals2.macdtc24 = float(request.POST['macdtc24'])
+        vals2.cts24 = float(request.POST['cts24'])
+        vals2.ctc24 = vals2.macdtc24 * vals2.cts24/100
+
+
+        
+
         # save the object
         vals.save()
-        return render(request, 'index.html', {'vals': vals})
+        vals2.save()
+        return render(request, 'index.html', {'vals': vals , 'vals2': vals2})
 
     # context = {'form': form} --- if want to use forms
     return render(request, 'index.html', )
