@@ -119,7 +119,8 @@ th {
 
 thead {
 	th {
-	    border: 1px solid black;
+    text-align: center;
+	  border: 1px solid black;
 		background-color: #55608f;
 	}
 }

@@ -675,11 +675,11 @@ function autofill(){
   document.getElementById('609').value=0
   document.getElementById('610').value=0
 
-  // document.getElementById('611').value=0
-  // document.getElementById('612').value=0
-  // document.getElementById('613').value=0
-  // document.getElementById('614').value=0
-  // document.getElementById('615').value=0
+  document.getElementById('611').value=5685
+  document.getElementById('612').value=6647
+  document.getElementById('613').value=6360
+  document.getElementById('614').value=6620
+  document.getElementById('615').value=6085
   // document.getElementById('616').value=0
   // document.getElementById('617').value=0
   // document.getElementById('618').value=0
