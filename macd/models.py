@@ -1971,6 +1971,7 @@ class values(models.Model):
     ism22 = models.FloatField(null=True)
     ism23 = models.FloatField(null=True)
     ism24 = models.FloatField(null=True)
+    zero = models.FloatField(null=True)
 
 class values2(models.Model):
     nils15 = models.FloatField(null=True)
@@ -3117,326 +3118,475 @@ class values2(models.Model):
     rpko_loadout23 = models.FloatField(null=True)
     rpko_loadout24 = models.FloatField(null=True)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    apshortening_2ref15 = models.FloatField(null=True)
+    apshortening_2ref16 = models.FloatField(null=True)
+    apshortening_2ref17 = models.FloatField(null=True)
+    apshortening_2ref18 = models.FloatField(null=True)
+    apshortening_2ref19 = models.FloatField(null=True)
+    apshortening_2ref20 = models.FloatField(null=True)
+    apshortening_2ref21 = models.FloatField(null=True)
+    apshortening_2ref22 = models.FloatField(null=True)
+    apshortening_2ref23 = models.FloatField(null=True)
+    apshortening_2ref24 = models.FloatField(null=True)
+
+    apshortening_perf15 = models.FloatField(null=True)
+    apshortening_perf16 = models.FloatField(null=True)
+    apshortening_perf17 = models.FloatField(null=True)
+    apshortening_perf18 = models.FloatField(null=True)
+    apshortening_perf19 = models.FloatField(null=True)
+    apshortening_perf20 = models.FloatField(null=True)
+    apshortening_perf21 = models.FloatField(null=True)
+    apshortening_perf22 = models.FloatField(null=True)
+    apshortening_perf23 = models.FloatField(null=True)
+    apshortening_perf24 = models.FloatField(null=True)
+
+    rhpoc_2ref15 = models.FloatField(null=True)
+    rhpoc_2ref16 = models.FloatField(null=True)
+    rhpoc_2ref17 = models.FloatField(null=True)
+    rhpoc_2ref18 = models.FloatField(null=True)
+    rhpoc_2ref19 = models.FloatField(null=True)
+    rhpoc_2ref20 = models.FloatField(null=True)
+    rhpoc_2ref21 = models.FloatField(null=True)
+    rhpoc_2ref22 = models.FloatField(null=True)
+    rhpoc_2ref23 = models.FloatField(null=True)
+    rhpoc_2ref24 = models.FloatField(null=True)
+
+    rhpoc_perf15 = models.FloatField(null=True)
+    rhpoc_perf16 = models.FloatField(null=True)
+    rhpoc_perf17 = models.FloatField(null=True)
+    rhpoc_perf18 = models.FloatField(null=True)
+    rhpoc_perf19 = models.FloatField(null=True)
+    rhpoc_perf20 = models.FloatField(null=True)
+    rhpoc_perf21 = models.FloatField(null=True)
+    rhpoc_perf22 = models.FloatField(null=True)
+    rhpoc_perf23 = models.FloatField(null=True)
+    rhpoc_perf24 = models.FloatField(null=True)
+
+    rhsbo_2ref15 = models.FloatField(null=True)
+    rhsbo_2ref16 = models.FloatField(null=True)
+    rhsbo_2ref17 = models.FloatField(null=True)
+    rhsbo_2ref18 = models.FloatField(null=True)
+    rhsbo_2ref19 = models.FloatField(null=True)
+    rhsbo_2ref20 = models.FloatField(null=True)
+    rhsbo_2ref21 = models.FloatField(null=True)
+    rhsbo_2ref22 = models.FloatField(null=True)
+    rhsbo_2ref23 = models.FloatField(null=True)
+    rhsbo_2ref24 = models.FloatField(null=True)
+
+    rhsbo_perf15 = models.FloatField(null=True)
+    rhsbo_perf16 = models.FloatField(null=True)
+    rhsbo_perf17 = models.FloatField(null=True)
+    rhsbo_perf18 = models.FloatField(null=True)
+    rhsbo_perf19 = models.FloatField(null=True)
+    rhsbo_perf20 = models.FloatField(null=True)
+    rhsbo_perf21 = models.FloatField(null=True)
+    rhsbo_perf22 = models.FloatField(null=True)
+    rhsbo_perf23 = models.FloatField(null=True)
+    rhsbo_perf24 = models.FloatField(null=True)
+
+    ls_bibline15 = models.FloatField(null=True)
+    ls_bibline16 = models.FloatField(null=True)
+    ls_bibline17 = models.FloatField(null=True)
+    ls_bibline18 = models.FloatField(null=True)
+    ls_bibline19 = models.FloatField(null=True)
+    ls_bibline20 = models.FloatField(null=True)
+    ls_bibline21 = models.FloatField(null=True)
+    ls_bibline22 = models.FloatField(null=True)
+    ls_bibline23 = models.FloatField(null=True)
+    ls_bibline24 = models.FloatField(null=True)
+
+    niscfl2_15 = models.FloatField(null=True)
+    niscfl2_16 = models.FloatField(null=True)
+    niscfl2_17 = models.FloatField(null=True)
+    niscfl2_18 = models.FloatField(null=True)
+    niscfl2_19 = models.FloatField(null=True)
+    niscfl2_20 = models.FloatField(null=True)
+    niscfl2_21 = models.FloatField(null=True)
+    niscfl2_22 = models.FloatField(null=True)
+    niscfl2_23 = models.FloatField(null=True)
+    niscfl2_24 = models.FloatField(null=True)
+
+    nimcfl2_15 = models.FloatField(null=True)
+    nimcfl2_16 = models.FloatField(null=True)
+    nimcfl2_17 = models.FloatField(null=True)
+    nimcfl2_18 = models.FloatField(null=True)
+    nimcfl2_19 = models.FloatField(null=True)
+    nimcfl2_20 = models.FloatField(null=True)
+    nimcfl2_21 = models.FloatField(null=True)
+    nimcfl2_22 = models.FloatField(null=True)
+    nimcfl2_23 = models.FloatField(null=True)
+    nimcfl2_24 = models.FloatField(null=True)
+
+    iscfl2_15 = models.FloatField(null=True)
+    iscfl2_16 = models.FloatField(null=True)
+    iscfl2_17 = models.FloatField(null=True)
+    iscfl2_18 = models.FloatField(null=True)
+    iscfl2_19 = models.FloatField(null=True)
+    iscfl2_20 = models.FloatField(null=True)
+    iscfl2_21 = models.FloatField(null=True)
+    iscfl2_22 = models.FloatField(null=True)
+    iscfl2_23 = models.FloatField(null=True)
+    iscfl2_24 = models.FloatField(null=True)
+
+    imcfl2_15 = models.FloatField(null=True)
+    imcfl2_16 = models.FloatField(null=True)
+    imcfl2_17 = models.FloatField(null=True)
+    imcfl2_18 = models.FloatField(null=True)
+    imcfl2_19 = models.FloatField(null=True)
+    imcfl2_20 = models.FloatField(null=True)
+    imcfl2_21 = models.FloatField(null=True)
+    imcfl2_22 = models.FloatField(null=True)
+    imcfl2_23 = models.FloatField(null=True)
+    imcfl2_24 = models.FloatField(null=True)
+
+    asm_perf15 = models.FloatField(null=True)
+    asm_perf16 = models.FloatField(null=True)
+    asm_perf17 = models.FloatField(null=True)
+    asm_perf18 = models.FloatField(null=True)
+    asm_perf19 = models.FloatField(null=True)
+    asm_perf20 = models.FloatField(null=True)
+    asm_perf21 = models.FloatField(null=True)
+    asm_perf22 = models.FloatField(null=True)
+    asm_perf23 = models.FloatField(null=True)
+    asm_perf24 = models.FloatField(null=True)
+
+    asm_smp15 = models.FloatField(null=True)
+    asm_smp16 = models.FloatField(null=True)
+    asm_smp17 = models.FloatField(null=True)
+    asm_smp18 = models.FloatField(null=True)
+    asm_smp19 = models.FloatField(null=True)
+    asm_smp20 = models.FloatField(null=True)
+    asm_smp21 = models.FloatField(null=True)
+    asm_smp22 = models.FloatField(null=True)
+    asm_smp23 = models.FloatField(null=True)
+    asm_smp24 = models.FloatField(null=True)
+
+    ieoil15 = models.FloatField(null=True)
+    ieoil16 = models.FloatField(null=True)
+    ieoil17 = models.FloatField(null=True)
+    ieoil18 = models.FloatField(null=True)
+    ieoil19 = models.FloatField(null=True)
+    ieoil20 = models.FloatField(null=True)
+    ieoil21 = models.FloatField(null=True)
+    ieoil22 = models.FloatField(null=True)
+    ieoil23 = models.FloatField(null=True)
+    ieoil24 = models.FloatField(null=True)
+
+    hoil15 = models.FloatField(null=True)
+    hoil16 = models.FloatField(null=True)
+    hoil17 = models.FloatField(null=True)
+    hoil18 = models.FloatField(null=True)
+    hoil19 = models.FloatField(null=True)
+    hoil20 = models.FloatField(null=True)
+    hoil21 = models.FloatField(null=True)
+    hoil22 = models.FloatField(null=True)
+    hoil23 = models.FloatField(null=True)
+    hoil24 = models.FloatField(null=True)
+
+    hoilh15 = models.FloatField(null=True)
+    hoilh16 = models.FloatField(null=True)
+    hoilh17 = models.FloatField(null=True)
+    hoilh18 = models.FloatField(null=True)
+    hoilh19 = models.FloatField(null=True)
+    hoilh20 = models.FloatField(null=True)
+    hoilh21 = models.FloatField(null=True)
+    hoilh22 = models.FloatField(null=True)
+    hoilh23 = models.FloatField(null=True)
+    hoilh24 = models.FloatField(null=True)
+
+    hoilr15 = models.FloatField(null=True)
+    hoilr16 = models.FloatField(null=True)
+    hoilr17 = models.FloatField(null=True)
+    hoilr18 = models.FloatField(null=True)
+    hoilr19 = models.FloatField(null=True)
+    hoilr20 = models.FloatField(null=True)
+    hoilr21 = models.FloatField(null=True)
+    hoilr22 = models.FloatField(null=True)
+    hoilr23 = models.FloatField(null=True)
+    hoilr24 = models.FloatField(null=True)
+
+    ieoilb15 = models.FloatField(null=True)
+    ieoilb16 = models.FloatField(null=True)
+    ieoilb17 = models.FloatField(null=True)
+    ieoilb18 = models.FloatField(null=True)
+    ieoilb19 = models.FloatField(null=True)
+    ieoilb20 = models.FloatField(null=True)
+    ieoilb21 = models.FloatField(null=True)
+    ieoilb22 = models.FloatField(null=True)
+    ieoilb23 = models.FloatField(null=True)
+    ieoilb24 = models.FloatField(null=True)
+
+    ieoild15 = models.FloatField(null=True)
+    ieoild16 = models.FloatField(null=True)
+    ieoild17 = models.FloatField(null=True)
+    ieoild18 = models.FloatField(null=True)
+    ieoild19 = models.FloatField(null=True)
+    ieoild20 = models.FloatField(null=True)
+    ieoild21 = models.FloatField(null=True)
+    ieoild22 = models.FloatField(null=True)
+    ieoild23 = models.FloatField(null=True)
+    ieoild24 = models.FloatField(null=True)
+    
+    neutral15 = models.FloatField(null=True)
+    neutral16 = models.FloatField(null=True)
+    neutral17 = models.FloatField(null=True)
+    neutral18 = models.FloatField(null=True)
+    neutral19 = models.FloatField(null=True)
+    neutral20 = models.FloatField(null=True)
+    neutral21 = models.FloatField(null=True)
+    neutral22 = models.FloatField(null=True)
+    neutral23 = models.FloatField(null=True)
+    neutral24 = models.FloatField(null=True)
+
+    neutral_ecu15 = models.FloatField(null=True)
+    neutral_ecu16 = models.FloatField(null=True)
+    neutral_ecu17 = models.FloatField(null=True)
+    neutral_ecu18 = models.FloatField(null=True)
+    neutral_ecu19 = models.FloatField(null=True)
+    neutral_ecu20 = models.FloatField(null=True)
+    neutral_ecu21 = models.FloatField(null=True)
+    neutral_ecu22 = models.FloatField(null=True)
+    neutral_ecu23 = models.FloatField(null=True)
+    neutral_ecu24 = models.FloatField(null=True)
+
+    dewaxing15 = models.FloatField(null=True)
+    dewaxing16 = models.FloatField(null=True)
+    dewaxing17 = models.FloatField(null=True)
+    dewaxing18 = models.FloatField(null=True)
+    dewaxing19 = models.FloatField(null=True)
+    dewaxing20 = models.FloatField(null=True)
+    dewaxing21 = models.FloatField(null=True)
+    dewaxing22 = models.FloatField(null=True)
+    dewaxing23 = models.FloatField(null=True)
+    dewaxing24 = models.FloatField(null=True)
+
+    dewaxing_ecu15 = models.FloatField(null=True)
+    dewaxing_ecu16 = models.FloatField(null=True)
+    dewaxing_ecu17 = models.FloatField(null=True)
+    dewaxing_ecu18 = models.FloatField(null=True)
+    dewaxing_ecu19 = models.FloatField(null=True)
+    dewaxing_ecu20 = models.FloatField(null=True)
+    dewaxing_ecu21 = models.FloatField(null=True)
+    dewaxing_ecu22 = models.FloatField(null=True)
+    dewaxing_ecu23 = models.FloatField(null=True)
+    dewaxing_ecu24 = models.FloatField(null=True)
+
+    firstref15 = models.FloatField(null=True)
+    firstref16 = models.FloatField(null=True)
+    firstref17 = models.FloatField(null=True)
+    firstref18 = models.FloatField(null=True)
+    firstref19 = models.FloatField(null=True)
+    firstref20 = models.FloatField(null=True)
+    firstref21 = models.FloatField(null=True)
+    firstref22 = models.FloatField(null=True)
+    firstref23 = models.FloatField(null=True)
+    firstref24 = models.FloatField(null=True)
+
+    secondref15 = models.FloatField(null=True)
+    secondref16 = models.FloatField(null=True)
+    secondref17 = models.FloatField(null=True)
+    secondref18 = models.FloatField(null=True)
+    secondref19 = models.FloatField(null=True)
+    secondref20 = models.FloatField(null=True)
+    secondref21 = models.FloatField(null=True)
+    secondref22 = models.FloatField(null=True)
+    secondref23 = models.FloatField(null=True)
+    secondref24 = models.FloatField(null=True)
+
+    tpd400ref15 = models.FloatField(null=True)
+    tpd400ref16 = models.FloatField(null=True)
+    tpd400ref17 = models.FloatField(null=True)
+    tpd400ref18 = models.FloatField(null=True)
+    tpd400ref19 = models.FloatField(null=True)
+    tpd400ref20 = models.FloatField(null=True)
+    tpd400ref21 = models.FloatField(null=True)
+    tpd400ref22 = models.FloatField(null=True)
+    tpd400ref23 = models.FloatField(null=True)
+    tpd400ref24 = models.FloatField(null=True)
+
+    tpd400ref_ecu15 = models.FloatField(null=True)
+    tpd400ref_ecu16 = models.FloatField(null=True)
+    tpd400ref_ecu17 = models.FloatField(null=True)
+    tpd400ref_ecu18 = models.FloatField(null=True)
+    tpd400ref_ecu19 = models.FloatField(null=True)
+    tpd400ref_ecu20 = models.FloatField(null=True)
+    tpd400ref_ecu21 = models.FloatField(null=True)
+    tpd400ref_ecu22 = models.FloatField(null=True)
+    tpd400ref_ecu23 = models.FloatField(null=True)
+    tpd400ref_ecu24 = models.FloatField(null=True)
+
+    hydro15 = models.FloatField(null=True)
+    hydro16 = models.FloatField(null=True)
+    hydro17 = models.FloatField(null=True)
+    hydro18 = models.FloatField(null=True)
+    hydro19 = models.FloatField(null=True)
+    hydro20 = models.FloatField(null=True)
+    hydro21 = models.FloatField(null=True)
+    hydro22 = models.FloatField(null=True)
+    hydro23 = models.FloatField(null=True)
+    hydro24 = models.FloatField(null=True)
+
+    hydro_ecu15 = models.FloatField(null=True)
+    hydro_ecu16 = models.FloatField(null=True)
+    hydro_ecu17 = models.FloatField(null=True)
+    hydro_ecu18 = models.FloatField(null=True)
+    hydro_ecu19 = models.FloatField(null=True)
+    hydro_ecu20 = models.FloatField(null=True)
+    hydro_ecu21 = models.FloatField(null=True)
+    hydro_ecu22 = models.FloatField(null=True)
+    hydro_ecu23 = models.FloatField(null=True)
+    hydro_ecu24 = models.FloatField(null=True)
+
+    ieoilb_ecu15 = models.FloatField(null=True)
+    ieoilb_ecu16 = models.FloatField(null=True)
+    ieoilb_ecu17 = models.FloatField(null=True)
+    ieoilb_ecu18 = models.FloatField(null=True)
+    ieoilb_ecu19 = models.FloatField(null=True)
+    ieoilb_ecu20 = models.FloatField(null=True)
+    ieoilb_ecu21 = models.FloatField(null=True)
+    ieoilb_ecu22 = models.FloatField(null=True)
+    ieoilb_ecu23 = models.FloatField(null=True)
+    ieoilb_ecu24 = models.FloatField(null=True)
+
+    maxcap15 = models.FloatField(null=True)
+    maxcap16 = models.FloatField(null=True)
+    maxcap17 = models.FloatField(null=True)
+    maxcap18 = models.FloatField(null=True)
+    maxcap19 = models.FloatField(null=True)
+    maxcap20 = models.FloatField(null=True)
+    maxcap21 = models.FloatField(null=True)
+    maxcap22 = models.FloatField(null=True)
+    maxcap23 = models.FloatField(null=True)
+    maxcap24 = models.FloatField(null=True)
+
+    perfectorb_ecu15 = models.FloatField(null=True)
+    perfectorb_ecu16 = models.FloatField(null=True)
+    perfectorb_ecu17 = models.FloatField(null=True)
+    perfectorb_ecu18 = models.FloatField(null=True)
+    perfectorb_ecu19 = models.FloatField(null=True)
+    perfectorb_ecu20 = models.FloatField(null=True)
+    perfectorb_ecu21 = models.FloatField(null=True)
+    perfectorb_ecu22 = models.FloatField(null=True)
+    perfectorb_ecu23 = models.FloatField(null=True)
+    perfectorb_ecu24 = models.FloatField(null=True)
+
+    perfectorb15 = models.FloatField(null=True)
+    perfectorb16 = models.FloatField(null=True)
+    perfectorb17 = models.FloatField(null=True)
+    perfectorb18 = models.FloatField(null=True)
+    perfectorb19 = models.FloatField(null=True)
+    perfectorb20 = models.FloatField(null=True)
+    perfectorb21 = models.FloatField(null=True)
+    perfectorb22 = models.FloatField(null=True)
+    perfectorb23 = models.FloatField(null=True)
+    perfectorb24 = models.FloatField(null=True)
+
+    perfectora_ecu15 = models.FloatField(null=True)
+    perfectora_ecu16 = models.FloatField(null=True)
+    perfectora_ecu17 = models.FloatField(null=True)
+    perfectora_ecu18 = models.FloatField(null=True)
+    perfectora_ecu19 = models.FloatField(null=True)
+    perfectora_ecu20 = models.FloatField(null=True)
+    perfectora_ecu21 = models.FloatField(null=True)
+    perfectora_ecu22 = models.FloatField(null=True)
+    perfectora_ecu23 = models.FloatField(null=True)
+    perfectora_ecu24 = models.FloatField(null=True)
+
+    perfectora15 = models.FloatField(null=True)
+    perfectora16 = models.FloatField(null=True)
+    perfectora17 = models.FloatField(null=True)
+    perfectora18 = models.FloatField(null=True)
+    perfectora19 = models.FloatField(null=True)
+    perfectora20 = models.FloatField(null=True)
+    perfectora21 = models.FloatField(null=True)
+    perfectora22 = models.FloatField(null=True)
+    perfectora23 = models.FloatField(null=True)
+    perfectora24 = models.FloatField(null=True)
+
+    petline_ecu15 = models.FloatField(null=True)
+    petline_ecu16 = models.FloatField(null=True)
+    petline_ecu17 = models.FloatField(null=True)
+    petline_ecu18 = models.FloatField(null=True)
+    petline_ecu19 = models.FloatField(null=True)
+    petline_ecu20 = models.FloatField(null=True)
+    petline_ecu21 = models.FloatField(null=True)
+    petline_ecu22 = models.FloatField(null=True)
+    petline_ecu23 = models.FloatField(null=True)
+    petline_ecu24 = models.FloatField(null=True)
+
+    tbibline_ecu15 = models.FloatField(null=True)
+    tbibline_ecu16 = models.FloatField(null=True)
+    tbibline_ecu17 = models.FloatField(null=True)
+    tbibline_ecu18 = models.FloatField(null=True)
+    tbibline_ecu19 = models.FloatField(null=True)
+    tbibline_ecu20 = models.FloatField(null=True)
+    tbibline_ecu21 = models.FloatField(null=True)
+    tbibline_ecu22 = models.FloatField(null=True)
+    tbibline_ecu23 = models.FloatField(null=True)
+    tbibline_ecu24 = models.FloatField(null=True)
+
+    tbibline15 = models.FloatField(null=True)
+    tbibline16 = models.FloatField(null=True)
+    tbibline17 = models.FloatField(null=True)
+    tbibline18 = models.FloatField(null=True)
+    tbibline19 = models.FloatField(null=True)
+    tbibline20 = models.FloatField(null=True)
+    tbibline21 = models.FloatField(null=True)
+    tbibline22 = models.FloatField(null=True)
+    tbibline23 = models.FloatField(null=True)
+    tbibline24 = models.FloatField(null=True)
+
+    cfl1t15 = models.FloatField(null=True)
+    cfl1t16 = models.FloatField(null=True)
+    cfl1t17 = models.FloatField(null=True)
+    cfl1t18 = models.FloatField(null=True)
+    cfl1t19 = models.FloatField(null=True)
+    cfl1t20 = models.FloatField(null=True)
+    cfl1t21 = models.FloatField(null=True)
+    cfl1t22 = models.FloatField(null=True)
+    cfl1t23 = models.FloatField(null=True)
+    cfl1t24 = models.FloatField(null=True)
+
+    cfl1t_ecu15 = models.FloatField(null=True)
+    cfl1t_ecu16 = models.FloatField(null=True)
+    cfl1t_ecu17 = models.FloatField(null=True)
+    cfl1t_ecu18 = models.FloatField(null=True)
+    cfl1t_ecu19 = models.FloatField(null=True)
+    cfl1t_ecu20 = models.FloatField(null=True)
+    cfl1t_ecu21 = models.FloatField(null=True)
+    cfl1t_ecu22 = models.FloatField(null=True)
+    cfl1t_ecu23 = models.FloatField(null=True)
+    cfl1t_ecu24 = models.FloatField(null=True)
+
+    cfl2t15 = models.FloatField(null=True)
+    cfl2t16 = models.FloatField(null=True)
+    cfl2t17 = models.FloatField(null=True)
+    cfl2t18 = models.FloatField(null=True)
+    cfl2t19 = models.FloatField(null=True)
+    cfl2t20 = models.FloatField(null=True)
+    cfl2t21 = models.FloatField(null=True)
+    cfl2t22 = models.FloatField(null=True)
+    cfl2t23 = models.FloatField(null=True)
+    cfl2t24 = models.FloatField(null=True)
+
+    cfl2t_ecu15 = models.FloatField(null=True)
+    cfl2t_ecu16 = models.FloatField(null=True)
+    cfl2t_ecu17 = models.FloatField(null=True)
+    cfl2t_ecu18 = models.FloatField(null=True)
+    cfl2t_ecu19 = models.FloatField(null=True)
+    cfl2t_ecu20 = models.FloatField(null=True)
+    cfl2t_ecu21 = models.FloatField(null=True)
+    cfl2t_ecu22 = models.FloatField(null=True)
+    cfl2t_ecu23 = models.FloatField(null=True)
+    cfl2t_ecu24 = models.FloatField(null=True)
+
+    rhsbo_hydro15 = models.FloatField(null=True)
+    rhsbo_hydro16 = models.FloatField(null=True)
+    rhsbo_hydro17 = models.FloatField(null=True)
+    rhsbo_hydro18 = models.FloatField(null=True)
+    rhsbo_hydro19 = models.FloatField(null=True)
+    rhsbo_hydro20 = models.FloatField(null=True)
+    rhsbo_hydro21 = models.FloatField(null=True)
+    rhsbo_hydro22 = models.FloatField(null=True)
+    rhsbo_hydro23 = models.FloatField(null=True)
+    rhsbo_hydro24 = models.FloatField(null=True)

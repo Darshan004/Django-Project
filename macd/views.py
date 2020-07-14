@@ -10,6 +10,7 @@ def index(request):
         # create new 'values' object
         vals = values()
         vals2 = values2()
+        vals.zero = 0
         vals.hocan15 = float(request.POST['hocan15'])
         vals.g1sb015 = float(request.POST['g1sb015'])
         vals.corn15 = float(request.POST['corn15'])
@@ -2704,7 +2705,29 @@ def index(request):
         vals2.smahoil24 =  vals.tcsmalt24 * (20.66/100*15/100)
         vals2.smltieoil24 = vals2.tcsmltlt24 * 66.20/100
         vals2.smlthoil24 = vals2.tcsmltlt24 * ((26.47/100*15/100) + (16.55/100*50/100))
+
+        vals2.hoil24 = (vals2.wsahoil24 + vals2.wslthoil24 + vals2.ysahoil24 + vals2.yslthoil24 + vals2.cmahoil24 + vals2.cmlthoil24 + vals2.smahoil24 + vals2.smlthoil24)
+        vals2.hoil23 = (vals2.wsahoil23 + vals2.wslthoil23 + vals2.ysahoil23 + vals2.yslthoil23 + vals2.cmahoil23 + vals2.cmlthoil23 + vals2.smahoil23 + vals2.smlthoil23)
+        vals2.hoil22 = (vals2.wsahoil22 + vals2.wslthoil22 + vals2.ysahoil22 + vals2.yslthoil22 + vals2.cmahoil22 + vals2.cmlthoil22 + vals2.smahoil22 + vals2.smlthoil22)
+        vals2.hoil21 = vals2.wsahoil21 + vals2.wslthoil21 + vals2.ysahoil21 + vals2.yslthoil21 + vals2.cmahoil21 + vals2.cmlthoil21 + vals2.smahoil21 + vals2.smlthoil21
+        vals2.hoil20 = vals2.wsahoil20 + vals2.wslthoil20 + vals2.ysahoil20 + vals2.yslthoil20 + vals2.cmahoil20 + vals2.cmlthoil20 + vals2.smahoil20 + vals2.smlthoil20
+        vals2.hoil19 = vals2.wsahoil19 + vals2.wslthoil19 + vals2.ysahoil19 + vals2.yslthoil19 + vals2.cmahoil19 + vals2.cmlthoil19 + vals2.smahoil19 + vals2.smlthoil19
+        vals2.hoil18 = vals2.wsahoil18 + vals2.wslthoil18 + vals2.ysahoil18 + vals2.yslthoil18 + vals2.cmahoil18 + vals2.cmlthoil18 + vals2.smahoil18 + vals2.smlthoil18
+        vals2.hoil17 = vals2.wsahoil17 + vals2.wslthoil17 + vals2.ysahoil17 + vals2.yslthoil17 + vals2.cmahoil17 + vals2.cmlthoil17 + vals2.smahoil17 + vals2.smlthoil17
+        vals2.hoil16 = vals2.wsahoil16 + vals2.wslthoil16 + vals2.ysahoil16 + vals2.yslthoil16 + vals2.cmahoil16 + vals2.cmlthoil16 + vals2.smahoil16 + vals2.smlthoil16
+        vals2.hoil15 = vals2.wsahoil15 + vals2.wslthoil15 + vals2.ysahoil15 + vals2.yslthoil15 + vals2.cmahoil15 + vals2.cmlthoil15 + vals2.smahoil15 + vals2.smlthoil15
         
+        vals2.ieoil24 = (vals2.wsaieoil24 + vals2.wsltieoil24 + vals2.ysaieoil24 + vals2.ysltieoil24 + vals2.cmaieoil24 + vals2.cmltieoil24 + vals2.smaieoil24 + vals2.smltieoil24)
+        vals2.ieoil23 = (vals2.wsaieoil23 + vals2.wsltieoil23 + vals2.ysaieoil23 + vals2.ysltieoil23 + vals2.cmaieoil23 + vals2.cmltieoil23 + vals2.smaieoil23 + vals2.smltieoil23)
+        vals2.ieoil22 = (vals2.wsaieoil22 + vals2.wsltieoil22 + vals2.ysaieoil22 + vals2.ysltieoil22 + vals2.cmaieoil22 + vals2.cmltieoil22 + vals2.smaieoil22 + vals2.smltieoil22)
+        vals2.ieoil21 = vals2.wsaieoil21 + vals2.wsltieoil21 + vals2.ysaieoil21 + vals2.ysltieoil21 + vals2.cmaieoil21 + vals2.cmltieoil21 + vals2.smaieoil21 + vals2.smltieoil21
+        vals2.ieoil20 = vals2.wsaieoil20 + vals2.wsltieoil20 + vals2.ysaieoil20 + vals2.ysltieoil20 + vals2.cmaieoil20 + vals2.cmltieoil20 + vals2.smaieoil20 + vals2.smltieoil20
+        vals2.ieoil19 = vals2.wsaieoil19 + vals2.wsltieoil19 + vals2.ysaieoil19 + vals2.ysltieoil19 + vals2.cmaieoil19 + vals2.cmltieoil19 + vals2.smaieoil19 + vals2.smltieoil19
+        vals2.ieoil18 = vals2.wsaieoil18 + vals2.wsltieoil18 + vals2.ysaieoil18 + vals2.ysltieoil18 + vals2.cmaieoil18 + vals2.cmltieoil18 + vals2.smaieoil18 + vals2.smltieoil18
+        vals2.ieoil17 = (vals2.wsaieoil17 + vals2.wsltieoil17 + vals2.ysaieoil17 + vals2.ysltieoil17 + vals2.cmaieoil17 + vals2.cmltieoil17 + vals2.smaieoil17 + vals2.smltieoil17)+(8785/2)
+        vals2.ieoil16 = (vals2.wsaieoil16 + vals2.wsltieoil16 + vals2.ysaieoil16 + vals2.ysltieoil16 + vals2.cmaieoil16 + vals2.cmltieoil16 + vals2.smaieoil16 + vals2.smltieoil16)+(9663/2)
+        vals2.ieoil15 = (vals2.wsaieoil15 + vals2.wsltieoil15 + vals2.ysaieoil15 + vals2.ysltieoil15 + vals2.cmaieoil15 + vals2.cmltieoil15 + vals2.smaieoil15 + vals2.smltieoil15)+(10629/2)
+
         #Hydro Oil in non-IE Product
         vals2.wsahthoc15 = vals.wsaht15 * 50.603/100
         vals2.wsalthoc15 = vals.wsalt15 * 3.969/100
@@ -3031,7 +3054,7 @@ def index(request):
         vals2.rpst_1ref15 = vals.rpst15*0
         vals2.rpst_2ref15 = vals.rpst15/400
         vals2.rpst_loadout15 = vals.rpst15/30/52
-        vals2.rhpst_hydro15 = vals.rhpst15/200
+        vals2.rhpst_hydro15 = vals.rhpst15/120
         vals2.rhpst_1ref15 = vals.rhpst15*0
         vals2.rhpst_2ref15 = vals.rhpst15/400
         vals2.rhpst_loadout15 = vals.rhpst15/30/52
@@ -3072,7 +3095,7 @@ def index(request):
         vals2.rpst_1ref16 = vals.rpst16*0
         vals2.rpst_2ref16 = vals.rpst16/400
         vals2.rpst_loadout16 = vals.rpst16/30/52
-        vals2.rhpst_hydro16 = vals.rhpst16/200
+        vals2.rhpst_hydro16 = vals.rhpst16/120
         vals2.rhpst_1ref16 = vals.rhpst16*0
         vals2.rhpst_2ref16 = vals.rhpst16/400
         vals2.rhpst_loadout16 = vals.rhpst16/30/52
@@ -3113,7 +3136,7 @@ def index(request):
         vals2.rpst_1ref17 = vals.rpst17*0
         vals2.rpst_2ref17 = vals.rpst17/400
         vals2.rpst_loadout17 = vals.rpst17/30/52
-        vals2.rhpst_hydro17 = vals.rhpst17/200
+        vals2.rhpst_hydro17 = vals.rhpst17/120
         vals2.rhpst_1ref17 = vals.rhpst17*0
         vals2.rhpst_2ref17 = vals.rhpst17/400
         vals2.rhpst_loadout17 = vals.rhpst17/30/52
@@ -3154,7 +3177,7 @@ def index(request):
         vals2.rpst_1ref18 = vals.rpst18*0
         vals2.rpst_2ref18 = vals.rpst18/400
         vals2.rpst_loadout18 = vals.rpst18/30/52
-        vals2.rhpst_hydro18 = vals.rhpst18/200
+        vals2.rhpst_hydro18 = vals.rhpst18/120
         vals2.rhpst_1ref18 = vals.rhpst18*0
         vals2.rhpst_2ref18 = vals.rhpst18/400
         vals2.rhpst_loadout18 = vals.rhpst18/30/52
@@ -3195,7 +3218,7 @@ def index(request):
         vals2.rpst_1ref19 = vals.rpst19*0
         vals2.rpst_2ref19 = vals.rpst19/400
         vals2.rpst_loadout19 = vals.rpst19/30/52
-        vals2.rhpst_hydro19 = vals.rhpst19/200
+        vals2.rhpst_hydro19 = vals.rhpst19/120
         vals2.rhpst_1ref19 = vals.rhpst19*0
         vals2.rhpst_2ref19 = vals.rhpst19/400
         vals2.rhpst_loadout19 = vals.rhpst19/30/52
@@ -3236,7 +3259,7 @@ def index(request):
         vals2.rpst_1ref20 = vals.rpst20*0
         vals2.rpst_2ref20 = vals.rpst20/400
         vals2.rpst_loadout20 = vals.rpst20/30/52
-        vals2.rhpst_hydro20 = vals.rhpst20/200
+        vals2.rhpst_hydro20 = vals.rhpst20/120
         vals2.rhpst_1ref20 = vals.rhpst20*0
         vals2.rhpst_2ref20 = vals.rhpst20/400
         vals2.rhpst_loadout20 = vals.rhpst20/30/52
@@ -3277,7 +3300,7 @@ def index(request):
         vals2.rpst_1ref21 = vals.rpst21*0
         vals2.rpst_2ref21 = vals.rpst21/400
         vals2.rpst_loadout21 = vals.rpst21/30/52
-        vals2.rhpst_hydro21 = vals.rhpst21/200
+        vals2.rhpst_hydro21 = vals.rhpst21/120
         vals2.rhpst_1ref21 = vals.rhpst21*0
         vals2.rhpst_2ref21 = vals.rhpst21/400
         vals2.rhpst_loadout21 = vals.rhpst21/30/52
@@ -3318,7 +3341,7 @@ def index(request):
         vals2.rpst_1ref22 = vals.rpst22*0
         vals2.rpst_2ref22 = vals.rpst22/400
         vals2.rpst_loadout22 = vals.rpst22/30/52
-        vals2.rhpst_hydro22 = vals.rhpst22/200
+        vals2.rhpst_hydro22 = vals.rhpst22/120
         vals2.rhpst_1ref22 = vals.rhpst22*0
         vals2.rhpst_2ref22 = vals.rhpst22/400
         vals2.rhpst_loadout22 = vals.rhpst22/30/52
@@ -3359,7 +3382,7 @@ def index(request):
         vals2.rpst_1ref23 = vals.rpst23*0
         vals2.rpst_2ref23 = vals.rpst23/400
         vals2.rpst_loadout23 = vals.rpst23/30/52
-        vals2.rhpst_hydro23 = vals.rhpst23/200
+        vals2.rhpst_hydro23 = vals.rhpst23/120
         vals2.rhpst_1ref23 = vals.rhpst23*0
         vals2.rhpst_2ref23 = vals.rhpst23/400
         vals2.rhpst_loadout23 = vals.rhpst23/30/52
@@ -3400,7 +3423,7 @@ def index(request):
         vals2.rpst_1ref24 = vals.rpst24*0
         vals2.rpst_2ref24 = vals.rpst24/400
         vals2.rpst_loadout24 = vals.rpst24/30/52
-        vals2.rhpst_hydro24 = vals.rhpst24/200
+        vals2.rhpst_hydro24 = vals.rhpst24/120
         vals2.rhpst_1ref24 = vals.rhpst24*0
         vals2.rhpst_2ref24 = vals.rhpst24/400
         vals2.rhpst_loadout24 = vals.rhpst24/30/52
@@ -3417,26 +3440,478 @@ def index(request):
         vals2.rpko_2ref24 = vals.rpko24/400
         vals2.rpko_loadout24 = vals.rpko24/30/52
 
+        vals2.apshortening_2ref15 = vals.apshortening15/400
+        vals2.apshortening_perf15 = vals.apshortening15*100/7.5/24/80
+        vals2.rhpoc_2ref15 = vals.rhpoc15/400
+        vals2.rhpoc_perf15 = vals.rhpoc15*100/7.5/24/80
+        vals2.rhsbo_2ref15 = vals.rhsbo15/400
+        vals2.rhsbo_perf15 = vals.rhsbo15*100/7.5/24/80
+        vals2.apshortening_2ref16 = vals.apshortening16/400
+        vals2.apshortening_perf16 = vals.apshortening16*100/7.5/24/80
+        vals2.rhpoc_2ref16 = vals.rhpoc16/400
+        vals2.rhpoc_perf16 = vals.rhpoc16/7.5/24
+        vals2.rhsbo_2ref16 = vals.rhsbo16/400
+        vals2.rhsbo_perf16 = vals.rhsbo16*100/7.5/24/80
+        vals2.apshortening_2ref17 = vals.apshortening17/400
+        vals2.apshortening_perf17 = vals.apshortening17*100/7.5/24/80
+        vals2.rhpoc_2ref17 = vals.rhpoc17/400
+        vals2.rhpoc_perf17 = vals.rhpoc17/7.5/24
+        vals2.rhsbo_2ref17 = vals.rhsbo17/400
+        vals2.rhsbo_perf17 = vals.rhsbo17*100/7.5/24/80
+        vals2.apshortening_2ref18 = vals.apshortening18/400
+        vals2.apshortening_perf18 = vals.apshortening18*100/7.5/24/80
+        vals2.rhpoc_2ref18 = vals.rhpoc18/400
+        vals2.rhpoc_perf18 = vals.rhpoc18/7.5/24
+        vals2.rhsbo_2ref18 = vals.rhsbo18/400
+        vals2.rhsbo_perf18 = vals.rhsbo18*100/7.5/24/80
+        vals2.apshortening_2ref19 = vals.apshortening19/400
+        vals2.apshortening_perf19 = vals.apshortening19*100/7.5/24/80
+        vals2.rhpoc_2ref19 = vals.rhpoc19/400
+        vals2.rhpoc_perf19 = vals.rhpoc19/7.5/24
+        vals2.rhsbo_2ref19 = vals.rhsbo19/400
+        vals2.rhsbo_perf19 = vals.rhsbo19*100/7.5/24/80
+        vals2.apshortening_2ref20 = vals.apshortening20/400
+        vals2.apshortening_perf20 = vals.apshortening20*100/7.5/24/80
+        vals2.rhpoc_2ref20 = vals.rhpoc20/400
+        vals2.rhpoc_perf20 = vals.rhpoc20/7.5/24
+        vals2.rhsbo_2ref20 = vals.rhsbo20/400
+        vals2.rhsbo_perf20 = vals.rhsbo20*100/7.5/24/80
+        vals2.apshortening_2ref21 = vals.apshortening21/400
+        vals2.apshortening_perf21 = vals.apshortening21*100/7.5/24/80
+        vals2.rhpoc_2ref21 = vals.rhpoc21/400
+        vals2.rhpoc_perf21 = vals.rhpoc21/7.5/24
+        vals2.rhsbo_2ref21 = vals.rhsbo21/400
+        vals2.rhsbo_perf21 = vals.rhsbo21*100/7.5/24/80
+        vals2.apshortening_2ref22 = vals.apshortening22/400
+        vals2.apshortening_perf22 = vals.apshortening22*100/7.5/24/80
+        vals2.rhpoc_2ref22 = vals.rhpoc22/400
+        vals2.rhpoc_perf22 = vals.rhpoc22/7.5/24
+        vals2.rhsbo_2ref22 = vals.rhsbo22/400
+        vals2.rhsbo_perf22 = vals.rhsbo22*100/7.5/24/80
+        vals2.apshortening_2ref23 = vals.apshortening23/400
+        vals2.apshortening_perf23 = vals.apshortening23*100/7.5/24/80
+        vals2.rhpoc_2ref23 = vals.rhpoc23/400
+        vals2.rhpoc_perf23 = vals.rhpoc23/7.5/24
+        vals2.rhsbo_2ref23 = vals.rhsbo23/400
+        vals2.rhsbo_perf23 = vals.rhsbo23*100/7.5/24/80
+        vals2.apshortening_2ref24 = vals.apshortening24/400
+        vals2.apshortening_perf24 = vals.apshortening24*100/7.5/24/80
+        vals2.rhpoc_2ref24 = vals.rhpoc24/400
+        vals2.rhpoc_perf24 = vals.rhpoc24/7.5/24
+        vals2.rhsbo_2ref24 = vals.rhsbo24/400
+        vals2.rhsbo_perf24 = vals.rhsbo24*100/7.5/24/80
 
+        vals2.ls_bibline15 = vals.ls15/10/24
+        vals2.niscfl2_15 = vals.nis15*100/7.5/24/75
+        vals2.nimcfl2_15 = vals.nim15*100/4.5/24/75
+        vals2.iscfl2_15 = vals.is15*100/7.5/24/75
+        vals2.imcfl2_15 = vals.im15*100/4.5/24/75
+        vals2.asm_perf15 = vals.asm15*100/2/24/75
+        vals2.asm_smp15 = vals.asm15/2/24
+        vals2.ls_bibline16 = vals.ls16/10/24
+        vals2.niscfl2_16 = vals.nis16*100/7.5/24/75
+        vals2.nimcfl2_16 = vals.nim16*100/4.5/24/75
+        vals2.iscfl2_16 = vals.is16*100/7.5/24/75
+        vals2.imcfl2_16 = vals.im16*100/4.5/24/75
+        vals2.asm_perf16 = vals.asm16*100/2/24/75
+        vals2.asm_smp16 = vals.asm16/2/24
+        vals2.ls_bibline17 = vals.ls17/10/24
+        vals2.niscfl2_17 = vals.nis17*100/7.5/24/75
+        vals2.nimcfl2_17 = vals.nim17*100/4.5/24/75
+        vals2.iscfl2_17 = vals.is17*100/7.5/24/75
+        vals2.imcfl2_17 = vals.im17*100/4.5/24/75
+        vals2.asm_perf17 = vals.asm17*100/2/24/75
+        vals2.asm_smp17 = vals.asm17/2/24
+        vals2.ls_bibline18 = vals.ls18/10/24
+        vals2.niscfl2_18 = vals.nis18*100/7.5/24/75
+        vals2.nimcfl2_18 = vals.nim18*100/4.5/24/75
+        vals2.iscfl2_18 = vals.is18*100/7.5/24/75
+        vals2.imcfl2_18 = vals.im18*100/4.5/24/75
+        vals2.asm_perf18 = vals.asm18*100/2/24/75
+        vals2.asm_smp18 = vals.asm18/2/24
+        vals2.ls_bibline19 = vals.ls19/10/24
+        vals2.niscfl2_19 = vals.nis19*100/7.5/24/75
+        vals2.nimcfl2_19 = vals.nim19*100/4.5/24/75
+        vals2.iscfl2_19 = vals.is19*100/7.5/24/75
+        vals2.imcfl2_19 = vals.im19*100/4.5/24/75
+        vals2.asm_perf19 = vals.asm19*100/2/24/75
+        vals2.asm_smp19 = vals.asm19/2/24
+        vals2.ls_bibline20 = vals.ls20/10/24
+        vals2.niscfl2_20 = vals.nis20*100/7.5/24/75
+        vals2.nimcfl2_20 = vals.nim20*100/4.5/24/75
+        vals2.iscfl2_20 = vals.is20*100/7.5/24/75
+        vals2.imcfl2_20 = vals.im20*100/4.5/24/75
+        vals2.asm_perf20 = vals.asm20*100/2/24/75
+        vals2.asm_smp20 = vals.asm20/2/24
+        vals2.ls_bibline21 = vals.ls21/10/24
+        vals2.niscfl2_21 = vals.nis21*100/7.5/24/75
+        vals2.nimcfl2_21 = vals.nim21*100/4.5/24/75
+        vals2.iscfl2_21 = vals.is21*100/7.5/24/75
+        vals2.imcfl2_21 = vals.im21*100/4.5/24/75
+        vals2.asm_perf21 = vals.asm21*100/2/24/75
+        vals2.asm_smp21 = vals.asm21/2/24
+        vals2.ls_bibline22 = vals.ls22/10/24
+        vals2.niscfl2_22 = vals.nis22*100/7.5/24/75
+        vals2.nimcfl2_22 = vals.nim22*100/4.5/24/75
+        vals2.iscfl2_22 = vals.is22*100/7.5/24/75
+        vals2.imcfl2_22 = vals.im22*100/4.5/24/75
+        vals2.asm_perf22 = vals.asm22*100/2/24/75
+        vals2.asm_smp22 = vals.asm22/2/24
+        vals2.ls_bibline23 = vals.ls23/10/24
+        vals2.niscfl2_23 = vals.nis23*100/7.5/24/75
+        vals2.nimcfl2_23 = vals.nim23*100/4.5/24/75
+        vals2.iscfl2_23 = vals.is23*100/7.5/24/75
+        vals2.imcfl2_23 = vals.im23*100/4.5/24/75
+        vals2.asm_perf23 = vals.asm23*100/2/24/75
+        vals2.asm_smp23 = vals.asm23/2/24
+        vals2.ls_bibline24 = vals.ls24/10/24
+        vals2.niscfl2_24 = vals.nis24*100/7.5/24/75
+        vals2.nimcfl2_24 = vals.nim24*100/4.5/24/75
+        vals2.iscfl2_24 = vals.is24*100/7.5/24/75
+        vals2.imcfl2_24 = vals.im24*100/4.5/24/75
+        vals2.asm_perf24 = vals.asm24*100/2/24/75
+        vals2.asm_smp24 = vals.asm24/2/24
 
+        vals2.ieoilb15 = vals2.ieoil15/80
+        vals2.ieoild15 = vals2.ieoil15/100
+        vals2.hoilh15 = vals2.hoil15/100
+        vals2.hoilr15 = vals2.hoil15/400
+        vals2.ieoilb16 = vals2.ieoil16/80
+        vals2.ieoild16 = vals2.ieoil16/100
+        vals2.hoilh16 = vals2.hoil16/100
+        vals2.hoilr16 = vals2.hoil16/400
+        vals2.ieoilb17 = vals2.ieoil17/80
+        vals2.ieoild17 = vals2.ieoil17/100
+        vals2.hoilh17 = vals2.hoil17/100
+        vals2.hoilr17 = vals2.hoil17/400
+        vals2.ieoilb18 = vals2.ieoil18/80
+        vals2.ieoild18 = vals2.ieoil18/100
+        vals2.hoilh18 = vals2.hoil18/100
+        vals2.hoilr18 = vals2.hoil18/400
+        vals2.ieoilb19 = vals2.ieoil19/80
+        vals2.ieoild19 = vals2.ieoil19/100
+        vals2.hoilh19 = vals2.hoil19/100
+        vals2.hoilr19 = vals2.hoil19/400
+        vals2.ieoilb20 = vals2.ieoil20/80
+        vals2.ieoild20 = vals2.ieoil20/100
+        vals2.hoilh20 = vals2.hoil20/100
+        vals2.hoilr20 = vals2.hoil20/400
+        vals2.ieoilb21 = vals2.ieoil21/80
+        vals2.ieoild21 = vals2.ieoil21/100
+        vals2.hoilh21 = vals2.hoil21/100
+        vals2.hoilr21 = vals2.hoil21/400
+        vals2.ieoilb22 = vals2.ieoil22/80
+        vals2.ieoild22 = vals2.ieoil22/100
+        vals2.hoilh22 = vals2.hoil22/100
+        vals2.hoilr22 = vals2.hoil22/400
+        vals2.ieoilb23 = vals2.ieoil23/80
+        vals2.ieoild23 = vals2.ieoil23/100
+        vals2.hoilh23 = vals2.hoil23/100
+        vals2.hoilr23 = vals2.hoil23/400
+        vals2.ieoilb24 = vals2.ieoil24/80
+        vals2.ieoild24 = vals2.ieoil24/100
+        vals2.hoilh24 = vals2.hoil24/100
+        vals2.hoilr24 = vals2.hoil24/400
 
+        vals2.rhsbo_hydro15 = vals.rhsbo15/120
+        vals2.rhpoc_hydro15 = vals.rhpoc15/120
+        vals2.neutral15 = vals.sob_n15 + vals.cpf_n15
+        vals2.neutral_ecu15 = vals2.neutral15/350*100
+        vals2.dewaxing15 = vals.sob_d15 + vals.cpf_d15
+        vals2.dewaxing_ecu15 = vals2.dewaxing15/350*100
+        vals2.firstref15 = vals.sob_fr15 + vals.cpf_fr15 + vals2.hoilr15
+        vals2.secondref15 = (vals2.rhpko_2ref15 + vals2.rhpkol_2ref15 + vals2.rhpkst_2ref15 + vals2.shortening_2ref15 + 
+                                vals2.rhpo_2ref15 + vals2.rpst_2ref15 + vals2.rhpst_2ref15 + vals2.rhcno_2ref15 + vals2.rcno_2ref15 + 
+                                    vals2.rpko_2ref15 + vals2.apshortening_2ref15 + vals2.rhpoc_2ref15 + vals2.rhsbo_2ref15)
+        vals2.tpd400ref15 = vals2.firstref15 + vals2.secondref15
+        vals2.tpd400ref_ecu15 = vals2.tpd400ref15/350*100
+        vals2.hydro15 = (vals2.rhsbo_hydro15 + vals2.rhpoc_hydro15 + vals2.hoilh15 + vals.sob_h15 + vals2.rhpko_hydro15 + 
+                            vals2.rhpkol_hydro15 + vals2.rhpkst_hydro15 + vals2.rhpst_hydro15 + vals2.rhcno_hydro15)
+        vals2.hydro_ecu15 = vals2.hydro15/350*100
+        vals2.ieoilb_ecu15 = vals2.ieoilb15/350*100
+        vals2.maxcap15 = 80*350
+        vals2.ieoild_ecu15 = vals2.ieoild15/350*100
+        vals2.perfectorb15 = vals2.asm_perf15 + vals2.imcfl2_15 + vals2.iscfl2_15 + vals2.nimcfl2_15 + vals2.niscfl2_15
+        vals2.perfectorb_ecu15 = vals2.perfectorb15/350*100
+        vals2.perfectora15 = vals2.rhpoc_perf15 + vals2.rhsbo_perf15 + vals2.apshortening_perf15 + vals.sob_perf15
+        vals2.perfectora_ecu15 = vals2.perfectora15/350*100
+        vals2.petline_ecu15 = vals2.petline15/350*100
+        vals2.tbibline15 = vals2.ls_bibline15 + vals.sob_perf15 + vals2.bibline15
+        vals2.tbibline_ecu15 = vals2.tbibline15/350*100
+        vals2.cfl1t15 = vals2.rhpoc_perf15 + vals2.rhsbo_perf15 + vals2.apshortening_perf15
+        vals2.cfl1t_ecu15 = vals2.cfl1t15/350*100
+        vals2.cfl2t15 = vals2.niscfl2_15 + vals2.nimcfl2_15 + vals2.iscfl2_15 + vals2.imcfl2_15
+        vals2.cfl2t_ecu15 = vals2.cfl2t15/350*100
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        vals2.rhsbo_hydro16 = vals.rhsbo16/120
+        vals2.rhpoc_hydro16 = vals.rhpoc16/120
+        vals2.neutral16 = vals.sob_n16 + vals.cpf_n16
+        vals2.neutral_ecu16 = vals2.neutral16/350*100
+        vals2.dewaxing16 = vals.sob_d16 + vals.cpf_d16
+        vals2.dewaxing_ecu16 = vals2.dewaxing16/350*100
+        vals2.firstref16 = vals.sob_fr16 + vals.cpf_fr16 + vals2.hoilr16
+        vals2.secondref16 = (vals2.rhpko_2ref16 + vals2.rhpkol_2ref16 + vals2.rhpkst_2ref16 + vals2.shortening_2ref16 + 
+                                vals2.rhpo_2ref16 + vals2.rpst_2ref16 + vals2.rhpst_2ref16 + vals2.rhcno_2ref16 + vals2.rcno_2ref16 + 
+                                    vals2.rpko_2ref16 + vals2.apshortening_2ref16 + vals2.rhpoc_2ref16 + vals2.rhsbo_2ref16)
+        vals2.tpd400ref16 = vals2.firstref16 + vals2.secondref16
+        vals2.tpd400ref_ecu16 = vals2.tpd400ref16/350*100
+        vals2.hydro16 = (vals2.rhsbo_hydro16 + vals2.rhpoc_hydro16 + vals2.hoilh16 + vals.sob_h16 + vals2.rhpko_hydro16 + 
+                            vals2.rhpkol_hydro16 + vals2.rhpkst_hydro16 + vals2.rhpst_hydro16 + vals2.rhcno_hydro16)
+        vals2.hydro_ecu16 = vals2.hydro16/350*100
+        vals2.ieoilb_ecu16 = vals2.ieoilb16/350*100
+        vals2.maxcap16 = 80*350
+        vals2.ieoild_ecu16 = vals2.ieoild16/350*100
+        vals2.perfectorb16 = vals2.asm_perf16 + vals2.imcfl2_16 + vals2.iscfl2_16 + vals2.nimcfl2_16 + vals2.niscfl2_16
+        vals2.perfectorb_ecu16 = vals2.perfectorb16/350*100
+        vals2.perfectora16 = vals2.rhpoc_perf16 + vals2.rhsbo_perf16 + vals2.apshortening_perf16 + vals.sob_perf16
+        vals2.perfectora_ecu16 = vals2.perfectora16/350*100
+        vals2.petline_ecu16 = vals2.petline16/350*100
+        vals2.tbibline16 = vals2.ls_bibline16 + vals.sob_perf16 + vals2.bibline16
+        vals2.tbibline_ecu16 = vals2.tbibline16/350*100
+        vals2.cfl1t16 = vals2.rhpoc_perf16 + vals2.rhsbo_perf16 + vals2.apshortening_perf16
+        vals2.cfl1t_ecu16 = vals2.cfl1t16/350*100
+        vals2.cfl2t16 = vals2.niscfl2_16 + vals2.nimcfl2_16 + vals2.iscfl2_16 + vals2.imcfl2_16
+        vals2.cfl2t_ecu16 = vals2.cfl2t16/350*100
+        
+        vals2.rhsbo_hydro17 = vals.rhsbo17/120
+        vals2.rhpoc_hydro17 = vals.rhpoc17/120
+        vals2.neutral17 = vals.sob_n17 + vals.cpf_n17
+        vals2.neutral_ecu17 = vals2.neutral17/350*100
+        vals2.dewaxing17 = vals.sob_d17 + vals.cpf_d17
+        vals2.dewaxing_ecu17 = vals2.dewaxing17/350*100
+        vals2.firstref17 = vals.sob_fr17 + vals.cpf_fr17 + vals2.hoilr17
+        vals2.secondref17 = (vals2.rhpko_2ref17 + vals2.rhpkol_2ref17 + vals2.rhpkst_2ref17 + vals2.shortening_2ref17 + 
+                                vals2.rhpo_2ref17 + vals2.rpst_2ref17 + vals2.rhpst_2ref17 + vals2.rhcno_2ref17 + vals2.rcno_2ref17 + 
+                                    vals2.rpko_2ref17 + vals2.apshortening_2ref17 + vals2.rhpoc_2ref17 + vals2.rhsbo_2ref17)
+        vals2.tpd400ref17 = vals2.firstref17 + vals2.secondref17
+        vals2.tpd400ref_ecu17 = vals2.tpd400ref17/350*100
+        vals2.hydro17 = (vals2.rhsbo_hydro17 + vals2.rhpoc_hydro17 + vals2.hoilh17 + vals.sob_h17 + vals2.rhpko_hydro17 + 
+                            vals2.rhpkol_hydro17 + vals2.rhpkst_hydro17 + vals2.rhpst_hydro17 + vals2.rhcno_hydro17)
+        vals2.hydro_ecu17 = vals2.hydro17/350*100
+        vals2.ieoilb_ecu17 = vals2.ieoilb17/350*100
+        vals2.maxcap17 = 80*350
+        vals2.ieoild_ecu17 = vals2.ieoild17/350*100
+        vals2.perfectorb17 = vals2.asm_perf17 + vals2.imcfl2_17 + vals2.iscfl2_17 + vals2.nimcfl2_17 + vals2.niscfl2_17
+        vals2.perfectorb_ecu17 = vals2.perfectorb17/350*100
+        vals2.perfectora17 = vals2.rhpoc_perf17 + vals2.rhsbo_perf17 + vals2.apshortening_perf17 + vals.sob_perf17
+        vals2.perfectora_ecu17 = vals2.perfectora17/350*100
+        vals2.petline_ecu17 = vals2.petline17/350*100
+        vals2.tbibline17 = vals2.ls_bibline17 + vals.sob_perf17 + vals2.bibline17
+        vals2.tbibline_ecu17 = vals2.tbibline17/350*100
+        vals2.cfl1t17 = vals2.rhpoc_perf17 + vals2.rhsbo_perf17 + vals2.apshortening_perf17
+        vals2.cfl1t_ecu17 = vals2.cfl1t17/350*100
+        vals2.cfl2t17 = vals2.niscfl2_17 + vals2.nimcfl2_17 + vals2.iscfl2_17 + vals2.imcfl2_17
+        vals2.cfl2t_ecu17 = vals2.cfl2t17/350*100
+        
+        vals2.rhsbo_hydro18 = vals.rhsbo18/120
+        vals2.rhpoc_hydro18 = vals.rhpoc18/120
+        vals2.neutral18 = vals.sob_n18 + vals.cpf_n18
+        vals2.neutral_ecu18 = vals2.neutral18/350*100
+        vals2.dewaxing18 = vals.sob_d18 + vals.cpf_d18
+        vals2.dewaxing_ecu18 = vals2.dewaxing18/350*100
+        vals2.firstref18 = vals.sob_fr18 + vals.cpf_fr18 + vals2.hoilr18
+        vals2.secondref18 = (vals2.rhpko_2ref18 + vals2.rhpkol_2ref18 + vals2.rhpkst_2ref18 + vals2.shortening_2ref18 + 
+                                vals2.rhpo_2ref18 + vals2.rpst_2ref18 + vals2.rhpst_2ref18 + vals2.rhcno_2ref18 + vals2.rcno_2ref18 + 
+                                    vals2.rpko_2ref18 + vals2.apshortening_2ref18 + vals2.rhpoc_2ref18 + vals2.rhsbo_2ref18)
+        vals2.tpd400ref18 = vals2.firstref18 + vals2.secondref18
+        vals2.tpd400ref_ecu18 = vals2.tpd400ref18/350*100
+        vals2.hydro18 = (vals2.rhsbo_hydro18 + vals2.rhpoc_hydro18 + vals2.hoilh18 + vals.sob_h18 + vals2.rhpko_hydro18 + 
+                            vals2.rhpkol_hydro18 + vals2.rhpkst_hydro18 + vals2.rhpst_hydro18 + vals2.rhcno_hydro18)
+        vals2.hydro_ecu18 = vals2.hydro18/350*100
+        vals2.ieoilb_ecu18 = vals2.ieoilb18/350*100
+        vals2.maxcap18 = 80*350
+        vals2.ieoild_ecu18 = vals2.ieoild18/350*100
+        vals2.perfectorb18 = vals2.asm_perf18 + vals2.imcfl2_18 + vals2.iscfl2_18 + vals2.nimcfl2_18 + vals2.niscfl2_18
+        vals2.perfectorb_ecu18 = vals2.perfectorb18/350*100
+        vals2.perfectora18 = vals2.rhpoc_perf18 + vals2.rhsbo_perf18 + vals2.apshortening_perf18 + vals.sob_perf18
+        vals2.perfectora_ecu18 = vals2.perfectora18/350*100
+        vals2.petline_ecu18 = vals2.petline18/350*100
+        vals2.tbibline18 = vals2.ls_bibline18 + vals.sob_perf18 + vals2.bibline18
+        vals2.tbibline_ecu18 = vals2.tbibline18/350*100
+        vals2.cfl1t18 = vals2.rhpoc_perf18 + vals2.rhsbo_perf18 + vals2.apshortening_perf18
+        vals2.cfl1t_ecu18 = vals2.cfl1t18/350*100
+        vals2.cfl2t18 = vals2.niscfl2_18 + vals2.nimcfl2_18 + vals2.iscfl2_18 + vals2.imcfl2_18
+        vals2.cfl2t_ecu18 = vals2.cfl2t18/350*100
+        
+        vals2.rhsbo_hydro19 = vals.rhsbo19/120
+        vals2.rhpoc_hydro19 = vals.rhpoc19/120
+        vals2.neutral19 = vals.sob_n19 + vals.cpf_n19
+        vals2.neutral_ecu19 = vals2.neutral19/350*100
+        vals2.dewaxing19 = vals.sob_d19 + vals.cpf_d19
+        vals2.dewaxing_ecu19 = vals2.dewaxing19/350*100
+        vals2.firstref19 = vals.sob_fr19 + vals.cpf_fr19 + vals2.hoilr19
+        vals2.secondref19 = (vals2.rhpko_2ref19 + vals2.rhpkol_2ref19 + vals2.rhpkst_2ref19 + vals2.shortening_2ref19 + 
+                                vals2.rhpo_2ref19 + vals2.rpst_2ref19 + vals2.rhpst_2ref19 + vals2.rhcno_2ref19 + vals2.rcno_2ref19 + 
+                                    vals2.rpko_2ref19 + vals2.apshortening_2ref19 + vals2.rhpoc_2ref19 + vals2.rhsbo_2ref19)
+        vals2.tpd400ref19 = vals2.firstref19 + vals2.secondref19
+        vals2.tpd400ref_ecu19 = vals2.tpd400ref19/350*100
+        vals2.hydro19 = (vals2.rhsbo_hydro19 + vals2.rhpoc_hydro19 + vals2.hoilh19 + vals.sob_h19 + vals2.rhpko_hydro19 + 
+                            vals2.rhpkol_hydro19 + vals2.rhpkst_hydro19 + vals2.rhpst_hydro19 + vals2.rhcno_hydro19)
+        vals2.hydro_ecu19 = vals2.hydro19/350*100
+        vals2.ieoilb_ecu19 = vals2.ieoilb19/350*100
+        vals2.maxcap19 = 80*350
+        vals2.ieoild_ecu19 = vals2.ieoild19/350*100
+        vals2.perfectorb19 = vals2.asm_perf19 + vals2.imcfl2_19 + vals2.iscfl2_19 + vals2.nimcfl2_19 + vals2.niscfl2_19
+        vals2.perfectorb_ecu19 = vals2.perfectorb19/350*100
+        vals2.perfectora19 = vals2.rhpoc_perf19 + vals2.rhsbo_perf19 + vals2.apshortening_perf19 + vals.sob_perf19
+        vals2.perfectora_ecu19 = vals2.perfectora19/350*100
+        vals2.petline_ecu19 = vals2.petline19/350*100
+        vals2.tbibline19 = vals2.ls_bibline19 + vals.sob_perf19 + vals2.bibline19
+        vals2.tbibline_ecu19 = vals2.tbibline19/350*100
+        vals2.cfl1t19 = vals2.rhpoc_perf19 + vals2.rhsbo_perf19 + vals2.apshortening_perf19
+        vals2.cfl1t_ecu19 = vals2.cfl1t19/350*100
+        vals2.cfl2t19 = vals2.niscfl2_19 + vals2.nimcfl2_19 + vals2.iscfl2_19 + vals2.imcfl2_19
+        vals2.cfl2t_ecu19 = vals2.cfl2t19/350*100
+        
+        vals2.rhsbo_hydro20 = vals.rhsbo20/120
+        vals2.rhpoc_hydro20 = vals.rhpoc20/120
+        vals2.neutral20 = vals.sob_n20 + vals.cpf_n20
+        vals2.neutral_ecu20 = vals2.neutral20/350*100
+        vals2.dewaxing20 = vals.sob_d20 + vals.cpf_d20
+        vals2.dewaxing_ecu20 = vals2.dewaxing20/350*100
+        vals2.firstref20 = vals.sob_fr20 + vals.cpf_fr20 + vals2.hoilr20
+        vals2.secondref20 = (vals2.rhpko_2ref20 + vals2.rhpkol_2ref20 + vals2.rhpkst_2ref20 + vals2.shortening_2ref20 + 
+                                vals2.rhpo_2ref20 + vals2.rpst_2ref20 + vals2.rhpst_2ref20 + vals2.rhcno_2ref20 + vals2.rcno_2ref20 + 
+                                    vals2.rpko_2ref20 + vals2.apshortening_2ref20 + vals2.rhpoc_2ref20 + vals2.rhsbo_2ref20)
+        vals2.tpd400ref20 = vals2.firstref20 + vals2.secondref20
+        vals2.tpd400ref_ecu20 = vals2.tpd400ref20/350*100
+        vals2.hydro20 = (vals2.rhsbo_hydro20 + vals2.rhpoc_hydro20 + vals2.hoilh20 + vals.sob_h20 + vals2.rhpko_hydro20 + 
+                            vals2.rhpkol_hydro20 + vals2.rhpkst_hydro20 + vals2.rhpst_hydro20 + vals2.rhcno_hydro20)
+        vals2.hydro_ecu20 = vals2.hydro20/350*100
+        vals2.ieoilb_ecu20 = vals2.ieoilb20/350*100
+        vals2.maxcap20 = 80*350
+        vals2.ieoild_ecu20 = vals2.ieoild20/350*100
+        vals2.perfectorb20 = vals2.asm_perf20 + vals2.imcfl2_20 + vals2.iscfl2_20 + vals2.nimcfl2_20 + vals2.niscfl2_20
+        vals2.perfectorb_ecu20 = vals2.perfectorb20/350*100
+        vals2.perfectora20 = vals2.rhpoc_perf20 + vals2.rhsbo_perf20 + vals2.apshortening_perf20 + vals.sob_perf20
+        vals2.perfectora_ecu20 = vals2.perfectora20/350*100
+        vals2.petline_ecu20 = vals2.petline20/350*100
+        vals2.tbibline20 = vals2.ls_bibline20 + vals.sob_perf20 + vals2.bibline20
+        vals2.tbibline_ecu20 = vals2.tbibline20/350*100
+        vals2.cfl1t20 = vals2.rhpoc_perf20 + vals2.rhsbo_perf20 + vals2.apshortening_perf20
+        vals2.cfl1t_ecu20 = vals2.cfl1t20/350*100
+        vals2.cfl2t20 = vals2.niscfl2_20 + vals2.nimcfl2_20 + vals2.iscfl2_20 + vals2.imcfl2_20
+        vals2.cfl2t_ecu20 = vals2.cfl2t20/350*100
+        
+        vals2.rhsbo_hydro21 = vals.rhsbo21/120
+        vals2.rhpoc_hydro21 = vals.rhpoc21/120
+        vals2.neutral21 = vals.sob_n21 + vals.cpf_n21
+        vals2.neutral_ecu21 = vals2.neutral21/350*100
+        vals2.dewaxing21 = vals.sob_d21 + vals.cpf_d21
+        vals2.dewaxing_ecu21 = vals2.dewaxing21/350*100
+        vals2.firstref21 = vals.sob_fr21 + vals.cpf_fr21 + vals2.hoilr21
+        vals2.secondref21 = (vals2.rhpko_2ref21 + vals2.rhpkol_2ref21 + vals2.rhpkst_2ref21 + vals2.shortening_2ref21 + 
+                                vals2.rhpo_2ref21 + vals2.rpst_2ref21 + vals2.rhpst_2ref21 + vals2.rhcno_2ref21 + vals2.rcno_2ref21 + 
+                                    vals2.rpko_2ref21 + vals2.apshortening_2ref21 + vals2.rhpoc_2ref21 + vals2.rhsbo_2ref21)
+        vals2.tpd400ref21 = vals2.firstref21 + vals2.secondref21
+        vals2.tpd400ref_ecu21 = vals2.tpd400ref21/350*100
+        vals2.hydro21 = (vals2.rhsbo_hydro21 + vals2.rhpoc_hydro21 + vals2.hoilh21 + vals.sob_h21 + vals2.rhpko_hydro21 + 
+                            vals2.rhpkol_hydro21 + vals2.rhpkst_hydro21 + vals2.rhpst_hydro21 + vals2.rhcno_hydro21)
+        vals2.hydro_ecu21 = vals2.hydro21/350*100
+        vals2.ieoilb_ecu21 = vals2.ieoilb21/350*100
+        vals2.maxcap21 = 80*350
+        vals2.ieoild_ecu21 = vals2.ieoild21/350*100
+        vals2.perfectorb21 = vals2.asm_perf21 + vals2.imcfl2_21 + vals2.iscfl2_21 + vals2.nimcfl2_21 + vals2.niscfl2_21
+        vals2.perfectorb_ecu21 = vals2.perfectorb21/350*100
+        vals2.perfectora21 = vals2.rhpoc_perf21 + vals2.rhsbo_perf21 + vals2.apshortening_perf21 + vals.sob_perf21
+        vals2.perfectora_ecu21 = vals2.perfectora21/350*100
+        vals2.petline_ecu21 = vals2.petline21/350*100
+        vals2.tbibline21 = vals2.ls_bibline21 + vals.sob_perf21 + vals2.bibline21
+        vals2.tbibline_ecu21 = vals2.tbibline21/350*100
+        vals2.cfl1t21 = vals2.rhpoc_perf21 + vals2.rhsbo_perf21 + vals2.apshortening_perf21
+        vals2.cfl1t_ecu21 = vals2.cfl1t21/350*100
+        vals2.cfl2t21 = vals2.niscfl2_21 + vals2.nimcfl2_21 + vals2.iscfl2_21 + vals2.imcfl2_21
+        vals2.cfl2t_ecu21 = vals2.cfl2t21/350*100
+        
+        vals2.rhsbo_hydro22 = vals.rhsbo22/120
+        vals2.rhpoc_hydro22 = vals.rhpoc22/120
+        vals2.neutral22 = vals.sob_n22 + vals.cpf_n22
+        vals2.neutral_ecu22 = vals2.neutral22/350*100
+        vals2.dewaxing22 = vals.sob_d22 + vals.cpf_d22
+        vals2.dewaxing_ecu22 = vals2.dewaxing22/350*100
+        vals2.firstref22 = vals.sob_fr22 + vals.cpf_fr22 + vals2.hoilr22
+        vals2.secondref22 = (vals2.rhpko_2ref22 + vals2.rhpkol_2ref22 + vals2.rhpkst_2ref22 + vals2.shortening_2ref22 + 
+                                vals2.rhpo_2ref22 + vals2.rpst_2ref22 + vals2.rhpst_2ref22 + vals2.rhcno_2ref22 + vals2.rcno_2ref22 + 
+                                    vals2.rpko_2ref22 + vals2.apshortening_2ref22 + vals2.rhpoc_2ref22 + vals2.rhsbo_2ref22)
+        vals2.tpd400ref22 = vals2.firstref22 + vals2.secondref22
+        vals2.tpd400ref_ecu22 = vals2.tpd400ref22/350*100
+        vals2.hydro22 = (vals2.rhsbo_hydro22 + vals2.rhpoc_hydro22 + vals2.hoilh22 + vals.sob_h22 + vals2.rhpko_hydro22 + 
+                            vals2.rhpkol_hydro22 + vals2.rhpkst_hydro22 + vals2.rhpst_hydro22 + vals2.rhcno_hydro22)
+        vals2.hydro_ecu22 = vals2.hydro22/350*100
+        vals2.ieoilb_ecu22 = vals2.ieoilb22/350*100
+        vals2.maxcap22 = 80*350
+        vals2.ieoild_ecu22 = vals2.ieoild22/350*100
+        vals2.perfectorb22 = vals2.asm_perf22 + vals2.imcfl2_22 + vals2.iscfl2_22 + vals2.nimcfl2_22 + vals2.niscfl2_22
+        vals2.perfectorb_ecu22 = vals2.perfectorb22/350*100
+        vals2.perfectora22 = vals2.rhpoc_perf22 + vals2.rhsbo_perf22 + vals2.apshortening_perf22 + vals.sob_perf22
+        vals2.perfectora_ecu22 = vals2.perfectora22/350*100
+        vals2.petline_ecu22 = vals2.petline22/350*100
+        vals2.tbibline22 = vals2.ls_bibline22 + vals.sob_perf22 + vals2.bibline22
+        vals2.tbibline_ecu22 = vals2.tbibline22/350*100
+        vals2.cfl1t22 = vals2.rhpoc_perf22 + vals2.rhsbo_perf22 + vals2.apshortening_perf22
+        vals2.cfl1t_ecu22 = vals2.cfl1t22/350*100
+        vals2.cfl2t22 = vals2.niscfl2_22 + vals2.nimcfl2_22 + vals2.iscfl2_22 + vals2.imcfl2_22
+        vals2.cfl2t_ecu22 = vals2.cfl2t22/350*100
+        
+        vals2.rhsbo_hydro23 = vals.rhsbo23/120
+        vals2.rhpoc_hydro23 = vals.rhpoc23/120
+        vals2.neutral23 = vals.sob_n23 + vals.cpf_n23
+        vals2.neutral_ecu23 = vals2.neutral23/350*100
+        vals2.dewaxing23 = vals.sob_d23 + vals.cpf_d23
+        vals2.dewaxing_ecu23 = vals2.dewaxing23/350*100
+        vals2.firstref23 = vals.sob_fr23 + vals.cpf_fr23 + vals2.hoilr23
+        vals2.secondref23 = (vals2.rhpko_2ref23 + vals2.rhpkol_2ref23 + vals2.rhpkst_2ref23 + vals2.shortening_2ref23 + 
+                                vals2.rhpo_2ref23 + vals2.rpst_2ref23 + vals2.rhpst_2ref23 + vals2.rhcno_2ref23 + vals2.rcno_2ref23 + 
+                                    vals2.rpko_2ref23 + vals2.apshortening_2ref23 + vals2.rhpoc_2ref23 + vals2.rhsbo_2ref23)
+        vals2.tpd400ref23 = vals2.firstref23 + vals2.secondref23
+        vals2.tpd400ref_ecu23 = vals2.tpd400ref23/350*100
+        vals2.hydro23 = (vals2.rhsbo_hydro23 + vals2.rhpoc_hydro23 + vals2.hoilh23 + vals.sob_h23 + vals2.rhpko_hydro23 + 
+                            vals2.rhpkol_hydro23 + vals2.rhpkst_hydro23 + vals2.rhpst_hydro23 + vals2.rhcno_hydro23)
+        vals2.hydro_ecu23 = vals2.hydro23/350*100
+        vals2.ieoilb_ecu23 = vals2.ieoilb23/350*100
+        vals2.maxcap23 = 80*350
+        vals2.ieoild_ecu23 = vals2.ieoild23/350*100
+        vals2.perfectorb23 = vals2.asm_perf23 + vals2.imcfl2_23 + vals2.iscfl2_23 + vals2.nimcfl2_23 + vals2.niscfl2_23
+        vals2.perfectorb_ecu23 = vals2.perfectorb23/350*100
+        vals2.perfectora23 = vals2.rhpoc_perf23 + vals2.rhsbo_perf23 + vals2.apshortening_perf23 + vals.sob_perf23
+        vals2.perfectora_ecu23 = vals2.perfectora23/350*100
+        vals2.petline_ecu23 = vals2.petline23/350*100
+        vals2.tbibline23 = vals2.ls_bibline23 + vals.sob_perf23 + vals2.bibline23
+        vals2.tbibline_ecu23 = vals2.tbibline23/350*100
+        vals2.cfl1t23 = vals2.rhpoc_perf23 + vals2.rhsbo_perf23 + vals2.apshortening_perf23
+        vals2.cfl1t_ecu23 = vals2.cfl1t23/350*100
+        vals2.cfl2t23 = vals2.niscfl2_23 + vals2.nimcfl2_23 + vals2.iscfl2_23 + vals2.imcfl2_23
+        vals2.cfl2t_ecu23 = vals2.cfl2t23/350*100
+        
+        vals2.rhsbo_hydro24 = vals.rhsbo24/120
+        vals2.rhpoc_hydro24 = vals.rhpoc24/120
+        vals2.neutral24 = vals.sob_n24 + vals.cpf_n24
+        vals2.neutral_ecu24 = vals2.neutral24/350*100
+        vals2.dewaxing24 = vals.sob_d24 + vals.cpf_d24
+        vals2.dewaxing_ecu24 = vals2.dewaxing24/350*100
+        vals2.firstref24 = vals.sob_fr24 + vals.cpf_fr24 + vals2.hoilr24
+        vals2.secondref24 = (vals2.rhpko_2ref24 + vals2.rhpkol_2ref24 + vals2.rhpkst_2ref24 + vals2.shortening_2ref24 + 
+                                vals2.rhpo_2ref24 + vals2.rpst_2ref24 + vals2.rhpst_2ref24 + vals2.rhcno_2ref24 + vals2.rcno_2ref24 + 
+                                    vals2.rpko_2ref24 + vals2.apshortening_2ref24 + vals2.rhpoc_2ref24 + vals2.rhsbo_2ref24)
+        vals2.tpd400ref24 = vals2.firstref24 + vals2.secondref24
+        vals2.tpd400ref_ecu24 = vals2.tpd400ref24/350*100
+        vals2.hydro24 = (vals2.rhsbo_hydro24 + vals2.rhpoc_hydro24 + vals2.hoilh24 + vals.sob_h24 + vals2.rhpko_hydro24 + 
+                            vals2.rhpkol_hydro24 + vals2.rhpkst_hydro24 + vals2.rhpst_hydro24 + vals2.rhcno_hydro24)
+        vals2.hydro_ecu24 = vals2.hydro24/350*100
+        vals2.ieoilb_ecu24 = vals2.ieoilb24/350*100
+        vals2.maxcap24 = 80*350
+        vals2.ieoild_ecu24 = vals2.ieoild24/350*100
+        vals2.perfectorb24 = vals2.asm_perf24 + vals2.imcfl2_24 + vals2.iscfl2_24 + vals2.nimcfl2_24 + vals2.niscfl2_24
+        vals2.perfectorb_ecu24 = vals2.perfectorb24/350*100
+        vals2.perfectora24 = vals2.rhpoc_perf24 + vals2.rhsbo_perf24 + vals2.apshortening_perf24 + vals.sob_perf24
+        vals2.perfectora_ecu24 = vals2.perfectora24/350*100
+        vals2.petline_ecu24 = vals2.petline24/350*100
+        vals2.tbibline24 = vals2.ls_bibline24 + vals.sob_perf24 + vals2.bibline24
+        vals2.tbibline_ecu24 = vals2.tbibline24/350*100
+        vals2.cfl1t24 = vals2.rhpoc_perf24 + vals2.rhsbo_perf24 + vals2.apshortening_perf24
+        vals2.cfl1t_ecu24 = vals2.cfl1t24/350*100
+        vals2.cfl2t24 = vals2.niscfl2_24 + vals2.nimcfl2_24 + vals2.iscfl2_24 + vals2.imcfl2_24
+        vals2.cfl2t_ecu24 = vals2.cfl2t24/350*100
 
 
 
@@ -3646,16 +4121,16 @@ def index(request):
         vals.rpko24 = round(vals.rpko24,2)
         vals.subtotal24 = round(vals.subtotal24,2)
 
-        vals.rhpoc15 = round(vals.rhpo15,2) 
-        vals.rhpoc16 = round(vals.rhpo16,2) 
-        vals.rhpoc17 = round(vals.rhpo17,2) 
-        vals.rhpoc18 = round(vals.rhpo18,2) 
-        vals.rhpoc19 = round(vals.rhpo19,2) 
-        vals.rhpoc20 = round(vals.rhpo20,2) 
-        vals.rhpoc21 = round(vals.rhpo21,2) 
-        vals.rhpoc22 = round(vals.rhpo22,2) 
-        vals.rhpoc23 = round(vals.rhpo23,2) 
-        vals.rhpoc24 = round(vals.rhpo24,2) 
+        vals.rhpoc15 = round(vals.rhpoc15,2) 
+        vals.rhpoc16 = round(vals.rhpoc16,2) 
+        vals.rhpoc17 = round(vals.rhpoc17,2) 
+        vals.rhpoc18 = round(vals.rhpoc18,2) 
+        vals.rhpoc19 = round(vals.rhpoc19,2) 
+        vals.rhpoc20 = round(vals.rhpoc20,2) 
+        vals.rhpoc21 = round(vals.rhpoc21,2) 
+        vals.rhpoc22 = round(vals.rhpoc22,2) 
+        vals.rhpoc23 = round(vals.rhpoc23,2) 
+        vals.rhpoc24 = round(vals.rhpoc24,2) 
 
         vals.rhsbo15 = round(vals.rhsbo15,2) 
         vals.rhsbo16 = round(vals.rhsbo16,2) 
@@ -4603,453 +5078,1303 @@ def index(request):
         vals.mtotalbest23 = round(vals.mtotalbest23,2)
         vals.mtotalbest24 = round(vals.mtotalbest24,2)
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        vals.lslt15 = round(vals.lslt15,2)
+        vals.lslt16 = round(vals.lslt16,2)
+        vals.lslt17 = round(vals.lslt17,2)
+        vals.lslt18 = round(vals.lslt18,2)
+        vals.lslt19 = round(vals.lslt19,2)
+        vals.lslt20 = round(vals.lslt20,2)
+        vals.lslt21 = round(vals.lslt21,2)
+        vals.lslt22 = round(vals.lslt22,2)
+        vals.lslt23 = round(vals.lslt23,2)
+        vals.lslt24 = round(vals.lslt24,2)
+
+        vals.wsaht15 = round(vals.wsaht15,2)
+        vals.wsaht16 = round(vals.wsaht16,2)
+        vals.wsaht17 = round(vals.wsaht17,2)
+        vals.wsaht18 = round(vals.wsaht18,2)
+        vals.wsaht19 = round(vals.wsaht19,2)
+        vals.wsaht20 = round(vals.wsaht20,2)
+        vals.wsaht21 = round(vals.wsaht21,2)
+        vals.wsaht22 = round(vals.wsaht22,2)
+        vals.wsaht23 = round(vals.wsaht23,2)
+        vals.wsaht24 = round(vals.wsaht24,2)
+
+        vals.wsalt15 = round(vals.wsalt15,2)
+        vals.wsalt16 = round(vals.wsalt16,2)
+        vals.wsalt17 = round(vals.wsalt17,2)
+        vals.wsalt18 = round(vals.wsalt18,2)
+        vals.wsalt19 = round(vals.wsalt19,2)
+        vals.wsalt20 = round(vals.wsalt20,2)
+        vals.wsalt21 = round(vals.wsalt21,2)
+        vals.wsalt22 = round(vals.wsalt22,2)
+        vals.wsalt23 = round(vals.wsalt23,2)
+        vals.wsalt24 = round(vals.wsalt24,2)
+
+        vals.wsltlt15 = round(vals.wsltlt15,2)
+        vals.wsltlt16 = round(vals.wsltlt16,2)
+        vals.wsltlt17 = round(vals.wsltlt17,2)
+        vals.wsltlt18 = round(vals.wsltlt18,2)
+        vals.wsltlt19 = round(vals.wsltlt19,2)
+        vals.wsltlt20 = round(vals.wsltlt20,2)
+        vals.wsltlt21 = round(vals.wsltlt21,2)
+        vals.wsltlt22 = round(vals.wsltlt22,2)
+        vals.wsltlt23 = round(vals.wsltlt23,2)
+        vals.wsltlt24 = round(vals.wsltlt24,2)
+
+        vals.wsltht15 = round(vals.wsltht15,2)
+        vals.wsltht16 = round(vals.wsltht16,2)
+        vals.wsltht17 = round(vals.wsltht17,2)
+        vals.wsltht18 = round(vals.wsltht18,2)
+        vals.wsltht19 = round(vals.wsltht19,2)
+        vals.wsltht20 = round(vals.wsltht20,2)
+        vals.wsltht21 = round(vals.wsltht21,2)
+        vals.wsltht22 = round(vals.wsltht22,2)
+        vals.wsltht23 = round(vals.wsltht23,2)
+        vals.wsltht24 = round(vals.wsltht24,2)
+
+        vals.ysaht15 = round(vals.ysaht15,2)
+        vals.ysaht16 = round(vals.ysaht16,2)
+        vals.ysaht17 = round(vals.ysaht17,2)
+        vals.ysaht18 = round(vals.ysaht18,2)
+        vals.ysaht19 = round(vals.ysaht19,2)
+        vals.ysaht20 = round(vals.ysaht20,2)
+        vals.ysaht21 = round(vals.ysaht21,2)
+        vals.ysaht22 = round(vals.ysaht22,2)
+        vals.ysaht23 = round(vals.ysaht23,2)
+        vals.ysaht24 = round(vals.ysaht24,2)
+
+        vals.ysalt15 = round(vals.ysalt15,2)
+        vals.ysalt16 = round(vals.ysalt16,2)
+        vals.ysalt17 = round(vals.ysalt17,2)
+        vals.ysalt18 = round(vals.ysalt18,2)
+        vals.ysalt19 = round(vals.ysalt19,2)
+        vals.ysalt20 = round(vals.ysalt20,2)
+        vals.ysalt21 = round(vals.ysalt21,2)
+        vals.ysalt22 = round(vals.ysalt22,2)
+        vals.ysalt23 = round(vals.ysalt23,2)
+        vals.ysalt24 = round(vals.ysalt24,2)
+
+        vals.ysltlt15 = round(vals.ysltlt15,2)
+        vals.ysltlt16 = round(vals.ysltlt16,2)
+        vals.ysltlt17 = round(vals.ysltlt17,2)
+        vals.ysltlt18 = round(vals.ysltlt18,2)
+        vals.ysltlt19 = round(vals.ysltlt19,2)
+        vals.ysltlt20 = round(vals.ysltlt20,2)
+        vals.ysltlt21 = round(vals.ysltlt21,2)
+        vals.ysltlt22 = round(vals.ysltlt22,2)
+        vals.ysltlt23 = round(vals.ysltlt23,2)
+        vals.ysltlt24 = round(vals.ysltlt24,2)
+
+        vals.ysltht15 = round(vals.ysltht15,2)
+        vals.ysltht16 = round(vals.ysltht16,2)
+        vals.ysltht17 = round(vals.ysltht17,2)
+        vals.ysltht18 = round(vals.ysltht18,2)
+        vals.ysltht19 = round(vals.ysltht19,2)
+        vals.ysltht20 = round(vals.ysltht20,2)
+        vals.ysltht21 = round(vals.ysltht21,2)
+        vals.ysltht22 = round(vals.ysltht22,2)
+        vals.ysltht23 = round(vals.ysltht23,2)
+        vals.ysltht24 = round(vals.ysltht24,2)
+
+        vals.cmaht15 = round(vals.cmaht15,2)
+        vals.cmaht16 = round(vals.cmaht16,2)
+        vals.cmaht17 = round(vals.cmaht17,2)
+        vals.cmaht18 = round(vals.cmaht18,2)
+        vals.cmaht19 = round(vals.cmaht19,2)
+        vals.cmaht20 = round(vals.cmaht20,2)
+        vals.cmaht21 = round(vals.cmaht21,2)
+        vals.cmaht22 = round(vals.cmaht22,2)
+        vals.cmaht23 = round(vals.cmaht23,2)
+        vals.cmaht24 = round(vals.cmaht24,2)
+
+        vals.cmalt15 = round(vals.cmalt15,2)
+        vals.cmalt16 = round(vals.cmalt16,2)
+        vals.cmalt17 = round(vals.cmalt17,2)
+        vals.cmalt18 = round(vals.cmalt18,2)
+        vals.cmalt19 = round(vals.cmalt19,2)
+        vals.cmalt20 = round(vals.cmalt20,2)
+        vals.cmalt21 = round(vals.cmalt21,2)
+        vals.cmalt22 = round(vals.cmalt22,2)
+        vals.cmalt23 = round(vals.cmalt23,2)
+        vals.cmalt24 = round(vals.cmalt24,2)
+
+        vals.cmltht1_15 = round(vals.cmltht1_15,2)
+        vals.cmltht1_16 = round(vals.cmltht1_16,2)
+        vals.cmltht1_17 = round(vals.cmltht1_17,2)
+        vals.cmltht1_18 = round(vals.cmltht1_18,2)
+        vals.cmltht1_19 = round(vals.cmltht1_19,2)
+        vals.cmltht1_20 = round(vals.cmltht1_20,2)
+        vals.cmltht1_21 = round(vals.cmltht1_21,2)
+        vals.cmltht1_22 = round(vals.cmltht1_22,2)
+        vals.cmltht1_23 = round(vals.cmltht1_23,2)
+        vals.cmltht1_24 = round(vals.cmltht1_24,2)
+
+        vals.cmltht2_15 = round(vals.cmltht2_15,2)
+        vals.cmltht2_16 = round(vals.cmltht2_16,2)
+        vals.cmltht2_17 = round(vals.cmltht2_17,2)
+        vals.cmltht2_18 = round(vals.cmltht2_18,2)
+        vals.cmltht2_19 = round(vals.cmltht2_19,2)
+        vals.cmltht2_20 = round(vals.cmltht2_20,2)
+        vals.cmltht2_21 = round(vals.cmltht2_21,2)
+        vals.cmltht2_22 = round(vals.cmltht2_22,2)
+        vals.cmltht2_23 = round(vals.cmltht2_23,2)
+        vals.cmltht2_24 = round(vals.cmltht2_24,2)
+
+        vals.cmltht3_15 = round(vals.cmltht3_15,2)
+        vals.cmltht3_16 = round(vals.cmltht3_16,2)
+        vals.cmltht3_17 = round(vals.cmltht3_17,2)
+        vals.cmltht3_18 = round(vals.cmltht3_18,2)
+        vals.cmltht3_19 = round(vals.cmltht3_19,2)
+        vals.cmltht3_20 = round(vals.cmltht3_20,2)
+        vals.cmltht3_21 = round(vals.cmltht3_21,2)
+        vals.cmltht3_22 = round(vals.cmltht3_22,2)
+        vals.cmltht3_23 = round(vals.cmltht3_23,2)
+        vals.cmltht3_24 = round(vals.cmltht3_24,2)
+
+        vals.cmltlt15 = round(vals.cmltlt15,2)
+        vals.cmltlt16 = round(vals.cmltlt16,2)
+        vals.cmltlt17 = round(vals.cmltlt17,2)
+        vals.cmltlt18 = round(vals.cmltlt18,2)
+        vals.cmltlt19 = round(vals.cmltlt19,2)
+        vals.cmltlt20 = round(vals.cmltlt20,2)
+        vals.cmltlt21 = round(vals.cmltlt21,2)
+        vals.cmltlt22 = round(vals.cmltlt22,2)
+        vals.cmltlt23 = round(vals.cmltlt23,2)
+        vals.cmltlt24 = round(vals.cmltlt24,2)
+
+        vals.smaht15 = round(vals.smaht15,2)
+        vals.smaht16 = round(vals.smaht16,2)
+        vals.smaht17 = round(vals.smaht17,2)
+        vals.smaht18 = round(vals.smaht18,2)
+        vals.smaht19 = round(vals.smaht19,2)
+        vals.smaht20 = round(vals.smaht20,2)
+        vals.smaht21 = round(vals.smaht21,2)
+        vals.smaht22 = round(vals.smaht22,2)
+        vals.smaht23 = round(vals.smaht23,2)
+        vals.smaht24 = round(vals.smaht24,2)
+
+        vals.smltht1_15 = round(vals.smltht1_15,2)
+        vals.smltht1_16 = round(vals.smltht1_16,2)
+        vals.smltht1_17 = round(vals.smltht1_17,2)
+        vals.smltht1_18 = round(vals.smltht1_18,2)
+        vals.smltht1_19 = round(vals.smltht1_19,2)
+        vals.smltht1_20 = round(vals.smltht1_20,2)
+        vals.smltht1_21 = round(vals.smltht1_21,2)
+        vals.smltht1_22 = round(vals.smltht1_22,2)
+        vals.smltht1_23 = round(vals.smltht1_23,2)
+        vals.smltht1_24 = round(vals.smltht1_24,2)
+
+        vals.smltht2_15 = round(vals.smltht2_15,2)
+        vals.smltht2_16 = round(vals.smltht2_16,2)
+        vals.smltht2_17 = round(vals.smltht2_17,2)
+        vals.smltht2_18 = round(vals.smltht2_18,2)
+        vals.smltht2_19 = round(vals.smltht2_19,2)
+        vals.smltht2_20 = round(vals.smltht2_20,2)
+        vals.smltht2_21 = round(vals.smltht2_21,2)
+        vals.smltht2_22 = round(vals.smltht2_22,2)
+        vals.smltht2_23 = round(vals.smltht2_23,2)
+        vals.smltht2_24 = round(vals.smltht2_24,2)
+
+        vals.totalsc15 = round(vals.totalsc15,2)
+        vals.totalsc16 = round(vals.totalsc16,2)
+        vals.totalsc17 = round(vals.totalsc17,2)
+        vals.totalsc18 = round(vals.totalsc18,2)
+        vals.totalsc19 = round(vals.totalsc19,2)
+        vals.totalsc20 = round(vals.totalsc20,2)
+        vals.totalsc21 = round(vals.totalsc21,2)
+        vals.totalsc22 = round(vals.totalsc22,2)
+        vals.totalsc23 = round(vals.totalsc23,2)
+        vals.totalsc24 = round(vals.totalsc24,2)
+
+        vals.tcwsalt15 = round(vals.tcwsalt15,2)
+        vals.tcwsalt16 = round(vals.tcwsalt16,2)
+        vals.tcwsalt17 = round(vals.tcwsalt17,2)        
+        vals.tcwsalt18 = round(vals.tcwsalt18,2)
+        vals.tcwsalt19 = round(vals.tcwsalt19,2)        
+        vals.tcwsalt20 = round(vals.tcwsalt20,2)
+        vals.tcwsalt21 = round(vals.tcwsalt21,2)
+        vals.tcwsalt22 = round(vals.tcwsalt22,2)
+        vals.tcwsalt23 = round(vals.tcwsalt23,2)
+        vals.tcwsalt24 = round(vals.tcwsalt24,2)
+
+        vals.tcwsltlt15 = round(vals.tcwsltlt15,2)
+        vals.tcwsltlt16 = round(vals.tcwsltlt16,2)
+        vals.tcwsltlt17 = round(vals.tcwsltlt17,2)        
+        vals.tcwsltlt18 = round(vals.tcwsltlt18,2)
+        vals.tcwsltlt19 = round(vals.tcwsltlt19,2)        
+        vals.tcwsltlt20 = round(vals.tcwsltlt20,2)
+        vals.tcwsltlt21 = round(vals.tcwsltlt21,2)
+        vals.tcwsltlt22 = round(vals.tcwsltlt22,2)
+        vals.tcwsltlt23 = round(vals.tcwsltlt23,2)
+        vals.tcwsltlt24 = round(vals.tcwsltlt24,2)
+
+        vals.tcwsalt15 = round(vals.tcwsalt15,2)
+        vals.tcwsalt16 = round(vals.tcwsalt16,2)
+        vals.tcwsalt17 = round(vals.tcwsalt17,2)        
+        vals.tcwsalt18 = round(vals.tcwsalt18,2)
+        vals.tcwsalt19 = round(vals.tcwsalt19,2)        
+        vals.tcwsalt20 = round(vals.tcwsalt20,2)
+        vals.tcwsalt21 = round(vals.tcwsalt21,2)
+        vals.tcwsalt22 = round(vals.tcwsalt22,2)
+        vals.tcwsalt23 = round(vals.tcwsalt23,2)
+        vals.tcwsalt24 = round(vals.tcwsalt24,2)
+
+        vals.tcysltlt15 = round(vals.tcysltlt15,2)
+        vals.tcysltlt16 = round(vals.tcysltlt16,2)
+        vals.tcysltlt17 = round(vals.tcysltlt17,2)        
+        vals.tcysltlt18 = round(vals.tcysltlt18,2)
+        vals.tcysltlt19 = round(vals.tcysltlt19,2)        
+        vals.tcysltlt20 = round(vals.tcysltlt20,2)
+        vals.tcysltlt21 = round(vals.tcysltlt21,2)
+        vals.tcysltlt22 = round(vals.tcysltlt22,2)
+        vals.tcysltlt23 = round(vals.tcysltlt23,2)
+        vals.tcysltlt24 = round(vals.tcysltlt24,2)
+
+        vals.scwsalt15 = round(vals.scwsalt15,2)
+        vals.scwsalt16 = round(vals.scwsalt16,2)
+        vals.scwsalt17 = round(vals.scwsalt17,2)        
+        vals.scwsalt18 = round(vals.scwsalt18,2)
+        vals.scwsalt19 = round(vals.scwsalt19,2)        
+        vals.scwsalt20 = round(vals.scwsalt20,2)
+        vals.scwsalt21 = round(vals.scwsalt21,2)
+        vals.scwsalt22 = round(vals.scwsalt22,2)
+        vals.scwsalt23 = round(vals.scwsalt23,2)
+        vals.scwsalt24 = round(vals.scwsalt24,2)
+
+        vals.scwsltlt15 = round(vals.scwsltlt15,2)
+        vals.scwsltlt16 = round(vals.scwsltlt16,2)
+        vals.scwsltlt17 = round(vals.scwsltlt17,2)        
+        vals.scwsltlt18 = round(vals.scwsltlt18,2)
+        vals.scwsltlt19 = round(vals.scwsltlt19,2)        
+        vals.scwsltlt20 = round(vals.scwsltlt20,2)
+        vals.scwsltlt21 = round(vals.scwsltlt21,2)
+        vals.scwsltlt22 = round(vals.scwsltlt22,2)
+        vals.scwsltlt23 = round(vals.scwsltlt23,2)
+        vals.scwsltlt24 = round(vals.scwsltlt24,2)
+
+        vals.scwsalt15 = round(vals.scwsalt15,2)
+        vals.scwsalt16 = round(vals.scwsalt16,2)
+        vals.scwsalt17 = round(vals.scwsalt17,2)        
+        vals.scwsalt18 = round(vals.scwsalt18,2)
+        vals.scwsalt19 = round(vals.scwsalt19,2)        
+        vals.scwsalt20 = round(vals.scwsalt20,2)
+        vals.scwsalt21 = round(vals.scwsalt21,2)
+        vals.scwsalt22 = round(vals.scwsalt22,2)
+        vals.scwsalt23 = round(vals.scwsalt23,2)
+        vals.scwsalt24 = round(vals.scwsalt24,2)
+
+        vals.scysltlt15 = round(vals.scysltlt15,2)
+        vals.scysltlt16 = round(vals.scysltlt16,2)
+        vals.scysltlt17 = round(vals.scysltlt17,2)        
+        vals.scysltlt18 = round(vals.scysltlt18,2)
+        vals.scysltlt19 = round(vals.scysltlt19,2)        
+        vals.scysltlt20 = round(vals.scysltlt20,2)
+        vals.scysltlt21 = round(vals.scysltlt21,2)
+        vals.scysltlt22 = round(vals.scysltlt22,2)
+        vals.scysltlt23 = round(vals.scysltlt23,2)
+        vals.scysltlt24 = round(vals.scysltlt24,2)
+
+        vals.tccmalt15 = round(vals.tccmalt15,2)
+        vals.tccmalt16 = round(vals.tccmalt16,2)
+        vals.tccmalt17 = round(vals.tccmalt17,2)
+        vals.tccmalt18 = round(vals.tccmalt18,2)
+        vals.tccmalt19 = round(vals.tccmalt19,2)
+        vals.tccmalt20 = round(vals.tccmalt20,2)
+        vals.tccmalt21 = round(vals.tccmalt21,2)
+        vals.tccmalt22 = round(vals.tccmalt22,2)
+        vals.tccmalt23 = round(vals.tccmalt23,2)
+        vals.tccmalt24 = round(vals.tccmalt24,2)
+
+        vals.tccmltlt1_15 = round(vals.tccmltlt1_15,2)        
+        vals.tccmltlt1_16 = round(vals.tccmltlt1_16,2)
+        vals.tccmltlt1_17 = round(vals.tccmltlt1_17,2)
+        vals.tccmltlt1_18 = round(vals.tccmltlt1_18,2)
+        vals.tccmltlt1_19 = round(vals.tccmltlt1_19,2)
+        vals.tccmltlt1_20 = round(vals.tccmltlt1_20,2)
+        vals.tccmltlt1_21 = round(vals.tccmltlt1_21,2)
+        vals.tccmltlt1_22 = round(vals.tccmltlt1_22,2)
+        vals.tccmltlt1_23 = round(vals.tccmltlt1_23,2)
+        vals.tccmltlt1_24 = round(vals.tccmltlt1_24,2)
+
+        vals.tccmltlt2_15 = round(vals.tccmltlt2_15,2)        
+        vals.tccmltlt2_16 = round(vals.tccmltlt2_16,2)
+        vals.tccmltlt2_17 = round(vals.tccmltlt2_17,2)
+        vals.tccmltlt2_18 = round(vals.tccmltlt2_18,2)
+        vals.tccmltlt2_19 = round(vals.tccmltlt2_19,2)
+        vals.tccmltlt2_20 = round(vals.tccmltlt2_20,2)
+        vals.tccmltlt2_21 = round(vals.tccmltlt2_21,2)
+        vals.tccmltlt2_22 = round(vals.tccmltlt2_22,2)
+        vals.tccmltlt2_23 = round(vals.tccmltlt2_23,2)
+        vals.tccmltlt2_24 = round(vals.tccmltlt2_24,2)
+
+        vals.tccmltlt3_15 = round(vals.tccmltlt3_15,2)        
+        vals.tccmltlt3_16 = round(vals.tccmltlt3_16,2)
+        vals.tccmltlt3_17 = round(vals.tccmltlt3_17,2)
+        vals.tccmltlt3_18 = round(vals.tccmltlt3_18,2)
+        vals.tccmltlt3_19 = round(vals.tccmltlt3_19,2)
+        vals.tccmltlt3_20 = round(vals.tccmltlt3_20,2)
+        vals.tccmltlt3_21 = round(vals.tccmltlt3_21,2)
+        vals.tccmltlt3_22 = round(vals.tccmltlt3_22,2)
+        vals.tccmltlt3_23 = round(vals.tccmltlt3_23,2)
+        vals.tccmltlt3_24 = round(vals.tccmltlt3_24,2)
+
+        vals.sccmalt15 = round(vals.sccmalt15,2)
+        vals.sccmalt16 = round(vals.sccmalt16,2)
+        vals.sccmalt17 = round(vals.sccmalt17,2)
+        vals.sccmalt18 = round(vals.sccmalt18,2)
+        vals.sccmalt19 = round(vals.sccmalt19,2)
+        vals.sccmalt20 = round(vals.sccmalt20,2)
+        vals.sccmalt21 = round(vals.sccmalt21,2)
+        vals.sccmalt22 = round(vals.sccmalt22,2)
+        vals.sccmalt23 = round(vals.sccmalt23,2)
+        vals.sccmalt24 = round(vals.sccmalt24,2)
+
+        vals.sccmltlt1_15 = round(vals.sccmltlt1_15,2)        
+        vals.sccmltlt1_16 = round(vals.sccmltlt1_16,2)
+        vals.sccmltlt1_17 = round(vals.sccmltlt1_17,2)
+        vals.sccmltlt1_18 = round(vals.sccmltlt1_18,2)
+        vals.sccmltlt1_19 = round(vals.sccmltlt1_19,2)
+        vals.sccmltlt1_20 = round(vals.sccmltlt1_20,2)
+        vals.sccmltlt1_21 = round(vals.sccmltlt1_21,2)
+        vals.sccmltlt1_22 = round(vals.sccmltlt1_22,2)
+        vals.sccmltlt1_23 = round(vals.sccmltlt1_23,2)
+        vals.sccmltlt1_24 = round(vals.sccmltlt1_24,2)
+
+        vals.sccmltlt2_15 = round(vals.sccmltlt2_15,2)        
+        vals.sccmltlt2_16 = round(vals.sccmltlt2_16,2)
+        vals.sccmltlt2_17 = round(vals.sccmltlt2_17,2)
+        vals.sccmltlt2_18 = round(vals.sccmltlt2_18,2)
+        vals.sccmltlt2_19 = round(vals.sccmltlt2_19,2)
+        vals.sccmltlt2_20 = round(vals.sccmltlt2_20,2)
+        vals.sccmltlt2_21 = round(vals.sccmltlt2_21,2)
+        vals.sccmltlt2_22 = round(vals.sccmltlt2_22,2)
+        vals.sccmltlt2_23 = round(vals.sccmltlt2_23,2)
+        vals.sccmltlt2_24 = round(vals.sccmltlt2_24,2)
+
+        vals.sccmltlt3_15 = round(vals.sccmltlt3_15,2)        
+        vals.sccmltlt3_16 = round(vals.sccmltlt3_16,2)
+        vals.sccmltlt3_17 = round(vals.sccmltlt3_17,2)
+        vals.sccmltlt3_18 = round(vals.sccmltlt3_18,2)
+        vals.sccmltlt3_19 = round(vals.sccmltlt3_19,2)
+        vals.sccmltlt3_20 = round(vals.sccmltlt3_20,2)
+        vals.sccmltlt3_21 = round(vals.sccmltlt3_21,2)
+        vals.sccmltlt3_22 = round(vals.sccmltlt3_22,2)
+        vals.sccmltlt3_23 = round(vals.sccmltlt3_23,2)
+        vals.sccmltlt3_24 = round(vals.sccmltlt3_24,2)
+
+        vals.tcsmltlt1_15 = round(vals.tcsmltlt1_15,2)
+        vals.tcsmltlt1_16 = round(vals.tcsmltlt1_16,2)
+        vals.tcsmltlt1_17 = round(vals.tcsmltlt1_17,2)
+        vals.tcsmltlt1_18 = round(vals.tcsmltlt1_18,2)
+        vals.tcsmltlt1_19 = round(vals.tcsmltlt1_19,2)
+        vals.tcsmltlt1_20 = round(vals.tcsmltlt1_20,2)
+        vals.tcsmltlt1_21 = round(vals.tcsmltlt1_21,2)
+        vals.tcsmltlt1_22 = round(vals.tcsmltlt1_22,2)
+        vals.tcsmltlt1_23 = round(vals.tcsmltlt1_23,2)
+        vals.tcsmltlt1_24 = round(vals.tcsmltlt1_24,2)
+
+        vals.tcsmltlt2_15 = round(vals.tcsmltlt2_15,2)
+        vals.tcsmltlt2_16 = round(vals.tcsmltlt2_16,2)
+        vals.tcsmltlt2_17 = round(vals.tcsmltlt2_17,2)
+        vals.tcsmltlt2_18 = round(vals.tcsmltlt2_18,2)
+        vals.tcsmltlt2_19 = round(vals.tcsmltlt2_19,2)
+        vals.tcsmltlt2_20 = round(vals.tcsmltlt2_20,2)
+        vals.tcsmltlt2_21 = round(vals.tcsmltlt2_21,2)
+        vals.tcsmltlt2_22 = round(vals.tcsmltlt2_22,2)
+        vals.tcsmltlt2_23 = round(vals.tcsmltlt2_23,2)
+        vals.tcsmltlt2_24 = round(vals.tcsmltlt2_24,2)
+
+        vals.tcsmalt15 = round(vals.tcsmalt15,2)
+        vals.tcsmalt16 = round(vals.tcsmalt16,2)
+        vals.tcsmalt17 = round(vals.tcsmalt17,2)
+        vals.tcsmalt18 = round(vals.tcsmalt18,2)
+        vals.tcsmalt19 = round(vals.tcsmalt19,2)
+        vals.tcsmalt20 = round(vals.tcsmalt20,2)
+        vals.tcsmalt21 = round(vals.tcsmalt21,2)
+        vals.tcsmalt22 = round(vals.tcsmalt22,2)
+        vals.tcsmalt23 = round(vals.tcsmalt23,2)
+        vals.tcsmalt24 = round(vals.tcsmalt24,2)
+
+        vals.scsmltlt1_15 = round(vals.scsmltlt1_15,2)
+        vals.scsmltlt1_16 = round(vals.scsmltlt1_16,2)
+        vals.scsmltlt1_17 = round(vals.scsmltlt1_17,2)
+        vals.scsmltlt1_18 = round(vals.scsmltlt1_18,2)
+        vals.scsmltlt1_19 = round(vals.scsmltlt1_19,2)
+        vals.scsmltlt1_20 = round(vals.scsmltlt1_20,2)
+        vals.scsmltlt1_21 = round(vals.scsmltlt1_21,2)
+        vals.scsmltlt1_22 = round(vals.scsmltlt1_22,2)
+        vals.scsmltlt1_23 = round(vals.scsmltlt1_23,2)
+        vals.scsmltlt1_24 = round(vals.scsmltlt1_24,2)
+
+        vals.scsmltlt2_15 = round(vals.scsmltlt2_15,2)
+        vals.scsmltlt2_16 = round(vals.scsmltlt2_16,2)
+        vals.scsmltlt2_17 = round(vals.scsmltlt2_17,2)
+        vals.scsmltlt2_18 = round(vals.scsmltlt2_18,2)
+        vals.scsmltlt2_19 = round(vals.scsmltlt2_19,2)
+        vals.scsmltlt2_20 = round(vals.scsmltlt2_20,2)
+        vals.scsmltlt2_21 = round(vals.scsmltlt2_21,2)
+        vals.scsmltlt2_22 = round(vals.scsmltlt2_22,2)
+        vals.scsmltlt2_23 = round(vals.scsmltlt2_23,2)
+        vals.scsmltlt2_24 = round(vals.scsmltlt2_24,2)
+
+        vals.scsmalt15 = round(vals.scsmalt15,2)
+        vals.scsmalt16 = round(vals.scsmalt16,2)
+        vals.scsmalt17 = round(vals.scsmalt17,2)
+        vals.scsmalt18 = round(vals.scsmalt18,2)
+        vals.scsmalt19 = round(vals.scsmalt19,2)
+        vals.scsmalt20 = round(vals.scsmalt20,2)
+        vals.scsmalt21 = round(vals.scsmalt21,2)
+        vals.scsmalt22 = round(vals.scsmalt22,2)
+        vals.scsmalt23 = round(vals.scsmalt23,2)
+        vals.scsmalt24 = round(vals.scsmalt24,2)
+
+        vals.ietotal15 = round(vals.ietotal15,2)        
+        vals.ietotal16 = round(vals.ietotal16,2)
+        vals.ietotal17 = round(vals.ietotal17,2)
+        vals.ietotal18 = round(vals.ietotal18,2)
+        vals.ietotal19 = round(vals.ietotal19,2)
+        vals.ietotal20 = round(vals.ietotal20,2)
+        vals.ietotal21 = round(vals.ietotal21,2)
+        vals.ietotal22 = round(vals.ietotal22,2)
+        vals.ietotal23 = round(vals.ietotal23,2)
+        vals.ietotal24 = round(vals.ietotal24,2)
+
+        vals.niecmaht15 = round(vals.niecmaht15,2)        
+        vals.niecmaht16 = round(vals.niecmaht16,2)
+        vals.niecmaht17 = round(vals.niecmaht17,2)
+        vals.niecmaht18 = round(vals.niecmaht18,2)
+        vals.niecmaht19 = round(vals.niecmaht19,2)
+        vals.niecmaht20 = round(vals.niecmaht20,2)
+        vals.niecmaht21 = round(vals.niecmaht21,2)
+        vals.niecmaht22 = round(vals.niecmaht22,2)
+        vals.niecmaht23 = round(vals.niecmaht23,2)
+        vals.niecmaht24 = round(vals.niecmaht24,2)
+
+        vals.niecmalt15 = round(vals.niecmaht15,2)
+        vals.niecmalt16 = round(vals.niecmaht16,2)
+        vals.niecmalt17 = round(vals.niecmaht17,2)
+        vals.niecmalt18 = round(vals.niecmaht18,2)
+        vals.niecmalt19 = round(vals.niecmaht19,2)
+        vals.niecmalt20 = round(vals.niecmaht20,2)
+        vals.niecmalt21 = round(vals.niecmaht21,2)
+        vals.niecmalt22 = round(vals.niecmaht22,2)
+        vals.niecmalt23 = round(vals.niecmaht23,2)
+        vals.niecmalt24 = round(vals.niecmaht24,2)
+
+        vals.niecmltht1_15 = round(vals.niecmltht1_15,2)
+        vals.niecmltht1_16 = round(vals.niecmltht1_16,2)
+        vals.niecmltht1_17 = round(vals.niecmltht1_17,2)
+        vals.niecmltht1_18 = round(vals.niecmltht1_18,2)
+        vals.niecmltht1_19 = round(vals.niecmltht1_19,2)
+        vals.niecmltht1_20 = round(vals.niecmltht1_20,2)
+        vals.niecmltht1_21 = round(vals.niecmltht1_21,2)
+        vals.niecmltht1_22 = round(vals.niecmltht1_22,2)
+        vals.niecmltht1_23 = round(vals.niecmltht1_23,2)
+        vals.niecmltht1_24 = round(vals.niecmltht1_24,2)
+
+        vals.niecmltht2_15 = round(vals.niecmltht2_15,2)
+        vals.niecmltht2_16 = round(vals.niecmltht2_16,2)
+        vals.niecmltht2_17 = round(vals.niecmltht2_17,2)
+        vals.niecmltht2_18 = round(vals.niecmltht2_18,2)
+        vals.niecmltht2_19 = round(vals.niecmltht2_19,2)
+        vals.niecmltht2_20 = round(vals.niecmltht2_20,2)
+        vals.niecmltht2_21 = round(vals.niecmltht2_21,2)
+        vals.niecmltht2_22 = round(vals.niecmltht2_22,2)
+        vals.niecmltht2_23 = round(vals.niecmltht2_23,2)
+        vals.niecmltht2_24 = round(vals.niecmltht2_24,2)
+
+        vals.niecmltht3_15 = round(vals.niecmltht3_15,2)
+        vals.niecmltht3_16 = round(vals.niecmltht3_16,2)
+        vals.niecmltht3_17 = round(vals.niecmltht3_17,2)
+        vals.niecmltht3_18 = round(vals.niecmltht3_18,2)
+        vals.niecmltht3_19 = round(vals.niecmltht3_19,2)
+        vals.niecmltht3_20 = round(vals.niecmltht3_20,2)
+        vals.niecmltht3_21 = round(vals.niecmltht3_21,2)
+        vals.niecmltht3_22 = round(vals.niecmltht3_22,2)
+        vals.niecmltht3_23 = round(vals.niecmltht3_23,2)
+        vals.niecmltht3_24 = round(vals.niecmltht3_24,2)
+
+        vals.niecmltlt15 = round(vals.niecmltlt15,2)
+        vals.niecmltlt16 = round(vals.niecmltlt16,2)
+        vals.niecmltlt17 = round(vals.niecmltlt17,2)
+        vals.niecmltlt18 = round(vals.niecmltlt18,2)
+        vals.niecmltlt19 = round(vals.niecmltlt19,2)
+        vals.niecmltlt20 = round(vals.niecmltlt20,2)
+        vals.niecmltlt21 = round(vals.niecmltlt21,2)
+        vals.niecmltlt22 = round(vals.niecmltlt22,2)
+        vals.niecmltlt23 = round(vals.niecmltlt23,2)
+        vals.niecmltlt24 = round(vals.niecmltlt24,2)
+
+        vals.niesmaht15 = round(vals.niesmaht15,2)        
+        vals.niesmaht16 = round(vals.niesmaht16,2)
+        vals.niesmaht17 = round(vals.niesmaht17,2)
+        vals.niesmaht18 = round(vals.niesmaht18,2)
+        vals.niesmaht19 = round(vals.niesmaht19,2)
+        vals.niesmaht20 = round(vals.niesmaht20,2)
+        vals.niesmaht21 = round(vals.niesmaht21,2)
+        vals.niesmaht22 = round(vals.niesmaht22,2)
+        vals.niesmaht23 = round(vals.niesmaht23,2)
+        vals.niesmaht24 = round(vals.niesmaht24,2)
+
+        vals.niesmltht1_15 = round(vals.niesmltht1_15,2)
+        vals.niesmltht1_16 = round(vals.niesmltht1_16,2)
+        vals.niesmltht1_17 = round(vals.niesmltht1_17,2)
+        vals.niesmltht1_18 = round(vals.niesmltht1_18,2)
+        vals.niesmltht1_19 = round(vals.niesmltht1_19,2)
+        vals.niesmltht1_20 = round(vals.niesmltht1_20,2)
+        vals.niesmltht1_21 = round(vals.niesmltht1_21,2)
+        vals.niesmltht1_22 = round(vals.niesmltht1_22,2)
+        vals.niesmltht1_23 = round(vals.niesmltht1_23,2)
+        vals.niesmltht1_24 = round(vals.niesmltht1_24,2)
+
+        vals.niesmltht2_15 = round(vals.niesmltht2_15,2)
+        vals.niesmltht2_16 = round(vals.niesmltht2_16,2)
+        vals.niesmltht2_17 = round(vals.niesmltht2_17,2)
+        vals.niesmltht2_18 = round(vals.niesmltht2_18,2)
+        vals.niesmltht2_19 = round(vals.niesmltht2_19,2)
+        vals.niesmltht2_20 = round(vals.niesmltht2_20,2)
+        vals.niesmltht2_21 = round(vals.niesmltht2_21,2)
+        vals.niesmltht2_22 = round(vals.niesmltht2_22,2)
+        vals.niesmltht2_23 = round(vals.niesmltht2_23,2)
+        vals.niesmltht2_24 = round(vals.niesmltht2_24,2)
+
+        vals.niemtotal15 = round(vals.niemtotal15,2)        
+        vals.niemtotal16 = round(vals.niemtotal16,2)
+        vals.niemtotal17 = round(vals.niemtotal17,2)
+        vals.niemtotal18 = round(vals.niemtotal18,2)
+        vals.niemtotal19 = round(vals.niemtotal19,2)
+        vals.niemtotal20 = round(vals.niemtotal20,2)
+        vals.niemtotal21 = round(vals.niemtotal21,2)
+        vals.niemtotal22 = round(vals.niemtotal22,2)
+        vals.niemtotal23 = round(vals.niemtotal23,2)
+        vals.niemtotal24 = round(vals.niemtotal24,2)
+
+        vals.niewsaht15 = round(vals.niewsaht15,2)
+        vals.niewsaht16 = round(vals.niewsaht16,2)
+        vals.niewsaht17 = round(vals.niewsaht17,2)
+        vals.niewsaht18 = round(vals.niewsaht18,2)
+        vals.niewsaht19 = round(vals.niewsaht19,2)
+        vals.niewsaht20 = round(vals.niewsaht20,2)
+        vals.niewsaht21 = round(vals.niewsaht21,2)
+        vals.niewsaht22 = round(vals.niewsaht22,2)
+        vals.niewsaht23 = round(vals.niewsaht23,2)
+        vals.niewsaht24 = round(vals.niewsaht24,2)
+
+        vals.niewsalt15 = round(vals.niewsalt15,2)
+        vals.niewsalt16 = round(vals.niewsalt16,2)
+        vals.niewsalt17 = round(vals.niewsalt17,2)
+        vals.niewsalt18 = round(vals.niewsalt18,2)
+        vals.niewsalt19 = round(vals.niewsalt19,2)
+        vals.niewsalt20 = round(vals.niewsalt20,2)
+        vals.niewsalt21 = round(vals.niewsalt21,2)
+        vals.niewsalt22 = round(vals.niewsalt22,2)
+        vals.niewsalt23 = round(vals.niewsalt23,2)
+        vals.niewsalt24 = round(vals.niewsalt24,2)
+
+        vals.niewsltlt15 = round(vals.niewsltlt15,2)
+        vals.niewsltlt16 = round(vals.niewsltlt16,2)
+        vals.niewsltlt17 = round(vals.niewsltlt17,2)
+        vals.niewsltlt18 = round(vals.niewsltlt18,2)
+        vals.niewsltlt19 = round(vals.niewsltlt19,2)
+        vals.niewsltlt20 = round(vals.niewsltlt20,2)
+        vals.niewsltlt21 = round(vals.niewsltlt21,2)
+        vals.niewsltlt22 = round(vals.niewsltlt22,2)
+        vals.niewsltlt23 = round(vals.niewsltlt23,2)
+        vals.niewsltlt24 = round(vals.niewsltlt24,2)
+
+        vals.niewsltht15 = round(vals.niewsltht15,2)
+        vals.niewsltht16 = round(vals.niewsltht16,2)
+        vals.niewsltht17 = round(vals.niewsltht17,2)
+        vals.niewsltht18 = round(vals.niewsltht18,2)
+        vals.niewsltht19 = round(vals.niewsltht19,2)
+        vals.niewsltht20 = round(vals.niewsltht20,2)
+        vals.niewsltht21 = round(vals.niewsltht21,2)
+        vals.niewsltht22 = round(vals.niewsltht22,2)
+        vals.niewsltht23 = round(vals.niewsltht23,2)
+        vals.niewsltht24 = round(vals.niewsltht24,2)
+
+        vals.nieysaht15 = round(vals.nieysaht15,2)
+        vals.nieysaht16 = round(vals.nieysaht16,2)
+        vals.nieysaht17 = round(vals.nieysaht17,2)
+        vals.nieysaht18 = round(vals.nieysaht18,2)
+        vals.nieysaht19 = round(vals.nieysaht19,2)
+        vals.nieysaht20 = round(vals.nieysaht20,2)
+        vals.nieysaht21 = round(vals.nieysaht21,2)
+        vals.nieysaht22 = round(vals.nieysaht22,2)
+        vals.nieysaht23 = round(vals.nieysaht23,2)
+        vals.nieysaht24 = round(vals.nieysaht24,2)
+
+        vals.nieysalt15 = round(vals.nieysalt15,2)
+        vals.nieysalt16 = round(vals.nieysalt16,2)
+        vals.nieysalt17 = round(vals.nieysalt17,2)
+        vals.nieysalt18 = round(vals.nieysalt18,2)
+        vals.nieysalt19 = round(vals.nieysalt19,2)
+        vals.nieysalt20 = round(vals.nieysalt20,2)
+        vals.nieysalt21 = round(vals.nieysalt21,2)
+        vals.nieysalt22 = round(vals.nieysalt22,2)
+        vals.nieysalt23 = round(vals.nieysalt23,2)
+        vals.nieysalt24 = round(vals.nieysalt24,2)
+
+        vals.nieysltlt15 = round(vals.nieysltlt15,2)
+        vals.nieysltlt16 = round(vals.nieysltlt16,2)
+        vals.nieysltlt17 = round(vals.nieysltlt17,2)
+        vals.nieysltlt18 = round(vals.nieysltlt18,2)
+        vals.nieysltlt19 = round(vals.nieysltlt19,2)
+        vals.nieysltlt20 = round(vals.nieysltlt20,2)
+        vals.nieysltlt21 = round(vals.nieysltlt21,2)
+        vals.nieysltlt22 = round(vals.nieysltlt22,2)
+        vals.nieysltlt23 = round(vals.nieysltlt23,2)
+        vals.nieysltlt24 = round(vals.nieysltlt24,2)
+
+        vals.nieysltht15 = round(vals.nieysltht15,2)
+        vals.nieysltht16 = round(vals.nieysltht16,2)
+        vals.nieysltht17 = round(vals.nieysltht17,2)
+        vals.nieysltht18 = round(vals.nieysltht18,2)
+        vals.nieysltht19 = round(vals.nieysltht19,2)
+        vals.nieysltht20 = round(vals.nieysltht20,2)
+        vals.nieysltht21 = round(vals.nieysltht21,2)
+        vals.nieysltht22 = round(vals.nieysltht22,2)
+        vals.nieysltht23 = round(vals.nieysltht23,2)
+        vals.nieysltht24 = round(vals.nieysltht24,2)
+
+        vals.niestotal15 = round(vals.niestotal15,2)        
+        vals.niestotal16 = round(vals.niestotal16,2)
+        vals.niestotal17 = round(vals.niestotal17,2)
+        vals.niestotal18 = round(vals.niestotal18,2)
+        vals.niestotal19 = round(vals.niestotal19,2)
+        vals.niestotal20 = round(vals.niestotal20,2)
+        vals.niestotal21 = round(vals.niestotal21,2)
+        vals.niestotal22 = round(vals.niestotal22,2)
+        vals.niestotal23 = round(vals.niestotal23,2)
+        vals.niestotal24 = round(vals.niestotal24,2)
+
+        vals.nietotal15 = round(vals.nietotal15,2)        
+        vals.nietotal16 = round(vals.nietotal16,2)
+        vals.nietotal17 = round(vals.nietotal17,2)
+        vals.nietotal18 = round(vals.nietotal18,2)
+        vals.nietotal19 = round(vals.nietotal19,2)
+        vals.nietotal20 = round(vals.nietotal20,2)
+        vals.nietotal21 = round(vals.nietotal21,2)
+        vals.nietotal22 = round(vals.nietotal22,2)
+        vals.nietotal23 = round(vals.nietotal23,2)
+        vals.nietotal24 = round(vals.nietotal24,2)
+
+        vals.total15 = round(vals.total15,2)        
+        vals.total16 = round(vals.total16,2)
+        vals.total17 = round(vals.total17,2)
+        vals.total18 = round(vals.total18,2)
+        vals.total19 = round(vals.total19,2)
+        vals.total20 = round(vals.total20,2)
+        vals.total21 = round(vals.total21,2)
+        vals.total22 = round(vals.total22,2)
+        vals.total23 = round(vals.total23,2)
+        vals.total24 = round(vals.total24,2)
+
+        vals.niws15 = round(vals.niws15,2)        
+        vals.niws16 = round(vals.niws16,2)
+        vals.niws17 = round(vals.niws17,2)
+        vals.niws18 = round(vals.niws18,2)
+        vals.niws19 = round(vals.niws19,2)
+        vals.niws20 = round(vals.niws20,2)
+        vals.niws21 = round(vals.niws21,2)
+        vals.niws22 = round(vals.niws22,2)
+        vals.niws23 = round(vals.niws23,2)
+        vals.niws24 = round(vals.niws24,2)
+
+        vals.niys15 = round(vals.niys15,2)        
+        vals.niys16 = round(vals.niys16,2)
+        vals.niys17 = round(vals.niys17,2)
+        vals.niys18 = round(vals.niys18,2)
+        vals.niys19 = round(vals.niys19,2)
+        vals.niys20 = round(vals.niys20,2)
+        vals.niys21 = round(vals.niys21,2)
+        vals.niys22 = round(vals.niys22,2)
+        vals.niys23 = round(vals.niys23,2)
+        vals.niys24 = round(vals.niys24,2)
+
+        vals.nicm15 = round(vals.nicm15,2)        
+        vals.nicm16 = round(vals.nicm16,2)
+        vals.nicm17 = round(vals.nicm17,2)
+        vals.nicm18 = round(vals.nicm18,2)
+        vals.nicm19 = round(vals.nicm19,2)
+        vals.nicm20 = round(vals.nicm20,2)
+        vals.nicm21 = round(vals.nicm21,2)
+        vals.nicm22 = round(vals.nicm22,2)
+        vals.nicm23 = round(vals.nicm23,2)
+        vals.nicm24 = round(vals.nicm24,2)
+
+        vals.nism15 = round(vals.nism15,2)        
+        vals.nism16 = round(vals.nism16,2)
+        vals.nism17 = round(vals.nism17,2)
+        vals.nism18 = round(vals.nism18,2)
+        vals.nism19 = round(vals.nism19,2)
+        vals.nism20 = round(vals.nism20,2)
+        vals.nism21 = round(vals.nism21,2)
+        vals.nism22 = round(vals.nism22,2)
+        vals.nism23 = round(vals.nism23,2)
+        vals.nism24 = round(vals.nism24,2)
+
+        vals.iws15 = round(vals.iws15,2)        
+        vals.iws16 = round(vals.iws16,2)
+        vals.iws17 = round(vals.iws17,2)
+        vals.iws18 = round(vals.iws18,2)
+        vals.iws19 = round(vals.iws19,2)
+        vals.iws20 = round(vals.iws20,2)
+        vals.iws21 = round(vals.iws21,2)
+        vals.iws22 = round(vals.iws22,2)
+        vals.iws23 = round(vals.iws23,2)
+        vals.iws24 = round(vals.iws24,2)
+
+        vals.iys15 = round(vals.iys15,2)        
+        vals.iys16 = round(vals.iys16,2)
+        vals.iys17 = round(vals.iys17,2)
+        vals.iys18 = round(vals.iys18,2)
+        vals.iys19 = round(vals.iys19,2)
+        vals.iys20 = round(vals.iys20,2)
+        vals.iys21 = round(vals.iys21,2)
+        vals.iys22 = round(vals.iys22,2)
+        vals.iys23 = round(vals.iys23,2)
+        vals.iys24 = round(vals.iys24,2)
+
+        vals.icm15 = round(vals.icm15,2)        
+        vals.icm16 = round(vals.icm16,2)
+        vals.icm17 = round(vals.icm17,2)
+        vals.icm18 = round(vals.icm18,2)
+        vals.icm19 = round(vals.icm19,2)
+        vals.icm20 = round(vals.icm20,2)
+        vals.icm21 = round(vals.icm21,2)
+        vals.icm22 = round(vals.icm22,2)
+        vals.icm23 = round(vals.icm23,2)
+        vals.icm24 = round(vals.icm24,2)
+
+        vals.ism15 = round(vals.ism15,2)        
+        vals.ism16 = round(vals.ism16,2)
+        vals.ism17 = round(vals.ism17,2)
+        vals.ism18 = round(vals.ism18,2)
+        vals.ism19 = round(vals.ism19,2)
+        vals.ism20 = round(vals.ism20,2)
+        vals.ism21 = round(vals.ism21,2)
+        vals.ism22 = round(vals.ism22,2)
+        vals.ism23 = round(vals.ism23,2)
+        vals.ism24 = round(vals.ism24,2)
+
+        vals2.nils15 = round(vals2.nils15,2)
+        vals2.nils16 = round(vals2.nils16,2)
+        vals2.nils17 = round(vals2.nils17,2)        
+        vals2.nils18 = round(vals2.nils18,2)
+        vals2.nils19 = round(vals2.nils19,2)
+        vals2.nils20 = round(vals2.nils20,2)
+        vals2.nils21 = round(vals2.nils21,2)
+        vals2.nils22 = round(vals2.nils22,2)
+        vals2.nils23 = round(vals2.nils23,2)
+        vals2.nils24 = round(vals2.nils24,2)
+
+        vals2.niwsa15 = round(vals2.niwsa15,2)
+        vals2.niwsa16 = round(vals2.niwsa16,2)
+        vals2.niwsa17 = round(vals2.niwsa17,2)
+        vals2.niwsa18 = round(vals2.niwsa18,2)
+        vals2.niwsa19 = round(vals2.niwsa19,2)
+        vals2.niwsa20 = round(vals2.niwsa20,2)
+        vals2.niwsa21 = round(vals2.niwsa21,2)
+        vals2.niwsa22 = round(vals2.niwsa22,2)
+        vals2.niwsa23 = round(vals2.niwsa23,2)
+        vals2.niwsa24 = round(vals2.niwsa24,2)
+
+        vals2.niwslt15 = round(vals2.niwslt15,2)
+        vals2.niwslt16 = round(vals2.niwslt16,2)
+        vals2.niwslt17 = round(vals2.niwslt17,2)
+        vals2.niwslt18 = round(vals2.niwslt18,2)
+        vals2.niwslt19 = round(vals2.niwslt19,2)
+        vals2.niwslt20 = round(vals2.niwslt20,2)
+        vals2.niwslt21 = round(vals2.niwslt21,2)
+        vals2.niwslt22 = round(vals2.niwslt22,2)
+        vals2.niwslt23 = round(vals2.niwslt23,2)
+        vals2.niwslt24 = round(vals2.niwslt24,2)
+
+        vals2.niysa15 = round(vals2.niysa15,2)
+        vals2.niysa16 = round(vals2.niysa16,2)
+        vals2.niysa17 = round(vals2.niysa17,2)
+        vals2.niysa18 = round(vals2.niysa18,2)
+        vals2.niysa19 = round(vals2.niysa19,2)
+        vals2.niysa20 = round(vals2.niysa20,2)
+        vals2.niysa21 = round(vals2.niysa21,2)
+        vals2.niysa22 = round(vals2.niysa22,2)
+        vals2.niysa23 = round(vals2.niysa23,2)
+        vals2.niysa24 = round(vals2.niysa24,2)
+
+        vals2.niyslt15 = round(vals2.niyslt15,2)
+        vals2.niyslt16 = round(vals2.niyslt16,2)
+        vals2.niyslt17 = round(vals2.niyslt17,2)
+        vals2.niyslt18 = round(vals2.niyslt18,2)
+        vals2.niyslt19 = round(vals2.niyslt19,2)
+        vals2.niyslt20 = round(vals2.niyslt20,2)
+        vals2.niyslt21 = round(vals2.niyslt21,2)
+        vals2.niyslt22 = round(vals2.niyslt22,2)
+        vals2.niyslt23 = round(vals2.niyslt23,2)
+        vals2.niyslt24 = round(vals2.niyslt24,2)
+
+        vals2.nicma15 = round(vals2.nicma15,2)
+        vals2.nicma16 = round(vals2.nicma16,2)
+        vals2.nicma17 = round(vals2.nicma17,2)
+        vals2.nicma18 = round(vals2.nicma18,2)
+        vals2.nicma19 = round(vals2.nicma19,2)
+        vals2.nicma20 = round(vals2.nicma20,2)
+        vals2.nicma21 = round(vals2.nicma21,2)
+        vals2.nicma22 = round(vals2.nicma22,2)
+        vals2.nicma23 = round(vals2.nicma23,2)
+        vals2.nicma24 = round(vals2.nicma24,2)
+
+        vals2.nicmlt15 = round(vals2.nicmlt15,2)
+        vals2.nicmlt16 = round(vals2.nicmlt16,2)
+        vals2.nicmlt17 = round(vals2.nicmlt17,2)
+        vals2.nicmlt18 = round(vals2.nicmlt18,2)
+        vals2.nicmlt19 = round(vals2.nicmlt19,2)
+        vals2.nicmlt20 = round(vals2.nicmlt20,2)
+        vals2.nicmlt21 = round(vals2.nicmlt21,2)
+        vals2.nicmlt22 = round(vals2.nicmlt22,2)
+        vals2.nicmlt23 = round(vals2.nicmlt23,2)
+        vals2.nicmlt24 = round(vals2.nicmlt24,2)
+
+        vals2.nisma15 = round(vals2.nisma15,2)
+        vals2.nisma16 = round(vals2.nisma16,2)
+        vals2.nisma17 = round(vals2.nisma17,2)
+        vals2.nisma18 = round(vals2.nisma18,2)
+        vals2.nisma19 = round(vals2.nisma19,2)
+        vals2.nisma20 = round(vals2.nisma20,2)
+        vals2.nisma21 = round(vals2.nisma21,2)
+        vals2.nisma22 = round(vals2.nisma22,2)
+        vals2.nisma23 = round(vals2.nisma23,2)
+        vals2.nisma24 = round(vals2.nisma24,2)
+
+        vals2.nismlt15 = round(vals2.nismlt15,2)
+        vals2.nismlt16 = round(vals2.nismlt16,2)
+        vals2.nismlt17 = round(vals2.nismlt17,2)
+        vals2.nismlt18 = round(vals2.nismlt18,2)
+        vals2.nismlt19 = round(vals2.nismlt19,2)
+        vals2.nismlt20 = round(vals2.nismlt20,2)
+        vals2.nismlt21 = round(vals2.nismlt21,2)
+        vals2.nismlt22 = round(vals2.nismlt22,2)
+        vals2.nismlt23 = round(vals2.nismlt23,2)
+        vals2.nismlt24 = round(vals2.nismlt24,2)
+
+        vals2.ismlt15 = round(vals2.ismlt15,2)
+        vals2.ismlt16 = round(vals2.ismlt16,2)
+        vals2.ismlt17 = round(vals2.ismlt17,2)
+        vals2.ismlt18 = round(vals2.ismlt18,2)
+        vals2.ismlt19 = round(vals2.ismlt19,2)
+        vals2.ismlt20 = round(vals2.ismlt20,2)
+        vals2.ismlt21 = round(vals2.ismlt21,2)
+        vals2.ismlt22 = round(vals2.ismlt22,2)
+        vals2.ismlt23 = round(vals2.ismlt23,2)
+        vals2.ismlt24 = round(vals2.ismlt24,2)
+
+        vals2.icmlt15 = round(vals2.icmlt15,2)
+        vals2.icmlt16 = round(vals2.icmlt16,2)
+        vals2.icmlt17 = round(vals2.icmlt17,2)
+        vals2.icmlt18 = round(vals2.icmlt18,2)
+        vals2.icmlt19 = round(vals2.icmlt19,2)
+        vals2.icmlt20 = round(vals2.icmlt20,2)
+        vals2.icmlt21 = round(vals2.icmlt21,2)
+        vals2.icmlt22 = round(vals2.icmlt22,2)
+        vals2.icmlt23 = round(vals2.icmlt23,2)
+        vals2.icmlt24 = round(vals2.icmlt24,2)
+
+        vals2.vstotal1_15 = round(vals2.vstotal1_15,2)        
+        vals2.vstotal1_16 = round(vals2.vstotal1_16,2)
+        vals2.vstotal1_17 = round(vals2.vstotal1_17,2)
+        vals2.vstotal1_18 = round(vals2.vstotal1_18,2)
+        vals2.vstotal1_19 = round(vals2.vstotal1_19,2)
+        vals2.vstotal1_20 = round(vals2.vstotal1_20,2)
+        vals2.vstotal1_21 = round(vals2.vstotal1_21,2)
+        vals2.vstotal1_22 = round(vals2.vstotal1_22,2)
+        vals2.vstotal1_23 = round(vals2.vstotal1_23,2)
+        vals2.vstotal1_24 = round(vals2.vstotal1_24,2)
+
+        vals2.niws15 = round(vals2.niws15,2)
+        vals2.niws16 = round(vals2.niws16,2)
+        vals2.niws17 = round(vals2.niws17,2)
+        vals2.niws18 = round(vals2.niws18,2)
+        vals2.niws19 = round(vals2.niws19,2)
+        vals2.niws20 = round(vals2.niws20,2)
+        vals2.niws21 = round(vals2.niws21,2)
+        vals2.niws22 = round(vals2.niws22,2)
+        vals2.niws23 = round(vals2.niws23,2)
+        vals2.niws24 = round(vals2.niws24,2)
+
+        vals2.niys15 = round(vals2.niys15,2)
+        vals2.niys16 = round(vals2.niys16,2)
+        vals2.niys17 = round(vals2.niys17,2)
+        vals2.niys18 = round(vals2.niys18,2)
+        vals2.niys19 = round(vals2.niys19,2)
+        vals2.niys20 = round(vals2.niys20,2)
+        vals2.niys21 = round(vals2.niys21,2)
+        vals2.niys22 = round(vals2.niys22,2)
+        vals2.niys23 = round(vals2.niys23,2)
+        vals2.niys24 = round(vals2.niys24,2)
+
+        vals2.nism15 = round(vals2.nism15,2)
+        vals2.nism16 = round(vals2.nism16,2)
+        vals2.nism17 = round(vals2.nism17,2)
+        vals2.nism18 = round(vals2.nism18,2)
+        vals2.nism19 = round(vals2.nism19,2)
+        vals2.nism20 = round(vals2.nism20,2)
+        vals2.nism21 = round(vals2.nism21,2)
+        vals2.nism22 = round(vals2.nism22,2)
+        vals2.nism23 = round(vals2.nism23,2)
+        vals2.nism24 = round(vals2.nism24,2)
+
+        vals2.nicm15 = round(vals2.nicm15,2)
+        vals2.nicm16 = round(vals2.nicm16,2)
+        vals2.nicm17 = round(vals2.nicm17,2)
+        vals2.nicm18 = round(vals2.nicm18,2)
+        vals2.nicm19 = round(vals2.nicm19,2)
+        vals2.nicm20 = round(vals2.nicm20,2)
+        vals2.nicm21 = round(vals2.nicm21,2)
+        vals2.nicm22 = round(vals2.nicm22,2)
+        vals2.nicm23 = round(vals2.nicm23,2)
+        vals2.nicm24 = round(vals2.nicm24,2)
+
+        vals2.iws15 = round(vals2.iws15,2)
+        vals2.iws16 = round(vals2.iws16,2)
+        vals2.iws17 = round(vals2.iws17,2)
+        vals2.iws18 = round(vals2.iws18,2)
+        vals2.iws19 = round(vals2.iws19,2)
+        vals2.iws20 = round(vals2.iws20,2)
+        vals2.iws21 = round(vals2.iws21,2)
+        vals2.iws22 = round(vals2.iws22,2)
+        vals2.iws23 = round(vals2.iws23,2)
+        vals2.iws24 = round(vals2.iws24,2)
+
+        vals2.iys15 = round(vals2.iys15,2)
+        vals2.iys16 = round(vals2.iys16,2)
+        vals2.iys17 = round(vals2.iys17,2)
+        vals2.iys18 = round(vals2.iys18,2)
+        vals2.iys19 = round(vals2.iys19,2)
+        vals2.iys20 = round(vals2.iys20,2)
+        vals2.iys21 = round(vals2.iys21,2)
+        vals2.iys22 = round(vals2.iys22,2)
+        vals2.iys23 = round(vals2.iys23,2)
+        vals2.iys24 = round(vals2.iys24,2)
+
+        vals2.ism15 = round(vals2.ism15,2)
+        vals2.ism16 = round(vals2.ism16,2)
+        vals2.ism17 = round(vals2.ism17,2)
+        vals2.ism18 = round(vals2.ism18,2)
+        vals2.ism19 = round(vals2.ism19,2)
+        vals2.ism20 = round(vals2.ism20,2)
+        vals2.ism21 = round(vals2.ism21,2)
+        vals2.ism22 = round(vals2.ism22,2)
+        vals2.ism23 = round(vals2.ism23,2)
+        vals2.ism24 = round(vals2.ism24,2)
+
+        vals2.icm15 = round(vals2.icm15,2)
+        vals2.icm16 = round(vals2.icm16,2)
+        vals2.icm17 = round(vals2.icm17,2)
+        vals2.icm18 = round(vals2.icm18,2)
+        vals2.icm19 = round(vals2.icm19,2)
+        vals2.icm20 = round(vals2.icm20,2)
+        vals2.icm21 = round(vals2.icm21,2)
+        vals2.icm22 = round(vals2.icm22,2)
+        vals2.icm23 = round(vals2.icm23,2)
+        vals2.icm24 = round(vals2.icm24,2)
+
+        vals2.ltls15 = round(vals2.ltls15,2)        
+        vals2.ltls16 = round(vals2.ltls16,2)
+        vals2.ltls17 = round(vals2.ltls17,2)
+        vals2.ltls18 = round(vals2.ltls18,2)
+        vals2.ltls19 = round(vals2.ltls19,2)
+        vals2.ltls20 = round(vals2.ltls20,2)
+        vals2.ltls21 = round(vals2.ltls21,2)
+        vals2.ltls22 = round(vals2.ltls22,2)
+        vals2.ltls23 = round(vals2.ltls23,2)
+        vals2.ltls24 = round(vals2.ltls24,2)
+
+        vals2.ltwsa15 = round(vals2.ltwsa15,2)        
+        vals2.ltwsa16 = round(vals2.ltwsa16,2)
+        vals2.ltwsa17 = round(vals2.ltwsa17,2)
+        vals2.ltwsa18 = round(vals2.ltwsa18,2)
+        vals2.ltwsa19 = round(vals2.ltwsa19,2)
+        vals2.ltwsa20 = round(vals2.ltwsa20,2)
+        vals2.ltwsa21 = round(vals2.ltwsa21,2)
+        vals2.ltwsa22 = round(vals2.ltwsa22,2)
+        vals2.ltwsa23 = round(vals2.ltwsa23,2)
+        vals2.ltwsa24 = round(vals2.ltwsa24,2)
+
+        vals2.ltwslt15 = round(vals2.ltwslt15,2)        
+        vals2.ltwslt16 = round(vals2.ltwslt16,2)
+        vals2.ltwslt17 = round(vals2.ltwslt17,2)
+        vals2.ltwslt18 = round(vals2.ltwslt18,2)
+        vals2.ltwslt19 = round(vals2.ltwslt19,2)
+        vals2.ltwslt20 = round(vals2.ltwslt20,2)
+        vals2.ltwslt21 = round(vals2.ltwslt21,2)
+        vals2.ltwslt22 = round(vals2.ltwslt22,2)
+        vals2.ltwslt23 = round(vals2.ltwslt23,2)
+        vals2.ltwslt24 = round(vals2.ltwslt24,2)
+
+        vals2.ltysa15 = round(vals2.ltysa15,2)        
+        vals2.ltysa16 = round(vals2.ltysa16,2)
+        vals2.ltysa17 = round(vals2.ltysa17,2)
+        vals2.ltysa18 = round(vals2.ltysa18,2)
+        vals2.ltysa19 = round(vals2.ltysa19,2)
+        vals2.ltysa20 = round(vals2.ltysa20,2)
+        vals2.ltysa21 = round(vals2.ltysa21,2)
+        vals2.ltysa22 = round(vals2.ltysa22,2)
+        vals2.ltysa23 = round(vals2.ltysa23,2)
+        vals2.ltysa24 = round(vals2.ltysa24,2)
+
+        vals2.ltyslt15 = round(vals2.ltyslt15,2)        
+        vals2.ltyslt16 = round(vals2.ltyslt16,2)
+        vals2.ltyslt17 = round(vals2.ltyslt17,2)
+        vals2.ltyslt18 = round(vals2.ltyslt18,2)
+        vals2.ltyslt19 = round(vals2.ltyslt19,2)
+        vals2.ltyslt20 = round(vals2.ltyslt20,2)
+        vals2.ltyslt21 = round(vals2.ltyslt21,2)
+        vals2.ltyslt22 = round(vals2.ltyslt22,2)
+        vals2.ltyslt23 = round(vals2.ltyslt23,2)
+        vals2.ltyslt24 = round(vals2.ltyslt24,2)
+
+        vals2.htwsa15 = round(vals2.htwsa15,2)        
+        vals2.htwsa16 = round(vals2.htwsa16,2)
+        vals2.htwsa17 = round(vals2.htwsa17,2)
+        vals2.htwsa18 = round(vals2.htwsa18,2)
+        vals2.htwsa19 = round(vals2.htwsa19,2)
+        vals2.htwsa20 = round(vals2.htwsa20,2)
+        vals2.htwsa21 = round(vals2.htwsa21,2)
+        vals2.htwsa22 = round(vals2.htwsa22,2)
+        vals2.htwsa23 = round(vals2.htwsa23,2)
+        vals2.htwsa24 = round(vals2.htwsa24,2)
+
+        vals2.htwslt15 = round(vals2.htwslt15,2)        
+        vals2.htwslt16 = round(vals2.htwslt16,2)
+        vals2.htwslt17 = round(vals2.htwslt17,2)
+        vals2.htwslt18 = round(vals2.htwslt18,2)
+        vals2.htwslt19 = round(vals2.htwslt19,2)
+        vals2.htwslt20 = round(vals2.htwslt20,2)
+        vals2.htwslt21 = round(vals2.htwslt21,2)
+        vals2.htwslt22 = round(vals2.htwslt22,2)
+        vals2.htwslt23 = round(vals2.htwslt23,2)
+        vals2.htwslt24 = round(vals2.htwslt24,2)
+
+        vals2.htysa15 = round(vals2.htysa15,2)        
+        vals2.htysa16 = round(vals2.htysa16,2)
+        vals2.htysa17 = round(vals2.htysa17,2)
+        vals2.htysa18 = round(vals2.htysa18,2)
+        vals2.htysa19 = round(vals2.htysa19,2)
+        vals2.htysa20 = round(vals2.htysa20,2)
+        vals2.htysa21 = round(vals2.htysa21,2)
+        vals2.htysa22 = round(vals2.htysa22,2)
+        vals2.htysa23 = round(vals2.htysa23,2)
+        vals2.htysa24 = round(vals2.htysa24,2)
+
+        vals2.htyslt15 = round(vals2.htyslt15,2)        
+        vals2.htyslt16 = round(vals2.htyslt16,2)
+        vals2.htyslt17 = round(vals2.htyslt17,2)
+        vals2.htyslt18 = round(vals2.htyslt18,2)
+        vals2.htyslt19 = round(vals2.htyslt19,2)
+        vals2.htyslt20 = round(vals2.htyslt20,2)
+        vals2.htyslt21 = round(vals2.htyslt21,2)
+        vals2.htyslt22 = round(vals2.htyslt22,2)
+        vals2.htyslt23 = round(vals2.htyslt23,2)
+        vals2.htyslt24 = round(vals2.htyslt24,2)
+
+        vals2.ws15 = round(vals2.ws15,2)
+        vals2.ws16 = round(vals2.ws16,2)
+        vals2.ws17 = round(vals2.ws17,2)
+        vals2.ws18 = round(vals2.ws18,2)
+        vals2.ws19 = round(vals2.ws19,2)
+        vals2.ws20 = round(vals2.ws20,2)
+        vals2.ws21 = round(vals2.ws21,2)
+        vals2.ws22 = round(vals2.ws22,2)
+        vals2.ws23 = round(vals2.ws23,2)
+        vals2.ws24 = round(vals2.ws24,2)
+
+        vals2.ys15 = round(vals2.ys15,2)
+        vals2.ys16 = round(vals2.ys16,2)
+        vals2.ys17 = round(vals2.ys17,2)
+        vals2.ys18 = round(vals2.ys18,2)
+        vals2.ys19 = round(vals2.ys19,2)
+        vals2.ys20 = round(vals2.ys20,2)
+        vals2.ys21 = round(vals2.ys21,2)
+        vals2.ys22 = round(vals2.ys22,2)
+        vals2.ys23 = round(vals2.ys23,2)
+        vals2.ys24 = round(vals2.ys24,2)
+
+        # vals2.ls15 = round(vals2.ls15,2)
+        # vals2.ls16 = round(vals2.ls16,2)
+        # vals2.ls17 = round(vals2.ls17,2)
+        # vals2.ls18 = round(vals2.ls18,2)
+        # vals2.ls19 = round(vals2.ls19,2)
+        # vals2.ls20 = round(vals2.ls20,2)
+        # vals2.ls21 = round(vals2.ls21,2)
+        # vals2.ls22 = round(vals2.ls22,2)
+        # vals2.ls23 = round(vals2.ls23,2)
+        # vals2.ls24 = round(vals2.ls24,2)
+
+        vals2.vstotal2_15 = round(vals2.vstotal2_15,2)        
+        vals2.vstotal2_16 = round(vals2.vstotal2_16,2)
+        vals2.vstotal2_17 = round(vals2.vstotal2_17,2)
+        vals2.vstotal2_18 = round(vals2.vstotal2_18,2)
+        vals2.vstotal2_19 = round(vals2.vstotal2_19,2)
+        vals2.vstotal2_20 = round(vals2.vstotal2_20,2)
+        vals2.vstotal2_21 = round(vals2.vstotal2_21,2)
+        vals2.vstotal2_22 = round(vals2.vstotal2_22,2)
+        vals2.vstotal2_23 = round(vals2.vstotal2_23,2)
+        vals2.vstotal2_24 = round(vals2.vstotal2_24,2)
+
+        vals2.macdtc15 = round(vals2.macdtc15,2)
+        vals2.macdtc16 = round(vals2.macdtc16,2)
+        vals2.macdtc17 = round(vals2.macdtc17,2)
+        vals2.macdtc18 = round(vals2.macdtc18,2)
+        vals2.macdtc19 = round(vals2.macdtc19,2)
+        vals2.macdtc20 = round(vals2.macdtc20,2)
+        vals2.macdtc21 = round(vals2.macdtc21,2)
+        vals2.macdtc22 = round(vals2.macdtc22,2)
+        vals2.macdtc23 = round(vals2.macdtc23,2)
+        vals2.macdtc24 = round(vals2.macdtc24,2)
+
+        vals2.cts15 = round(vals2.cts15,2)
+        vals2.cts16 = round(vals2.cts16,2)
+        vals2.cts17 = round(vals2.cts17,2)
+        vals2.cts18 = round(vals2.cts18,2)
+        vals2.cts19 = round(vals2.cts19,2)
+        vals2.cts20 = round(vals2.cts20,2)
+        vals2.cts21 = round(vals2.cts21,2)
+        vals2.cts22 = round(vals2.cts22,2)
+        vals2.cts23 = round(vals2.cts23,2)
+        vals2.cts24 = round(vals2.cts24,2)
+
+        vals2.ctc15 = round(vals2.ctc15,2)
+        vals2.ctc16 = round(vals2.ctc16,2)
+        vals2.ctc17 = round(vals2.ctc17,2)
+        vals2.ctc18 = round(vals2.ctc18,2)
+        vals2.ctc19 = round(vals2.ctc19,2)
+        vals2.ctc20 = round(vals2.ctc20,2)
+        vals2.ctc21 = round(vals2.ctc21,2)
+        vals2.ctc22 = round(vals2.ctc22,2)
+        vals2.ctc23 = round(vals2.ctc23,2)
+        vals2.ctc24 = round(vals2.ctc24,2)
+
+        vals2.incprice1 = round(vals2.incprice1,2)        
+        vals2.incprice2 = round(vals2.incprice2,2)
+        vals2.incprice3 = round(vals2.incprice3,2)
+        vals2.incprice4 = round(vals2.incprice4,2)
+        vals2.incprice5 = round(vals2.incprice5,2)
+        vals2.excprice1 = round(vals2.excprice1,2)
+        vals2.excprice2 = round(vals2.excprice2,2)
+        vals2.excprice3 = round(vals2.excprice3,2)
+        vals2.excprice4 = round(vals2.excprice4,2)
+        vals2.excprice5 = round(vals2.excprice5,2)
+
+        vals2.tcsmltlt15 = round(vals2.tcsmltlt15,2)
+        vals2.tcsmltlt16 = round(vals2.tcsmltlt16,2)
+        vals2.tcsmltlt17 = round(vals2.tcsmltlt17,2)
+        vals2.tcsmltlt18 = round(vals2.tcsmltlt18,2)
+        vals2.tcsmltlt19 = round(vals2.tcsmltlt19,2)
+        vals2.tcsmltlt20 = round(vals2.tcsmltlt20,2)
+        vals2.tcsmltlt21 = round(vals2.tcsmltlt21,2)
+        vals2.tcsmltlt22 = round(vals2.tcsmltlt22,2)
+        vals2.tcsmltlt23 = round(vals2.tcsmltlt23,2)
+        vals2.tcsmltlt24 = round(vals2.tcsmltlt24,2)
+
+        vals2.tccmltlt15 = round(vals2.tccmltlt15,2)
+        vals2.tccmltlt16 = round(vals2.tccmltlt16,2)
+        vals2.tccmltlt17 = round(vals2.tccmltlt17,2)
+        vals2.tccmltlt18 = round(vals2.tccmltlt18,2)
+        vals2.tccmltlt19 = round(vals2.tccmltlt19,2)
+        vals2.tccmltlt20 = round(vals2.tccmltlt20,2)
+        vals2.tccmltlt21 = round(vals2.tccmltlt21,2)
+        vals2.tccmltlt22 = round(vals2.tccmltlt22,2)
+        vals2.tccmltlt23 = round(vals2.tccmltlt23,2)
+        vals2.tccmltlt24 = round(vals2.tccmltlt24,2)
+
+        vals2.wsahthoc15 = round(vals2.wsahthoc15,2)
+        vals2.wsahthoc16 = round(vals2.wsahthoc16,2)
+        vals2.wsahthoc17 = round(vals2.wsahthoc17,2)
+        vals2.wsahthoc18 = round(vals2.wsahthoc18,2)
+        vals2.wsahthoc19 = round(vals2.wsahthoc19,2)
+        vals2.wsahthoc20 = round(vals2.wsahthoc20,2)
+        vals2.wsahthoc21 = round(vals2.wsahthoc21,2)
+        vals2.wsahthoc22 = round(vals2.wsahthoc22,2)
+        vals2.wsahthoc23 = round(vals2.wsahthoc23,2)
+        vals2.wsahthoc24 = round(vals2.wsahthoc24,2)
+
+        vals2.wsalthoc15 = round(vals2.wsalthoc15,2)
+        vals2.wsalthoc16 = round(vals2.wsalthoc16,2)
+        vals2.wsalthoc17 = round(vals2.wsalthoc17,2)
+        vals2.wsalthoc18 = round(vals2.wsalthoc18,2)
+        vals2.wsalthoc19 = round(vals2.wsalthoc19,2)
+        vals2.wsalthoc20 = round(vals2.wsalthoc20,2)
+        vals2.wsalthoc21 = round(vals2.wsalthoc21,2)
+        vals2.wsalthoc22 = round(vals2.wsalthoc22,2)
+        vals2.wsalthoc23 = round(vals2.wsalthoc23,2)
+        vals2.wsalthoc24 = round(vals2.wsalthoc24,2)
+
+        vals2.wsahthoc15 = round(vals2.wsahthoc15,2)
+        vals2.wsahthoc16 = round(vals2.wsahthoc16,2)
+        vals2.wsahthoc17 = round(vals2.wsahthoc17,2)
+        vals2.wsahthoc18 = round(vals2.wsahthoc18,2)
+        vals2.wsahthoc19 = round(vals2.wsahthoc19,2)
+        vals2.wsahthoc20 = round(vals2.wsahthoc20,2)
+        vals2.wsahthoc21 = round(vals2.wsahthoc21,2)
+        vals2.wsahthoc22 = round(vals2.wsahthoc22,2)
+        vals2.wsahthoc23 = round(vals2.wsahthoc23,2)
+        vals2.wsahthoc24 = round(vals2.wsahthoc24,2)
+
+        vals2.wsltlthoc15 = round(vals2.wsltlthoc15,2)
+        vals2.wsltlthoc16 = round(vals2.wsltlthoc16,2)
+        vals2.wsltlthoc17 = round(vals2.wsltlthoc17,2)
+        vals2.wsltlthoc18 = round(vals2.wsltlthoc18,2)
+        vals2.wsltlthoc19 = round(vals2.wsltlthoc19,2)
+        vals2.wsltlthoc20 = round(vals2.wsltlthoc20,2)
+        vals2.wsltlthoc21 = round(vals2.wsltlthoc21,2)
+        vals2.wsltlthoc22 = round(vals2.wsltlthoc22,2)
+        vals2.wsltlthoc23 = round(vals2.wsltlthoc23,2)
+        vals2.wsltlthoc24 = round(vals2.wsltlthoc24,2)
+
+        vals2.ysahthoc15 = round(vals2.ysahthoc15,2)
+        vals2.ysahthoc16 = round(vals2.ysahthoc16,2)
+        vals2.ysahthoc17 = round(vals2.ysahthoc17,2)
+        vals2.ysahthoc18 = round(vals2.ysahthoc18,2)
+        vals2.ysahthoc19 = round(vals2.ysahthoc19,2)
+        vals2.ysahthoc20 = round(vals2.ysahthoc20,2)
+        vals2.ysahthoc21 = round(vals2.ysahthoc21,2)
+        vals2.ysahthoc22 = round(vals2.ysahthoc22,2)
+        vals2.ysahthoc23 = round(vals2.ysahthoc23,2)
+        vals2.ysahthoc24 = round(vals2.ysahthoc24,2)
+
+        vals2.ysalthoc15 = round(vals2.ysalthoc15,2)
+        vals2.ysalthoc16 = round(vals2.ysalthoc16,2)
+        vals2.ysalthoc17 = round(vals2.ysalthoc17,2)
+        vals2.ysalthoc18 = round(vals2.ysalthoc18,2)
+        vals2.ysalthoc19 = round(vals2.ysalthoc19,2)
+        vals2.ysalthoc20 = round(vals2.ysalthoc20,2)
+        vals2.ysalthoc21 = round(vals2.ysalthoc21,2)
+        vals2.ysalthoc22 = round(vals2.ysalthoc22,2)
+        vals2.ysalthoc23 = round(vals2.ysalthoc23,2)
+        vals2.ysalthoc24 = round(vals2.ysalthoc24,2)
+
+        vals2.ysahthoc15 = round(vals2.ysahthoc15,2)
+        vals2.ysahthoc16 = round(vals2.ysahthoc16,2)
+        vals2.ysahthoc17 = round(vals2.ysahthoc17,2)
+        vals2.ysahthoc18 = round(vals2.ysahthoc18,2)
+        vals2.ysahthoc19 = round(vals2.ysahthoc19,2)
+        vals2.ysahthoc20 = round(vals2.ysahthoc20,2)
+        vals2.ysahthoc21 = round(vals2.ysahthoc21,2)
+        vals2.ysahthoc22 = round(vals2.ysahthoc22,2)
+        vals2.ysahthoc23 = round(vals2.ysahthoc23,2)
+        vals2.ysahthoc24 = round(vals2.ysahthoc24,2)
+
+        vals2.ysltlthoc15 = round(vals2.ysltlthoc15,2)
+        vals2.ysltlthoc16 = round(vals2.ysltlthoc16,2)
+        vals2.ysltlthoc17 = round(vals2.ysltlthoc17,2)
+        vals2.ysltlthoc18 = round(vals2.ysltlthoc18,2)
+        vals2.ysltlthoc19 = round(vals2.ysltlthoc19,2)
+        vals2.ysltlthoc20 = round(vals2.ysltlthoc20,2)
+        vals2.ysltlthoc21 = round(vals2.ysltlthoc21,2)
+        vals2.ysltlthoc22 = round(vals2.ysltlthoc22,2)
+        vals2.ysltlthoc23 = round(vals2.ysltlthoc23,2)
+        vals2.ysltlthoc24 = round(vals2.ysltlthoc24,2)
 
 
 
