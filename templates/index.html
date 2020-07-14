@@ -7,14 +7,13 @@
 	<title>Document</title>
 	<link rel="stylesheet" href={% static './css/style.css' %}/>
 	<script type="text/javascript" src="{% static 'javascript/changes.js' %}"></script>
-
 </head>
 	<body>
 		<div class="tab">
 			<button class="tablinks" onclick="openCity(event, 'Input')" id="defaultOpen">Graph Based Data</button>
 			<button class="tablinks" onclick="openCity(event, 'Capacity_Calculations')">Capacity Calculations</button>
 			<button class="tablinks" onclick="openCity(event, 'Oil_inIE_product')">IE&HYDRO Oil in IE Product</button>
-			<button class="tablinks" onclick="openCity(event, 'Oil_in_nonIE_product')">HYDRO Oil in non-IE product</button>
+			<button class="tablinks" onclick="openCity(event, 'Oil_in_nonIE_product')">HYDRO Oil in non-IE product</button>		
 			<button class="tablinks" onclick="openCity(event, 'Volume_Database')">Volume Database</button>
 			<button class="tablinks" onclick="openCity(event, 'Volume_Summary')">Volume Summary</button>
 			<button class="tablinks" onclick="openCity(event, 'MP_Volume')">MP Volume</button>
@@ -27,7 +26,7 @@
 			<hr><br>
 			<form action="" method="POST" name="myform">
 			{% csrf_token %}
-			<table >
+			<table>
 			<thead >
 				<tr align = center>
 					<th >Year</th>
@@ -680,7 +679,7 @@
 
 				<tr>
 					<td >Liquid Shortening</td>
-					<td ></td>
+					<td >Packaged</td>
 					<td><input required type="text" id="331" size="8" name="ls15" value={{vals.ls15}}></td>
 					<td><input required type="text" id="332" size="8" name="ls16" value={{vals.ls16}}></td>
 					<td><input required type="text" id="333" size="8" name="ls17" value={{vals.ls17}}></td>
@@ -695,7 +694,7 @@
 
 				<tr>
 					<td >Non IE Shortening</td>
-					<td ></td>
+					<td >Packaged</td>
 					<td><input required type="text" id="341" size="8" name="nis15" value={{vals.nis15}}></td>
 					<td><input required type="text" id="342" size="8" name="nis16" value={{vals.nis16}}></td>
 					<td><input required type="text" id="343" size="8" name="nis17" value={{vals.nis17}}></td>
@@ -710,7 +709,7 @@
 
 				<tr>
 					<td >Non-IE Margarine</td>
-					<td ></td>
+					<td >Packaged</td>
 					<td><input required type="text" id="351" size="8" name="nim15" value={{vals.nim15}}></td>
 					<td><input required type="text" id="352" size="8" name="nim16" value={{vals.nim16}}></td>
 					<td><input required type="text" id="353" size="8" name="nim17" value={{vals.nim17}}></td>
@@ -725,7 +724,7 @@
 
 				<tr>
 					<td >IE Shortening</td>
-					<td ></td>
+					<td >Packaged</td>
 					<td><input required type="text" id="361" size="8" name="is15" value={{vals.is15}}></td>
 					<td><input required type="text" id="362" size="8" name="is16" value={{vals.is16}}></td>
 					<td><input required type="text" id="363" size="8" name="is17" value={{vals.is17}}></td>
@@ -740,7 +739,7 @@
 
 				<tr>
 					<td >IE Margarine</td>
-					<td ></td>
+					<td >Packaged</td>
 					<td><input required type="text" id="371" size="8" name="im15" value={{vals.im15}}></td>
 					<td><input required type="text" id="372" size="8" name="im16" value={{vals.im16}}></td>
 					<td><input required type="text" id="373" size="8" name="im17" value={{vals.im17}}></td>
@@ -755,7 +754,7 @@
 
 				<tr>
 					<td >All Sheet Margarine</td>
-					<td ></td>
+					<td >Packaged</td>
 					<td><input required type="text" id="381" size="8" name="asm15" value={{vals.asm15}}></td>
 					<td><input required type="text" id="382" size="8" name="asm16" value={{vals.asm16}}></td>
 					<td><input required type="text" id="383" size="8" name="asm17" value={{vals.asm17}}></td>
@@ -7258,6 +7257,5 @@
 
 		getdata();
 	</script>	
-
 	</body>
 </html>

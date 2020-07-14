@@ -9,6 +9,15 @@ input::-moz-focus-inner {
     border: 0;
 }
 
+input:-moz-read-only { /* For Firefox */
+  padding: 7px;
+  border-radius: 6px;
+  background-color: rgb(217, 217, 217);
+}
+/* 
+input:read-only {
+  background-color: rgb(206, 200, 200);
+} */
 
 button::-moz-focus-inner {
   border: 0;
@@ -134,17 +143,17 @@ tbody {
 	}
 	td {
 	    border: 1px solid black;
-		position: relative;
-		&:hover {
-			&:before {
-				content: "";
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: -9999px;
-				bottom: -9999px;
-				background-color: rgba(255,255,255,0.2);
-				z-index: -1;
+		  position: relative;
+	  	&:hover {
+			  &:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: -9999px;
+          bottom: -9999px;
+          background-color: rgba(255,255,255,0.2);
+          z-index: -1;
 			}
 		}
 	}
