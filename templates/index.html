@@ -18,6 +18,9 @@
 			<button class="tablinks" onclick="openCity(event, 'Volume_Summary')">Volume Summary</button>
 			<button class="tablinks" onclick="openCity(event, 'MP_Volume')">MP Volume</button>
 			<button class="tablinks" onclick="openCity(event, 'MP_buisness_case_volume')">MP Buisness case Volume</button>
+			<button class="tablinks" onclick="openCity(event, 'summary')">Summary</button>
+			<button class="tablinks" onclick="openCity(event, 'graphs')">Graphs</button>
+
 		</div>
 				<a href="#" onClick="autofill(); return true;" >Click to Autofill</a>
 		<hr>
@@ -2557,416 +2560,10 @@
 				</tbody>
 			</table>
 			<br><br>
-			<b><h1>Summary</h1></b>
-			<table >
-				<thead >
-					<tr align = center>
-						<th >Year</th>
-						<th ></th>
-						<th >2015</th>
-						<th >2016</th>
-						<th >2017</th>
-						<th >2018</th>
-						<th >2019</th>
-						<th >2020</th>
-						<th >2021</th>
-						<th >2022</th>
-						<th >2023</th>
-						<th >2024</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td >Neutralization</td>
-						<td >days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral24}}></td>
-					</tr>
-					<tr>
-						<td >Effective Capacity Utilization</td>
-						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu24}}>%</td>
-					</tr>
-					<tr height=25px>
-					<tr>
-						<td >Dewaxing</td>
-						<td >days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing24}}></td>
-					</tr>
-					<tr>
-						<td >Effective Capacity Utilization</td>
-						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu24}}>%</td>
-					</tr>
-					<tr height = 25px>
-					<tr>
-						<td >First Refining</td>
-						<td >days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.firstref15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.firstref16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.firstref17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.firstref18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.firstref19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.firstref20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.firstref21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.firstref22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.firstref23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.firstref24}}></td>
-					</tr>
-					<tr>
-						<td >Second Refining</td>
-						<td >days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.secondref15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.secondref16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.secondref17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.secondref18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.secondref19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.secondref20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.secondref21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.secondref22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.secondref23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.secondref24}}></td>
-					</tr>
-					<tr>
-						<td >400 tpd Refining</td>
-						<td >days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref24}}></td>
-					</tr>
-					<tr>
-						<td >Effective Capacity Utilization</td>
-						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu24}}>%</td>
-					</tr>
-					<tr height = 25px>
-					<tr>
-						<td >Hydro</td>
-						<td >days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro24}}></td>
-					</tr>
-					<tr>
-						<td >Effective Capacity Utilization</td>
-						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu24}}>%</td>
-					</tr>
-					<tr height = 25px>
-					<tr>
-						<td >IE + Bleaching</td>
-						<td >days/Year</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb24}}></td>
-					</tr>
-					<tr>
-						<td >Effective Capacity Utilization</td>
-						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu24}}>%</td>
-					</tr>
-					<tr>
-						<td >Max Capacity</td>
-						<td ></td>
-						<td><input readonly type="text" size="8" value={{vals2.maxcap15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.maxcap16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.maxcap17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.maxcap18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.maxcap19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.maxcap20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.maxcap21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.maxcap22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.maxcap23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.maxcap24}}></td>
-					</tr>
-					<tr height = 25px></tr>
-					<tr>
-						<td >100 tpd Deodorization</td>
-						<td >Days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild24}}></td>
-					</tr>
-					<tr>
-						<td >Effective Capacity Utilization</td>
-						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu24}}>%</td>
-					</tr>
-					<tr height = 25px>
-					<tr>
-						<td >Perfector 180 (1+1+1+1) B</td>
-						<td >Days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb24}}></td>
-					</tr>
-					<tr>
-						<td >Effective Capacity Utilization</td>
-						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu24}}>%</td>
-					</tr>
-					<tr>
-						<td >Perfector 150 (1+1+1+1) A</td>
-						<td >Days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora24}}></td>
-					</tr>
-					<tr>
-						<td >Effective Capacity Utilization</td>
-						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu24}}>%</td>
-					</tr>
-					<tr height = 25px>
-					<tr>
-						<td >PET Line </td>
-						<td >days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.petline16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.petline17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.petline18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.petline19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.petline20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.petline21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.petline22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.petline23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.petline24}}></td>
-					</tr>
-					<tr>
-						<td >Effective Capacity Utilization</td>
-						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu24}}>%</td>
-					</tr>
-					<tr height = 25px>
-					<tr>
-						<td >BIB Line </td>
-						<td >days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline24}}></td>
-					</tr>
-					<tr>
-						<td >Effective Capacity Utilization</td>
-						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu24}}>%</td>
-					</tr>
-					<tr height = 25px>
-					<tr>
-						<td >Carton Filling Line 1 </td>
-						<td >days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t24}}></td>
-					</tr>
-					<tr>
-						<td >Effective Capacity Utilization</td>
-						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu24}}>%</td>
-					</tr>
-					<tr height = 25px>
-					<tr>
-						<td >Carton Filling Line 1 </td>
-						<td >days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t24}}></td>
-					</tr>
-					<tr>
-						<td >Effective Capacity Utilization</td>
-						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu24}}>%</td>
-					</tr>
+			
+			<br>
+			
 
-				</tbody>
-			</table>
 		</div>
 
 	<div id="Oil_inIE_product" class="tabcontent">
@@ -7225,7 +6822,439 @@
 		</table>
 	</div>
 
-	<br>
+	<div id="summary" class="tabcontent">
+		<center><h1>Summary</h1></center>
+		<hr><br>
+		<form action="" method="POST" name="myform">
+		<b><h1>Summary</h1></b>
+			<table >
+				<thead >
+					<tr align = center>
+						<th >Year</th>
+						<th ></th>
+						<th >2015</th>
+						<th >2016</th>
+						<th >2017</th>
+						<th >2018</th>
+						<th >2019</th>
+						<th >2020</th>
+						<th >2021</th>
+						<th >2022</th>
+						<th >2023</th>
+						<th >2024</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td >Neutralization</td>
+						<td >days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral24}}></td>
+					</tr>
+					<tr>
+						<td >Effective Capacity Utilization</td>
+						<td >%</td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu15}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu16}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu17}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu18}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu19}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu20}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu21}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu22}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu23}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.neutral_ecu24}}>%</td>
+					</tr>
+					<tr height=25px>
+					<tr>
+						<td >Dewaxing</td>
+						<td >days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing24}}></td>
+					</tr>
+					<tr>
+						<td >Effective Capacity Utilization</td>
+						<td >%</td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu15}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu16}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu17}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu18}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu19}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu20}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu21}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu22}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu23}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.dewaxing_ecu24}}>%</td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td >First Refining</td>
+						<td >days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.firstref15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.firstref16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.firstref17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.firstref18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.firstref19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.firstref20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.firstref21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.firstref22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.firstref23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.firstref24}}></td>
+					</tr>
+					<tr>
+						<td >Second Refining</td>
+						<td >days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.secondref15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.secondref16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.secondref17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.secondref18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.secondref19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.secondref20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.secondref21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.secondref22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.secondref23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.secondref24}}></td>
+					</tr>
+					<tr>
+						<td >400 tpd Refining</td>
+						<td >days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref24}}></td>
+					</tr>
+					<tr>
+						<td >Effective Capacity Utilization</td>
+						<td >%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu15}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu16}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu17}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu18}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu19}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu20}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu21}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu22}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu23}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu24}}>%</td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td >Hydro</td>
+						<td >days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro24}}></td>
+					</tr>
+					<tr>
+						<td >Effective Capacity Utilization</td>
+						<td >%</td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu15}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu16}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu17}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu18}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu19}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu20}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu21}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu22}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu23}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu24}}>%</td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td >IE + Bleaching</td>
+						<td >days/Year</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb24}}></td>
+					</tr>
+					<tr>
+						<td >Effective Capacity Utilization</td>
+						<td >%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu15}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu16}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu17}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu18}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu19}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu20}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu21}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu22}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu23}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu24}}>%</td>
+					</tr>
+					<tr>
+						<td >Max Capacity</td>
+						<td ></td>
+						<td><input readonly type="text" size="8" value={{vals2.maxcap15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.maxcap16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.maxcap17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.maxcap18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.maxcap19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.maxcap20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.maxcap21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.maxcap22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.maxcap23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.maxcap24}}></td>
+					</tr>
+					<tr height = 25px></tr>
+					<tr>
+						<td >100 tpd Deodorization</td>
+						<td >Days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild24}}></td>
+					</tr>
+					<tr>
+						<td >Effective Capacity Utilization</td>
+						<td >%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu15}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu16}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu17}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu18}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu19}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu20}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu21}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu22}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu23}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu24}}>%</td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td >Perfector 180 (1+1+1+1) B</td>
+						<td >Days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb24}}></td>
+					</tr>
+					<tr>
+						<td >Effective Capacity Utilization</td>
+						<td >%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu15}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu16}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu17}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu18}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu19}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu20}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu21}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu22}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu23}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu24}}>%</td>
+					</tr>
+					<tr>
+						<td >Perfector 150 (1+1+1+1) A</td>
+						<td >Days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora24}}></td>
+					</tr>
+					<tr>
+						<td >Effective Capacity Utilization</td>
+						<td >%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu15}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu16}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu17}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu18}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu19}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu20}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu21}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu22}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu23}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu24}}>%</td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td >PET Line </td>
+						<td >days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.petline15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.petline16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.petline17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.petline18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.petline19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.petline20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.petline21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.petline22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.petline23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.petline24}}></td>
+					</tr>
+					<tr>
+						<td >Effective Capacity Utilization</td>
+						<td >%</td>
+						<td><input readonly type="text" size="8" value={{vals2.petline_ecu15}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.petline_ecu16}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.petline_ecu17}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.petline_ecu18}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.petline_ecu19}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.petline_ecu20}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.petline_ecu21}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.petline_ecu22}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.petline_ecu23}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.petline_ecu24}}>%</td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td >BIB Line </td>
+						<td >days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline24}}></td>
+					</tr>
+					<tr>
+						<td >Effective Capacity Utilization</td>
+						<td >%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu15}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu16}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu17}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu18}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu19}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu20}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu21}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu22}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu23}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu24}}>%</td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td >Carton Filling Line 1 </td>
+						<td >days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t24}}></td>
+					</tr>
+					<tr>
+						<td >Effective Capacity Utilization</td>
+						<td >%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu15}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu16}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu17}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu18}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu19}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu20}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu21}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu22}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu23}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu24}}>%</td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td >Carton Filling Line 1 </td>
+						<td >days/year</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t24}}></td>
+					</tr>
+					<tr>
+						<td >Effective Capacity Utilization</td>
+						<td >%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu15}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu16}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu17}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu18}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu19}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu20}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu21}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu22}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu23}}>%</td>
+						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu24}}>%</td>
+					</tr>
+				</tbody>
+			</table>
+
+	</div>
+
+	<div id="graphs" class="tabcontent">
+		<center><h1>Graphs</h1></center>
+		<hr><br>
+		<center>
+		<div class="row">
+			<div class="column">
+				<img src="data:image/png;base64,{{ data1 }}" alt="Enter the values first" height="500" width="800">
+			</div>
+			<div class="column">
+				<img src="data:image/png;base64,{{ data }}" alt="Enter the values first" height="500" width="800">
+			</div>
+		</div>
+		</center>
+		<br>
+		<br>
+	</div>
+
 	<br>
 	<br>
 	<div class="container">
@@ -7234,6 +7263,7 @@
 		<div class="container">
   		<center><input type=reset value="Reset" class="btn" onclick="resetinput();"></center>
 	</div>
+	<br>
 	<br>
 	<br>
 	<script>

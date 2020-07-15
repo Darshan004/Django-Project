@@ -1,15 +1,4 @@
 from django.db import models
-
-# Create your models here.
-# class graphBasedData(models.Model):
-#     year = models.CharField(max_length = 5)
-#     hocan = models.FloatField()
-#     g1sb0 = models.FloatField()
-#     corn = models.FloatField()
-#     hsbo = models.FloatField()
-#     stote_oil_blend = models.FloatField()
-#     chicken_par_fry = models.FloatField()
-
 class values(models.Model):
     hocan15 = models.FloatField(null=True)
     g1sb015 = models.FloatField(null=True)

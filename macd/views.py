@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from macd.models import values,values2
 import numpy as np
 from .forms import InputsForm
+import matplotlib.pyplot as plt
+import io, urllib, base64
 
 
 def index(request):
@@ -7437,223 +7439,61 @@ def index(request):
         vals2.rhsbo_hydro23 = round(vals2.rhsbo_hydro23,2)
         vals2.rhsbo_hydro24 = round(vals2.rhsbo_hydro24,2)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+        X = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+        Y1 = [vals2.cfl2t_ecu15, vals2.cfl2t_ecu16, vals2.cfl2t_ecu17, vals2.cfl2t_ecu18, vals2.cfl2t_ecu19 , vals2.cfl2t_ecu20, vals2.cfl2t_ecu21, vals2.cfl2t_ecu22, vals2.cfl2t_ecu23, vals2.cfl2t_ecu24]
+        Y2 = [vals2.cfl1t_ecu15, vals2.cfl1t_ecu16, vals2.cfl1t_ecu17, vals2.cfl1t_ecu18, vals2.cfl1t_ecu19 , vals2.cfl1t_ecu20, vals2.cfl1t_ecu21, vals2.cfl1t_ecu22, vals2.cfl1t_ecu23, vals2.cfl1t_ecu24]
+        Y3 = [vals2.tbibline_ecu15, vals2.tbibline_ecu16, vals2.tbibline_ecu17, vals2.tbibline_ecu18, vals2.tbibline_ecu19 , vals2.tbibline_ecu20, vals2.tbibline_ecu21, vals2.tbibline_ecu22, vals2.tbibline_ecu23, vals2.tbibline_ecu24]
+        Y4 = [vals2.petline_ecu15, vals2.petline_ecu16, vals2.petline_ecu17, vals2.petline_ecu18, vals2.petline_ecu19 , vals2.petline_ecu20, vals2.petline_ecu21, vals2.petline_ecu22, vals2.petline_ecu23, vals2.petline_ecu24]
+        Y5 = [vals2.perfectora_ecu15, vals2.perfectora_ecu16, vals2.perfectora_ecu17, vals2.perfectora_ecu18, vals2.perfectora_ecu19 , vals2.perfectora_ecu20, vals2.perfectora_ecu21, vals2.perfectora_ecu22, vals2.perfectora_ecu23, vals2.perfectora_ecu24]
+        Y6 = [vals2.perfectorb_ecu15, vals2.perfectorb_ecu16, vals2.perfectorb_ecu17, vals2.perfectorb_ecu18, vals2.perfectorb_ecu19 , vals2.perfectorb_ecu20, vals2.perfectorb_ecu21, vals2.perfectorb_ecu22, vals2.perfectorb_ecu23, vals2.perfectorb_ecu24]
+        Z1 = [vals2.ieoild_ecu15, vals2.ieoild_ecu16, vals2.ieoild_ecu17, vals2.ieoild_ecu18, vals2.ieoild_ecu19 , vals2.ieoild_ecu20, vals2.ieoild_ecu21, vals2.ieoild_ecu22, vals2.ieoild_ecu23, vals2.ieoild_ecu24]
+        Z2 = [vals2.ieoilb_ecu15, vals2.ieoilb_ecu16, vals2.ieoilb_ecu17, vals2.ieoilb_ecu18, vals2.ieoilb_ecu19 , vals2.ieoilb_ecu20, vals2.ieoilb_ecu21, vals2.ieoilb_ecu22, vals2.ieoilb_ecu23, vals2.ieoilb_ecu24]
+        Z3 = [vals2.hydro_ecu15, vals2.hydro_ecu16, vals2.hydro_ecu17, vals2.hydro_ecu18, vals2.hydro_ecu19 , vals2.hydro_ecu20, vals2.hydro_ecu21, vals2.hydro_ecu22, vals2.hydro_ecu23, vals2.hydro_ecu24]
+        Z4 = [vals2.tpd400ref_ecu15, vals2.tpd400ref_ecu16, vals2.tpd400ref_ecu17, vals2.tpd400ref_ecu18, vals2.tpd400ref_ecu19 , vals2.tpd400ref_ecu20, vals2.tpd400ref_ecu21, vals2.tpd400ref_ecu22, vals2.tpd400ref_ecu23, vals2.tpd400ref_ecu24]
+        Z5 = [vals2.dewaxing_ecu15, vals2.dewaxing_ecu16, vals2.dewaxing_ecu17, vals2.dewaxing_ecu18, vals2.dewaxing_ecu19 , vals2.dewaxing_ecu20, vals2.dewaxing_ecu21, vals2.dewaxing_ecu22, vals2.dewaxing_ecu23, vals2.dewaxing_ecu24]
+        Z6 = [vals2.neutral_ecu15, vals2.neutral_ecu16, vals2.neutral_ecu17, vals2.neutral_ecu18, vals2.neutral_ecu19 , vals2.neutral_ecu20, vals2.neutral_ecu21, vals2.neutral_ecu22, vals2.neutral_ecu23, vals2.neutral_ecu24]
+
+
+        plt1 = plt.figure(1)
+        plt.plot(X, Y1)
+        plt.plot(X, Y2)
+        plt.plot(X, Y3)
+        plt.plot(X, Y4)
+        plt.plot(X, Y5)
+        plt.plot(X, Y6)
+        plt.xlabel('Year')
+        plt.ylabel('% Utilization')
+        plt.title('Packaging Asset Capacity Utilization - Project Apple')
+        fig1 = plt.gcf()
+        #convert graph into dtring buffer and then we convert 64 bit code into image
+        buf1 = io.BytesIO()
+        fig1.savefig(buf1,format='png')
+        buf1.seek(0)
+        string1 = base64.b64encode(buf1.read())
+        uri1 =  urllib.parse.quote(string1)
+
+        plt1 = plt.figure(2)
+        plt.plot(X, Z1)
+        plt.plot(X, Z2)
+        plt.plot(X, Z3)
+        plt.plot(X, Z4)
+        plt.plot(X, Z5)
+        plt.plot(X, Z6)
+        plt.xlabel('Year')
+        plt.ylabel('% Utilization')
+        plt.title('Refining Asset Capacity Utilization - Project Apple')
+
+
+        fig = plt.gcf()
+        #convert graph into dtring buffer and then we convert 64 bit code into image
+        buf = io.BytesIO()
+        fig.savefig(buf,format='png')
+        buf.seek(0)
+        string = base64.b64encode(buf.read())
+        uri =  urllib.parse.quote(string)
         # save the object
         vals.save()
         vals2.save()
-        return render(request, 'index.html', {'vals': vals , 'vals2': vals2})
+        return render(request, 'index.html', {'vals': vals , 'vals2': vals2 , 'data' : uri, 'data1' : uri1})
 
-    # context = {'form': form} --- if want to use forms
-    return render(request, 'index.html', )
+    return render(request, 'index.html')
