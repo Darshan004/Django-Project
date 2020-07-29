@@ -14,10 +14,17 @@ input:-moz-read-only { /* For Firefox */
   border-radius: 6px;
   background-color: rgb(217, 217, 217);
 }
-/* 
 input:read-only {
-  background-color: rgb(206, 200, 200);
-} */
+  padding: 7px;
+  border-radius: 6px;
+  background-color: rgb(217, 217, 217);
+}
+
+.highlighted{  
+  padding: 7px;
+  border-radius: 6px;
+  background-color: rgb(226, 226, 73);
+} 
 
 button::-moz-focus-inner {
   border: 0;
@@ -25,9 +32,9 @@ button::-moz-focus-inner {
 
 
 body{
-  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-  background: linear-gradient(to right, #25c481, #25b7c4);
-
+  /* background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #25c481, #25b7c4); */
+  background-color: #25c481;
 }
 section{
   margin: 50px;
