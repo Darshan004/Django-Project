@@ -23,7 +23,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('',include('macd.urls')),
     path('admin/', admin.site.urls),
-    path('upload/', views.upload, name='upload')
 ]
 
 if settings.DEBUG:

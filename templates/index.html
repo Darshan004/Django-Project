@@ -7,838 +7,1082 @@
 	<title>Document</title>
 	<link rel="stylesheet" href={% static './css/style.css' %}/>
 	<script type="text/javascript" src="{% static 'javascript/changes.js' %}"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+	<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<style>
+	a, a:active, a:focus,
+	button, button:focus, button:active,
+	.btn, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn.active.focus {
+		outline: none;
+		outline: 0;
+	}
+
+	input::-moz-focus-inner {
+		border: 0;
+	}
+
+	input:-moz-read-only { /* For Firefox */
+	padding: 7px;
+	border-radius: 6px;
+	background-color: rgb(217, 217, 217);
+	}
+	input:read-only {
+	padding: 7px;
+	border-radius: 6px;
+	background-color: rgb(217, 217, 217);
+	}
+
+	.highlighted{  
+	padding: 7px;
+	border-radius: 6px;
+	background-color: rgb(226, 226, 73);
+	} 
+
+	button::-moz-focus-inner {
+	border: 0;
+	}
+
+
+	body{
+	/* background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+	background: linear-gradient(to right, #25c481, #25b7c4); */
+	background-color: #25c481;
+	}
+	section{
+	margin: 50px;
+	}
+	@keyframes gradient {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
+	}
+
+	.tab {
+
+	overflow: hidden;
+	border: 2px solid #f7cac9;
+		outline: none;
+		outline: 0;
+	background-color: #ddd;
+	}
+	
+	/* Style the buttons that are used to open the tab content */
+	.tab button {
+
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	outline: 0;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	}
+
+	/* Change background color of buttons on hover */
+	.tab button:hover {
+		outline: none;
+		outline: 0;
+	background-color: #ddd;
+	}
+
+	/* Create an active/current tablink class */
+	.tab button.active {
+	background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+	background: linear-gradient(to right, #25c481, #25b7c4);
+	outline: none;
+	outline: 0;
+	}
+
+	/* Style the tab content */
+	.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+	outline: none;
+	outline: 0;
+	} 
+
+	.tabcontent {
+	animation: fadeEffect 1s; /* Fading effect takes 1 second */
+	outline: none;
+	outline: 0;
+	}
+
+	/* Go from zero to full opacity */
+	@keyframes fadeEffect {
+	from {opacity: 0;}
+	to {opacity: 1;}
+	}
+
+
+	table {
+		width: 100%;
+		border: 1px solid black;
+		border-collapse: collapse;
+		overflow: hidden;
+		box-shadow: 0 0 30px rgba(0,0,0,0.1);
+	}
+
+	th,
+	td {
+		border: 1px solid black;
+		padding: 7px;
+		background-color: rgba(255,255,255,0.2);
+		
+	}
+
+	th {
+		border: 1px solid black;
+		text-align: left;
+		background-color: #55608f;
+	}
+
+	thead {
+		th {
+		text-align: center;
+		border: 1px solid black;
+			background-color: #55608f;
+		}
+	}
+
+	tbody {
+		tr {
+			&:hover {
+				border: 1px solid black;
+				background-color: rgba(255,255,255,0.3);
+			}
+		}
+		td {
+			border: 1px solid black;
+			position: relative;
+			&:hover {
+				&:before {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: -9999px;
+			bottom: -9999px;
+			background-color: rgba(255,255,255,0.2);
+			z-index: -1;
+				}
+			}
+		}
+	}
+
+	* {
+	box-sizing: border-box;
+	}
+	img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+
+	.column {
+	float: left;
+	width: 50%;
+	padding: 5px;
+	}
+
+	.clear{
+	clear: both;
+	}
+
+	/* Clearfix (clear floats) */
+	.row::after {
+	content: "";
+	clear: both;
+	display: table;
+	}
+
+
+	.container {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+	}
+
+	.container .btn {
+	position: absolute;
+	top: 185%;
+	left: 185%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	background-color: #f1f1f1;
+	color: black;
+	font-size: 16px;
+	padding: 16px 30px;
+	border: 1px solid black;
+	cursor: pointer;
+	border-radius: 5px;
+	text-align: center;
+	}
+
+	.container .btn:hover {
+		border: 1px solid black;
+	background: -webkit-linear-gradient(left, #25c482, #25b7c3);
+	background: linear-gradient(to right, #25c482, #25b7c3);
+	color: darkslategray;
+	}
+</style>
 </head>
-	<body>
-		<div class="tab">
-			<button class="tablinks" onclick="openCity(event, 'Input')" id="defaultOpen">Graph Based Data</button>
-			<button class="tablinks" onclick="openCity(event, 'Capacity_Calculations')">Capacity Calculations</button>
-			<button class="tablinks" onclick="openCity(event, 'Oil_inIE_product')">IE&HYDRO Oil in IE Product</button>
-			<button class="tablinks" onclick="openCity(event, 'Oil_in_nonIE_product')">HYDRO Oil in non-IE product</button>
-			<button class="tablinks" onclick="openCity(event, 'Volume_Database')">Volume Database</button>
-			<button class="tablinks" onclick="openCity(event, 'Volume_Summary')">Volume Summary</button>
-			<button class="tablinks" onclick="openCity(event, 'MP_Volume')">MP Volume</button>
-			<button class="tablinks" onclick="openCity(event, 'MP_buisness_case_volume')">MP Buisness case Volume</button>
-			<button class="tablinks" onclick="openCity(event, 'summary')">Summary</button>
-			<button class="tablinks" onclick="openCity(event, 'graphs')">Graphs</button>
+<body>
 
-		</div>
-				<a href="#" onClick="resetinput(); return true;" >Reset Input</a>
-		<hr>
-		<div id="Input" class="tabcontent">
-			<center><h1>Graph Based Data</h1></center>
-			<hr><br>
-			<form action="" method="POST" name="myform">
-			{% csrf_token %}
-			<table>
-			<thead >
-				<tr align = center>
-					<th >Year</th>
-					<th ></th>
-					<th >Y1</th>
-					<th >Y2</th>
-					<th >Y3</th>
-					<th >Y4</th>
-					<th >Y5</th>
-					<th >Y6</th>
-					<th >Y7</th>
-					<th >Y8</th>
-					<th >Y9</th>
-					<th >Y10</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr height = 25px></tr>
-				<tr height = 50px><td> <h2>McD</h2> </td></tr>
-				<tr>
-					<td >HOCAN</td>
-					<td >McD</td>
-					<td><input  type="text" id="1" size="8" name="hocan15" value={{vals.hocan15}}></td>
-					<td><input  type="text" id="2" size="8" name="hocan16" value={{vals.hocan16}}></td>
-					<td><input  type="text" id="3" size="8" name="hocan17" value={{vals.hocan17}}></td>
-					<td><input  type="text" id="4" size="8" name="hocan18" value={{vals.hocan18}}></td>
-					<td><input  type="text" id="5" size="8" name="hocan19" value={{vals.hocan19}}></td>
-					<td><input  type="text" id="6" size="8" name="hocan20" value={{vals.hocan20}}></td>
-					<td><input  type="text" id="7" size="8" name="hocan21" value={{vals.hocan21}}></td>
-					<td><input  type="text" id="8" size="8" name="hocan22" value={{vals.hocan22}}></td>
-					<td><input  type="text" id="9" size="8" name="hocan23" value={{vals.hocan23}}></td>
-					<td><input  type="text" id="10" size="8" name="hocan24" value={{vals.hocan24}}></td>
+<div class="tab">
+	<button class="tablinks" onclick="openCity(event, 'Input')" id="defaultOpen">Graph Based Data</button>
+	<button class="tablinks" onclick="openCity(event, 'Capacity_Calculations')">Capacity Calculations</button>
+	<button class="tablinks" onclick="openCity(event, 'Oil_inIE_product')">IE&HYDRO Oil in IE Product</button>
+	<button class="tablinks" onclick="openCity(event, 'Oil_in_nonIE_product')">HYDRO Oil in non-IE product</button>
+	<button class="tablinks" onclick="openCity(event, 'Volume_Database')">Volume Database</button>
+	<button class="tablinks" onclick="openCity(event, 'Volume_Summary')">Volume Summary</button>
+	<button class="tablinks" onclick="openCity(event, 'MP_Volume')">MP Volume</button>
+	<button class="tablinks" onclick="openCity(event, 'MP_buisness_case_volume')">MP Buisness case Volume</button>
+	<button class="tablinks" onclick="openCity(event, 'summary')">Summary</button>
+	<button class="tablinks" onclick="openCity(event, 'graphs')">Graphs</button>
+</div>
+	<br>	
+	<button type="button" onClick="resetinput(); return true;" >Reset Input</button>
+	<button type="button" onclick="printDiv('canvas_div_pdf')" >Download as PDF</button>
+
+<form action="" method="POST" name="uploadform" enctype="multipart/form-data">
+    {% csrf_token %}
+        <center><input type="file" name="uploaded_file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+        <input type=submit value="Upload File and Autofill Values" name="_upload" ></center>
+        {% if uploaded_file_url %}
+		    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+	    {% endif %}
+</form> 
+
+<hr>	
+
+<div id="canvas_div_pdf">
+
+	<div id="Input" class="tabcontent">
+				<center><h1>Graph Based Data</h1></center>
+				<hr><br>
+				<form action="" method="POST" name="myform">
+				{% csrf_token %}
+				<table>
+				<thead >
+					<tr align = center>
+						<th >Year</th>
+						<th ></th>
+						<th >Y1</th>
+						<th >Y2</th>
+						<th >Y3</th>
+						<th >Y4</th>
+						<th >Y5</th>
+						<th >Y6</th>
+						<th >Y7</th>
+						<th >Y8</th>
+						<th >Y9</th>
+						<th >Y10</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr height = 25px></tr>
+					<tr height = 50px><td> <h2>McD</h2> </td></tr>
+					<tr>
+						<td >HOCAN</td>
+						<td >McD</td>
+						<td><input  type="text" id="1" size="8" name="hocan15" value={{vals.hocan15}}></td>
+						<td><input  type="text" id="2" size="8" name="hocan16" value={{vals.hocan16}}></td>
+						<td><input  type="text" id="3" size="8" name="hocan17" value={{vals.hocan17}}></td>
+						<td><input  type="text" id="4" size="8" name="hocan18" value={{vals.hocan18}}></td>
+						<td><input  type="text" id="5" size="8" name="hocan19" value={{vals.hocan19}}></td>
+						<td><input  type="text" id="6" size="8" name="hocan20" value={{vals.hocan20}}></td>
+						<td><input  type="text" id="7" size="8" name="hocan21" value={{vals.hocan21}}></td>
+						<td><input  type="text" id="8" size="8" name="hocan22" value={{vals.hocan22}}></td>
+						<td><input  type="text" id="9" size="8" name="hocan23" value={{vals.hocan23}}></td>
+						<td><input  type="text" id="10" size="8" name="hocan24" value={{vals.hocan24}}></td>
 
 
-				</tr>
-				<tr>
-					<td >G1SB0</td>
-					<td >McD</td>
-						<td><input  type="text" id="11" size="8" name="g1sb015"  value={{vals.g1sb015}}></td>
-						<td><input  type="text" id="12" size="8" name="g1sb016"  value={{vals.g1sb016}}></td>
-						<td><input  type="text" id="13" size="8" name="g1sb017"  value={{vals.g1sb017}}></td>
-						<td><input  type="text" id="14" size="8" name="g1sb018"  value={{vals.g1sb018}}></td>
-						<td><input  type="text" id="15" size="8" name="g1sb019"  value={{vals.g1sb019}}></td>
-						<td><input  type="text" id="16" size="8" name="g1sb020"  value={{vals.g1sb020}}></td>
-						<td><input  type="text" id="17" size="8" name="g1sb021"  value={{vals.g1sb021}}></td>
-						<td><input  type="text" id="18" size="8" name="g1sb022"  value={{vals.g1sb022}}></td>
-						<td><input  type="text" id="19" size="8" name="g1sb023"  value={{vals.g1sb023}}></td>
-						<td><input  type="text" id="20" size="8" name="g1sb024"  value={{vals.g1sb024}}></td>
+					</tr>
+					<tr>
+						<td >G1SB0</td>
+						<td >McD</td>
+							<td><input  type="text" id="11" size="8" name="g1sb015"  value={{vals.g1sb015}}></td>
+							<td><input  type="text" id="12" size="8" name="g1sb016"  value={{vals.g1sb016}}></td>
+							<td><input  type="text" id="13" size="8" name="g1sb017"  value={{vals.g1sb017}}></td>
+							<td><input  type="text" id="14" size="8" name="g1sb018"  value={{vals.g1sb018}}></td>
+							<td><input  type="text" id="15" size="8" name="g1sb019"  value={{vals.g1sb019}}></td>
+							<td><input  type="text" id="16" size="8" name="g1sb020"  value={{vals.g1sb020}}></td>
+							<td><input  type="text" id="17" size="8" name="g1sb021"  value={{vals.g1sb021}}></td>
+							<td><input  type="text" id="18" size="8" name="g1sb022"  value={{vals.g1sb022}}></td>
+							<td><input  type="text" id="19" size="8" name="g1sb023"  value={{vals.g1sb023}}></td>
+							<td><input  type="text" id="20" size="8" name="g1sb024"  value={{vals.g1sb024}}></td>
 
-				</tr>
-				<tr>
-					<td >CORN</td>
-					<td >McD</td>
-						<td><input  type="text" id="21" size="8" name="corn15"  value={{vals.corn15}}></td>
-						<td><input  type="text" id="22" size="8" name="corn16"  value={{vals.corn16}}></td>
-						<td><input  type="text" id="23" size="8" name="corn17"  value={{vals.corn17}}></td>
-						<td><input  type="text" id="24" size="8" name="corn18"  value={{vals.corn18}}></td>
-						<td><input  type="text" id="25" size="8" name="corn19"  value={{vals.corn19}}></td>
-						<td><input  type="text" id="26" size="8" name="corn20"  value={{vals.corn20}}></td>
-						<td><input  type="text" id="27" size="8" name="corn21"  value={{vals.corn21}}></td>
-						<td><input  type="text" id="28" size="8" name="corn22"  value={{vals.corn22}}></td>
-						<td><input  type="text" id="29" size="8" name="corn23"  value={{vals.corn23}}></td>
-						<td><input  type="text" id="30" size="8" name="corn24"  value={{vals.corn24}}></td>
+					</tr>
+					<tr>
+						<td >CORN</td>
+						<td >McD</td>
+							<td><input  type="text" id="21" size="8" name="corn15"  value={{vals.corn15}}></td>
+							<td><input  type="text" id="22" size="8" name="corn16"  value={{vals.corn16}}></td>
+							<td><input  type="text" id="23" size="8" name="corn17"  value={{vals.corn17}}></td>
+							<td><input  type="text" id="24" size="8" name="corn18"  value={{vals.corn18}}></td>
+							<td><input  type="text" id="25" size="8" name="corn19"  value={{vals.corn19}}></td>
+							<td><input  type="text" id="26" size="8" name="corn20"  value={{vals.corn20}}></td>
+							<td><input  type="text" id="27" size="8" name="corn21"  value={{vals.corn21}}></td>
+							<td><input  type="text" id="28" size="8" name="corn22"  value={{vals.corn22}}></td>
+							<td><input  type="text" id="29" size="8" name="corn23"  value={{vals.corn23}}></td>
+							<td><input  type="text" id="30" size="8" name="corn24"  value={{vals.corn24}}></td>
 
-				</tr>
-				<tr>
-					<td >HSBO</td>
-					<td >McD</td>
-						<td><input  type="text" id="31" size="8" name="hsbo15"  value={{vals.hsbo15}}></td>
-						<td><input  type="text" id="32" size="8" name="hsbo16"  value={{vals.hsbo16}}></td>
-						<td><input  type="text" id="33" size="8" name="hsbo17"  value={{vals.hsbo17}}></td>
-						<td><input  type="text" id="34" size="8" name="hsbo18"  value={{vals.hsbo18}}></td>
-						<td><input  type="text" id="35" size="8" name="hsbo19"  value={{vals.hsbo19}}></td>
-						<td><input  type="text" id="36" size="8" name="hsbo20"  value={{vals.hsbo20}}></td>
-						<td><input  type="text" id="37" size="8" name="hsbo21"  value={{vals.hsbo21}}></td>
-						<td><input  type="text" id="38" size="8" name="hsbo22"  value={{vals.hsbo22}}></td>
-						<td><input  type="text" id="39" size="8" name="hsbo23"  value={{vals.hsbo23}}></td>
-						<td><input  type="text" id="40" size="8" name="hsbo24"  value={{vals.hsbo24}}></td>
+					</tr>
+					<tr>
+						<td >HSBO</td>
+						<td >McD</td>
+							<td><input  type="text" id="31" size="8" name="hsbo15"  value={{vals.hsbo15}}></td>
+							<td><input  type="text" id="32" size="8" name="hsbo16"  value={{vals.hsbo16}}></td>
+							<td><input  type="text" id="33" size="8" name="hsbo17"  value={{vals.hsbo17}}></td>
+							<td><input  type="text" id="34" size="8" name="hsbo18"  value={{vals.hsbo18}}></td>
+							<td><input  type="text" id="35" size="8" name="hsbo19"  value={{vals.hsbo19}}></td>
+							<td><input  type="text" id="36" size="8" name="hsbo20"  value={{vals.hsbo20}}></td>
+							<td><input  type="text" id="37" size="8" name="hsbo21"  value={{vals.hsbo21}}></td>
+							<td><input  type="text" id="38" size="8" name="hsbo22"  value={{vals.hsbo22}}></td>
+							<td><input  type="text" id="39" size="8" name="hsbo23"  value={{vals.hsbo23}}></td>
+							<td><input  type="text" id="40" size="8" name="hsbo24"  value={{vals.hsbo24}}></td>
 
-				</tr>
-				<tr>
-					<td >STORE OIL BLEND</td>
-					<td ></td>
-						<td><input readonly type="text"  size="8" name="store_oil_blend15"  value={{vals.stote_oil_blend15}}></td>
-						<td><input readonly type="text"  size="8" name="store_oil_blend16"  value={{vals.stote_oil_blend16}}></td>
-						<td><input readonly type="text"  size="8" name="store_oil_blend17"  value={{vals.stote_oil_blend17}}></td>
-						<td><input readonly type="text"  size="8" name="store_oil_blend18"  value={{vals.stote_oil_blend18}}></td>
-						<td><input readonly type="text"  size="8" name="store_oil_blend19"  value={{vals.stote_oil_blend19}}></td>
-						<td><input readonly type="text"  size="8" name="store_oil_blend20"  value={{vals.stote_oil_blend20}}></td>
-						<td><input readonly type="text"  size="8" name="store_oil_blend21"  value={{vals.stote_oil_blend21}}></td>
-						<td><input readonly type="text"  size="8" name="store_oil_blend22"  value={{vals.stote_oil_blend22}}></td>
-						<td><input readonly type="text"  size="8" name="store_oil_blend23"  value={{vals.stote_oil_blend23}}></td>
-						<td><input readonly type="text"  size="8" name="store_oil_blend24"  value={{vals.stote_oil_blend24}}></td>
-
-				</tr>
-				<tr>
-					<td >CHICKEN PAR FRY</td>
-					<td ></td>
-						<td><input readonly  type="text" size="8" name="chicken_par_fry15"  value={{vals.chicken_par_fry15}}></td>
-						<td><input readonly  type="text" size="8" name="chicken_par_fry16"  value={{vals.chicken_par_fry16}}></td>
-						<td><input readonly  type="text" size="8" name="chicken_par_fry17"  value={{vals.chicken_par_fry17}}></td>
-						<td><input readonly  type="text" size="8" name="chicken_par_fry18"  value={{vals.chicken_par_fry18}}></td>
-						<td><input readonly  type="text" size="8" name="chicken_par_fry19"  value={{vals.chicken_par_fry19}}></td>
-						<td><input readonly  type="text" size="8" name="chicken_par_fry20"  value={{vals.chicken_par_fry20}}></td>
-						<td><input readonly  type="text" size="8" name="chicken_par_fry21"  value={{vals.chicken_par_fry21}}></td>
-						<td><input readonly  type="text" size="8" name="chicken_par_fry22"  value={{vals.chicken_par_fry22}}></td>
-						<td><input readonly  type="text" size="8" name="chicken_par_fry23"  value={{vals.chicken_par_fry23}}></td>
-						<td><input readonly  type="text" size="8" name="chicken_par_fry24"  value={{vals.chicken_par_fry24}}></td>
-
-				</tr>
-				<tr>
-					<td ><h5>MACD SYSYTEM TOTAL</h5></td>
+					</tr>
+					<tr>
+						<td >STORE OIL BLEND</td>
 						<td ></td>
-						<td><input readonly  type="text" size="8" name="macd_system_total15"  value={{vals.macd_system_total15}}></td>
-						<td><input readonly  type="text" size="8" name="macd_system_total16"  value={{vals.macd_system_total16}}></td>
-						<td><input readonly  type="text" size="8" name="macd_system_total17"  value={{vals.macd_system_total17}}></td>
-						<td><input readonly  type="text" size="8" name="macd_system_total18"  value={{vals.macd_system_total18}}></td>
-						<td><input readonly  type="text" size="8" name="macd_system_total19"  value={{vals.macd_system_total19}}></td>
-						<td><input readonly  type="text" size="8" name="macd_system_total20"  value={{vals.macd_system_total20}}></td>
-						<td><input readonly  type="text" size="8" name="macd_system_total21"  value={{vals.macd_system_total21}}></td>
-						<td><input readonly  type="text" size="8" name="macd_system_total22"  value={{vals.macd_system_total22}}></td>
-						<td><input readonly  type="text" size="8" name="macd_system_total23"  value={{vals.macd_system_total23}}></td>
-						<td><input readonly  type="text" size="8" name="macd_system_total24"  value={{vals.macd_system_total24}}></td>
+							<td><input readonly type="text"  size="8" name="store_oil_blend15"  value={{vals.stote_oil_blend15}}></td>
+							<td><input readonly type="text"  size="8" name="store_oil_blend16"  value={{vals.stote_oil_blend16}}></td>
+							<td><input readonly type="text"  size="8" name="store_oil_blend17"  value={{vals.stote_oil_blend17}}></td>
+							<td><input readonly type="text"  size="8" name="store_oil_blend18"  value={{vals.stote_oil_blend18}}></td>
+							<td><input readonly type="text"  size="8" name="store_oil_blend19"  value={{vals.stote_oil_blend19}}></td>
+							<td><input readonly type="text"  size="8" name="store_oil_blend20"  value={{vals.stote_oil_blend20}}></td>
+							<td><input readonly type="text"  size="8" name="store_oil_blend21"  value={{vals.stote_oil_blend21}}></td>
+							<td><input readonly type="text"  size="8" name="store_oil_blend22"  value={{vals.stote_oil_blend22}}></td>
+							<td><input readonly type="text"  size="8" name="store_oil_blend23"  value={{vals.stote_oil_blend23}}></td>
+							<td><input readonly type="text"  size="8" name="store_oil_blend24"  value={{vals.stote_oil_blend24}}></td>
 
-				</tr>
-				<tr height = 25px></tr>
-				<tr height = 50px><td> <h2>Speciality Fats</h2> </td></tr>
+					</tr>
+					<tr>
+						<td >CHICKEN PAR FRY</td>
+						<td ></td>
+							<td><input readonly  type="text" size="8" name="chicken_par_fry15"  value={{vals.chicken_par_fry15}}></td>
+							<td><input readonly  type="text" size="8" name="chicken_par_fry16"  value={{vals.chicken_par_fry16}}></td>
+							<td><input readonly  type="text" size="8" name="chicken_par_fry17"  value={{vals.chicken_par_fry17}}></td>
+							<td><input readonly  type="text" size="8" name="chicken_par_fry18"  value={{vals.chicken_par_fry18}}></td>
+							<td><input readonly  type="text" size="8" name="chicken_par_fry19"  value={{vals.chicken_par_fry19}}></td>
+							<td><input readonly  type="text" size="8" name="chicken_par_fry20"  value={{vals.chicken_par_fry20}}></td>
+							<td><input readonly  type="text" size="8" name="chicken_par_fry21"  value={{vals.chicken_par_fry21}}></td>
+							<td><input readonly  type="text" size="8" name="chicken_par_fry22"  value={{vals.chicken_par_fry22}}></td>
+							<td><input readonly  type="text" size="8" name="chicken_par_fry23"  value={{vals.chicken_par_fry23}}></td>
+							<td><input readonly  type="text" size="8" name="chicken_par_fry24"  value={{vals.chicken_par_fry24}}></td>
 
-				<tr>
-					<td >RHPKO</td>
-					<td >Bulk</td>
-					<td><input  type="text" id="41" size="8" name="rhpko15" value={{vals.rhpko15}}></td>
-					<td><input  type="text" id="42" size="8" name="rhpko16" value={{vals.rhpko16}}></td>
-					<td><input  type="text" id="43" size="8" name="rhpko17" value={{vals.rhpko17}}></td>
-					<td><input  type="text" id="44" size="8" name="rhpko18" value={{vals.rhpko18}}></td>
-					<td><input  type="text" id="45" size="8" name="rhpko19" value={{vals.rhpko19}}></td>
-					<td><input  type="text" id="46" size="8" name="rhpko20" value={{vals.rhpko20}}></td>
-					<td><input  type="text" id="47" size="8" name="rhpko21" value={{vals.rhpko21}}></td>
-					<td><input  type="text" id="48" size="8" name="rhpko22" value={{vals.rhpko22}}></td>
-					<td><input  type="text" id="49" size="8" name="rhpko23" value={{vals.rhpko23}}></td>
-					<td><input  type="text" id="50" size="8" name="rhpko24" value={{vals.rhpko24}}></td>
-				</tr>
+					</tr>
+					<tr>
+						<td ><h5>MACD SYSYTEM TOTAL</h5></td>
+							<td ></td>
+							<td><input readonly  type="text" size="8" name="macd_system_total15"  value={{vals.macd_system_total15}}></td>
+							<td><input readonly  type="text" size="8" name="macd_system_total16"  value={{vals.macd_system_total16}}></td>
+							<td><input readonly  type="text" size="8" name="macd_system_total17"  value={{vals.macd_system_total17}}></td>
+							<td><input readonly  type="text" size="8" name="macd_system_total18"  value={{vals.macd_system_total18}}></td>
+							<td><input readonly  type="text" size="8" name="macd_system_total19"  value={{vals.macd_system_total19}}></td>
+							<td><input readonly  type="text" size="8" name="macd_system_total20"  value={{vals.macd_system_total20}}></td>
+							<td><input readonly  type="text" size="8" name="macd_system_total21"  value={{vals.macd_system_total21}}></td>
+							<td><input readonly  type="text" size="8" name="macd_system_total22"  value={{vals.macd_system_total22}}></td>
+							<td><input readonly  type="text" size="8" name="macd_system_total23"  value={{vals.macd_system_total23}}></td>
+							<td><input readonly  type="text" size="8" name="macd_system_total24"  value={{vals.macd_system_total24}}></td>
 
-				<tr>
-					<td >RHPKOL</td>
-					<td >Bulk</td>
-					<td><input  type="text" id="51" size="8" name="rhpkol15" value={{vals.rhpkol15}}></td>
-					<td><input  type="text" id="52" size="8" name="rhpkol16" value={{vals.rhpkol16}}></td>
-					<td><input  type="text" id="53" size="8" name="rhpkol17" value={{vals.rhpkol17}}></td>
-					<td><input  type="text" id="54" size="8" name="rhpkol18" value={{vals.rhpkol18}}></td>
-					<td><input  type="text" id="55" size="8" name="rhpkol19" value={{vals.rhpkol19}}></td>
-					<td><input  type="text" id="56" size="8" name="rhpkol20" value={{vals.rhpkol20}}></td>
-					<td><input  type="text" id="57" size="8" name="rhpkol21" value={{vals.rhpkol21}}></td>
-					<td><input  type="text" id="58" size="8" name="rhpkol22" value={{vals.rhpkol22}}></td>
-					<td><input  type="text" id="59" size="8" name="rhpkol23" value={{vals.rhpkol23}}></td>
-					<td><input  type="text" id="60" size="8" name="rhpkol24" value={{vals.rhpkol24}}></td>
-				</tr>
+					</tr>
+					<tr height = 25px></tr>
+					<tr height = 50px><td> <h2>Speciality Fats</h2> </td></tr>
 
-				<tr>
-					<td >RHPKST</td>
-					<td >Bulk</td>
-					<td><input  type="text" id="61" size="8" name="rhpkst15" value={{vals.rhpkst15}}></td>
-					<td><input  type="text" id="62" size="8" name="rhpkst16" value={{vals.rhpkst16}}></td>
-					<td><input  type="text" id="63" size="8" name="rhpkst17" value={{vals.rhpkst17}}></td>
-					<td><input  type="text" id="64" size="8" name="rhpkst18" value={{vals.rhpkst18}}></td>
-					<td><input  type="text" id="65" size="8" name="rhpkst19" value={{vals.rhpkst19}}></td>
-					<td><input  type="text" id="66" size="8" name="rhpkst20" value={{vals.rhpkst20}}></td>
-					<td><input  type="text" id="67" size="8" name="rhpkst21" value={{vals.rhpkst21}}></td>
-					<td><input  type="text" id="68" size="8" name="rhpkst22" value={{vals.rhpkst22}}></td>
-					<td><input  type="text" id="69" size="8" name="rhpkst23" value={{vals.rhpkst23}}></td>
-					<td><input  type="text" id="70" size="8" name="rhpkst24" value={{vals.rhpkst24}}></td>
-				</tr>
+					<tr>
+						<td >RHPKO</td>
+						<td >Bulk</td>
+						<td><input  type="text" id="41" size="8" name="rhpko15" value={{vals.rhpko15}}></td>
+						<td><input  type="text" id="42" size="8" name="rhpko16" value={{vals.rhpko16}}></td>
+						<td><input  type="text" id="43" size="8" name="rhpko17" value={{vals.rhpko17}}></td>
+						<td><input  type="text" id="44" size="8" name="rhpko18" value={{vals.rhpko18}}></td>
+						<td><input  type="text" id="45" size="8" name="rhpko19" value={{vals.rhpko19}}></td>
+						<td><input  type="text" id="46" size="8" name="rhpko20" value={{vals.rhpko20}}></td>
+						<td><input  type="text" id="47" size="8" name="rhpko21" value={{vals.rhpko21}}></td>
+						<td><input  type="text" id="48" size="8" name="rhpko22" value={{vals.rhpko22}}></td>
+						<td><input  type="text" id="49" size="8" name="rhpko23" value={{vals.rhpko23}}></td>
+						<td><input  type="text" id="50" size="8" name="rhpko24" value={{vals.rhpko24}}></td>
+					</tr>
 
-				<tr>
-					<td >SHORTENING</td>
-					<td >Bulk</td>
-					<td><input  type="text" id="71" size="8" name="shortening15" value={{vals.shortening15}}></td>
-					<td><input  type="text" id="72" size="8" name="shortening16" value={{vals.shortening16}}></td>
-					<td><input  type="text" id="73" size="8" name="shortening17" value={{vals.shortening17}}></td>
-					<td><input  type="text" id="74" size="8" name="shortening18" value={{vals.shortening18}}></td>
-					<td><input  type="text" id="75" size="8" name="shortening19" value={{vals.shortening19}}></td>
-					<td><input  type="text" id="76" size="8" name="shortening20" value={{vals.shortening20}}></td>
-					<td><input  type="text" id="77" size="8" name="shortening21" value={{vals.shortening21}}></td>
-					<td><input  type="text" id="78" size="8" name="shortening22" value={{vals.shortening22}}></td>
-					<td><input  type="text" id="79" size="8" name="shortening23" value={{vals.shortening23}}></td>
-					<td><input  type="text" id="80" size="8" name="shortening24" value={{vals.shortening24}}></td>
-				</tr>
+					<tr>
+						<td >RHPKOL</td>
+						<td >Bulk</td>
+						<td><input  type="text" id="51" size="8" name="rhpkol15" value={{vals.rhpkol15}}></td>
+						<td><input  type="text" id="52" size="8" name="rhpkol16" value={{vals.rhpkol16}}></td>
+						<td><input  type="text" id="53" size="8" name="rhpkol17" value={{vals.rhpkol17}}></td>
+						<td><input  type="text" id="54" size="8" name="rhpkol18" value={{vals.rhpkol18}}></td>
+						<td><input  type="text" id="55" size="8" name="rhpkol19" value={{vals.rhpkol19}}></td>
+						<td><input  type="text" id="56" size="8" name="rhpkol20" value={{vals.rhpkol20}}></td>
+						<td><input  type="text" id="57" size="8" name="rhpkol21" value={{vals.rhpkol21}}></td>
+						<td><input  type="text" id="58" size="8" name="rhpkol22" value={{vals.rhpkol22}}></td>
+						<td><input  type="text" id="59" size="8" name="rhpkol23" value={{vals.rhpkol23}}></td>
+						<td><input  type="text" id="60" size="8" name="rhpkol24" value={{vals.rhpkol24}}></td>
+					</tr>
 
-				<tr>
-					<td >RHPO</td>
-					<td >Bulk</td>
-					<td><input  type="text" id="81" size="8" name="rhpo15" value={{vals.rhpo15}}></td>
-					<td><input  type="text" id="82" size="8" name="rhpo16" value={{vals.rhpo16}}></td>
-					<td><input  type="text" id="83" size="8" name="rhpo17" value={{vals.rhpo17}}></td>
-					<td><input  type="text" id="84" size="8" name="rhpo18" value={{vals.rhpo18}}></td>
-					<td><input  type="text" id="85" size="8" name="rhpo19" value={{vals.rhpo19}}></td>
-					<td><input  type="text" id="86" size="8" name="rhpo20" value={{vals.rhpo20}}></td>
-					<td><input  type="text" id="87" size="8" name="rhpo21" value={{vals.rhpo21}}></td>
-					<td><input  type="text" id="88" size="8" name="rhpo22" value={{vals.rhpo22}}></td>
-					<td><input  type="text" id="89" size="8" name="rhpo23" value={{vals.rhpo23}}></td>
-					<td><input  type="text" id="90" size="8" name="rhpo24" value={{vals.rhpo24}}></td>
-				</tr>
+					<tr>
+						<td >RHPKST</td>
+						<td >Bulk</td>
+						<td><input  type="text" id="61" size="8" name="rhpkst15" value={{vals.rhpkst15}}></td>
+						<td><input  type="text" id="62" size="8" name="rhpkst16" value={{vals.rhpkst16}}></td>
+						<td><input  type="text" id="63" size="8" name="rhpkst17" value={{vals.rhpkst17}}></td>
+						<td><input  type="text" id="64" size="8" name="rhpkst18" value={{vals.rhpkst18}}></td>
+						<td><input  type="text" id="65" size="8" name="rhpkst19" value={{vals.rhpkst19}}></td>
+						<td><input  type="text" id="66" size="8" name="rhpkst20" value={{vals.rhpkst20}}></td>
+						<td><input  type="text" id="67" size="8" name="rhpkst21" value={{vals.rhpkst21}}></td>
+						<td><input  type="text" id="68" size="8" name="rhpkst22" value={{vals.rhpkst22}}></td>
+						<td><input  type="text" id="69" size="8" name="rhpkst23" value={{vals.rhpkst23}}></td>
+						<td><input  type="text" id="70" size="8" name="rhpkst24" value={{vals.rhpkst24}}></td>
+					</tr>
 
-				<tr>
-					<td >RPST</td>
-					<td >Bulk</td>
-					<td><input  type="text" id="91" size="8" name="rpst15" value={{vals.rpst15}}></td>
-					<td><input  type="text" id="92" size="8" name="rpst16" value={{vals.rpst16}}></td>
-					<td><input  type="text" id="93" size="8" name="rpst17" value={{vals.rpst17}}></td>
-					<td><input  type="text" id="94" size="8" name="rpst18" value={{vals.rpst18}}></td>
-					<td><input  type="text" id="95" size="8" name="rpst19" value={{vals.rpst19}}></td>
-					<td><input  type="text" id="96" size="8" name="rpst20" value={{vals.rpst20}}></td>
-					<td><input  type="text" id="97" size="8" name="rpst21" value={{vals.rpst21}}></td>
-					<td><input  type="text" id="98" size="8" name="rpst22" value={{vals.rpst22}}></td>
-					<td><input  type="text" id="99" size="8" name="rpst23" value={{vals.rpst23}}></td>
-					<td><input  type="text" id="100" size="8" name="rpst24" value={{vals.rpst24}}></td>
-				</tr>
+					<tr>
+						<td >SHORTENING</td>
+						<td >Bulk</td>
+						<td><input  type="text" id="71" size="8" name="shortening15" value={{vals.shortening15}}></td>
+						<td><input  type="text" id="72" size="8" name="shortening16" value={{vals.shortening16}}></td>
+						<td><input  type="text" id="73" size="8" name="shortening17" value={{vals.shortening17}}></td>
+						<td><input  type="text" id="74" size="8" name="shortening18" value={{vals.shortening18}}></td>
+						<td><input  type="text" id="75" size="8" name="shortening19" value={{vals.shortening19}}></td>
+						<td><input  type="text" id="76" size="8" name="shortening20" value={{vals.shortening20}}></td>
+						<td><input  type="text" id="77" size="8" name="shortening21" value={{vals.shortening21}}></td>
+						<td><input  type="text" id="78" size="8" name="shortening22" value={{vals.shortening22}}></td>
+						<td><input  type="text" id="79" size="8" name="shortening23" value={{vals.shortening23}}></td>
+						<td><input  type="text" id="80" size="8" name="shortening24" value={{vals.shortening24}}></td>
+					</tr>
 
-				<tr>
-					<td >RHPST</td>
-					<td >Bulk</td>
-					<td><input  type="text" id="101" size="8" name="rhpst15" value={{vals.rhpst15}}></td>
-					<td><input  type="text" id="102" size="8" name="rhpst16" value={{vals.rhpst16}}></td>
-					<td><input  type="text" id="103" size="8" name="rhpst17" value={{vals.rhpst17}}></td>
-					<td><input  type="text" id="104" size="8" name="rhpst18" value={{vals.rhpst18}}></td>
-					<td><input  type="text" id="105" size="8" name="rhpst19" value={{vals.rhpst19}}></td>
-					<td><input  type="text" id="106" size="8" name="rhpst20" value={{vals.rhpst20}}></td>
-					<td><input  type="text" id="107" size="8" name="rhpst21" value={{vals.rhpst21}}></td>
-					<td><input  type="text" id="108" size="8" name="rhpst22" value={{vals.rhpst22}}></td>
-					<td><input  type="text" id="109" size="8" name="rhpst23" value={{vals.rhpst23}}></td>
-					<td><input  type="text" id="110" size="8" name="rhpst24" value={{vals.rhpst24}}></td>
-				</tr>
+					<tr>
+						<td >RHPO</td>
+						<td >Bulk</td>
+						<td><input  type="text" id="81" size="8" name="rhpo15" value={{vals.rhpo15}}></td>
+						<td><input  type="text" id="82" size="8" name="rhpo16" value={{vals.rhpo16}}></td>
+						<td><input  type="text" id="83" size="8" name="rhpo17" value={{vals.rhpo17}}></td>
+						<td><input  type="text" id="84" size="8" name="rhpo18" value={{vals.rhpo18}}></td>
+						<td><input  type="text" id="85" size="8" name="rhpo19" value={{vals.rhpo19}}></td>
+						<td><input  type="text" id="86" size="8" name="rhpo20" value={{vals.rhpo20}}></td>
+						<td><input  type="text" id="87" size="8" name="rhpo21" value={{vals.rhpo21}}></td>
+						<td><input  type="text" id="88" size="8" name="rhpo22" value={{vals.rhpo22}}></td>
+						<td><input  type="text" id="89" size="8" name="rhpo23" value={{vals.rhpo23}}></td>
+						<td><input  type="text" id="90" size="8" name="rhpo24" value={{vals.rhpo24}}></td>
+					</tr>
 
-				<tr>
-					<td >RHCNO</td>
-					<td >Bulk</td>
-					<td><input  type="text" id="111" size="8" name="rhcno15" value={{vals.rhcno15}}></td>
-					<td><input  type="text" id="112" size="8" name="rhcno16" value={{vals.rhcno16}}></td>
-					<td><input  type="text" id="113" size="8" name="rhcno17" value={{vals.rhcno17}}></td>
-					<td><input  type="text" id="114" size="8" name="rhcno18" value={{vals.rhcno18}}></td>
-					<td><input  type="text" id="115" size="8" name="rhcno19" value={{vals.rhcno19}}></td>
-					<td><input  type="text" id="116" size="8" name="rhcno20" value={{vals.rhcno20}}></td>
-					<td><input  type="text" id="117" size="8" name="rhcno21" value={{vals.rhcno21}}></td>
-					<td><input  type="text" id="118" size="8" name="rhcno22" value={{vals.rhcno22}}></td>
-					<td><input  type="text" id="119" size="8" name="rhcno23" value={{vals.rhcno23}}></td>
-					<td><input  type="text" id="120" size="8" name="rhcno24" value={{vals.rhcno24}}></td>
-				</tr>
+					<tr>
+						<td >RPST</td>
+						<td >Bulk</td>
+						<td><input  type="text" id="91" size="8" name="rpst15" value={{vals.rpst15}}></td>
+						<td><input  type="text" id="92" size="8" name="rpst16" value={{vals.rpst16}}></td>
+						<td><input  type="text" id="93" size="8" name="rpst17" value={{vals.rpst17}}></td>
+						<td><input  type="text" id="94" size="8" name="rpst18" value={{vals.rpst18}}></td>
+						<td><input  type="text" id="95" size="8" name="rpst19" value={{vals.rpst19}}></td>
+						<td><input  type="text" id="96" size="8" name="rpst20" value={{vals.rpst20}}></td>
+						<td><input  type="text" id="97" size="8" name="rpst21" value={{vals.rpst21}}></td>
+						<td><input  type="text" id="98" size="8" name="rpst22" value={{vals.rpst22}}></td>
+						<td><input  type="text" id="99" size="8" name="rpst23" value={{vals.rpst23}}></td>
+						<td><input  type="text" id="10" size="8" name="rpst24" value={{vals.rpst24}}></td>
+					</tr>
 
-				<tr>
-					<td >RCNO</td>
-					<td >Bulk</td>
-					<td><input  type="text" id="121" size="8" name="rcno15" value={{vals.rcno15}}></td>
-					<td><input  type="text" id="122" size="8" name="rcno16" value={{vals.rcno16}}></td>
-					<td><input  type="text" id="123" size="8" name="rcno17" value={{vals.rcno17}}></td>
-					<td><input  type="text" id="124" size="8" name="rcno18" value={{vals.rcno18}}></td>
-					<td><input  type="text" id="125" size="8" name="rcno19" value={{vals.rcno19}}></td>
-					<td><input  type="text" id="126" size="8" name="rcno20" value={{vals.rcno20}}></td>
-					<td><input  type="text" id="127" size="8" name="rcno21" value={{vals.rcno21}}></td>
-					<td><input  type="text" id="128" size="8" name="rcno22" value={{vals.rcno22}}></td>
-					<td><input  type="text" id="129" size="8" name="rcno23" value={{vals.rcno23}}></td>
-					<td><input  type="text" id="130" size="8" name="rcno24" value={{vals.rcno24}}></td>
-				</tr>
+					<tr>
+						<td >RHPST</td>
+						<td >Bulk</td>
+						<td><input  type="text" size="8" name="rhpst15" value={{vals.rhpst15}}></td>
+						<td><input  type="text" size="8" name="rhpst16" value={{vals.rhpst16}}></td>
+						<td><input  type="text" size="8" name="rhpst17" value={{vals.rhpst17}}></td>
+						<td><input  type="text" size="8" name="rhpst18" value={{vals.rhpst18}}></td>
+						<td><input  type="text" size="8" name="rhpst19" value={{vals.rhpst19}}></td>
+						<td><input  type="text" size="8" name="rhpst20" value={{vals.rhpst20}}></td>
+						<td><input  type="text" size="8" name="rhpst21" value={{vals.rhpst21}}></td>
+						<td><input  type="text" size="8" name="rhpst22" value={{vals.rhpst22}}></td>
+						<td><input  type="text" size="8" name="rhpst23" value={{vals.rhpst23}}></td>
+						<td><input  type="text" size="8" name="rhpst24" value={{vals.rhpst24}}></td>
+					</tr>
 
-				<tr>
-					<td >RPKO</td>
-					<td >Bulk</td>
-					<td><input  type="text" id="131" size="8" name="rpko15" value={{vals.rpko15}}></td>
-					<td><input  type="text" id="132" size="8" name="rpko16" value={{vals.rpko16}}></td>
-					<td><input  type="text" id="133" size="8" name="rpko17" value={{vals.rpko17}}></td>
-					<td><input  type="text" id="134" size="8" name="rpko18" value={{vals.rpko18}}></td>
-					<td><input  type="text" id="135" size="8" name="rpko19" value={{vals.rpko19}}></td>
-					<td><input  type="text" id="136" size="8" name="rpko20" value={{vals.rpko20}}></td>
-					<td><input  type="text" id="137" size="8" name="rpko21" value={{vals.rpko21}}></td>
-					<td><input  type="text" id="138" size="8" name="rpko22" value={{vals.rpko22}}></td>
-					<td><input  type="text" id="139" size="8" name="rpko23" value={{vals.rpko23}}></td>
-					<td><input  type="text" id="140" size="8" name="rpko24" value={{vals.rpko24}}></td>
-				</tr>
+					<tr>
+						<td >RHCNO</td>
+						<td >Bulk</td>
+						<td><input  type="text" id="111" size="8" name="rhcno15" value={{vals.rhcno15}}></td>
+						<td><input  type="text" id="112" size="8" name="rhcno16" value={{vals.rhcno16}}></td>
+						<td><input  type="text" id="113" size="8" name="rhcno17" value={{vals.rhcno17}}></td>
+						<td><input  type="text" id="114" size="8" name="rhcno18" value={{vals.rhcno18}}></td>
+						<td><input  type="text" id="115" size="8" name="rhcno19" value={{vals.rhcno19}}></td>
+						<td><input  type="text" id="116" size="8" name="rhcno20" value={{vals.rhcno20}}></td>
+						<td><input  type="text" id="117" size="8" name="rhcno21" value={{vals.rhcno21}}></td>
+						<td><input  type="text" id="118" size="8" name="rhcno22" value={{vals.rhcno22}}></td>
+						<td><input  type="text" id="119" size="8" name="rhcno23" value={{vals.rhcno23}}></td>
+						<td><input  type="text" id="120" size="8" name="rhcno24" value={{vals.rhcno24}}></td>
+					</tr>
 
-				<tr>
-					<td ><h5>SUBTOTAL</h5></td>
-					<td ></td>
-						<td><input readonly type="text" size="8" name="subtotal15"  value={{vals.subtotal15}}></td>
-						<td><input readonly type="text" size="8" name="subtotal16"  value={{vals.subtotal16}}></td>
-						<td><input readonly type="text" size="8" name="subtotal17"  value={{vals.subtotal17}}></td>
-						<td><input readonly type="text" size="8" name="subtotal18"  value={{vals.subtotal18}}></td>
-						<td><input readonly type="text" size="8" name="subtotal19"  value={{vals.subtotal19}}></td>
-						<td><input readonly type="text" size="8" name="subtotal20"  value={{vals.subtotal20}}></td>
-						<td><input readonly type="text" size="8" name="subtotal21"  value={{vals.subtotal21}}></td>
-						<td><input readonly type="text" size="8" name="subtotal22"  value={{vals.subtotal22}}></td>
-						<td><input readonly type="text" size="8" name="subtotal23"  value={{vals.subtotal23}}></td>
-						<td><input readonly type="text" size="8" name="subtotal24"  value={{vals.subtotal24}}></td>
-				</tr>
+					<tr>
+						<td >RCNO</td>
+						<td >Bulk</td>
+						<td><input  type="text" id="121" size="8" name="rcno15" value={{vals.rcno15}}></td>
+						<td><input  type="text" id="122" size="8" name="rcno16" value={{vals.rcno16}}></td>
+						<td><input  type="text" id="123" size="8" name="rcno17" value={{vals.rcno17}}></td>
+						<td><input  type="text" id="124" size="8" name="rcno18" value={{vals.rcno18}}></td>
+						<td><input  type="text" id="125" size="8" name="rcno19" value={{vals.rcno19}}></td>
+						<td><input  type="text" id="126" size="8" name="rcno20" value={{vals.rcno20}}></td>
+						<td><input  type="text" id="127" size="8" name="rcno21" value={{vals.rcno21}}></td>
+						<td><input  type="text" id="128" size="8" name="rcno22" value={{vals.rcno22}}></td>
+						<td><input  type="text" id="129" size="8" name="rcno23" value={{vals.rcno23}}></td>
+						<td><input  type="text" id="130" size="8" name="rcno24" value={{vals.rcno24}}></td>
+					</tr>
 
-				<tr height = 25px></tr>
-				<tr height = 50px><td> <h2>Carton</h2> </td></tr>
+					<tr>
+						<td >RPKO</td>
+						<td >Bulk</td>
+						<td><input  type="text" id="131" size="8" name="rpko15" value={{vals.rpko15}}></td>
+						<td><input  type="text" id="132" size="8" name="rpko16" value={{vals.rpko16}}></td>
+						<td><input  type="text" id="133" size="8" name="rpko17" value={{vals.rpko17}}></td>
+						<td><input  type="text" id="134" size="8" name="rpko18" value={{vals.rpko18}}></td>
+						<td><input  type="text" id="135" size="8" name="rpko19" value={{vals.rpko19}}></td>
+						<td><input  type="text" id="136" size="8" name="rpko20" value={{vals.rpko20}}></td>
+						<td><input  type="text" id="137" size="8" name="rpko21" value={{vals.rpko21}}></td>
+						<td><input  type="text" id="138" size="8" name="rpko22" value={{vals.rpko22}}></td>
+						<td><input  type="text" id="139" size="8" name="rpko23" value={{vals.rpko23}}></td>
+						<td><input  type="text" id="140" size="8" name="rpko24" value={{vals.rpko24}}></td>
+					</tr>
 
-				<tr>
-					<td >All-Purpose Shortening</td>
-					<td ></td>
-					<td><input  type="text" id="141" size="8" name="apshortening15" value={{vals.apshortening15}}></td>
-					<td><input  type="text" id="142" size="8" name="apshortening16" value={{vals.apshortening16}}></td>
-					<td><input  type="text" id="143" size="8" name="apshortening17" value={{vals.apshortening17}}></td>
-					<td><input  type="text" id="144" size="8" name="apshortening18" value={{vals.apshortening18}}></td>
-					<td><input  type="text" id="145" size="8" name="apshortening19" value={{vals.apshortening19}}></td>
-					<td><input  type="text" id="146" size="8" name="apshortening20" value={{vals.apshortening20}}></td>
-					<td><input  type="text" id="147" size="8" name="apshortening21" value={{vals.apshortening21}}></td>
-					<td><input  type="text" id="148" size="8" name="apshortening22" value={{vals.apshortening22}}></td>
-					<td><input  type="text" id="149" size="8" name="apshortening23" value={{vals.apshortening23}}></td>
-					<td><input  type="text" id="150" size="8" name="apshortening24" value={{vals.apshortening24}}></td>
-				<tr/>
+					<tr>
+						<td ><h5>SUBTOTAL</h5></td>
+						<td ></td>
+							<td><input readonly type="text" size="8" name="subtotal15"  value={{vals.subtotal15}}></td>
+							<td><input readonly type="text" size="8" name="subtotal16"  value={{vals.subtotal16}}></td>
+							<td><input readonly type="text" size="8" name="subtotal17"  value={{vals.subtotal17}}></td>
+							<td><input readonly type="text" size="8" name="subtotal18"  value={{vals.subtotal18}}></td>
+							<td><input readonly type="text" size="8" name="subtotal19"  value={{vals.subtotal19}}></td>
+							<td><input readonly type="text" size="8" name="subtotal20"  value={{vals.subtotal20}}></td>
+							<td><input readonly type="text" size="8" name="subtotal21"  value={{vals.subtotal21}}></td>
+							<td><input readonly type="text" size="8" name="subtotal22"  value={{vals.subtotal22}}></td>
+							<td><input readonly type="text" size="8" name="subtotal23"  value={{vals.subtotal23}}></td>
+							<td><input readonly type="text" size="8" name="subtotal24"  value={{vals.subtotal24}}></td>
+					</tr>
 
-				<tr>
-					<td >RHPO</td>
-					<td ></td>
-					<td><input  type="text" id="151" size="8" name="rhpoc15" value={{vals.rhpoc15}}></td>
-					<td><input  type="text" id="152" size="8" name="rhpoc16" value={{vals.rhpoc16}}></td>
-					<td><input  type="text" id="153" size="8" name="rhpoc17" value={{vals.rhpoc17}}></td>
-					<td><input  type="text" id="154" size="8" name="rhpoc18" value={{vals.rhpoc18}}></td>
-					<td><input  type="text" id="155" size="8" name="rhpoc19" value={{vals.rhpoc19}}></td>
-					<td><input  type="text" id="156" size="8" name="rhpoc20" value={{vals.rhpoc20}}></td>
-					<td><input  type="text" id="157" size="8" name="rhpoc21" value={{vals.rhpoc21}}></td>
-					<td><input  type="text" id="158" size="8" name="rhpoc22" value={{vals.rhpoc22}}></td>
-					<td><input  type="text" id="159" size="8" name="rhpoc23" value={{vals.rhpoc23}}></td>
-					<td><input  type="text" id="160" size="8" name="rhpoc24" value={{vals.rhpoc24}}></td>
-				</tr>
+					<tr height = 25px></tr>
+					<tr height = 50px><td> <h2>Carton</h2> </td></tr>
 
-				<tr>
-					<td >RHSBO</td>
-					<td ></td>
-					<td><input  type="text" id="161" size="8" name="rhsbo15" value={{vals.rhsbo15}}></td>
-					<td><input  type="text" id="162" size="8" name="rhsbo16" value={{vals.rhsbo16}}></td>
-					<td><input  type="text" id="163" size="8" name="rhsbo17" value={{vals.rhsbo17}}></td>
-					<td><input  type="text" id="164" size="8" name="rhsbo18" value={{vals.rhsbo18}}></td>
-					<td><input  type="text" id="165" size="8" name="rhsbo19" value={{vals.rhsbo19}}></td>
-					<td><input  type="text" id="166" size="8" name="rhsbo20" value={{vals.rhsbo20}}></td>
-					<td><input  type="text" id="167" size="8" name="rhsbo21" value={{vals.rhsbo21}}></td>
-					<td><input  type="text" id="168" size="8" name="rhsbo22" value={{vals.rhsbo22}}></td>
-					<td><input  type="text" id="169" size="8" name="rhsbo23" value={{vals.rhsbo23}}></td>
-					<td><input  type="text" id="170" size="8" name="rhsbo24" value={{vals.rhsbo24}}></td>
-				</tr>
+					<tr>
+						<td >All-Purpose Shortening</td>
+						<td ></td>
+						<td><input  type="text" id="141" size="8" name="apshortening15" value={{vals.apshortening15}}></td>
+						<td><input  type="text" id="142" size="8" name="apshortening16" value={{vals.apshortening16}}></td>
+						<td><input  type="text" id="143" size="8" name="apshortening17" value={{vals.apshortening17}}></td>
+						<td><input  type="text" id="144" size="8" name="apshortening18" value={{vals.apshortening18}}></td>
+						<td><input  type="text" id="145" size="8" name="apshortening19" value={{vals.apshortening19}}></td>
+						<td><input  type="text" id="146" size="8" name="apshortening20" value={{vals.apshortening20}}></td>
+						<td><input  type="text" id="147" size="8" name="apshortening21" value={{vals.apshortening21}}></td>
+						<td><input  type="text" id="148" size="8" name="apshortening22" value={{vals.apshortening22}}></td>
+						<td><input  type="text" id="149" size="8" name="apshortening23" value={{vals.apshortening23}}></td>
+						<td><input  type="text" id="150" size="8" name="apshortening24" value={{vals.apshortening24}}></td>
+					<tr/>
 
-				<tr>
-					<td >SUBTOTAL</td>
-					<td ></td>
-					<td><input readonly type="text" size="8" name="subtotal_15"  value={{vals.subtotal_15}}></td>
-					<td><input readonly type="text" size="8" name="subtotal_16"  value={{vals.subtotal_16}}></td>
-					<td><input readonly type="text" size="8" name="subtotal_17"  value={{vals.subtotal_17}}></td>
-					<td><input readonly type="text" size="8" name="subtotal_18"  value={{vals.subtotal_18}}></td>
-					<td><input readonly type="text" size="8" name="subtotal_19"  value={{vals.subtotal_19}}></td>
-					<td><input readonly type="text" size="8" name="subtotal_20"  value={{vals.subtotal_20}}></td>
-					<td><input readonly type="text" size="8" name="subtotal_21"  value={{vals.subtotal_21}}></td>
-					<td><input readonly type="text" size="8" name="subtotal_22"  value={{vals.subtotal_22}}></td>
-					<td><input readonly type="text" size="8" name="subtotal_23"  value={{vals.subtotal_23}}></td>
-					<td><input readonly type="text" size="8" name="subtotal_24"  value={{vals.subtotal_24}}></td>
-				</tr>
+					<tr>
+						<td >RHPO</td>
+						<td ></td>
+						<td><input  type="text" id="151" size="8" name="rhpoc15" value={{vals.rhpoc15}}></td>
+						<td><input  type="text" id="152" size="8" name="rhpoc16" value={{vals.rhpoc16}}></td>
+						<td><input  type="text" id="153" size="8" name="rhpoc17" value={{vals.rhpoc17}}></td>
+						<td><input  type="text" id="154" size="8" name="rhpoc18" value={{vals.rhpoc18}}></td>
+						<td><input  type="text" id="155" size="8" name="rhpoc19" value={{vals.rhpoc19}}></td>
+						<td><input  type="text" id="156" size="8" name="rhpoc20" value={{vals.rhpoc20}}></td>
+						<td><input  type="text" id="157" size="8" name="rhpoc21" value={{vals.rhpoc21}}></td>
+						<td><input  type="text" id="158" size="8" name="rhpoc22" value={{vals.rhpoc22}}></td>
+						<td><input  type="text" id="159" size="8" name="rhpoc23" value={{vals.rhpoc23}}></td>
+						<td><input  type="text" id="160" size="8" name="rhpoc24" value={{vals.rhpoc24}}></td>
+					</tr>
 
-				<tr>
-					<td ><h5>Speciality Fats Total</h5></td>
-					<td ></td>
-					<td><input readonly type="text" size="8" name="sf_total15"  value={{vals.sf_total15}}></td>
-					<td><input readonly type="text" size="8" name="sf_total16"  value={{vals.sf_total16}}></td>
-					<td><input readonly type="text" size="8" name="sf_total17"  value={{vals.sf_total17}}></td>
-					<td><input readonly type="text" size="8" name="sf_total18"  value={{vals.sf_total18}}></td>
-					<td><input readonly type="text" size="8" name="sf_total19"  value={{vals.sf_total19}}></td>
-					<td><input readonly type="text" size="8" name="sf_total20"  value={{vals.sf_total20}}></td>
-					<td><input readonly type="text" size="8" name="sf_total21"  value={{vals.sf_total21}}></td>
-					<td><input readonly type="text" size="8" name="sf_total22"  value={{vals.sf_total22}}></td>
-					<td><input readonly type="text" size="8" name="sf_total23"  value={{vals.sf_total23}}></td>
-					<td><input readonly type="text" size="8" name="sf_total24"  value={{vals.sf_total24}}></td>
-				</tr>
+					<tr>
+						<td >RHSBO</td>
+						<td ></td>
+						<td><input  type="text" id="161" size="8" name="rhsbo15" value={{vals.rhsbo15}}></td>
+						<td><input  type="text" id="162" size="8" name="rhsbo16" value={{vals.rhsbo16}}></td>
+						<td><input  type="text" id="163" size="8" name="rhsbo17" value={{vals.rhsbo17}}></td>
+						<td><input  type="text" id="164" size="8" name="rhsbo18" value={{vals.rhsbo18}}></td>
+						<td><input  type="text" id="165" size="8" name="rhsbo19" value={{vals.rhsbo19}}></td>
+						<td><input  type="text" id="166" size="8" name="rhsbo20" value={{vals.rhsbo20}}></td>
+						<td><input  type="text" id="167" size="8" name="rhsbo21" value={{vals.rhsbo21}}></td>
+						<td><input  type="text" id="168" size="8" name="rhsbo22" value={{vals.rhsbo22}}></td>
+						<td><input  type="text" id="169" size="8" name="rhsbo23" value={{vals.rhsbo23}}></td>
+						<td><input  type="text" id="170" size="8" name="rhsbo24" value={{vals.rhsbo24}}></td>
+					</tr>
 
-				<tr height = 25px></tr>
-				<tr height = 50px><td> <h2>Medium Pack BIB</h2> </td></tr>
+					<tr>
+						<td >SUBTOTAL</td>
+						<td ></td>
+						<td><input readonly type="text" size="8" name="subtotal_15"  value={{vals.subtotal_15}}></td>
+						<td><input readonly type="text" size="8" name="subtotal_16"  value={{vals.subtotal_16}}></td>
+						<td><input readonly type="text" size="8" name="subtotal_17"  value={{vals.subtotal_17}}></td>
+						<td><input readonly type="text" size="8" name="subtotal_18"  value={{vals.subtotal_18}}></td>
+						<td><input readonly type="text" size="8" name="subtotal_19"  value={{vals.subtotal_19}}></td>
+						<td><input readonly type="text" size="8" name="subtotal_20"  value={{vals.subtotal_20}}></td>
+						<td><input readonly type="text" size="8" name="subtotal_21"  value={{vals.subtotal_21}}></td>
+						<td><input readonly type="text" size="8" name="subtotal_22"  value={{vals.subtotal_22}}></td>
+						<td><input readonly type="text" size="8" name="subtotal_23"  value={{vals.subtotal_23}}></td>
+						<td><input readonly type="text" size="8" name="subtotal_24"  value={{vals.subtotal_24}}></td>
+					</tr>
 
-				<tr>
-					<td >G1SBO</td>
-					<td ></td>
-					<td><input  type="text" id="171" size="8" name="g1sbo15" value={{vals.g1sbo15}}></td>
-					<td><input  type="text" id="172" size="8" name="g1sbo16" value={{vals.g1sbo16}}></td>
-					<td><input  type="text" id="173" size="8" name="g1sbo17" value={{vals.g1sbo17}}></td>
-					<td><input  type="text" id="174" size="8" name="g1sbo18" value={{vals.g1sbo18}}></td>
-					<td><input  type="text" id="175" size="8" name="g1sbo19" value={{vals.g1sbo19}}></td>
-					<td><input  type="text" id="176" size="8" name="g1sbo20" value={{vals.g1sbo20}}></td>
-					<td><input  type="text" id="177" size="8" name="g1sbo21" value={{vals.g1sbo21}}></td>
-					<td><input  type="text" id="178" size="8" name="g1sbo22" value={{vals.g1sbo22}}></td>
-					<td><input  type="text" id="179" size="8" name="g1sbo23" value={{vals.g1sbo23}}></td>
-					<td><input  type="text" id="180" size="8" name="g1sbo24" value={{vals.g1sbo24}}></td>
-				<tr/>
+					<tr>
+						<td ><h5>Speciality Fats Total</h5></td>
+						<td ></td>
+						<td><input readonly type="text" size="8" name="sf_total15"  value={{vals.sf_total15}}></td>
+						<td><input readonly type="text" size="8" name="sf_total16"  value={{vals.sf_total16}}></td>
+						<td><input readonly type="text" size="8" name="sf_total17"  value={{vals.sf_total17}}></td>
+						<td><input readonly type="text" size="8" name="sf_total18"  value={{vals.sf_total18}}></td>
+						<td><input readonly type="text" size="8" name="sf_total19"  value={{vals.sf_total19}}></td>
+						<td><input readonly type="text" size="8" name="sf_total20"  value={{vals.sf_total20}}></td>
+						<td><input readonly type="text" size="8" name="sf_total21"  value={{vals.sf_total21}}></td>
+						<td><input readonly type="text" size="8" name="sf_total22"  value={{vals.sf_total22}}></td>
+						<td><input readonly type="text" size="8" name="sf_total23"  value={{vals.sf_total23}}></td>
+						<td><input readonly type="text" size="8" name="sf_total24"  value={{vals.sf_total24}}></td>
+					</tr>
 
-				<tr>
-					<td >BLENDED OIL</td>
-					<td ></td>
-					<td><input  type="text" id="181" size="8" name="blendedoil15" value={{vals.blendedoil15}}></td>
-					<td><input  type="text" id="182" size="8" name="blendedoil16" value={{vals.blendedoil16}}></td>
-					<td><input  type="text" id="183" size="8" name="blendedoil17" value={{vals.blendedoil17}}></td>
-					<td><input  type="text" id="184" size="8" name="blendedoil18" value={{vals.blendedoil18}}></td>
-					<td><input  type="text" id="185" size="8" name="blendedoil19" value={{vals.blendedoil19}}></td>
-					<td><input  type="text" id="186" size="8" name="blendedoil20" value={{vals.blendedoil20}}></td>
-					<td><input  type="text" id="187" size="8" name="blendedoil21" value={{vals.blendedoil21}}></td>
-					<td><input  type="text" id="188" size="8" name="blendedoil22" value={{vals.blendedoil22}}></td>
-					<td><input  type="text" id="189" size="8" name="blendedoil23" value={{vals.blendedoil23}}></td>
-					<td><input  type="text" id="190" size="8" name="blendedoil24" value={{vals.blendedoil24}}></td>
-				<tr/>
+					<tr height = 25px></tr>
+					<tr height = 50px><td> <h2>Medium Pack BIB</h2> </td></tr>
 
-				<tr>
-					<td >ROL</td>
-					<td ></td>
-					<td><input  type="text" id="191" size="8" name="rol15" value={{vals.rol15}}></td>
-					<td><input  type="text" id="192" size="8" name="rol16" value={{vals.rol16}}></td>
-					<td><input  type="text" id="193" size="8" name="rol17" value={{vals.rol17}}></td>
-					<td><input  type="text" id="194" size="8" name="rol18" value={{vals.rol18}}></td>
-					<td><input  type="text" id="195" size="8" name="rol19" value={{vals.rol19}}></td>
-					<td><input  type="text" id="196" size="8" name="rol20" value={{vals.rol20}}></td>
-					<td><input  type="text" id="197" size="8" name="rol21" value={{vals.rol21}}></td>
-					<td><input  type="text" id="198" size="8" name="rol22" value={{vals.rol22}}></td>
-					<td><input  type="text" id="199" size="8" name="rol23" value={{vals.rol23}}></td>
-					<td><input  type="text" id="200" size="8" name="rol24" value={{vals.rol24}}></td>
-				<tr/>
+					<tr>
+						<td >G1SBO</td>
+						<td ></td>
+						<td><input  type="text" id="171" size="8" name="g1sbo15" value={{vals.g1sbo15}}></td>
+						<td><input  type="text" id="172" size="8" name="g1sbo16" value={{vals.g1sbo16}}></td>
+						<td><input  type="text" id="173" size="8" name="g1sbo17" value={{vals.g1sbo17}}></td>
+						<td><input  type="text" id="174" size="8" name="g1sbo18" value={{vals.g1sbo18}}></td>
+						<td><input  type="text" id="175" size="8" name="g1sbo19" value={{vals.g1sbo19}}></td>
+						<td><input  type="text" id="176" size="8" name="g1sbo20" value={{vals.g1sbo20}}></td>
+						<td><input  type="text" id="177" size="8" name="g1sbo21" value={{vals.g1sbo21}}></td>
+						<td><input  type="text" id="178" size="8" name="g1sbo22" value={{vals.g1sbo22}}></td>
+						<td><input  type="text" id="179" size="8" name="g1sbo23" value={{vals.g1sbo23}}></td>
+						<td><input  type="text" id="180" size="8" name="g1sbo24" value={{vals.g1sbo24}}></td>
+					<tr/>
 
-				<tr>
-					<td >SPMF</td>
-					<td ></td>
-					<td><input  type="text" id="201" size="8" name="spmf15" value={{vals.spmf15}}></td>
-					<td><input  type="text" id="202" size="8" name="spmf16" value={{vals.spmf16}}></td>
-					<td><input  type="text" id="203" size="8" name="spmf17" value={{vals.spmf17}}></td>
-					<td><input  type="text" id="204" size="8" name="spmf18" value={{vals.spmf18}}></td>
-					<td><input  type="text" id="205" size="8" name="spmf19" value={{vals.spmf19}}></td>
-					<td><input  type="text" id="206" size="8" name="spmf20" value={{vals.spmf20}}></td>
-					<td><input  type="text" id="207" size="8" name="spmf21" value={{vals.spmf21}}></td>
-					<td><input  type="text" id="208" size="8" name="spmf22" value={{vals.spmf22}}></td>
-					<td><input  type="text" id="209" size="8" name="spmf23" value={{vals.spmf23}}></td>
-					<td><input  type="text" id="210" size="8" name="spmf24" value={{vals.spmf24}}></td>
-				<tr/>
+					<tr>
+						<td >BLENDED OIL</td>
+						<td ></td>
+						<td><input  type="text" id="181" size="8" name="blendedoil15" value={{vals.blendedoil15}}></td>
+						<td><input  type="text" id="182" size="8" name="blendedoil16" value={{vals.blendedoil16}}></td>
+						<td><input  type="text" id="183" size="8" name="blendedoil17" value={{vals.blendedoil17}}></td>
+						<td><input  type="text" id="184" size="8" name="blendedoil18" value={{vals.blendedoil18}}></td>
+						<td><input  type="text" id="185" size="8" name="blendedoil19" value={{vals.blendedoil19}}></td>
+						<td><input  type="text" id="186" size="8" name="blendedoil20" value={{vals.blendedoil20}}></td>
+						<td><input  type="text" id="187" size="8" name="blendedoil21" value={{vals.blendedoil21}}></td>
+						<td><input  type="text" id="188" size="8" name="blendedoil22" value={{vals.blendedoil22}}></td>
+						<td><input  type="text" id="189" size="8" name="blendedoil23" value={{vals.blendedoil23}}></td>
+						<td><input  type="text" id="190" size="8" name="blendedoil24" value={{vals.blendedoil24}}></td>
+					<tr/>
 
-				<tr>
-					<td ><h5>MEDIUM PACK BIB TOTAL</h5></td>
-					<td ></td>
-					<td><input readonly type="text"  size="8" name="mpbtotal15" value={{vals.mpbtotal15}}></td>
-					<td><input readonly type="text"  size="8" name="mpbtotal16" value={{vals.mpbtotal16}}></td>
-					<td><input readonly type="text"  size="8" name="mpbtotal17" value={{vals.mpbtotal17}}></td>
-					<td><input readonly type="text"  size="8" name="mpbtotal18" value={{vals.mpbtotal18}}></td>
-					<td><input readonly type="text"  size="8" name="mpbtotal19" value={{vals.mpbtotal19}}></td>
-					<td><input readonly type="text"  size="8" name="mpbtotal20" value={{vals.mpbtotal20}}></td>
-					<td><input readonly type="text"  size="8" name="mpbtotal21" value={{vals.mpbtotal21}}></td>
-					<td><input readonly type="text"  size="8" name="mpbtotal22" value={{vals.mpbtotal22}}></td>
-					<td><input readonly type="text"  size="8" name="mpbtotal23" value={{vals.mpbtotal23}}></td>
-					<td><input readonly type="text"  size="8" name="mpbtotal24" value={{vals.mpbtotal24}}></td>
-				<tr/>
+					<tr>
+						<td >ROL</td>
+						<td ></td>
+						<td><input  type="text" id="191" size="8" name="rol15" value={{vals.rol15}}></td>
+						<td><input  type="text" id="192" size="8" name="rol16" value={{vals.rol16}}></td>
+						<td><input  type="text" id="193" size="8" name="rol17" value={{vals.rol17}}></td>
+						<td><input  type="text" id="194" size="8" name="rol18" value={{vals.rol18}}></td>
+						<td><input  type="text" id="195" size="8" name="rol19" value={{vals.rol19}}></td>
+						<td><input  type="text" id="196" size="8" name="rol20" value={{vals.rol20}}></td>
+						<td><input  type="text" id="197" size="8" name="rol21" value={{vals.rol21}}></td>
+						<td><input  type="text" id="198" size="8" name="rol22" value={{vals.rol22}}></td>
+						<td><input  type="text" id="199" size="8" name="rol23" value={{vals.rol23}}></td>
+						<td><input  type="text" id="200" size="8" name="rol24" value={{vals.rol24}}></td>
+					<tr/>
 
-				<tr height = 25px></tr>
-				<tr height = 50px><td> <h2>Medium Pack PET</h2> </td></tr>
+					<tr>
+						<td >SPMF</td>
+						<td ></td>
+						<td><input  type="text" id="201" size="8" name="spmf15" value={{vals.spmf15}}></td>
+						<td><input  type="text" id="202" size="8" name="spmf16" value={{vals.spmf16}}></td>
+						<td><input  type="text" id="203" size="8" name="spmf17" value={{vals.spmf17}}></td>
+						<td><input  type="text" id="204" size="8" name="spmf18" value={{vals.spmf18}}></td>
+						<td><input  type="text" id="205" size="8" name="spmf19" value={{vals.spmf19}}></td>
+						<td><input  type="text" id="206" size="8" name="spmf20" value={{vals.spmf20}}></td>
+						<td><input  type="text" id="207" size="8" name="spmf21" value={{vals.spmf21}}></td>
+						<td><input  type="text" id="208" size="8" name="spmf22" value={{vals.spmf22}}></td>
+						<td><input  type="text" id="209" size="8" name="spmf23" value={{vals.spmf23}}></td>
+						<td><input  type="text" id="210" size="8" name="spmf24" value={{vals.spmf24}}></td>
+					<tr/>
 
-				<tr>
-					<td >G1SBO</td>
-					<td >5L</td>
-					<td><input  type="text" id="211" size="8" name="g1sbo1_15" value={{vals.g1sbo1_15}}></td>
-					<td><input  type="text" id="212" size="8" name="g1sbo1_16" value={{vals.g1sbo1_16}}></td>
-					<td><input  type="text" id="213" size="8" name="g1sbo1_17" value={{vals.g1sbo1_17}}></td>
-					<td><input  type="text" id="214" size="8" name="g1sbo1_18" value={{vals.g1sbo1_18}}></td>
-					<td><input  type="text" id="215" size="8" name="g1sbo1_19" value={{vals.g1sbo1_19}}></td>
-					<td><input  type="text" id="216" size="8" name="g1sbo1_20" value={{vals.g1sbo1_20}}></td>
-					<td><input  type="text" id="217" size="8" name="g1sbo1_21" value={{vals.g1sbo1_21}}></td>
-					<td><input  type="text" id="218" size="8" name="g1sbo1_22" value={{vals.g1sbo1_22}}></td>
-					<td><input  type="text" id="219" size="8" name="g1sbo1_23" value={{vals.g1sbo1_23}}></td>
-					<td><input  type="text" id="220" size="8" name="g1sbo1_24" value={{vals.g1sbo1_24}}></td>
-				<tr/>
+					<tr>
+						<td ><h5>MEDIUM PACK BIB TOTAL</h5></td>
+						<td ></td>
+						<td><input readonly type="text"  size="8" name="mpbtotal15" value={{vals.mpbtotal15}}></td>
+						<td><input readonly type="text"  size="8" name="mpbtotal16" value={{vals.mpbtotal16}}></td>
+						<td><input readonly type="text"  size="8" name="mpbtotal17" value={{vals.mpbtotal17}}></td>
+						<td><input readonly type="text"  size="8" name="mpbtotal18" value={{vals.mpbtotal18}}></td>
+						<td><input readonly type="text"  size="8" name="mpbtotal19" value={{vals.mpbtotal19}}></td>
+						<td><input readonly type="text"  size="8" name="mpbtotal20" value={{vals.mpbtotal20}}></td>
+						<td><input readonly type="text"  size="8" name="mpbtotal21" value={{vals.mpbtotal21}}></td>
+						<td><input readonly type="text"  size="8" name="mpbtotal22" value={{vals.mpbtotal22}}></td>
+						<td><input readonly type="text"  size="8" name="mpbtotal23" value={{vals.mpbtotal23}}></td>
+						<td><input readonly type="text"  size="8" name="mpbtotal24" value={{vals.mpbtotal24}}></td>
+					<tr/>
 
-				<tr>
-					<td >G1SBO</td>
-					<td >20L without box</td>
-					<td><input  type="text" id="221" size="8" name="g1sbo2_15" value={{vals.g1sbo2_15}}></td>
-					<td><input  type="text" id="222" size="8" name="g1sbo2_16" value={{vals.g1sbo2_16}}></td>
-					<td><input  type="text" id="223" size="8" name="g1sbo2_17" value={{vals.g1sbo2_17}}></td>
-					<td><input  type="text" id="224" size="8" name="g1sbo2_18" value={{vals.g1sbo2_18}}></td>
-					<td><input  type="text" id="225" size="8" name="g1sbo2_19" value={{vals.g1sbo2_19}}></td>
-					<td><input  type="text" id="226" size="8" name="g1sbo2_20" value={{vals.g1sbo2_20}}></td>
-					<td><input  type="text" id="227" size="8" name="g1sbo2_21" value={{vals.g1sbo2_21}}></td>
-					<td><input  type="text" id="228" size="8" name="g1sbo2_22" value={{vals.g1sbo2_22}}></td>
-					<td><input  type="text" id="229" size="8" name="g1sbo2_23" value={{vals.g1sbo2_23}}></td>
-					<td><input  type="text" id="230" size="8" name="g1sbo2_24" value={{vals.g1sbo2_24}}></td>
-				<tr/>
+					<tr height = 25px></tr>
+					<tr height = 50px><td> <h2>Medium Pack PET</h2> </td></tr>
 
-				<tr>
-					<td >G1SBO</td>
-					<td >20L with box</td>
-					<td><input  type="text" id="231" size="8" name="g1sbo3_15" value={{vals.g1sbo3_15}}></td>
-					<td><input  type="text" id="232" size="8" name="g1sbo3_16" value={{vals.g1sbo3_16}}></td>
-					<td><input  type="text" id="233" size="8" name="g1sbo3_17" value={{vals.g1sbo3_17}}></td>
-					<td><input  type="text" id="234" size="8" name="g1sbo3_18" value={{vals.g1sbo3_18}}></td>
-					<td><input  type="text" id="235" size="8" name="g1sbo3_19" value={{vals.g1sbo3_19}}></td>
-					<td><input  type="text" id="236" size="8" name="g1sbo3_20" value={{vals.g1sbo3_20}}></td>
-					<td><input  type="text" id="237" size="8" name="g1sbo3_21" value={{vals.g1sbo3_21}}></td>
-					<td><input  type="text" id="238" size="8" name="g1sbo3_22" value={{vals.g1sbo3_22}}></td>
-					<td><input  type="text" id="239" size="8" name="g1sbo3_23" value={{vals.g1sbo3_23}}></td>
-					<td><input  type="text" id="240" size="8" name="g1sbo3_24" value={{vals.g1sbo3_24}}></td>
-				<tr/>
+					<tr>
+						<td >G1SBO</td>
+						<td >5L</td>
+						<td><input  type="text" id="211" size="8" name="g1sbo1_15" value={{vals.g1sbo1_15}}></td>
+						<td><input  type="text" id="212" size="8" name="g1sbo1_16" value={{vals.g1sbo1_16}}></td>
+						<td><input  type="text" id="213" size="8" name="g1sbo1_17" value={{vals.g1sbo1_17}}></td>
+						<td><input  type="text" id="214" size="8" name="g1sbo1_18" value={{vals.g1sbo1_18}}></td>
+						<td><input  type="text" id="215" size="8" name="g1sbo1_19" value={{vals.g1sbo1_19}}></td>
+						<td><input  type="text" id="216" size="8" name="g1sbo1_20" value={{vals.g1sbo1_20}}></td>
+						<td><input  type="text" id="217" size="8" name="g1sbo1_21" value={{vals.g1sbo1_21}}></td>
+						<td><input  type="text" id="218" size="8" name="g1sbo1_22" value={{vals.g1sbo1_22}}></td>
+						<td><input  type="text" id="219" size="8" name="g1sbo1_23" value={{vals.g1sbo1_23}}></td>
+						<td><input  type="text" id="220" size="8" name="g1sbo1_24" value={{vals.g1sbo1_24}}></td>
+					<tr/>
 
-				<tr>
-					<td >G1SBO</td>
-					<td >10L*2</td>
-					<td><input  type="text" id="241" size="8" name="g1sbo4_15" value={{vals.g1sbo4_15}}></td>
-					<td><input  type="text" id="242" size="8" name="g1sbo4_16" value={{vals.g1sbo4_16}}></td>
-					<td><input  type="text" id="243" size="8" name="g1sbo4_17" value={{vals.g1sbo4_17}}></td>
-					<td><input  type="text" id="244" size="8" name="g1sbo4_18" value={{vals.g1sbo4_18}}></td>
-					<td><input  type="text" id="245" size="8" name="g1sbo4_19" value={{vals.g1sbo4_19}}></td>
-					<td><input  type="text" id="246" size="8" name="g1sbo4_20" value={{vals.g1sbo4_20}}></td>
-					<td><input  type="text" id="247" size="8" name="g1sbo4_21" value={{vals.g1sbo4_21}}></td>
-					<td><input  type="text" id="248" size="8" name="g1sbo4_22" value={{vals.g1sbo4_22}}></td>
-					<td><input  type="text" id="249" size="8" name="g1sbo4_23" value={{vals.g1sbo4_23}}></td>
-					<td><input  type="text" id="250" size="8" name="g1sbo4_24" value={{vals.g1sbo4_24}}></td>
-				<tr/>
+					<tr>
+						<td >G1SBO</td>
+						<td >20L without box</td>
+						<td><input  type="text" id="221" size="8" name="g1sbo2_15" value={{vals.g1sbo2_15}}></td>
+						<td><input  type="text" id="222" size="8" name="g1sbo2_16" value={{vals.g1sbo2_16}}></td>
+						<td><input  type="text" id="223" size="8" name="g1sbo2_17" value={{vals.g1sbo2_17}}></td>
+						<td><input  type="text" id="224" size="8" name="g1sbo2_18" value={{vals.g1sbo2_18}}></td>
+						<td><input  type="text" id="225" size="8" name="g1sbo2_19" value={{vals.g1sbo2_19}}></td>
+						<td><input  type="text" id="226" size="8" name="g1sbo2_20" value={{vals.g1sbo2_20}}></td>
+						<td><input  type="text" id="227" size="8" name="g1sbo2_21" value={{vals.g1sbo2_21}}></td>
+						<td><input  type="text" id="228" size="8" name="g1sbo2_22" value={{vals.g1sbo2_22}}></td>
+						<td><input  type="text" id="229" size="8" name="g1sbo2_23" value={{vals.g1sbo2_23}}></td>
+						<td><input  type="text" id="230" size="8" name="g1sbo2_24" value={{vals.g1sbo2_24}}></td>
+					<tr/>
 
-				<tr>
-					<td >BLENDED OIL</td>
-					<td >5L</td>
-					<td><input  type="text" id="251" size="8" name="blendedoil1_15" value={{vals.blendedoil1_15}}></td>
-					<td><input  type="text" id="252" size="8" name="blendedoil1_16" value={{vals.blendedoil1_16}}></td>
-					<td><input  type="text" id="253" size="8" name="blendedoil1_17" value={{vals.blendedoil1_17}}></td>
-					<td><input  type="text" id="254" size="8" name="blendedoil1_18" value={{vals.blendedoil1_18}}></td>
-					<td><input  type="text" id="255" size="8" name="blendedoil1_19" value={{vals.blendedoil1_19}}></td>
-					<td><input  type="text" id="256" size="8" name="blendedoil1_20" value={{vals.blendedoil1_20}}></td>
-					<td><input  type="text" id="257" size="8" name="blendedoil1_21" value={{vals.blendedoil1_21}}></td>
-					<td><input  type="text" id="258" size="8" name="blendedoil1_22" value={{vals.blendedoil1_22}}></td>
-					<td><input  type="text" id="259" size="8" name="blendedoil1_23" value={{vals.blendedoil1_23}}></td>
-					<td><input  type="text" id="260" size="8" name="blendedoil1_24" value={{vals.blendedoil1_24}}></td>
-				<tr/>
+					<tr>
+						<td >G1SBO</td>
+						<td >20L with box</td>
+						<td><input  type="text" id="231" size="8" name="g1sbo3_15" value={{vals.g1sbo3_15}}></td>
+						<td><input  type="text" id="232" size="8" name="g1sbo3_16" value={{vals.g1sbo3_16}}></td>
+						<td><input  type="text" id="233" size="8" name="g1sbo3_17" value={{vals.g1sbo3_17}}></td>
+						<td><input  type="text" id="234" size="8" name="g1sbo3_18" value={{vals.g1sbo3_18}}></td>
+						<td><input  type="text" id="235" size="8" name="g1sbo3_19" value={{vals.g1sbo3_19}}></td>
+						<td><input  type="text" id="236" size="8" name="g1sbo3_20" value={{vals.g1sbo3_20}}></td>
+						<td><input  type="text" id="237" size="8" name="g1sbo3_21" value={{vals.g1sbo3_21}}></td>
+						<td><input  type="text" id="238" size="8" name="g1sbo3_22" value={{vals.g1sbo3_22}}></td>
+						<td><input  type="text" id="239" size="8" name="g1sbo3_23" value={{vals.g1sbo3_23}}></td>
+						<td><input  type="text" id="240" size="8" name="g1sbo3_24" value={{vals.g1sbo3_24}}></td>
+					<tr/>
 
-				<tr>
-					<td >BLENDED OIL</td>
-					<td >20L without Box</td>
-					<td><input  type="text" id="261" size="8" name="blendedoil2_15" value={{vals.blendedoil2_15}}></td>
-					<td><input  type="text" id="262" size="8" name="blendedoil2_16" value={{vals.blendedoil2_16}}></td>
-					<td><input  type="text" id="263" size="8" name="blendedoil2_17" value={{vals.blendedoil2_17}}></td>
-					<td><input  type="text" id="264" size="8" name="blendedoil2_18" value={{vals.blendedoil2_18}}></td>
-					<td><input  type="text" id="265" size="8" name="blendedoil2_19" value={{vals.blendedoil2_19}}></td>
-					<td><input  type="text" id="266" size="8" name="blendedoil2_20" value={{vals.blendedoil2_20}}></td>
-					<td><input  type="text" id="267" size="8" name="blendedoil2_21" value={{vals.blendedoil2_21}}></td>
-					<td><input  type="text" id="268" size="8" name="blendedoil2_22" value={{vals.blendedoil2_22}}></td>
-					<td><input  type="text" id="269" size="8" name="blendedoil2_23" value={{vals.blendedoil2_23}}></td>
-					<td><input  type="text" id="270" size="8" name="blendedoil2_24" value={{vals.blendedoil2_24}}></td>
-				<tr/>
+					<tr>
+						<td >G1SBO</td>
+						<td >10L*2</td>
+						<td><input  type="text" id="241" size="8" name="g1sbo4_15" value={{vals.g1sbo4_15}}></td>
+						<td><input  type="text" id="242" size="8" name="g1sbo4_16" value={{vals.g1sbo4_16}}></td>
+						<td><input  type="text" id="243" size="8" name="g1sbo4_17" value={{vals.g1sbo4_17}}></td>
+						<td><input  type="text" id="244" size="8" name="g1sbo4_18" value={{vals.g1sbo4_18}}></td>
+						<td><input  type="text" id="245" size="8" name="g1sbo4_19" value={{vals.g1sbo4_19}}></td>
+						<td><input  type="text" id="246" size="8" name="g1sbo4_20" value={{vals.g1sbo4_20}}></td>
+						<td><input  type="text" id="247" size="8" name="g1sbo4_21" value={{vals.g1sbo4_21}}></td>
+						<td><input  type="text" id="248" size="8" name="g1sbo4_22" value={{vals.g1sbo4_22}}></td>
+						<td><input  type="text" id="249" size="8" name="g1sbo4_23" value={{vals.g1sbo4_23}}></td>
+						<td><input  type="text" id="250" size="8" name="g1sbo4_24" value={{vals.g1sbo4_24}}></td>
+					<tr/>
 
-				<tr>
-					<td >BLENDED OIL</td>
-					<td >20L with Box</td>
-					<td><input  type="text" id="271" size="8" name="blendedoil3_15" value={{vals.blendedoil3_15}}></td>
-					<td><input  type="text" id="272" size="8" name="blendedoil3_16" value={{vals.blendedoil3_16}}></td>
-					<td><input  type="text" id="273" size="8" name="blendedoil3_17" value={{vals.blendedoil3_17}}></td>
-					<td><input  type="text" id="274" size="8" name="blendedoil3_18" value={{vals.blendedoil3_18}}></td>
-					<td><input  type="text" id="275" size="8" name="blendedoil3_19" value={{vals.blendedoil3_19}}></td>
-					<td><input  type="text" id="276" size="8" name="blendedoil3_20" value={{vals.blendedoil3_20}}></td>
-					<td><input  type="text" id="277" size="8" name="blendedoil3_21" value={{vals.blendedoil3_21}}></td>
-					<td><input  type="text" id="278" size="8" name="blendedoil3_22" value={{vals.blendedoil3_22}}></td>
-					<td><input  type="text" id="279" size="8" name="blendedoil3_23" value={{vals.blendedoil3_23}}></td>
-					<td><input  type="text" id="280" size="8" name="blendedoil3_24" value={{vals.blendedoil3_24}}></td>
-				<tr/>
+					<tr>
+						<td >BLENDED OIL</td>
+						<td >5L</td>
+						<td><input  type="text" id="251" size="8" name="blendedoil1_15" value={{vals.blendedoil1_15}}></td>
+						<td><input  type="text" id="252" size="8" name="blendedoil1_16" value={{vals.blendedoil1_16}}></td>
+						<td><input  type="text" id="253" size="8" name="blendedoil1_17" value={{vals.blendedoil1_17}}></td>
+						<td><input  type="text" id="254" size="8" name="blendedoil1_18" value={{vals.blendedoil1_18}}></td>
+						<td><input  type="text" id="255" size="8" name="blendedoil1_19" value={{vals.blendedoil1_19}}></td>
+						<td><input  type="text" id="256" size="8" name="blendedoil1_20" value={{vals.blendedoil1_20}}></td>
+						<td><input  type="text" id="257" size="8" name="blendedoil1_21" value={{vals.blendedoil1_21}}></td>
+						<td><input  type="text" id="258" size="8" name="blendedoil1_22" value={{vals.blendedoil1_22}}></td>
+						<td><input  type="text" id="259" size="8" name="blendedoil1_23" value={{vals.blendedoil1_23}}></td>
+						<td><input  type="text" id="260" size="8" name="blendedoil1_24" value={{vals.blendedoil1_24}}></td>
+					<tr/>
 
-				<tr>
-					<td >BLENDED OIL</td>
-					<td >10L*2</td>
-					<td><input  type="text" id="281" size="8" name="blendedoil4_15" value={{vals.blendedoil4_15}}></td>
-					<td><input  type="text" id="282" size="8" name="blendedoil4_16" value={{vals.blendedoil4_16}}></td>
-					<td><input  type="text" id="283" size="8" name="blendedoil4_17" value={{vals.blendedoil4_17}}></td>
-					<td><input  type="text" id="284" size="8" name="blendedoil4_18" value={{vals.blendedoil4_18}}></td>
-					<td><input  type="text" id="285" size="8" name="blendedoil4_19" value={{vals.blendedoil4_19}}></td>
-					<td><input  type="text" id="286" size="8" name="blendedoil4_20" value={{vals.blendedoil4_20}}></td>
-					<td><input  type="text" id="287" size="8" name="blendedoil4_21" value={{vals.blendedoil4_21}}></td>
-					<td><input  type="text" id="288" size="8" name="blendedoil4_22" value={{vals.blendedoil4_22}}></td>
-					<td><input  type="text" id="289" size="8" name="blendedoil4_23" value={{vals.blendedoil4_23}}></td>
-					<td><input  type="text" id="290" size="8" name="blendedoil4_24" value={{vals.blendedoil4_24}}></td>
-				<tr/>
+					<tr>
+						<td >BLENDED OIL</td>
+						<td >20L without Box</td>
+						<td><input  type="text" id="261" size="8" name="blendedoil2_15" value={{vals.blendedoil2_15}}></td>
+						<td><input  type="text" id="262" size="8" name="blendedoil2_16" value={{vals.blendedoil2_16}}></td>
+						<td><input  type="text" id="263" size="8" name="blendedoil2_17" value={{vals.blendedoil2_17}}></td>
+						<td><input  type="text" id="264" size="8" name="blendedoil2_18" value={{vals.blendedoil2_18}}></td>
+						<td><input  type="text" id="265" size="8" name="blendedoil2_19" value={{vals.blendedoil2_19}}></td>
+						<td><input  type="text" id="266" size="8" name="blendedoil2_20" value={{vals.blendedoil2_20}}></td>
+						<td><input  type="text" id="267" size="8" name="blendedoil2_21" value={{vals.blendedoil2_21}}></td>
+						<td><input  type="text" id="268" size="8" name="blendedoil2_22" value={{vals.blendedoil2_22}}></td>
+						<td><input  type="text" id="269" size="8" name="blendedoil2_23" value={{vals.blendedoil2_23}}></td>
+						<td><input  type="text" id="270" size="8" name="blendedoil2_24" value={{vals.blendedoil2_24}}></td>
+					<tr/>
 
-				<tr>
-					<td >SUPER OLEIN</td>
-					<td >5L</td>
-					<td><input  type="text" id="291" size="8" name="superolein1_15" value={{vals.superolein1_15}}></td>
-					<td><input  type="text" id="292" size="8" name="superolein1_16" value={{vals.superolein1_16}}></td>
-					<td><input  type="text" id="293" size="8" name="superolein1_17" value={{vals.superolein1_17}}></td>
-					<td><input  type="text" id="294" size="8" name="superolein1_18" value={{vals.superolein1_18}}></td>
-					<td><input  type="text" id="295" size="8" name="superolein1_19" value={{vals.superolein1_19}}></td>
-					<td><input  type="text" id="296" size="8" name="superolein1_20" value={{vals.superolein1_20}}></td>
-					<td><input  type="text" id="297" size="8" name="superolein1_21" value={{vals.superolein1_21}}></td>
-					<td><input  type="text" id="298" size="8" name="superolein1_22" value={{vals.superolein1_22}}></td>
-					<td><input  type="text" id="299" size="8" name="superolein1_23" value={{vals.superolein1_23}}></td>
-					<td><input  type="text" id="300" size="8" name="superolein1_24" value={{vals.superolein1_24}}></td>
-				<tr/>
+					<tr>
+						<td >BLENDED OIL</td>
+						<td >20L with Box</td>
+						<td><input  type="text" id="271" size="8" name="blendedoil3_15" value={{vals.blendedoil3_15}}></td>
+						<td><input  type="text" id="272" size="8" name="blendedoil3_16" value={{vals.blendedoil3_16}}></td>
+						<td><input  type="text" id="273" size="8" name="blendedoil3_17" value={{vals.blendedoil3_17}}></td>
+						<td><input  type="text" id="274" size="8" name="blendedoil3_18" value={{vals.blendedoil3_18}}></td>
+						<td><input  type="text" id="275" size="8" name="blendedoil3_19" value={{vals.blendedoil3_19}}></td>
+						<td><input  type="text" id="276" size="8" name="blendedoil3_20" value={{vals.blendedoil3_20}}></td>
+						<td><input  type="text" id="277" size="8" name="blendedoil3_21" value={{vals.blendedoil3_21}}></td>
+						<td><input  type="text" id="278" size="8" name="blendedoil3_22" value={{vals.blendedoil3_22}}></td>
+						<td><input  type="text" id="279" size="8" name="blendedoil3_23" value={{vals.blendedoil3_23}}></td>
+						<td><input  type="text" id="280" size="8" name="blendedoil3_24" value={{vals.blendedoil3_24}}></td>
+					<tr/>
 
-				<tr>
-					<td >SUPER OLEIN</td>
-					<td >20L without box</td>
-					<td><input  type="text" id="301" size="8" name="superolein2_15" value={{vals.superolein2_15}}></td>
-					<td><input  type="text" id="302" size="8" name="superolein2_16" value={{vals.superolein2_16}}></td>
-					<td><input  type="text" id="303" size="8" name="superolein2_17" value={{vals.superolein2_17}}></td>
-					<td><input  type="text" id="304" size="8" name="superolein2_18" value={{vals.superolein2_18}}></td>
-					<td><input  type="text" id="305" size="8" name="superolein2_19" value={{vals.superolein2_19}}></td>
-					<td><input  type="text" id="306" size="8" name="superolein2_20" value={{vals.superolein2_20}}></td>
-					<td><input  type="text" id="307" size="8" name="superolein2_21" value={{vals.superolein2_21}}></td>
-					<td><input  type="text" id="308" size="8" name="superolein2_22" value={{vals.superolein2_22}}></td>
-					<td><input  type="text" id="309" size="8" name="superolein2_23" value={{vals.superolein2_23}}></td>
-					<td><input  type="text" id="310" size="8" name="superolein2_24" value={{vals.superolein2_24}}></td>
-				<tr/>
+					<tr>
+						<td >BLENDED OIL</td>
+						<td >10L*2</td>
+						<td><input  type="text" id="281" size="8" name="blendedoil4_15" value={{vals.blendedoil4_15}}></td>
+						<td><input  type="text" id="282" size="8" name="blendedoil4_16" value={{vals.blendedoil4_16}}></td>
+						<td><input  type="text" id="283" size="8" name="blendedoil4_17" value={{vals.blendedoil4_17}}></td>
+						<td><input  type="text" id="284" size="8" name="blendedoil4_18" value={{vals.blendedoil4_18}}></td>
+						<td><input  type="text" id="285" size="8" name="blendedoil4_19" value={{vals.blendedoil4_19}}></td>
+						<td><input  type="text" id="286" size="8" name="blendedoil4_20" value={{vals.blendedoil4_20}}></td>
+						<td><input  type="text" id="287" size="8" name="blendedoil4_21" value={{vals.blendedoil4_21}}></td>
+						<td><input  type="text" id="288" size="8" name="blendedoil4_22" value={{vals.blendedoil4_22}}></td>
+						<td><input  type="text" id="289" size="8" name="blendedoil4_23" value={{vals.blendedoil4_23}}></td>
+						<td><input  type="text" id="290" size="8" name="blendedoil4_24" value={{vals.blendedoil4_24}}></td>
+					<tr/>
 
-				<tr>
-					<td >SUPER OLEIN</td>
-					<td >20L with box</td>
-					<td><input  type="text" id="311" size="8" name="superolein3_15" value={{vals.superolein3_15}}></td>
-					<td><input  type="text" id="312" size="8" name="superolein3_16" value={{vals.superolein3_16}}></td>
-					<td><input  type="text" id="313" size="8" name="superolein3_17" value={{vals.superolein3_17}}></td>
-					<td><input  type="text" id="314" size="8" name="superolein3_18" value={{vals.superolein3_18}}></td>
-					<td><input  type="text" id="315" size="8" name="superolein3_19" value={{vals.superolein3_19}}></td>
-					<td><input  type="text" id="316" size="8" name="superolein3_20" value={{vals.superolein3_20}}></td>
-					<td><input  type="text" id="317" size="8" name="superolein3_21" value={{vals.superolein3_21}}></td>
-					<td><input  type="text" id="318" size="8" name="superolein3_22" value={{vals.superolein3_22}}></td>
-					<td><input  type="text" id="319" size="8" name="superolein3_23" value={{vals.superolein3_23}}></td>
-					<td><input  type="text" id="320" size="8" name="superolein3_24" value={{vals.superolein3_24}}></td>
-				<tr/>
+					<tr>
+						<td >SUPER OLEIN</td>
+						<td >5L</td>
+						<td><input  type="text" id="291" size="8" name="superolein1_15" value={{vals.superolein1_15}}></td>
+						<td><input  type="text" id="292" size="8" name="superolein1_16" value={{vals.superolein1_16}}></td>
+						<td><input  type="text" id="293" size="8" name="superolein1_17" value={{vals.superolein1_17}}></td>
+						<td><input  type="text" id="294" size="8" name="superolein1_18" value={{vals.superolein1_18}}></td>
+						<td><input  type="text" id="295" size="8" name="superolein1_19" value={{vals.superolein1_19}}></td>
+						<td><input  type="text" id="296" size="8" name="superolein1_20" value={{vals.superolein1_20}}></td>
+						<td><input  type="text" id="297" size="8" name="superolein1_21" value={{vals.superolein1_21}}></td>
+						<td><input  type="text" id="298" size="8" name="superolein1_22" value={{vals.superolein1_22}}></td>
+						<td><input  type="text" id="299" size="8" name="superolein1_23" value={{vals.superolein1_23}}></td>
+						<td><input  type="text" id="300" size="8" name="superolein1_24" value={{vals.superolein1_24}}></td>
+					<tr/>
 
-				<tr>
-					<td >SUPER OLEIN</td>
-					<td >10L*2</td>
-					<td><input  type="text" id="321" size="8" name="superolein4_15" value={{vals.superolein4_15}}></td>
-					<td><input  type="text" id="322" size="8" name="superolein4_16" value={{vals.superolein4_16}}></td>
-					<td><input  type="text" id="323" size="8" name="superolein4_17" value={{vals.superolein4_17}}></td>
-					<td><input  type="text" id="324" size="8" name="superolein4_18" value={{vals.superolein4_18}}></td>
-					<td><input  type="text" id="325" size="8" name="superolein4_19" value={{vals.superolein4_19}}></td>
-					<td><input  type="text" id="326" size="8" name="superolein4_20" value={{vals.superolein4_20}}></td>
-					<td><input  type="text" id="327" size="8" name="superolein4_21" value={{vals.superolein4_21}}></td>
-					<td><input  type="text" id="328" size="8" name="superolein4_22" value={{vals.superolein4_22}}></td>
-					<td><input  type="text" id="329" size="8" name="superolein4_23" value={{vals.superolein4_23}}></td>
-					<td><input  type="text" id="330" size="8" name="superolein4_24" value={{vals.superolein4_24}}></td>
-				<tr/>
+					<tr>
+						<td >SUPER OLEIN</td>
+						<td >20L without box</td>
+						<td><input  type="text" id="301" size="8" name="superolein2_15" value={{vals.superolein2_15}}></td>
+						<td><input  type="text" id="302" size="8" name="superolein2_16" value={{vals.superolein2_16}}></td>
+						<td><input  type="text" id="303" size="8" name="superolein2_17" value={{vals.superolein2_17}}></td>
+						<td><input  type="text" id="304" size="8" name="superolein2_18" value={{vals.superolein2_18}}></td>
+						<td><input  type="text" id="305" size="8" name="superolein2_19" value={{vals.superolein2_19}}></td>
+						<td><input  type="text" id="306" size="8" name="superolein2_20" value={{vals.superolein2_20}}></td>
+						<td><input  type="text" id="307" size="8" name="superolein2_21" value={{vals.superolein2_21}}></td>
+						<td><input  type="text" id="308" size="8" name="superolein2_22" value={{vals.superolein2_22}}></td>
+						<td><input  type="text" id="309" size="8" name="superolein2_23" value={{vals.superolein2_23}}></td>
+						<td><input  type="text" id="310" size="8" name="superolein2_24" value={{vals.superolein2_24}}></td>
+					<tr/>
 
-				<tr>
-					<td ><h5>MEDIUM PACK PET TOTAL</h5></td>
-					<td ></td>
-					<td><input readonly type="text"  size="8" name="mpptotal15" value={{vals.mpptotal15}}></td>
-					<td><input readonly type="text"  size="8" name="mpptotal16" value={{vals.mpptotal16}}></td>
-					<td><input readonly type="text"  size="8" name="mpptotal17" value={{vals.mpptotal17}}></td>
-					<td><input readonly type="text"  size="8" name="mpptotal18" value={{vals.mpptotal18}}></td>
-					<td><input readonly type="text"  size="8" name="mpptotal19" value={{vals.mpptotal19}}></td>
-					<td><input readonly type="text"  size="8" name="mpptotal20" value={{vals.mpptotal20}}></td>
-					<td><input readonly type="text"  size="8" name="mpptotal21" value={{vals.mpptotal21}}></td>
-					<td><input readonly type="text"  size="8" name="mpptotal22" value={{vals.mpptotal22}}></td>
-					<td><input readonly type="text"  size="8" name="mpptotal23" value={{vals.mpptotal23}}></td>
-					<td><input readonly type="text"  size="8" name="mpptotal24" value={{vals.mpptotal24}}></td>
-				<tr/>
+					<tr>
+						<td >SUPER OLEIN</td>
+						<td >20L with box</td>
+						<td><input  type="text" id="311" size="8" name="superolein3_15" value={{vals.superolein3_15}}></td>
+						<td><input  type="text" id="312" size="8" name="superolein3_16" value={{vals.superolein3_16}}></td>
+						<td><input  type="text" id="313" size="8" name="superolein3_17" value={{vals.superolein3_17}}></td>
+						<td><input  type="text" id="314" size="8" name="superolein3_18" value={{vals.superolein3_18}}></td>
+						<td><input  type="text" id="315" size="8" name="superolein3_19" value={{vals.superolein3_19}}></td>
+						<td><input  type="text" id="316" size="8" name="superolein3_20" value={{vals.superolein3_20}}></td>
+						<td><input  type="text" id="317" size="8" name="superolein3_21" value={{vals.superolein3_21}}></td>
+						<td><input  type="text" id="318" size="8" name="superolein3_22" value={{vals.superolein3_22}}></td>
+						<td><input  type="text" id="319" size="8" name="superolein3_23" value={{vals.superolein3_23}}></td>
+						<td><input  type="text" id="320" size="8" name="superolein3_24" value={{vals.superolein3_24}}></td>
+					<tr/>
 
-				<tr height = 25px></tr>
-				<tr height = 50px><td> <h2>Bakery Oil Packaging</h2> </td></tr>
+					<tr>
+						<td >SUPER OLEIN</td>
+						<td >10L*2</td>
+						<td><input  type="text" id="321" size="8" name="superolein4_15" value={{vals.superolein4_15}}></td>
+						<td><input  type="text" id="322" size="8" name="superolein4_16" value={{vals.superolein4_16}}></td>
+						<td><input  type="text" id="323" size="8" name="superolein4_17" value={{vals.superolein4_17}}></td>
+						<td><input  type="text" id="324" size="8" name="superolein4_18" value={{vals.superolein4_18}}></td>
+						<td><input  type="text" id="325" size="8" name="superolein4_19" value={{vals.superolein4_19}}></td>
+						<td><input  type="text" id="326" size="8" name="superolein4_20" value={{vals.superolein4_20}}></td>
+						<td><input  type="text" id="327" size="8" name="superolein4_21" value={{vals.superolein4_21}}></td>
+						<td><input  type="text" id="328" size="8" name="superolein4_22" value={{vals.superolein4_22}}></td>
+						<td><input  type="text" id="329" size="8" name="superolein4_23" value={{vals.superolein4_23}}></td>
+						<td><input  type="text" id="330" size="8" name="superolein4_24" value={{vals.superolein4_24}}></td>
+					<tr/>
 
-				<tr>
-					<td >Liquid Shortening</td>
-					<td >Packaged</td>
-					<td><input  type="text" id="331" size="8" name="ls15" value={{vals.ls15}}></td>
-					<td><input  type="text" id="332" size="8" name="ls16" value={{vals.ls16}}></td>
-					<td><input  type="text" id="333" size="8" name="ls17" value={{vals.ls17}}></td>
-					<td><input  type="text" id="334" size="8" name="ls18" value={{vals.ls18}}></td>
-					<td><input  type="text" id="335" size="8" name="ls19" value={{vals.ls19}}></td>
-					<td><input  type="text" id="336" size="8" name="ls20" value={{vals.ls20}}></td>
-					<td><input  type="text" id="337" size="8" name="ls21" value={{vals.ls21}}></td>
-					<td><input  type="text" id="338" size="8" name="ls22" value={{vals.ls22}}></td>
-					<td><input  type="text" id="339" size="8" name="ls23" value={{vals.ls23}}></td>
-					<td><input  type="text" id="340" size="8" name="ls24" value={{vals.ls24}}></td>
-				<tr/>
+					<tr>
+						<td ><h5>MEDIUM PACK PET TOTAL</h5></td>
+						<td ></td>
+						<td><input readonly type="text"  size="8" name="mpptotal15" value={{vals.mpptotal15}}></td>
+						<td><input readonly type="text"  size="8" name="mpptotal16" value={{vals.mpptotal16}}></td>
+						<td><input readonly type="text"  size="8" name="mpptotal17" value={{vals.mpptotal17}}></td>
+						<td><input readonly type="text"  size="8" name="mpptotal18" value={{vals.mpptotal18}}></td>
+						<td><input readonly type="text"  size="8" name="mpptotal19" value={{vals.mpptotal19}}></td>
+						<td><input readonly type="text"  size="8" name="mpptotal20" value={{vals.mpptotal20}}></td>
+						<td><input readonly type="text"  size="8" name="mpptotal21" value={{vals.mpptotal21}}></td>
+						<td><input readonly type="text"  size="8" name="mpptotal22" value={{vals.mpptotal22}}></td>
+						<td><input readonly type="text"  size="8" name="mpptotal23" value={{vals.mpptotal23}}></td>
+						<td><input readonly type="text"  size="8" name="mpptotal24" value={{vals.mpptotal24}}></td>
+					<tr/>
 
-				<tr>
-					<td >Non IE Shortening</td>
-					<td >Packaged</td>
-					<td><input  type="text" id="341" size="8" name="nis15" value={{vals.nis15}}></td>
-					<td><input  type="text" id="342" size="8" name="nis16" value={{vals.nis16}}></td>
-					<td><input  type="text" id="343" size="8" name="nis17" value={{vals.nis17}}></td>
-					<td><input  type="text" id="344" size="8" name="nis18" value={{vals.nis18}}></td>
-					<td><input  type="text" id="345" size="8" name="nis19" value={{vals.nis19}}></td>
-					<td><input  type="text" id="346" size="8" name="nis20" value={{vals.nis20}}></td>
-					<td><input  type="text" id="347" size="8" name="nis21" value={{vals.nis21}}></td>
-					<td><input  type="text" id="348" size="8" name="nis22" value={{vals.nis22}}></td>
-					<td><input  type="text" id="349" size="8" name="nis23" value={{vals.nis23}}></td>
-					<td><input  type="text" id="350" size="8" name="nis24" value={{vals.nis24}}></td>
-				<tr/>
+					<tr height = 25px></tr>
+					<tr height = 50px><td> <h2>Bakery Oil Packaging</h2> </td></tr>
 
-				<tr>
-					<td >Non-IE Margarine</td>
-					<td >Packaged</td>
-					<td><input  type="text" id="351" size="8" name="nim15" value={{vals.nim15}}></td>
-					<td><input  type="text" id="352" size="8" name="nim16" value={{vals.nim16}}></td>
-					<td><input  type="text" id="353" size="8" name="nim17" value={{vals.nim17}}></td>
-					<td><input  type="text" id="354" size="8" name="nim18" value={{vals.nim18}}></td>
-					<td><input  type="text" id="355" size="8" name="nim19" value={{vals.nim19}}></td>
-					<td><input  type="text" id="356" size="8" name="nim20" value={{vals.nim20}}></td>
-					<td><input  type="text" id="357" size="8" name="nim21" value={{vals.nim21}}></td>
-					<td><input  type="text" id="358" size="8" name="nim22" value={{vals.nim22}}></td>
-					<td><input  type="text" id="359" size="8" name="nim23" value={{vals.nim23}}></td>
-					<td><input  type="text" id="360" size="8" name="nim24" value={{vals.nim24}}></td>
-				<tr/>
+					<tr>
+						<td >Liquid Shortening</td>
+						<td >Packaged</td>
+						<td><input  type="text" id="331" size="8" name="ls15" value={{vals.ls15}}></td>
+						<td><input  type="text" id="332" size="8" name="ls16" value={{vals.ls16}}></td>
+						<td><input  type="text" id="333" size="8" name="ls17" value={{vals.ls17}}></td>
+						<td><input  type="text" id="334" size="8" name="ls18" value={{vals.ls18}}></td>
+						<td><input  type="text" id="335" size="8" name="ls19" value={{vals.ls19}}></td>
+						<td><input  type="text" id="336" size="8" name="ls20" value={{vals.ls20}}></td>
+						<td><input  type="text" id="337" size="8" name="ls21" value={{vals.ls21}}></td>
+						<td><input  type="text" id="338" size="8" name="ls22" value={{vals.ls22}}></td>
+						<td><input  type="text" id="339" size="8" name="ls23" value={{vals.ls23}}></td>
+						<td><input  type="text" id="340" size="8" name="ls24" value={{vals.ls24}}></td>
+					<tr/>
 
-				<tr>
-					<td >IE Shortening</td>
-					<td >Packaged</td>
-					<td><input  type="text" id="361" size="8" name="is15" value={{vals.is15}}></td>
-					<td><input  type="text" id="362" size="8" name="is16" value={{vals.is16}}></td>
-					<td><input  type="text" id="363" size="8" name="is17" value={{vals.is17}}></td>
-					<td><input  type="text" id="364" size="8" name="is18" value={{vals.is18}}></td>
-					<td><input  type="text" id="365" size="8" name="is19" value={{vals.is19}}></td>
-					<td><input  type="text" id="366" size="8" name="is20" value={{vals.is20}}></td>
-					<td><input  type="text" id="367" size="8" name="is21" value={{vals.is21}}></td>
-					<td><input  type="text" id="368" size="8" name="is22" value={{vals.is22}}></td>
-					<td><input  type="text" id="369" size="8" name="is23" value={{vals.is23}}></td>
-					<td><input  type="text" id="370" size="8" name="is24" value={{vals.is24}}></td>
-				<tr/>
+					<tr>
+						<td >Non IE Shortening</td>
+						<td >Packaged</td>
+						<td><input  type="text" id="341" size="8" name="nis15" value={{vals.nis15}}></td>
+						<td><input  type="text" id="342" size="8" name="nis16" value={{vals.nis16}}></td>
+						<td><input  type="text" id="343" size="8" name="nis17" value={{vals.nis17}}></td>
+						<td><input  type="text" id="344" size="8" name="nis18" value={{vals.nis18}}></td>
+						<td><input  type="text" id="345" size="8" name="nis19" value={{vals.nis19}}></td>
+						<td><input  type="text" id="346" size="8" name="nis20" value={{vals.nis20}}></td>
+						<td><input  type="text" id="347" size="8" name="nis21" value={{vals.nis21}}></td>
+						<td><input  type="text" id="348" size="8" name="nis22" value={{vals.nis22}}></td>
+						<td><input  type="text" id="349" size="8" name="nis23" value={{vals.nis23}}></td>
+						<td><input  type="text" id="350" size="8" name="nis24" value={{vals.nis24}}></td>
+					<tr/>
 
-				<tr>
-					<td >IE Margarine</td>
-					<td >Packaged</td>
-					<td><input  type="text" id="371" size="8" name="im15" value={{vals.im15}}></td>
-					<td><input  type="text" id="372" size="8" name="im16" value={{vals.im16}}></td>
-					<td><input  type="text" id="373" size="8" name="im17" value={{vals.im17}}></td>
-					<td><input  type="text" id="374" size="8" name="im18" value={{vals.im18}}></td>
-					<td><input  type="text" id="375" size="8" name="im19" value={{vals.im19}}></td>
-					<td><input  type="text" id="376" size="8" name="im20" value={{vals.im20}}></td>
-					<td><input  type="text" id="377" size="8" name="im21" value={{vals.im21}}></td>
-					<td><input  type="text" id="378" size="8" name="im22" value={{vals.im22}}></td>
-					<td><input  type="text" id="379" size="8" name="im23" value={{vals.im23}}></td>
-					<td><input  type="text" id="380" size="8" name="im24" value={{vals.im24}}></td>
-				<tr/>
+					<tr>
+						<td >Non-IE Margarine</td>
+						<td >Packaged</td>
+						<td><input  type="text" id="351" size="8" name="nim15" value={{vals.nim15}}></td>
+						<td><input  type="text" id="352" size="8" name="nim16" value={{vals.nim16}}></td>
+						<td><input  type="text" id="353" size="8" name="nim17" value={{vals.nim17}}></td>
+						<td><input  type="text" id="354" size="8" name="nim18" value={{vals.nim18}}></td>
+						<td><input  type="text" id="355" size="8" name="nim19" value={{vals.nim19}}></td>
+						<td><input  type="text" id="356" size="8" name="nim20" value={{vals.nim20}}></td>
+						<td><input  type="text" id="357" size="8" name="nim21" value={{vals.nim21}}></td>
+						<td><input  type="text" id="358" size="8" name="nim22" value={{vals.nim22}}></td>
+						<td><input  type="text" id="359" size="8" name="nim23" value={{vals.nim23}}></td>
+						<td><input  type="text" id="360" size="8" name="nim24" value={{vals.nim24}}></td>
+					<tr/>
 
-				<tr>
-					<td >All Sheet Margarine</td>
-					<td >Packaged</td>
-					<td><input  type="text" id="381" size="8" name="asm15" value={{vals.asm15}}></td>
-					<td><input  type="text" id="382" size="8" name="asm16" value={{vals.asm16}}></td>
-					<td><input  type="text" id="383" size="8" name="asm17" value={{vals.asm17}}></td>
-					<td><input  type="text" id="384" size="8" name="asm18" value={{vals.asm18}}></td>
-					<td><input  type="text" id="385" size="8" name="asm19" value={{vals.asm19}}></td>
-					<td><input  type="text" id="386" size="8" name="asm20" value={{vals.asm20}}></td>
-					<td><input  type="text" id="387" size="8" name="asm21" value={{vals.asm21}}></td>
-					<td><input  type="text" id="388" size="8" name="asm22" value={{vals.asm22}}></td>
-					<td><input  type="text" id="389" size="8" name="asm23" value={{vals.asm23}}></td>
-					<td><input  type="text" id="390" size="8" name="asm24" value={{vals.asm24}}></td>
-				<tr/>
+					<tr>
+						<td >IE Shortening</td>
+						<td >Packaged</td>
+						<td><input  type="text" id="361" size="8" name="is15" value={{vals.is15}}></td>
+						<td><input  type="text" id="362" size="8" name="is16" value={{vals.is16}}></td>
+						<td><input  type="text" id="363" size="8" name="is17" value={{vals.is17}}></td>
+						<td><input  type="text" id="364" size="8" name="is18" value={{vals.is18}}></td>
+						<td><input  type="text" id="365" size="8" name="is19" value={{vals.is19}}></td>
+						<td><input  type="text" id="366" size="8" name="is20" value={{vals.is20}}></td>
+						<td><input  type="text" id="367" size="8" name="is21" value={{vals.is21}}></td>
+						<td><input  type="text" id="368" size="8" name="is22" value={{vals.is22}}></td>
+						<td><input  type="text" id="369" size="8" name="is23" value={{vals.is23}}></td>
+						<td><input  type="text" id="370" size="8" name="is24" value={{vals.is24}}></td>
+					<tr/>
 
-				<tr>
-					<td ><h5>Bakery Oil Total</h5></td>
-					<td ></td>
-					<td><input readonly type="text"  size="8" name="bot15" value={{vals.bot15}}></td>
-					<td><input readonly type="text"  size="8" name="bot16" value={{vals.bot16}}></td>
-					<td><input readonly type="text"  size="8" name="bot17" value={{vals.bot17}}></td>
-					<td><input readonly type="text"  size="8" name="bot18" value={{vals.bot18}}></td>
-					<td><input readonly type="text"  size="8" name="bot19" value={{vals.bot19}}></td>
-					<td><input readonly type="text"  size="8" name="bot20" value={{vals.bot20}}></td>
-					<td><input readonly type="text"  size="8" name="bot21" value={{vals.bot21}}></td>
-					<td><input readonly type="text"  size="8" name="bot22" value={{vals.bot22}}></td>
-					<td><input readonly type="text"  size="8" name="bot23" value={{vals.bot23}}></td>
-					<td><input readonly type="text"  size="8" name="bot24" value={{vals.bot24}}></td>
-				<tr/>
+					<tr>
+						<td >IE Margarine</td>
+						<td >Packaged</td>
+						<td><input  type="text" id="371" size="8" name="im15" value={{vals.im15}}></td>
+						<td><input  type="text" id="372" size="8" name="im16" value={{vals.im16}}></td>
+						<td><input  type="text" id="373" size="8" name="im17" value={{vals.im17}}></td>
+						<td><input  type="text" id="374" size="8" name="im18" value={{vals.im18}}></td>
+						<td><input  type="text" id="375" size="8" name="im19" value={{vals.im19}}></td>
+						<td><input  type="text" id="376" size="8" name="im20" value={{vals.im20}}></td>
+						<td><input  type="text" id="377" size="8" name="im21" value={{vals.im21}}></td>
+						<td><input  type="text" id="378" size="8" name="im22" value={{vals.im22}}></td>
+						<td><input  type="text" id="379" size="8" name="im23" value={{vals.im23}}></td>
+						<td><input  type="text" id="380" size="8" name="im24" value={{vals.im24}}></td>
+					<tr/>
 
-				<tr height = 25px></tr>
+					<tr>
+						<td >All Sheet Margarine</td>
+						<td >Packaged</td>
+						<td><input  type="text" id="381" size="8" name="asm15" value={{vals.asm15}}></td>
+						<td><input  type="text" id="382" size="8" name="asm16" value={{vals.asm16}}></td>
+						<td><input  type="text" id="383" size="8" name="asm17" value={{vals.asm17}}></td>
+						<td><input  type="text" id="384" size="8" name="asm18" value={{vals.asm18}}></td>
+						<td><input  type="text" id="385" size="8" name="asm19" value={{vals.asm19}}></td>
+						<td><input  type="text" id="386" size="8" name="asm20" value={{vals.asm20}}></td>
+						<td><input  type="text" id="387" size="8" name="asm21" value={{vals.asm21}}></td>
+						<td><input  type="text" id="388" size="8" name="asm22" value={{vals.asm22}}></td>
+						<td><input  type="text" id="389" size="8" name="asm23" value={{vals.asm23}}></td>
+						<td><input  type="text" id="390" size="8" name="asm24" value={{vals.asm24}}></td>
+					<tr/>
 
-				<tr>
-					<td ><h4>Total Volume Produced</h4></td>
-					<td ></td>
-					<td><input readonly type="text"  size="8" name="tvp15" value={{vals.tvp15}}></td>
-					<td><input readonly type="text"  size="8" name="tvp16" value={{vals.tvp16}}></td>
-					<td><input readonly type="text"  size="8" name="tvp17" value={{vals.tvp17}}></td>
-					<td><input readonly type="text"  size="8" name="tvp18" value={{vals.tvp18}}></td>
-					<td><input readonly type="text"  size="8" name="tvp19" value={{vals.tvp19}}></td>
-					<td><input readonly type="text"  size="8" name="tvp20" value={{vals.tvp20}}></td>
-					<td><input readonly type="text"  size="8" name="tvp21" value={{vals.tvp21}}></td>
-					<td><input readonly type="text"  size="8" name="tvp22" value={{vals.tvp22}}></td>
-					<td><input readonly type="text"  size="8" name="tvp23" value={{vals.tvp23}}></td>
-					<td><input readonly type="text"  size="8" name="tvp24" value={{vals.tvp24}}></td>
-				<tr/>
+					<tr>
+						<td ><h5>Bakery Oil Total</h5></td>
+						<td ></td>
+						<td><input readonly type="text"  size="8" name="bot15" value={{vals.bot15}}></td>
+						<td><input readonly type="text"  size="8" name="bot16" value={{vals.bot16}}></td>
+						<td><input readonly type="text"  size="8" name="bot17" value={{vals.bot17}}></td>
+						<td><input readonly type="text"  size="8" name="bot18" value={{vals.bot18}}></td>
+						<td><input readonly type="text"  size="8" name="bot19" value={{vals.bot19}}></td>
+						<td><input readonly type="text"  size="8" name="bot20" value={{vals.bot20}}></td>
+						<td><input readonly type="text"  size="8" name="bot21" value={{vals.bot21}}></td>
+						<td><input readonly type="text"  size="8" name="bot22" value={{vals.bot22}}></td>
+						<td><input readonly type="text"  size="8" name="bot23" value={{vals.bot23}}></td>
+						<td><input readonly type="text"  size="8" name="bot24" value={{vals.bot24}}></td>
+					<tr/>
 
-				<tr height = 25px></tr>
+					<tr height = 25px></tr>
 
-				<tr>
-					<td ><h4>Bulk</h4></td>
-					<td ></td>
-					<td><input readonly type="text"  size="8" name="bulk15" value={{vals.bulk15}}></td>
-					<td><input readonly type="text"  size="8" name="bulk16" value={{vals.bulk16}}></td>
-					<td><input readonly type="text"  size="8" name="bulk17" value={{vals.bulk17}}></td>
-					<td><input readonly type="text"  size="8" name="bulk18" value={{vals.bulk18}}></td>
-					<td><input readonly type="text"  size="8" name="bulk19" value={{vals.bulk19}}></td>
-					<td><input readonly type="text"  size="8" name="bulk20" value={{vals.bulk20}}></td>
-					<td><input readonly type="text"  size="8" name="bulk21" value={{vals.bulk21}}></td>
-					<td><input readonly type="text"  size="8" name="bulk22" value={{vals.bulk22}}></td>
-					<td><input readonly type="text"  size="8" name="bulk23" value={{vals.bulk23}}></td>
-					<td><input readonly type="text"  size="8" name="bulk24" value={{vals.bulk24}}></td>
-				<tr/>
+					<tr>
+						<td ><h4>Total Volume Produced</h4></td>
+						<td ></td>
+						<td><input readonly type="text"  size="8" name="tvp15" value={{vals.tvp15}}></td>
+						<td><input readonly type="text"  size="8" name="tvp16" value={{vals.tvp16}}></td>
+						<td><input readonly type="text"  size="8" name="tvp17" value={{vals.tvp17}}></td>
+						<td><input readonly type="text"  size="8" name="tvp18" value={{vals.tvp18}}></td>
+						<td><input readonly type="text"  size="8" name="tvp19" value={{vals.tvp19}}></td>
+						<td><input readonly type="text"  size="8" name="tvp20" value={{vals.tvp20}}></td>
+						<td><input readonly type="text"  size="8" name="tvp21" value={{vals.tvp21}}></td>
+						<td><input readonly type="text"  size="8" name="tvp22" value={{vals.tvp22}}></td>
+						<td><input readonly type="text"  size="8" name="tvp23" value={{vals.tvp23}}></td>
+						<td><input readonly type="text"  size="8" name="tvp24" value={{vals.tvp24}}></td>
+					<tr/>
 
-				<tr>
-					<td ><h4>Packaged</h4></td>
-					<td ></td>
-					<td><input readonly type="text"  size="8" name="packaged15" value={{vals.packaged15}}></td>
-					<td><input readonly type="text"  size="8" name="packaged16" value={{vals.packaged16}}></td>
-					<td><input readonly type="text"  size="8" name="packaged17" value={{vals.packaged17}}></td>
-					<td><input readonly type="text"  size="8" name="packaged18" value={{vals.packaged18}}></td>
-					<td><input readonly type="text"  size="8" name="packaged19" value={{vals.packaged19}}></td>
-					<td><input readonly type="text"  size="8" name="packaged20" value={{vals.packaged20}}></td>
-					<td><input readonly type="text"  size="8" name="packaged21" value={{vals.packaged21}}></td>
-					<td><input readonly type="text"  size="8" name="packaged22" value={{vals.packaged22}}></td>
-					<td><input readonly type="text"  size="8" name="packaged23" value={{vals.packaged23}}></td>
-					<td><input readonly type="text"  size="8" name="packaged24" value={{vals.packaged24}}></td>
-				<tr/>
+					<tr height = 25px></tr>
 
-			</tbody>
-			</table>
-		</div>
+					<tr>
+						<td ><h4>Bulk</h4></td>
+						<td ></td>
+						<td><input readonly type="text"  size="8" name="bulk15" value={{vals.bulk15}}></td>
+						<td><input readonly type="text"  size="8" name="bulk16" value={{vals.bulk16}}></td>
+						<td><input readonly type="text"  size="8" name="bulk17" value={{vals.bulk17}}></td>
+						<td><input readonly type="text"  size="8" name="bulk18" value={{vals.bulk18}}></td>
+						<td><input readonly type="text"  size="8" name="bulk19" value={{vals.bulk19}}></td>
+						<td><input readonly type="text"  size="8" name="bulk20" value={{vals.bulk20}}></td>
+						<td><input readonly type="text"  size="8" name="bulk21" value={{vals.bulk21}}></td>
+						<td><input readonly type="text"  size="8" name="bulk22" value={{vals.bulk22}}></td>
+						<td><input readonly type="text"  size="8" name="bulk23" value={{vals.bulk23}}></td>
+						<td><input readonly type="text"  size="8" name="bulk24" value={{vals.bulk24}}></td>
+					<tr/>
 
-		<div id="Capacity_Calculations" class="tabcontent">
+					<tr>
+						<td ><h4>Packaged</h4></td>
+						<td ></td>
+						<td><input readonly type="text"  size="8" name="packaged15" value={{vals.packaged15}}></td>
+						<td><input readonly type="text"  size="8" name="packaged16" value={{vals.packaged16}}></td>
+						<td><input readonly type="text"  size="8" name="packaged17" value={{vals.packaged17}}></td>
+						<td><input readonly type="text"  size="8" name="packaged18" value={{vals.packaged18}}></td>
+						<td><input readonly type="text"  size="8" name="packaged19" value={{vals.packaged19}}></td>
+						<td><input readonly type="text"  size="8" name="packaged20" value={{vals.packaged20}}></td>
+						<td><input readonly type="text"  size="8" name="packaged21" value={{vals.packaged21}}></td>
+						<td><input readonly type="text"  size="8" name="packaged22" value={{vals.packaged22}}></td>
+						<td><input readonly type="text"  size="8" name="packaged23" value={{vals.packaged23}}></td>
+						<td><input readonly type="text"  size="8" name="packaged24" value={{vals.packaged24}}></td>
+					<tr/>
+
+				</tbody>
+				</table>
+	</div>
+
+	<div id="Capacity_Calculations" class="tabcontent">
 			<center><h1>Capacity Calculations</h1></center>
 			<hr><br>
 			<form action="" method="POST" name="myform">
@@ -2564,7 +2808,7 @@
 			<br>
 
 
-		</div>
+	</div>
 
 	<div id="Oil_inIE_product" class="tabcontent">
 		<center><h1>IE&Hydro Oil in IE Product</h1></center>
@@ -5554,46 +5798,46 @@
 					<td >Non-IE yellow Shortening</td>
 					<td >Ambient</td>
 					<td>Low Transfat</td>
-					<td><input  type="text" id="1001" size="8" name="nieysalt15" value={{vals.nieysalt15}}></td>
-					<td><input  type="text" id="1002" size="8" name="nieysalt16" value={{vals.nieysalt16}}></td>
-					<td><input  type="text" id="1003" size="8" name="nieysalt17" value={{vals.nieysalt17}}></td>
-					<td><input  type="text" id="1004" size="8" name="nieysalt18" value={{vals.nieysalt18}}></td>
-					<td><input  type="text" id="1005" size="8" name="nieysalt19" value={{vals.nieysalt19}}></td>
-					<td><input  type="text" id="1006" size="8" name="nieysalt20" value={{vals.nieysalt20}}></td>
-					<td><input  type="text" id="1007" size="8" name="nieysalt21" value={{vals.nieysalt21}}></td>
-					<td><input  type="text" id="1008" size="8" name="nieysalt22" value={{vals.nieysalt22}}></td>
-					<td><input  type="text" id="1009" size="8" name="nieysalt23" value={{vals.nieysalt23}}></td>
-					<td><input  type="text" id="1010" size="8" name="nieysalt24" value={{vals.nieysalt24}}></td>
+					<td><input  type="text"  size="8" name="nieysalt15" value={{vals.nieysalt15}}></td>
+					<td><input  type="text"  size="8" name="nieysalt16" value={{vals.nieysalt16}}></td>
+					<td><input  type="text"  size="8" name="nieysalt17" value={{vals.nieysalt17}}></td>
+					<td><input  type="text"  size="8" name="nieysalt18" value={{vals.nieysalt18}}></td>
+					<td><input  type="text"  size="8" name="nieysalt19" value={{vals.nieysalt19}}></td>
+					<td><input  type="text"  size="8" name="nieysalt20" value={{vals.nieysalt20}}></td>
+					<td><input  type="text"  size="8" name="nieysalt21" value={{vals.nieysalt21}}></td>
+					<td><input  type="text"  size="8" name="nieysalt22" value={{vals.nieysalt22}}></td>
+					<td><input  type="text"  size="8" name="nieysalt23" value={{vals.nieysalt23}}></td>
+					<td><input  type="text"  size="8" name="nieysalt24" value={{vals.nieysalt24}}></td>
 				<tr/>
 				<tr>
 					<td >Non-IE Yellow Shortening</td>
 					<td >Low Temp</td>
 					<td>High Transfat</td>
-					<td><input  type="text" id="1011" size="8" name="nieysltht15" value={{vals.nieysltht15}}></td>
-					<td><input  type="text" id="1012" size="8" name="nieysltht16" value={{vals.nieysltht16}}></td>
-					<td><input  type="text" id="1013" size="8" name="nieysltht17" value={{vals.nieysltht17}}></td>
-					<td><input  type="text" id="1014" size="8" name="nieysltht18" value={{vals.nieysltht18}}></td>
-					<td><input  type="text" id="1015" size="8" name="nieysltht19" value={{vals.nieysltht19}}></td>
-					<td><input  type="text" id="1016" size="8" name="nieysltht20" value={{vals.nieysltht20}}></td>
-					<td><input  type="text" id="1017" size="8" name="nieysltht21" value={{vals.nieysltht21}}></td>
-					<td><input  type="text" id="1018" size="8" name="nieysltht22" value={{vals.nieysltht22}}></td>
-					<td><input  type="text" id="1019" size="8" name="nieysltht23" value={{vals.nieysltht23}}></td>
-					<td><input  type="text" id="1020" size="8" name="nieysltht24" value={{vals.nieysltht24}}></td>
+					<td><input  type="text"  size="8" name="nieysltht15" value={{vals.nieysltht15}}></td>
+					<td><input  type="text"  size="8" name="nieysltht16" value={{vals.nieysltht16}}></td>
+					<td><input  type="text"  size="8" name="nieysltht17" value={{vals.nieysltht17}}></td>
+					<td><input  type="text"  size="8" name="nieysltht18" value={{vals.nieysltht18}}></td>
+					<td><input  type="text"  size="8" name="nieysltht19" value={{vals.nieysltht19}}></td>
+					<td><input  type="text"  size="8" name="nieysltht20" value={{vals.nieysltht20}}></td>
+					<td><input  type="text"  size="8" name="nieysltht21" value={{vals.nieysltht21}}></td>
+					<td><input  type="text"  size="8" name="nieysltht22" value={{vals.nieysltht22}}></td>
+					<td><input  type="text"  size="8" name="nieysltht23" value={{vals.nieysltht23}}></td>
+					<td><input  type="text"  size="8" name="nieysltht24" value={{vals.nieysltht24}}></td>
 				<tr/>
 				<tr>
 					<td >Non-IE Yellow Shortening</td>
 					<td >Low Temp</td>
 					<td>Low Transfat</td>
-					<td><input  type="text" id="1021" size="8" name="nieysltlt15" value={{vals.nieysltlt15}}></td>
-					<td><input  type="text" id="1022" size="8" name="nieysltlt16" value={{vals.nieysltlt16}}></td>
-					<td><input  type="text" id="1023" size="8" name="nieysltlt17" value={{vals.nieysltlt17}}></td>
-					<td><input  type="text" id="1024" size="8" name="nieysltlt18" value={{vals.nieysltlt18}}></td>
-					<td><input  type="text" id="1025" size="8" name="nieysltlt19" value={{vals.nieysltlt19}}></td>
-					<td><input  type="text" id="1026" size="8" name="nieysltlt20" value={{vals.nieysltlt20}}></td>
-					<td><input  type="text" id="1027" size="8" name="nieysltlt21" value={{vals.nieysltlt21}}></td>
-					<td><input  type="text" id="1028" size="8" name="nieysltlt22" value={{vals.nieysltlt22}}></td>
-					<td><input  type="text" id="1029" size="8" name="nieysltlt23" value={{vals.nieysltlt23}}></td>
-					<td><input  type="text" id="1030" size="8" name="nieysltlt24" value={{vals.nieysltlt24}}></td>
+					<td><input  type="text"  size="8" name="nieysltlt15" value={{vals.nieysltlt15}}></td>
+					<td><input  type="text"  size="8" name="nieysltlt16" value={{vals.nieysltlt16}}></td>
+					<td><input  type="text"  size="8" name="nieysltlt17" value={{vals.nieysltlt17}}></td>
+					<td><input  type="text"  size="8" name="nieysltlt18" value={{vals.nieysltlt18}}></td>
+					<td><input  type="text"  size="8" name="nieysltlt19" value={{vals.nieysltlt19}}></td>
+					<td><input  type="text"  size="8" name="nieysltlt20" value={{vals.nieysltlt20}}></td>
+					<td><input  type="text"  size="8" name="nieysltlt21" value={{vals.nieysltlt21}}></td>
+					<td><input  type="text"  size="8" name="nieysltlt22" value={{vals.nieysltlt22}}></td>
+					<td><input  type="text"  size="8" name="nieysltlt23" value={{vals.nieysltlt23}}></td>
+					<td><input  type="text"  size="8" name="nieysltlt24" value={{vals.nieysltlt24}}></td>
 				<tr/>
 				<tr>
 					<td ><b>Total</b></td>
@@ -7216,8 +7460,8 @@
 	<div id="summary" class="tabcontent">
 		<center><h1>Summary</h1></center>
 		<hr><br>
+		<button type="button" onClick="changeColor();" >Highlight Values</button><br><br>
 		<form action="" method="POST" name="myform">
-		<b><h1>Summary</h1></b>
 			<table >
 				<thead >
 					<tr align = center>
@@ -7339,16 +7583,16 @@
 					<tr>
 						<td >Effective Capacity Utilization</td>
 						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tpd400ref_ecu24}}>%</td>
+						<td><input readonly id="id1" type="text" size="8" value={{vals2.tpd400ref_ecu15}}>%</td>
+						<td><input readonly id="id2" type="text" size="8" value={{vals2.tpd400ref_ecu16}}>%</td>
+						<td><input readonly id="id3" type="text" size="8" value={{vals2.tpd400ref_ecu17}}>%</td>
+						<td><input readonly id="id4" type="text" size="8" value={{vals2.tpd400ref_ecu18}}>%</td>
+						<td><input readonly id="id5" type="text" size="8" value={{vals2.tpd400ref_ecu19}}>%</td>
+						<td><input readonly id="id6" type="text" size="8" value={{vals2.tpd400ref_ecu20}}>%</td>
+						<td><input readonly id="id7" type="text" size="8" value={{vals2.tpd400ref_ecu21}}>%</td>
+						<td><input readonly id="id8" type="text" size="8" value={{vals2.tpd400ref_ecu22}}>%</td>
+						<td><input readonly id="id9" type="text" size="8" value={{vals2.tpd400ref_ecu23}}>%</td>
+						<td><input readonly id="id10" type="text" size="8" value={{vals2.tpd400ref_ecu24}}>%</td>
 					</tr>
 					<tr height = 25px>
 					<tr>
@@ -7368,45 +7612,45 @@
 					<tr>
 						<td >Effective Capacity Utilization</td>
 						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.hydro_ecu24}}>%</td>
+						<td><input readonly id="id11" type="text" size="8" value={{vals2.hydro_ecu15}}>%</td>
+						<td><input readonly id="id12" type="text" size="8" value={{vals2.hydro_ecu16}}>%</td>
+						<td><input readonly id="id13" type="text" size="8" value={{vals2.hydro_ecu17}}>%</td>
+						<td><input readonly id="id14" type="text" size="8" value={{vals2.hydro_ecu18}}>%</td>
+						<td><input readonly id="id15" type="text" size="8" value={{vals2.hydro_ecu19}}>%</td>
+						<td><input readonly id="id16" type="text" size="8" value={{vals2.hydro_ecu20}}>%</td>
+						<td><input readonly id="id17" type="text" size="8" value={{vals2.hydro_ecu21}}>%</td>
+						<td><input readonly id="id18" type="text" size="8" value={{vals2.hydro_ecu22}}>%</td>
+						<td><input readonly id="id19" type="text" size="8" value={{vals2.hydro_ecu23}}>%</td>
+						<td><input readonly id="id20" type="text" size="8" value={{vals2.hydro_ecu24}}>%</td>
 					</tr>
 					<tr height = 25px>
 					<tr>
 						<td >IE + Bleaching</td>
 						<td >days/Year</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb24}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.ieoilb15}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.ieoilb16}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.ieoilb17}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.ieoilb18}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.ieoilb19}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.ieoilb20}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.ieoilb21}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.ieoilb22}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.ieoilb23}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.ieoilb24}}></td>
 					</tr>
 					<tr>
 						<td >Effective Capacity Utilization</td>
 						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoilb_ecu24}}>%</td>
+						<td><input readonly id="id21" type="text" size="8" value={{vals2.ieoilb_ecu15}}>%</td>
+						<td><input readonly id="id22" type="text" size="8" value={{vals2.ieoilb_ecu16}}>%</td>
+						<td><input readonly id="id23" type="text" size="8" value={{vals2.ieoilb_ecu17}}>%</td>
+						<td><input readonly id="id24" type="text" size="8" value={{vals2.ieoilb_ecu18}}>%</td>
+						<td><input readonly id="id25" type="text" size="8" value={{vals2.ieoilb_ecu19}}>%</td>
+						<td><input readonly id="id26" type="text" size="8" value={{vals2.ieoilb_ecu20}}>%</td>
+						<td><input readonly id="id27" type="text" size="8" value={{vals2.ieoilb_ecu21}}>%</td>
+						<td><input readonly id="id28" type="text" size="8" value={{vals2.ieoilb_ecu22}}>%</td>
+						<td><input readonly id="id29" type="text" size="8" value={{vals2.ieoilb_ecu23}}>%</td>
+						<td><input readonly id="id30" type="text" size="8" value={{vals2.ieoilb_ecu24}}>%</td>
 					</tr>
 					<tr>
 						<td >Max Capacity</td>
@@ -7440,16 +7684,16 @@
 					<tr>
 						<td >Effective Capacity Utilization</td>
 						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.ieoild_ecu24}}>%</td>
+						<td><input readonly id="id31" type="text" size="8" value={{vals2.ieoild_ecu15}}>%</td>
+						<td><input readonly id="id32" type="text" size="8" value={{vals2.ieoild_ecu16}}>%</td>
+						<td><input readonly id="id33" type="text" size="8" value={{vals2.ieoild_ecu17}}>%</td>
+						<td><input readonly id="id34" type="text" size="8" value={{vals2.ieoild_ecu18}}>%</td>
+						<td><input readonly id="id35" type="text" size="8" value={{vals2.ieoild_ecu19}}>%</td>
+						<td><input readonly id="id36" type="text" size="8" value={{vals2.ieoild_ecu20}}>%</td>
+						<td><input readonly id="id37" type="text" size="8" value={{vals2.ieoild_ecu21}}>%</td>
+						<td><input readonly id="id38" type="text" size="8" value={{vals2.ieoild_ecu22}}>%</td>
+						<td><input readonly id="id39" type="text" size="8" value={{vals2.ieoild_ecu23}}>%</td>
+						<td><input readonly id="id40" type="text" size="8" value={{vals2.ieoild_ecu24}}>%</td>
 					</tr>
 					<tr height = 25px>
 					<tr>
@@ -7469,44 +7713,44 @@
 					<tr>
 						<td >Effective Capacity Utilization</td>
 						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectorb_ecu24}}>%</td>
+						<td><input readonly id="id41" type="text" size="8" value={{vals2.perfectorb_ecu15}}>%</td>
+						<td><input readonly id="id42" type="text" size="8" value={{vals2.perfectorb_ecu16}}>%</td>
+						<td><input readonly id="id43" type="text" size="8" value={{vals2.perfectorb_ecu17}}>%</td>
+						<td><input readonly id="id44" type="text" size="8" value={{vals2.perfectorb_ecu18}}>%</td>
+						<td><input readonly id="id45" type="text" size="8" value={{vals2.perfectorb_ecu19}}>%</td>
+						<td><input readonly id="id46" type="text" size="8" value={{vals2.perfectorb_ecu20}}>%</td>
+						<td><input readonly id="id47" type="text" size="8" value={{vals2.perfectorb_ecu21}}>%</td>
+						<td><input readonly id="id48" type="text" size="8" value={{vals2.perfectorb_ecu22}}>%</td>
+						<td><input readonly id="id49" type="text" size="8" value={{vals2.perfectorb_ecu23}}>%</td>
+						<td><input readonly id="id50" type="text" size="8" value={{vals2.perfectorb_ecu24}}>%</td>
 					</tr>
 					<tr>
 						<td >Perfector 150 (1+1+1+1) A</td>
 						<td >Days/year</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora15}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora16}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora17}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora18}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora19}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora20}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora21}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora22}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora23}}></td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora24}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.perfectora15}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.perfectora16}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.perfectora17}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.perfectora18}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.perfectora19}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.perfectora20}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.perfectora21}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.perfectora22}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.perfectora23}}></td>
+						<td><input readonly  type="text" size="8" value={{vals2.perfectora24}}></td>
 					</tr>
 					<tr>
 						<td >Effective Capacity Utilization</td>
 						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.perfectora_ecu24}}>%</td>
+						<td><input readonly id="id51" type="text" size="8" value={{vals2.perfectora_ecu15}}>%</td>
+						<td><input readonly id="id52" type="text" size="8" value={{vals2.perfectora_ecu16}}>%</td>
+						<td><input readonly id="id53" type="text" size="8" value={{vals2.perfectora_ecu17}}>%</td>
+						<td><input readonly id="id54" type="text" size="8" value={{vals2.perfectora_ecu18}}>%</td>
+						<td><input readonly id="id55" type="text" size="8" value={{vals2.perfectora_ecu19}}>%</td>
+						<td><input readonly id="id56" type="text" size="8" value={{vals2.perfectora_ecu20}}>%</td>
+						<td><input readonly id="id57" type="text" size="8" value={{vals2.perfectora_ecu21}}>%</td>
+						<td><input readonly id="id58" type="text" size="8" value={{vals2.perfectora_ecu22}}>%</td>
+						<td><input readonly id="id59" type="text" size="8" value={{vals2.perfectora_ecu23}}>%</td>
+						<td><input readonly id="id60" type="text" size="8" value={{vals2.perfectora_ecu24}}>%</td>
 					</tr>
 					<tr height = 25px>
 					<tr>
@@ -7526,16 +7770,16 @@
 					<tr>
 						<td >Effective Capacity Utilization</td>
 						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.petline_ecu24}}>%</td>
+						<td><input readonly id="id61" type="text" size="8" value={{vals2.petline_ecu15}}>%</td>
+						<td><input readonly id="id62" type="text" size="8" value={{vals2.petline_ecu16}}>%</td>
+						<td><input readonly id="id63" type="text" size="8" value={{vals2.petline_ecu17}}>%</td>
+						<td><input readonly id="id64" type="text" size="8" value={{vals2.petline_ecu18}}>%</td>
+						<td><input readonly id="id65" type="text" size="8" value={{vals2.petline_ecu19}}>%</td>
+						<td><input readonly id="id66" type="text" size="8" value={{vals2.petline_ecu20}}>%</td>
+						<td><input readonly id="id67" type="text" size="8" value={{vals2.petline_ecu21}}>%</td>
+						<td><input readonly id="id68" type="text" size="8" value={{vals2.petline_ecu22}}>%</td>
+						<td><input readonly id="id69" type="text" size="8" value={{vals2.petline_ecu23}}>%</td>
+						<td><input readonly id="id70" type="text" size="8" value={{vals2.petline_ecu24}}>%</td>
 					</tr>
 					<tr height = 25px>
 					<tr>
@@ -7551,22 +7795,280 @@
 						<td><input readonly type="text" size="8" value={{vals2.tbibline22}}></td>
 						<td><input readonly type="text" size="8" value={{vals2.tbibline23}}></td>
 						<td><input readonly type="text" size="8" value={{vals2.tbibline24}}></td>
-					</tr>
 					<tr>
+					</tr>
 						<td >Effective Capacity Utilization</td>
 						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.tbibline_ecu24}}>%</td>
+						<td><input readonly id="id71" type="text" size="8" value={{vals2.tbibline_ecu15}}>%</td>
+						<td><input readonly id="id72" type="text" size="8" value={{vals2.tbibline_ecu16}}>%</td>
+						<td><input readonly id="id73" type="text" size="8" value={{vals2.tbibline_ecu17}}>%</td>
+						<td><input readonly id="id74" type="text" size="8" value={{vals2.tbibline_ecu18}}>%</td>
+						<td><input readonly id="id75" type="text" size="8" value={{vals2.tbibline_ecu19}}>%</td>
+						<td><input readonly id="id76" type="text" size="8" value={{vals2.tbibline_ecu20}}>%</td>
+						<td><input readonly id="id77" type="text" size="8" value={{vals2.tbibline_ecu21}}>%</td>
+						<td><input readonly id="id78" type="text" size="8" value={{vals2.tbibline_ecu22}}>%</td>
+						<td><input readonly id="id79" type="text" size="8" value={{vals2.tbibline_ecu23}}>%</td>
+						<td><input readonly id="id80" type="text" size="8" value={{vals2.tbibline_ecu24}}>%</td>
 					</tr>
 					<tr height = 25px>
+					<tr height = 50px><td> <h3>Carton Days/Year</h3> </td></tr>
+					<tr>
+						<td colspan="2" >100%  Carton Utilization -Days/Year</td>
+						<td colspan="10"><input type="text" size="8" name="cudy" value={{vals3.cudy}}> Days/Year</td>
+					</tr>
+					<tr>
+						<td colspan="2" >SF+Non-IE bakery (Days/Year)</td>
+						<td ><input readonly type="text" size="8" value={{vals3.sfnib15}}></td>
+						<td ><input readonly type="text" size="8" value={{vals3.sfnib16}}></td>
+						<td ><input readonly type="text" size="8" value={{vals3.sfnib17}}></td>
+						<td ><input readonly type="text" size="8" value={{vals3.sfnib18}}></td>
+						<td ><input readonly type="text" size="8" value={{vals3.sfnib19}}></td>
+						<td ><input readonly type="text" size="8" value={{vals3.sfnib20}}></td>
+						<td ><input readonly type="text" size="8" value={{vals3.sfnib21}}></td>
+						<td ><input readonly type="text" size="8" value={{vals3.sfnib22}}></td>
+						<td ><input readonly type="text" size="8" value={{vals3.sfnib23}}></td>
+						<td ><input readonly type="text" size="8" value={{vals3.sfnib24}}></td>
+					</tr>
+					<tr>
+						<td colspan="2" >Apple IE Bakery Oil  (Days/Year)</td>
+						<td ><input readonly type="text" size="8" name="aiebo15" value={{vals3.aiebo15}}></td>
+						<td ><input readonly type="text" size="8" name="aiebo16" value={{vals3.aiebo16}}></td>
+						<td ><input readonly type="text" size="8" name="aiebo17" value={{vals3.aiebo17}}></td>
+						<td ><input readonly type="text" size="8" name="aiebo18" value={{vals3.aiebo18}}></td>
+						<td ><input readonly type="text" size="8" name="aiebo19" value={{vals3.aiebo19}}></td>
+						<td ><input readonly type="text" size="8" name="aiebo20" value={{vals3.aiebo20}}></td>
+						<td ><input readonly type="text" size="8" name="aiebo21" value={{vals3.aiebo21}}></td>
+						<td ><input readonly type="text" size="8" name="aiebo22" value={{vals3.aiebo22}}></td>
+						<td ><input readonly type="text" size="8" name="aiebo23" value={{vals3.aiebo23}}></td>
+						<td ><input readonly type="text" size="8" name="aiebo24" value={{vals3.aiebo24}}></td>
+					</tr>
+					<tr>
+						<td colspan="2" ><b>Apple IE moved oils (To NT) - Days/Year</b></td>
+						<td ><input readonly type="text" size="8" name="aiemo15" value={{vals3.aiemo15}}></td>
+						<td ><input readonly type="text" size="8" name="aiemo16" value={{vals3.aiemo16}}></td>
+						<td ><input readonly type="text" size="8" name="aiemo17" value={{vals3.aiemo17}}></td>
+						<td ><input readonly type="text" size="8" name="aiemo18" value={{vals3.aiemo18}}></td>
+						<td ><input readonly type="text" size="8" name="aiemo19" value={{vals3.aiemo19}}></td>
+						<td ><input readonly type="text" size="8" name="aiemo20" value={{vals3.aiemo20}}></td>
+						<td ><input readonly type="text" size="8" name="aiemo21" value={{vals3.aiemo21}}></td>
+						<td ><input readonly type="text" size="8" name="aiemo22" value={{vals3.aiemo22}}></td>
+						<td ><input readonly type="text" size="8" name="aiemo23" value={{vals3.aiemo23}}></td>
+						<td ><input readonly type="text" size="8" name="aiemo24" value={{vals3.aiemo24}}></td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td colspan="2" >Apple IE Margarine - Days/Year</td>
+						<td><input readonly type="text" size="8" value={{vals2.imcfl2_15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.imcfl2_16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.imcfl2_17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.imcfl2_18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.imcfl2_19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.imcfl2_20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.imcfl2_21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.imcfl2_22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.imcfl2_23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.imcfl2_24}}></td>
+					</tr>
+					<tr>
+						<td colspan="2" >Apple IE Shortening - Days/Year</td>
+						<td><input readonly type="text" size="8" value={{vals2.iscfl2_15}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.iscfl2_16}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.iscfl2_17}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.iscfl2_18}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.iscfl2_19}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.iscfl2_20}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.iscfl2_21}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.iscfl2_22}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.iscfl2_23}}></td>
+						<td><input readonly type="text" size="8" value={{vals2.iscfl2_24}}></td>
+					</tr>
+					<tr>
+						<td colspan="2" >Apple IE Shortening ( To Move to NT) - Days/Year</td>
+						<td><input readonly type="text" size="8" value={{vals3.aiemnt15}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiemnt16}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiemnt17}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiemnt18}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiemnt19}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiemnt20}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiemnt21}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiemnt22}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiemnt23}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiemnt24}}></td>
+					</tr>
+					<tr>
+						<td colspan="2" >Apple IE Shortening ( To Move to NT)  - Days/Year</td>
+						<td><input readonly type="text" size="8" value={{vals3.aiesnt15}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiesnt16}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiesnt17}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiesnt18}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiesnt19}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiesnt20}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiesnt21}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiesnt22}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiesnt23}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiesnt24}}></td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td colspan="2" ><b>Carton - Maxmium Moved  Days/Year</b></td>
+						<td colspan="10"><input type="text" size="8" name="cmv" value={{vals3.cmv}}> %</td>
+					</tr>
+					<tr>
+						<td colspan="2" >Apple IE Shortening - Days/Year</td>
+						<td><input readonly type="text" size="8" value={{vals3.aiem15}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiem16}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiem17}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiem18}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiem19}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiem20}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiem21}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiem22}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiem23}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aiem24}}></td>
+					</tr>
+					<tr>
+						<td colspan="2" >Apple IE Shortening - Days/Year</td>
+						<td><input readonly type="text" size="8" value={{vals3.aies15}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aies16}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aies17}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aies18}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aies19}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aies20}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aies21}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aies22}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aies23}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.aies24}}></td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td colspan="2" ><b>Carton Days/Year after Maxmium</b></td>
+						<td><input readonly type="text" size="8" value={{vals3.cmaxium15}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.cmaxium16}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.cmaxium17}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.cmaxium18}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.cmaxium19}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.cmaxium20}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.cmaxium21}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.cmaxium22}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.cmaxium23}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.cmaxium24}}></td>
+					</tr>
+					<tr height = 50px>
+					<tr><td colspan="12"><b>Carton-Moved Volume</b></td><tr>
+					<tr>
+						<td>Loadout Volume:30MT/batch</td>
+						<td>Apple Moved IE Margarine(mt)</td>
+						<td><input readonly type="text" size="8" value={{vals3.amiem15}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amiem16}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amiem17}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amiem18}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amiem19}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amiem20}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amiem21}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amiem22}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amiem23}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amiem24}}></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>batches/week</td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>batches/day</td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td>PET line</td>
+						<td>days/Year</td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+					</tr>
+					<tr>
+						<td>Effective Capacity Utilization</td>
+						<td>%</td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+					</tr>
+					<tr height = 25px>
+					<tr>
+						<td>Sheet Margarine Filler</td>
+						<td>days/Year</td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+					</tr>
+					<tr>
+						<td>Effective Capacity Utilization</td>
+						<td>%</td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+						<td><input readonly type="text" size="8" ></td>
+					</tr>
+					<tr>
+						<td colspan="2">Apple Moved IE Shortening(mt)</td>
+						<td><input readonly type="text" size="8" value={{vals3.amies15}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amies16}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amies17}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amies18}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amies19}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amies20}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amies21}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amies22}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amies23}}></td>
+						<td><input readonly type="text" size="8" value={{vals3.amies24}}></td>
+					</tr>
+					<tr height = 50px>
 					<tr>
 						<td >Carton Filling Line 1 </td>
 						<td >days/year</td>
@@ -7584,20 +8086,20 @@
 					<tr>
 						<td >Effective Capacity Utilization</td>
 						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl1t_ecu24}}>%</td>
+						<td><input readonly id="id81" type="text" size="8" value={{vals2.cfl1t_ecu15}}>%</td>
+						<td><input readonly id="id82" type="text" size="8" value={{vals2.cfl1t_ecu16}}>%</td>
+						<td><input readonly id="id83" type="text" size="8" value={{vals2.cfl1t_ecu17}}>%</td>
+						<td><input readonly id="id84" type="text" size="8" value={{vals2.cfl1t_ecu18}}>%</td>
+						<td><input readonly id="id85" type="text" size="8" value={{vals2.cfl1t_ecu19}}>%</td>
+						<td><input readonly id="id86" type="text" size="8" value={{vals2.cfl1t_ecu20}}>%</td>
+						<td><input readonly id="id87" type="text" size="8" value={{vals2.cfl1t_ecu21}}>%</td>
+						<td><input readonly id="id88" type="text" size="8" value={{vals2.cfl1t_ecu22}}>%</td>
+						<td><input readonly id="id89" type="text" size="8" value={{vals2.cfl1t_ecu23}}>%</td>
+						<td><input readonly id="id90" type="text" size="8" value={{vals2.cfl1t_ecu24}}>%</td>
 					</tr>
 					<tr height = 25px>
 					<tr>
-						<td >Carton Filling Line 1 </td>
+						<td >Carton Filling Line 2 </td>
 						<td >days/year</td>
 						<td><input readonly type="text" size="8" value={{vals2.cfl2t15}}></td>
 						<td><input readonly type="text" size="8" value={{vals2.cfl2t16}}></td>
@@ -7613,16 +8115,16 @@
 					<tr>
 						<td >Effective Capacity Utilization</td>
 						<td >%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu15}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu16}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu17}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu18}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu19}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu20}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu21}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu22}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu23}}>%</td>
-						<td><input readonly type="text" size="8" value={{vals2.cfl2t_ecu24}}>%</td>
+						<td><input readonly id="id91" type="text" size="8" value={{vals2.cfl2t_ecu15}}>%</td>
+						<td><input readonly id="id92" type="text" size="8" value={{vals2.cfl2t_ecu16}}>%</td>
+						<td><input readonly id="id93" type="text" size="8" value={{vals2.cfl2t_ecu17}}>%</td>
+						<td><input readonly id="id94" type="text" size="8" value={{vals2.cfl2t_ecu18}}>%</td>
+						<td><input readonly id="id95" type="text" size="8" value={{vals2.cfl2t_ecu19}}>%</td>
+						<td><input readonly id="id96" type="text" size="8" value={{vals2.cfl2t_ecu20}}>%</td>
+						<td><input readonly id="id97" type="text" size="8" value={{vals2.cfl2t_ecu21}}>%</td>
+						<td><input readonly id="id98" type="text" size="8" value={{vals2.cfl2t_ecu22}}>%</td>
+						<td><input readonly id="id99" type="text" size="8" value={{vals2.cfl2t_ecu23}}>%</td>
+						<td><input readonly id="id100" type="text" size="8" value={{vals2.cfl2t_ecu24}}>%</td>
 					</tr>
 				</tbody>
 			</table>
@@ -7640,28 +8142,23 @@
 			<div class="column">
 				<img src="data:image/png;base64,{{ data }}" alt="Enter the values first" height="500" width="800">
 			</div>
+			<div class="clear">
+				<br/><br/><br/><br/><br/><br/>
+				<img src="data:image/png;base64,{{ data2 }}" alt="Enter the values first" height="500" width="800">
+			</div>
 		</div>
 		</center>
 		<br>
 		<br>
 	</div>
 
-	<br>
-	<br>
+</div>
+
+	<br><br><br>
 	<div class="container">
   		<center><input type=submit value="Run Calculator" name="_calculate" class="btn"></center>
 	</div>	<br><br><br><br>
-	<div class="container">
-  		<input type=submit value="Autofill Values" name="_autofill" class="btn">
-	</div>	<br><br><br><br>
-
-	{% comment %} <div class="container">
-  		<center><input type=reset value="Reset" class="btn" onclick="resetinput();"></center>
-	</div> {% endcomment %}
-	<br>
-	<br>
-	<br>
-	<script>
+<script>
 		function openCity(evt, cityName) {
 		var i, tabcontent, tablinks;
 		tabcontent = document.getElementsByClassName("tabcontent");
@@ -7681,6 +8178,7 @@
 		document.getElementById("defaultOpen").click();
 
 		getdata();
-	</script>
-	</body>
+</script>
+	
+</body>
 </html>

@@ -1,17 +1,19 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from macd.models import values,values2,values3
-import numpy as np
 from .forms import InputsForm
 import matplotlib.pyplot as plt
-import io, urllib, base64
+import io, urllib, base64, requests
 import pandas as pd
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+import os
+from django.conf import settings
 
 
 def index(request):
     if request.POST:
+        
         if '_calculate' in request.POST:
         # create new 'values' object
             vals = values()
@@ -4678,9 +4680,296 @@ def index(request):
             vals2.cfl2t24 = vals2.niscfl2_24 + vals2.nimcfl2_24 + vals2.iscfl2_24 + vals2.imcfl2_24
             vals2.cfl2t_ecu24 = vals2.cfl2t24/350*100
 
+            vals3.cudy = float(request.POST['cudy'])
+            vals3.cmv = float(request.POST['cmv'])
 
-
-
+            vals3.sfnib15 = vals2.apshortening_perf15 + vals2.rhpoc_perf15 + vals2.rhsbo_perf15 + vals2.niscfl2_15 + vals2.nimcfl2_15
+            vals3.aiebo15 = vals2.iscfl2_15 + vals2.imcfl2_15
+            if vals3.cudy-vals3.sfnib15-vals3.aiebo15 > 0:
+                vals3.aiemo15=0
+            else:
+                vals3.aiemo15=-(vals3.cudy-vals3.sfnib15-vals3.aiebo15)
+            vals3.aiemnt15 = vals3.aiemo15*24*vals3.imcfl2
+            if vals3.aiemnt15 == vals3.aiemo15:
+                vals3.aiesnt15 = 0
+            else:
+                vals3.aiesnt15 = vals3.aiemo15 - vals3.aiemnt15
+            vals3.aiem15 = vals2.imcfl2_15 * vals3.cmv/100
+            vals3.aies15 = vals2.iscfl2_15 * vals3.cmv/100
+            vals3.cmaxium15 = vals3.sfnib15 - vals3.aiem15 - vals3.aies15 + vals2.imcfl2_15 + vals2.iscfl2_15
+            vals3.amiem15 = vals3.aiemnt15*vals3.imcfl2*24
+            vals3.amies15 = vals3.aiesnt15*vals3.iscfl2*24
+            vals3.sfnib15 = round(vals3.sfnib15,2)
+            vals3.aiebo15 = round(vals3.aiebo15,2) 
+            vals3.aiemo15 = round(vals3.aiemo15,2)
+            vals3.aiemnt15 = round(vals3.aiemnt15,2)
+            vals3.aiesnt15 = round(vals3.aiesnt15,2)
+            vals3.aiem15 = round(vals3.aiem15,2)
+            vals3.aies15 = round(vals3.aies15,2)
+            vals3.cmaxium15 = round(vals3.cmaxium15,2)
+            vals3.amiem15 = round(vals3.amiem15,2)
+            vals3.amies15 = round(vals3.amies15,2)
+        
+            vals3.sfnib16 = vals2.apshortening_perf16 + vals2.rhpoc_perf16 + vals2.rhsbo_perf16 + vals2.niscfl2_16 + vals2.nimcfl2_16
+            vals3.aiebo16 = vals2.iscfl2_16 + vals2.imcfl2_16
+            if vals3.cudy-vals3.sfnib16-vals3.aiebo16 > 0:
+                vals3.aiemo16=0
+            else:
+                vals3.aiemo16=-(vals3.cudy-vals3.sfnib16-vals3.aiebo16)
+            vals3.aiemnt16 = vals3.aiemo16*24*vals3.imcfl2
+            if vals3.aiemnt16 == vals3.aiemo16:
+                vals3.aiesnt16 = 0
+            else:
+                vals3.aiesnt16 = vals3.aiemo16 - vals3.aiemnt16
+            vals3.aiem16 = vals2.imcfl2_16 * vals3.cmv/100
+            vals3.aies16 = vals2.iscfl2_16 * vals3.cmv/100
+            vals3.cmaxium16 = vals3.sfnib16 - vals3.aiem16 - vals3.aies16 + vals2.imcfl2_16 + vals2.iscfl2_16
+            vals3.amiem16 = vals3.aiemnt16*vals3.imcfl2*24
+            vals3.amies16 = vals3.aiesnt16*vals3.iscfl2*24
+            vals3.sfnib16 = round(vals3.sfnib16,2)
+            vals3.aiebo16 = round(vals3.aiebo16,2) 
+            vals3.aiemo16 = round(vals3.aiemo16,2)
+            vals3.aiemnt16 = round(vals3.aiemnt16,2)
+            vals3.aiesnt16 = round(vals3.aiesnt16,2)
+            vals3.aiem16 = round(vals3.aiem16,2)
+            vals3.aies16 = round(vals3.aies16,2)
+            vals3.cmaxium16 = round(vals3.cmaxium16,2)
+            vals3.amiem16 = round(vals3.amiem16,2)
+            vals3.amies16 = round(vals3.amies16,2)
+            
+            vals3.sfnib17 = vals2.apshortening_perf17 + vals2.rhpoc_perf17 + vals2.rhsbo_perf17 + vals2.niscfl2_17 + vals2.nimcfl2_17
+            vals3.aiebo17 = vals2.iscfl2_17 + vals2.imcfl2_17
+            if vals3.cudy-vals3.sfnib17-vals3.aiebo17 > 0:
+                vals3.aiemo17=0
+            else:
+                vals3.aiemo17=-(vals3.cudy-vals3.sfnib17-vals3.aiebo17)
+            vals3.aiemnt17 = vals3.aiemo17*24*vals3.imcfl2
+            if vals3.aiemnt17 == vals3.aiemo17:
+                vals3.aiesnt17 = 0
+            else:
+                vals3.aiesnt17 = vals3.aiemo17 - vals3.aiemnt17
+            vals3.aiem17 = vals2.imcfl2_17 * vals3.cmv/100
+            vals3.aies17 = vals2.iscfl2_17 * vals3.cmv/100
+            vals3.cmaxium17 = vals3.sfnib17 - vals3.aiem17 - vals3.aies17 + vals2.imcfl2_17 + vals2.iscfl2_17
+            vals3.amiem17 = vals3.aiemnt17*vals3.imcfl2*24
+            vals3.amies17 = vals3.aiesnt17*vals3.iscfl2*24
+            vals3.sfnib17 = round(vals3.sfnib17,2)
+            vals3.aiebo17 = round(vals3.aiebo17,2) 
+            vals3.aiemo17 = round(vals3.aiemo17,2)
+            vals3.aiemnt17 = round(vals3.aiemnt17,2)
+            vals3.aiesnt17 = round(vals3.aiesnt17,2)
+            vals3.aiem17 = round(vals3.aiem17,2)
+            vals3.aies17 = round(vals3.aies17,2)
+            vals3.cmaxium17 = round(vals3.cmaxium17,2)
+            vals3.amiem17 = round(vals3.amiem17,2)
+            vals3.amies17 = round(vals3.amies17,2)
+            
+            vals3.sfnib18 = vals2.apshortening_perf18 + vals2.rhpoc_perf18 + vals2.rhsbo_perf18 + vals2.niscfl2_18 + vals2.nimcfl2_18
+            vals3.aiebo18 = vals2.iscfl2_18 + vals2.imcfl2_18
+            if vals3.cudy-vals3.sfnib18-vals3.aiebo18 > 0:
+                vals3.aiemo18=0
+            else:
+                vals3.aiemo18=-(vals3.cudy-vals3.sfnib18-vals3.aiebo18)
+            vals3.aiemnt18 = vals3.aiemo18*24*vals3.imcfl2
+            if vals3.aiemnt18 == vals3.aiemo18:
+                vals3.aiesnt18 = 0
+            else:
+                vals3.aiesnt18 = vals3.aiemo18 - vals3.aiemnt18
+            vals3.aiem18 = vals2.imcfl2_18 * vals3.cmv/100
+            vals3.aies18 = vals2.iscfl2_18 * vals3.cmv/100
+            vals3.cmaxium18 = vals3.sfnib18 - vals3.aiem18 - vals3.aies18 + vals2.imcfl2_18 + vals2.iscfl2_18
+            vals3.amiem18 = vals3.aiemnt18*vals3.imcfl2*24
+            vals3.amies18 = vals3.aiesnt18*vals3.iscfl2*24
+            vals3.sfnib18 = round(vals3.sfnib18,2)
+            vals3.aiebo18 = round(vals3.aiebo18,2) 
+            vals3.aiemo18 = round(vals3.aiemo18,2)
+            vals3.aiemnt18 = round(vals3.aiemnt18,2)
+            vals3.aiesnt18 = round(vals3.aiesnt18,2)
+            vals3.aiem18 = round(vals3.aiem18,2)
+            vals3.aies18 = round(vals3.aies18,2)
+            vals3.cmaxium18 = round(vals3.cmaxium18,2)
+            vals3.amiem18 = round(vals3.amiem18,2)
+            vals3.amies18 = round(vals3.amies18,2)
+            
+            vals3.sfnib19 = vals2.apshortening_perf19 + vals2.rhpoc_perf19 + vals2.rhsbo_perf19 + vals2.niscfl2_19 + vals2.nimcfl2_19
+            vals3.aiebo19 = vals2.iscfl2_19 + vals2.imcfl2_19
+            if vals3.cudy-vals3.sfnib19-vals3.aiebo19 > 0:
+                vals3.aiemo19=0
+            else:
+                vals3.aiemo19=-(vals3.cudy-vals3.sfnib19-vals3.aiebo19)
+            if vals3.aiemo19<vals2.imcfl2_19:
+                vals3.aiemnt19 = vals3.aiemo19
+            else:
+                vals3.aiemnt19 = vals2.imcfl2_19
+            if vals3.aiemnt19 == vals3.aiemo19:
+                vals3.aiesnt19 = 0
+            else:
+                vals3.aiesnt19 = vals3.aiemo19 - vals3.aiemnt19
+            vals3.aiem19 = vals2.imcfl2_19 * vals3.cmv/100
+            vals3.aies19 = vals2.iscfl2_19 * vals3.cmv/100
+            vals3.cmaxium19 = vals3.sfnib19 - vals3.aiem19 - vals3.aies19 + vals2.imcfl2_19 + vals2.iscfl2_19
+            vals3.amiem19 = vals3.aiemnt19*vals3.imcfl2*24
+            vals3.amies19 = vals3.aiesnt19*vals3.iscfl2*24
+            vals3.sfnib19 = round(vals3.sfnib19,2)
+            vals3.aiebo19 = round(vals3.aiebo19,2) 
+            vals3.aiemo19 = round(vals3.aiemo19,2)
+            vals3.aiemnt19 = round(vals3.aiemnt19,2)
+            vals3.aiesnt19 = round(vals3.aiesnt19,2)
+            vals3.aiem19 = round(vals3.aiem19,2)
+            vals3.aies19 = round(vals3.aies19,2)
+            vals3.cmaxium19 = round(vals3.cmaxium19,2)
+            vals3.amiem19 = round(vals3.amiem19,2)
+            vals3.amies19 = round(vals3.amies19,2)
+            
+            vals3.sfnib20 = vals2.apshortening_perf20 + vals2.rhpoc_perf20 + vals2.rhsbo_perf20 + vals2.niscfl2_20 + vals2.nimcfl2_20
+            vals3.aiebo20 = vals2.iscfl2_20 + vals2.imcfl2_20
+            if vals3.cudy-vals3.sfnib20-vals3.aiebo20 > 0:
+                vals3.aiemo20=0
+            else:
+                vals3.aiemo20=-(vals3.cudy-vals3.sfnib20-vals3.aiebo20)
+            if vals3.aiemo20<vals2.imcfl2_20:
+                vals3.aiemnt20 = vals3.aiemo20
+            else:
+                vals3.aiemnt20 = vals2.imcfl2_20
+            if vals3.aiemnt20 == vals3.aiemo20:
+                vals3.aiesnt20 = 0
+            else:
+                vals3.aiesnt20 = vals3.aiemo20 - vals3.aiemnt20
+            vals3.aiem20 = vals2.imcfl2_20 * vals3.cmv/100
+            vals3.aies20 = vals2.iscfl2_20 * vals3.cmv/100
+            vals3.cmaxium20 = vals3.sfnib20 - vals3.aiem20 - vals3.aies20 + vals2.imcfl2_20 + vals2.iscfl2_20
+            vals3.amiem20 = vals3.aiemnt20*vals3.imcfl2*24
+            vals3.amies20 = vals3.aiesnt20*vals3.iscfl2*24
+            vals3.sfnib20 = round(vals3.sfnib20,2)
+            vals3.aiebo20 = round(vals3.aiebo20,2) 
+            vals3.aiemo20 = round(vals3.aiemo20,2)
+            vals3.aiemnt20 = round(vals3.aiemnt20,2)
+            vals3.aiesnt20 = round(vals3.aiesnt20,2)
+            vals3.aiem20 = round(vals3.aiem20,2)
+            vals3.aies20 = round(vals3.aies20,2)
+            vals3.cmaxium20 = round(vals3.cmaxium20,2)
+            vals3.amiem20 = round(vals3.amiem20,2)
+            vals3.amies20 = round(vals3.amies20,2)
+            
+            vals3.sfnib21 = vals2.apshortening_perf21 + vals2.rhpoc_perf21 + vals2.rhsbo_perf21 + vals2.niscfl2_21 + vals2.nimcfl2_21
+            vals3.aiebo21 = vals2.iscfl2_21 + vals2.imcfl2_21
+            if vals3.cudy-vals3.sfnib21-vals3.aiebo21 > 0:
+                vals3.aiemo21=0
+            else:
+                vals3.aiemo21=-(vals3.cudy-vals3.sfnib21-vals3.aiebo21)
+            if vals3.aiemo21<vals2.imcfl2_21:
+                vals3.aiemnt21 = vals3.aiemo21
+            else:
+                vals3.aiemnt21 = vals2.imcfl2_21
+            if vals3.aiemnt21 == vals3.aiemo21:
+                vals3.aiesnt21 = 0
+            else:
+                vals3.aiesnt21 = vals3.aiemo21 - vals3.aiemnt21
+            vals3.aiem21 = vals2.imcfl2_21 * vals3.cmv/100
+            vals3.aies21 = vals2.iscfl2_21 * vals3.cmv/100
+            vals3.cmaxium21 = vals3.sfnib21 - vals3.aiem21 - vals3.aies21 + vals2.imcfl2_21 + vals2.iscfl2_21
+            vals3.amiem21 = vals3.aiemnt21*vals3.imcfl2*24
+            vals3.amies21 = vals3.aiesnt21*vals3.iscfl2*24
+            vals3.sfnib21 = round(vals3.sfnib21,2)
+            vals3.aiebo21 = round(vals3.aiebo21,2) 
+            vals3.aiemo21 = round(vals3.aiemo21,2)
+            vals3.aiemnt21 = round(vals3.aiemnt21,2)
+            vals3.aiesnt21 = round(vals3.aiesnt21,2)
+            vals3.aiem21 = round(vals3.aiem21,2)
+            vals3.aies21 = round(vals3.aies21,2)
+            vals3.cmaxium21 = round(vals3.cmaxium21,2)
+            vals3.amiem21 = round(vals3.amiem21,2)
+            vals3.amies21 = round(vals3.amies21,2)
+            
+            vals3.sfnib22 = vals2.apshortening_perf22 + vals2.rhpoc_perf22 + vals2.rhsbo_perf22 + vals2.niscfl2_22 + vals2.nimcfl2_22
+            vals3.aiebo22 = vals2.iscfl2_22 + vals2.imcfl2_22
+            if vals3.cudy-vals3.sfnib22-vals3.aiebo22 > 0:
+                vals3.aiemo22=0
+            else:
+                vals3.aiemo22=-(vals3.cudy-vals3.sfnib22-vals3.aiebo22)
+            if vals3.aiemo22<vals2.imcfl2_22:
+                vals3.aiemnt22 = vals3.aiemo22
+            else:
+                vals3.aiemnt22 = vals2.imcfl2_22
+            if vals3.aiemnt22 == vals3.aiemo22:
+                vals3.aiesnt22 = 0
+            else:
+                vals3.aiesnt22 = vals3.aiemo22 - vals3.aiemnt22
+            vals3.aiem22 = vals2.imcfl2_22 * vals3.cmv/100
+            vals3.aies22 = vals2.iscfl2_22 * vals3.cmv/100
+            vals3.cmaxium22 = vals3.sfnib22 - vals3.aiem22 - vals3.aies22 + vals2.imcfl2_22 + vals2.iscfl2_22
+            vals3.amiem22 = vals3.aiemnt22*vals3.imcfl2*24
+            vals3.amies22 = vals3.aiesnt22*vals3.iscfl2*24
+            vals3.sfnib22 = round(vals3.sfnib22,2)
+            vals3.aiebo22 = round(vals3.aiebo22,2) 
+            vals3.aiemo22 = round(vals3.aiemo22,2)
+            vals3.aiemnt22 = round(vals3.aiemnt22,2)
+            vals3.aiesnt22 = round(vals3.aiesnt22,2)
+            vals3.aiem22 = round(vals3.aiem22,2)
+            vals3.aies22 = round(vals3.aies22,2)
+            vals3.cmaxium22 = round(vals3.cmaxium22,2)
+            vals3.amiem22 = round(vals3.amiem22,2)
+            vals3.amies22 = round(vals3.amies22,2)
+            
+            vals3.sfnib23 = vals2.apshortening_perf23 + vals2.rhpoc_perf23 + vals2.rhsbo_perf23 + vals2.niscfl2_23 + vals2.nimcfl2_23
+            vals3.aiebo23 = vals2.iscfl2_23 + vals2.imcfl2_23
+            if vals3.cudy-vals3.sfnib23-vals3.aiebo23 > 0:
+                vals3.aiemo23=0
+            else:
+                vals3.aiemo23=-(vals3.cudy-vals3.sfnib23-vals3.aiebo23)
+            if vals3.aiemo23<vals2.imcfl2_23:
+                vals3.aiemnt23 = vals3.aiemo23
+            else:
+                vals3.aiemnt23 = vals2.imcfl2_23
+            if vals3.aiemnt23 == vals3.aiemo23:
+                vals3.aiesnt23 = 0
+            else:
+                vals3.aiesnt23 = vals3.aiemo23 - vals3.aiemnt23
+            vals3.aiem23 = vals2.imcfl2_23 * vals3.cmv/100
+            vals3.aies23 = vals2.iscfl2_23 * vals3.cmv/100
+            vals3.cmaxium23 = vals3.sfnib23 - vals3.aiem23 - vals3.aies23 + vals2.imcfl2_23 + vals2.iscfl2_23
+            vals3.amiem23 = vals3.aiemnt23*vals3.imcfl2*24
+            vals3.amies23 = vals3.aiesnt23*vals3.iscfl2*24
+            vals3.sfnib23 = round(vals3.sfnib23,2)
+            vals3.aiebo23 = round(vals3.aiebo23,2) 
+            vals3.aiemo23 = round(vals3.aiemo23,2)
+            vals3.aiemnt23 = round(vals3.aiemnt23,2)
+            vals3.aiesnt23 = round(vals3.aiesnt23,2)
+            vals3.aiem23 = round(vals3.aiem23,2)
+            vals3.aies23 = round(vals3.aies23,2)
+            vals3.cmaxium23 = round(vals3.cmaxium23,2)
+            vals3.amiem23 = round(vals3.amiem23,2)
+            vals3.amies23 = round(vals3.amies23,2)
+            
+            vals3.sfnib24 = vals2.apshortening_perf24 + vals2.rhpoc_perf24 + vals2.rhsbo_perf24 + vals2.niscfl2_24 + vals2.nimcfl2_24
+            vals3.aiebo24 = vals2.iscfl2_24 + vals2.imcfl2_24
+            if vals3.cudy-vals3.sfnib24-vals3.aiebo24 > 0:
+                vals3.aiemo24=0
+            else:
+                vals3.aiemo24=-(vals3.cudy-vals3.sfnib24-vals3.aiebo24)
+            if vals3.aiemo24<vals2.imcfl2_24:
+                vals3.aiemnt24 = vals3.aiemo24
+            else:
+                vals3.aiemnt24 = vals2.imcfl2_24
+            if vals3.aiemnt24 == vals3.aiemo24:
+                vals3.aiesnt24 = 0
+            else:
+                vals3.aiesnt24 = vals3.aiemo24 - vals3.aiemnt24
+            vals3.aiem24 = vals2.imcfl2_24 * vals3.cmv/100
+            vals3.aies24 = vals2.iscfl2_24 * vals3.cmv/100
+            vals3.cmaxium24 = vals3.sfnib24 - vals3.aiem24 - vals3.aies24 + vals2.imcfl2_24 + vals2.iscfl2_24
+            vals3.amiem24 = vals3.aiemnt24*vals3.imcfl2*24
+            vals3.amies24 = vals3.aiesnt24*vals3.iscfl2*24
+            vals3.sfnib24 = round(vals3.sfnib24,2)
+            vals3.aiebo24 = round(vals3.aiebo24,2) 
+            vals3.aiemo24 = round(vals3.aiemo24,2)
+            vals3.aiemnt24 = round(vals3.aiemnt24,2)
+            vals3.aiesnt24 = round(vals3.aiesnt24,2)
+            vals3.aiem24 = round(vals3.aiem24,2)
+            vals3.aies24 = round(vals3.aies24,2)
+            vals3.cmaxium24 = round(vals3.cmaxium24,2)
+            vals3.amiem24 = round(vals3.amiem24,2)
+            vals3.amies24 = round(vals3.amies24,2)
 
             #Rounding Values
             vals.hocan15 = round(vals.hocan15,2) 
@@ -8550,8 +8839,6 @@ def index(request):
             plt.xlabel('Year')
             plt.ylabel('% Utilization')
             plt.title('Refining Asset Capacity Utilization - Project Apple')
-
-
             fig = plt.gcf()
             #convert graph into dtring buffer and then we convert 64 bit code into image
             buf = io.BytesIO()
@@ -8559,19 +8846,37 @@ def index(request):
             buf.seek(0)
             string = base64.b64encode(buf.read())
             uri =  urllib.parse.quote(string)
+
+            plt1 = plt.figure(3)
+            plt.plot(X, Y1)
+            plt.plot(X, Y2)
+            plt.xlabel('Year')
+            plt.ylabel('% Utilization')
+            plt.title('Carton Packaging Line')
+            fig2 = plt.gcf()
+            buf2 = io.BytesIO()
+            fig2.savefig(buf2,format='png')
+            buf2.seek(0)
+            string2 = base64.b64encode(buf2.read())
+            uri2 =  urllib.parse.quote(string2)
+
             # save the object
             vals.save()
             vals2.save()
             vals3.save()
-            return render(request, 'index.html', {'vals': vals , 'vals2': vals2 , 'vals3': vals3 , 'data' : uri, 'data1' : uri1})
-
-        if '_autofill' in request.POST:
+            return render(request, 'index.html', {'vals': vals , 'vals2': vals2 , 'vals3': vals3 , 'data' : uri, 'data1' : uri1, 'data2' : uri2})
+        
+        if '_upload' in request.POST:
+            uploaded_file = request.FILES['uploaded_file']
+            fs = FileSystemStorage()
+            filename = fs.save(uploaded_file.name, uploaded_file)
+            uploaded_file_url = fs.url(filename)
             vals = values()
             vals2 = values2()
             vals3 = values3()
             
-            # df = pd.ExcelFile(r'uploaded_file_url')
-            df = pd.ExcelFile(r'/home/darshan/Downloads/Capacity utilisation Input in Red.xlsx')
+            df = pd.ExcelFile(uploaded_file)
+
             df1 = pd.read_excel(df, 'Graph Base Data')
             df1.fillna(0, inplace=True)
 
@@ -8938,71 +9243,72 @@ def index(request):
             vals.superolein4_23 = round(df1.iloc[51,13],2)
             vals.superolein4_24 = round(df1.iloc[51,14],2)
 
-            vals.ls15 = round(df1.iloc[54,5],2)
-            vals.ls16 = round(df1.iloc[54,6],2)
-            vals.ls17 = round(df1.iloc[54,7],2)
-            vals.ls18 = round(df1.iloc[54,8],2)
-            vals.ls19 = round(df1.iloc[54,9],2)
-            vals.ls20 = round(df1.iloc[54,10],2)
-            vals.ls21 = round(df1.iloc[54,11],2)
-            vals.ls22 = round(df1.iloc[54,12],2)
-            vals.ls23 = round(df1.iloc[54,13],2)
-            vals.ls24 = round(df1.iloc[54,14],2)
+            vals.ls15 = round(df1.iloc[55,5],2)
+            vals.ls16 = round(df1.iloc[55,6],2)
+            vals.ls17 = round(df1.iloc[55,7],2)
+            vals.ls18 = round(df1.iloc[55,8],2)
+            vals.ls19 = round(df1.iloc[55,9],2)
+            vals.ls20 = round(df1.iloc[55,10],2)
+            vals.ls21 = round(df1.iloc[55,11],2)
+            vals.ls22 = round(df1.iloc[55,12],2)
+            vals.ls23 = round(df1.iloc[55,13],2)
+            vals.ls24 = round(df1.iloc[55,14],2)
+            print(df1.iloc[54,5])
 
-            vals.nis15 = round(df1.iloc[55,5],2)
-            vals.nis16 = round(df1.iloc[55,6],2)
-            vals.nis17 = round(df1.iloc[55,7],2)
-            vals.nis18 = round(df1.iloc[55,8],2)
-            vals.nis19 = round(df1.iloc[55,9],2)
-            vals.nis20 = round(df1.iloc[55,10],2)
-            vals.nis21 = round(df1.iloc[55,11],2)
-            vals.nis22 = round(df1.iloc[55,12],2)
-            vals.nis23 = round(df1.iloc[55,13],2)
-            vals.nis24 = round(df1.iloc[55,14],2)
+            vals.nis15 = round(df1.iloc[56,5],2)
+            vals.nis16 = round(df1.iloc[56,6],2)
+            vals.nis17 = round(df1.iloc[56,7],2)
+            vals.nis18 = round(df1.iloc[56,8],2)
+            vals.nis19 = round(df1.iloc[56,9],2)
+            vals.nis20 = round(df1.iloc[56,10],2)
+            vals.nis21 = round(df1.iloc[56,11],2)
+            vals.nis22 = round(df1.iloc[56,12],2)
+            vals.nis23 = round(df1.iloc[56,13],2)
+            vals.nis24 = round(df1.iloc[56,14],2)
 
-            vals.nim15 = round(df1.iloc[56,5],2)
-            vals.nim16 = round(df1.iloc[56,6],2)
-            vals.nim17 = round(df1.iloc[56,7],2)
-            vals.nim18 = round(df1.iloc[56,8],2)
-            vals.nim19 = round(df1.iloc[56,9],2)
-            vals.nim20 = round(df1.iloc[56,10],2)
-            vals.nim21 = round(df1.iloc[56,11],2)
-            vals.nim22 = round(df1.iloc[56,12],2)
-            vals.nim23 = round(df1.iloc[56,13],2)
-            vals.nim24 = round(df1.iloc[56,14],2)
+            vals.nim15 = round(df1.iloc[57,5],2)
+            vals.nim16 = round(df1.iloc[57,6],2)
+            vals.nim17 = round(df1.iloc[57,7],2)
+            vals.nim18 = round(df1.iloc[57,8],2)
+            vals.nim19 = round(df1.iloc[57,9],2)
+            vals.nim20 = round(df1.iloc[57,10],2)
+            vals.nim21 = round(df1.iloc[57,11],2)
+            vals.nim22 = round(df1.iloc[57,12],2)
+            vals.nim23 = round(df1.iloc[57,13],2)
+            vals.nim24 = round(df1.iloc[57,14],2)
 
-            vals.is15 = round(df1.iloc[57,5],2)
-            vals.is16 = round(df1.iloc[57,6],2)
-            vals.is17 = round(df1.iloc[57,7],2)
-            vals.is18 = round(df1.iloc[57,8],2)
-            vals.is19 = round(df1.iloc[57,9],2)
-            vals.is20 = round(df1.iloc[57,10],2)
-            vals.is21 = round(df1.iloc[57,11],2)
-            vals.is22 = round(df1.iloc[57,12],2)
-            vals.is23 = round(df1.iloc[57,13],2)
-            vals.is24 = round(df1.iloc[57,14],2)
+            vals.is15 = round(df1.iloc[58,5],2)
+            vals.is16 = round(df1.iloc[58,6],2)
+            vals.is17 = round(df1.iloc[58,7],2)
+            vals.is18 = round(df1.iloc[58,8],2)
+            vals.is19 = round(df1.iloc[58,9],2)
+            vals.is20 = round(df1.iloc[58,10],2)
+            vals.is21 = round(df1.iloc[58,11],2)
+            vals.is22 = round(df1.iloc[58,12],2)
+            vals.is23 = round(df1.iloc[58,13],2)
+            vals.is24 = round(df1.iloc[58,14],2)
 
-            vals.im15 = round(df1.iloc[58,5],2)
-            vals.im16 = round(df1.iloc[58,6],2)
-            vals.im17 = round(df1.iloc[58,7],2)
-            vals.im18 = round(df1.iloc[58,8],2)
-            vals.im19 = round(df1.iloc[58,9],2)
-            vals.im20 = round(df1.iloc[58,10],2)
-            vals.im21 = round(df1.iloc[58,11],2)
-            vals.im22 = round(df1.iloc[58,12],2)
-            vals.im23 = round(df1.iloc[58,13],2)
-            vals.im24 = round(df1.iloc[58,14],2)
+            vals.im15 = round(df1.iloc[59,5],2)
+            vals.im16 = round(df1.iloc[59,6],2)
+            vals.im17 = round(df1.iloc[59,7],2)
+            vals.im18 = round(df1.iloc[59,8],2)
+            vals.im19 = round(df1.iloc[59,9],2)
+            vals.im20 = round(df1.iloc[59,10],2)
+            vals.im21 = round(df1.iloc[59,11],2)
+            vals.im22 = round(df1.iloc[59,12],2)
+            vals.im23 = round(df1.iloc[59,13],2)
+            vals.im24 = round(df1.iloc[59,14],2)
 
-            vals.asm15 = round(df1.iloc[59,5],2)
-            vals.asm16 = round(df1.iloc[59,6],2)
-            vals.asm17 = round(df1.iloc[59,7],2)
-            vals.asm18 = round(df1.iloc[59,8],2)
-            vals.asm19 = round(df1.iloc[59,9],2)
-            vals.asm20 = round(df1.iloc[59,10],2)
-            vals.asm21 = round(df1.iloc[59,11],2)
-            vals.asm22 = round(df1.iloc[59,12],2)
-            vals.asm23 = round(df1.iloc[59,13],2)
-            vals.asm24 = round(df1.iloc[59,14],2)
+            vals.asm15 = round(df1.iloc[60,5],2)
+            vals.asm16 = round(df1.iloc[60,6],2)
+            vals.asm17 = round(df1.iloc[60,7],2)
+            vals.asm18 = round(df1.iloc[60,8],2)
+            vals.asm19 = round(df1.iloc[60,9],2)
+            vals.asm20 = round(df1.iloc[60,10],2)
+            vals.asm21 = round(df1.iloc[60,11],2)
+            vals.asm22 = round(df1.iloc[60,12],2)
+            vals.asm23 = round(df1.iloc[60,13],2)
+            vals.asm24 = round(df1.iloc[60,14],2)
 
             df2 = pd.read_excel(df, 'IE&Hydro Oil in IE Product')
             df2.fillna(0, inplace=True)  
@@ -10352,21 +10658,16 @@ def index(request):
             vals3.hoilh = round(df8.iloc[123,2],2)
             vals3.hoilr = round(df8.iloc[124,2],2)
 
+            vals3.cudy = round(df8.iloc[171,5],2)
+            vals3.cmv = round(df8.iloc[181,5]*100)
+
             vals.save()
             vals2.save()
             vals3.save()
-            return render(request, 'index.html', {'vals': vals , 'vals2': vals2, 'vals3': vals3}) 
+            
+            return render(request, 'index.html', {'vals': vals , 'vals2': vals2, 'vals3': vals3})
 
     return render(request, 'index.html')
 
 
-def upload(request):
-    if(request.method == 'POST'):
-        uploaded_file = request.FILES['uploaded_file']
-        fs = FileSystemStorage()
-        filename = fs.save(uploaded_file.name, uploaded_file)
-        uploaded_file_url = fs.url(filename)
-        
-        print(uploaded_file_url)
-        return redirect('index')
-    return render(request, 'upload.html')   
+  
